@@ -20,6 +20,7 @@ var SidebarView = Backbone.View.extend({
     el : null,
     usersCollection: null,
     userTemplate : null,
+    lastMessages: {},
     initialize: function(options) {
         this.el = options.el;
         this.render();
@@ -39,6 +40,52 @@ var SidebarView = Backbone.View.extend({
         this.refreshUsers();
         
         var self = this;
+
+
+        Backbone.on(CONST.EVENT_ON_MESSAGE,function(obj){
+            
+            if(_.isEmpty(obj))
+            	return;
+            	
+            if(_.isEmpty(obj.user))
+            	return;
+            	
+            var userID = obj.user.userID;
+            
+			if(obj.type == CONST.MESSAGE_TYPE_TEXT){
+	            self.lastMessages[userID] = obj.message;
+	            SS("#online-users #" + userID + " p").text(obj.message);
+			}
+            
+        });
+
+        Backbone.on(CONST.EVENT_ON_TYPING,function(obj){
+            
+
+            if(_.isEmpty(obj))
+            	return;
+            	
+            if(_.isEmpty(obj.userID))
+            	return;
+
+            var userID = obj.userID;
+
+            if(obj.type == CONST.TYPING_ON){
+                
+                SS("#online-users #" + userID + " p").text("Typing...");
+                
+            } else {
+                
+                if(!_.isEmpty(self.lastMessages[userID])){
+		            SS("#online-users #" + userID + " p").text(self.lastMessages[userID]);
+                }else{
+	                SS("#online-users #" + userID + " p").text("");	                
+                }
+
+            }
+            
+        });
+        
 
         // New user login
         Backbone.on(CONST.EVENT_ON_LOGIN_NOTIFY, function(obj){
