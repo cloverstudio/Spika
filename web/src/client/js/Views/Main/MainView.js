@@ -87,6 +87,10 @@ var MainView = Backbone.View.extend({
     },
     
     adjustSize: function(){
+
+        if(Settings.options.showTitlebar == false){            
+            SS('#message-info').css('top','0px');
+        }
         
         SS('#message-info').height($(window).height() - SS('#message-info').position().top - SS('#text-message-box-container').height());
         SS('#sidebar').height($(window).height());

@@ -1,4 +1,4 @@
-<div class="message-cell {{isMine}} file" id="{{id}}">
+<div class="message-cell {{isMine}} file" id="{{id}}" userid="{{userID}}">
     
     <div class="status status{{status}}">
         
@@ -11,10 +11,12 @@
 		<img src="{{ avatarURL }}" />
     </div>
 
-    <div class="infoicon">
-        <span class="glyphicon glyphicon-info-sign"></span>
+    <div class="info">
+        
+        <span class="name"> {{name}} </span>
+        <span class="time"> {{formatTime created}} </span>        
+        
     </div>
-
     
     <div class="file-container">
         

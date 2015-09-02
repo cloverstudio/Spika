@@ -122,7 +122,7 @@ FileUploader.prototype.uploadFileHTML5 = function(file){
         function(progress){
             
             message.set('uploadProgress',Math.floor(progress * 100));
-            self.parentView.updateMessage(tempID,message);
+            self.parentView.updateMessage(message);
             
         },
                     

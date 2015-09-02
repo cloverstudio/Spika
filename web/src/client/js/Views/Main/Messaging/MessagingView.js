@@ -449,12 +449,27 @@ var MessagingView = Backbone.View.extend({
     afterRender: function(){
         
         var self = this;
+        var lastUserID = '';
         
         SS('.message-cell').each(function(){
+            
+            var userID = $(this).attr('userid');
+            var isFirst = (userID != lastUserID);
 
+            lastUserID = userID;
+            
+            $(this).removeClass('not-first');
+            
+            if(!isFirst)
+                $(this).addClass('not-first');
+                
             if($(this).find('.message').length){    
-                $(this).find('.avatar').css('line-height',($(this).find('.message').height() - 20) + "px"); 
-                $(this).height($(this).find('.message').height()); 
+
+                if(isFirst)
+                    $(this).height($(this).find('.message').height() + $(this).find('.info').height()); 
+                else
+                    $(this).height($(this).find('.message').height()); 
+                    
             }
             
             if($(this).find('.progress-container').length){
@@ -462,14 +477,25 @@ var MessagingView = Backbone.View.extend({
             }
             
             if($(this).find('.file-container').length){
-                $(this).height($(this).find('.file-container').height() + 13); 
+
+                if(isFirst)
+                    $(this).height($(this).find('.file-container').height() + $(this).find('.info').height()); 
+                else
+                    $(this).height($(this).find('.file-container').height()); 
+
+                
             }
 
             if($(this).find('.thumb-container').length){
                 
-                $(this).find('.thumb-container img').css('max-height',Settings.options.thumbnailHeight);
+
+                if(isFirst)
+                    $(this).height(Settings.options.thumbnailHeight + $(this).find('.info').height() + 30); 
+                else
+                    $(this).height(Settings.options.thumbnailHeight + 30); 
+                    
                 
-                $(this).height(Settings.options.thumbnailHeight + 30); 
+                
             }
 
             if($(this).find('.typing').length){
@@ -495,6 +521,16 @@ var MessagingView = Backbone.View.extend({
            self.openMessageInfoView($(this).parent().attr('id'));
 
         });
+                
+        SS('.message-cell .file-container').css('cursor','pointer');
+        SS('.message-cell .file-container').unbind().on('click',function(){
+           
+           self.openMessageInfoView($(this).parent().attr('id'));
+
+        });
+        
+        // disable opening messsage detail view
+        $(".message-cell .file-container a").click(function(e) { e.stopPropagation(); });
                   
     },
     openMessageInfoView: function(messageID){
@@ -564,14 +600,6 @@ var MessagingView = Backbone.View.extend({
         this.afterRender();
         
     },
-    updateMessage: function(messageID,message){
-        
-        var newHtml = this.cellGenerator.generate(message);
-                
-        SS('#' + messageID).html(newHtml);
-        
-        this.afterRender();
-    },
     removeTyping: function(userID){
         
         var emlContainer = SS('#additional-notification-container');
@@ -629,6 +657,11 @@ var MessagingView = Backbone.View.extend({
     },
     updateMessage:function(newMessage){
        
+        console.log(newMessage);
+        
+        if(_.isEmpty(newMessage))
+            return;
+
         // get old message
         var oldMessage = this.messages.findMessageByID(newMessage.get('id'));
         
@@ -644,7 +677,7 @@ var MessagingView = Backbone.View.extend({
         
         var newHtml = this.cellGenerator.generate(newMessage);
                                 
-        SS('#' + oldMessage.get('id')).html(newHtml);
+        SS('#' + oldMessage.get('id')).replaceWith(newHtml);
         SS('#' + oldMessage.get('id')).attr('id',newMessage.get('id'));
         
     }

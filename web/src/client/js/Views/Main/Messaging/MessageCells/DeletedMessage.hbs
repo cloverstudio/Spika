@@ -1,4 +1,4 @@
-<div class="message-cell {{isMine}} text" id="{{id}}">
+<div class="message-cell {{isMine}} text" id="{{id}}" userid="{{userID}}">
     
     <div class="status status{{status}}">
         
@@ -11,6 +11,13 @@
 		<img src="{{ avatarURL }}" />
     </div>
     
+    <div class="info">
+        
+        <span class="name"> {{name}} </span>
+        <span class="time"> {{formatTime created}} </span>        
+        
+    </div>
+    
     <div class="message">
         <div>[ This message is deleted ]</div>
     </div>
@@ -18,4 +25,5 @@
     <div class="clearfix"></div>
     
 </div>
+
 

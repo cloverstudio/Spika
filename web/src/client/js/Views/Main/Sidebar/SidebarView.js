@@ -10,6 +10,7 @@ var WebAPIManager = require('../../../libs/webAPIManager');
 var CONST = require('../../../consts');
 var ProcessingDialog = require('../../Modals/ProcessingDialog/ProcessingDialog');
 var User = require('../../../Models/user.js');
+var Settings = require('../../../libs/Settings');
 
 
 var template = require('./Sidebar.hbs');
@@ -96,7 +97,13 @@ var SidebarView = Backbone.View.extend({
 
     adjustSize: function(){
         var userListAreaHeight = SS('#sidebar').height() - SS('#sidebar .col-header').height();
+                
+        if(Settings.options.showTitlebar == false){            
+            userListAreaHeight = SS('#sidebar').height();                             
+        }   
+         
         SS('#online-users').height(userListAreaHeight);
+
     },
     
     refreshUsers:function(){

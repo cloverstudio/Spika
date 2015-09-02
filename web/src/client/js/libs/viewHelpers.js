@@ -24,6 +24,9 @@ Handlebars.registerHelper('test', function(context, options) {
           return  U.formatDate(ut,false);
         });
 
+        Handlebars.registerHelper("formatTime", function(ut) {
+          return  U.formatTime(ut);
+        });
 
         Handlebars.registerHelper("length", function(ary) {
           return  ary.length;

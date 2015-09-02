@@ -1,10 +1,29 @@
-<div class="message-cell {{isMine}} text" id="{{id}}">
+<div class="message-cell {{isMine}} text" id="{{id}}" userid="{{userID}}">
+    
+    <div class="status status{{status}}">
+        
+        <span class="sending glyphicon glyphicon-arrow-right"></span>
+        <span class="sent glyphicon glyphicon-ok-circle  "></span>
+        
+    </div>
+        
+	<div class="avatar">
+		<img src="{{ avatarURL }}" />
+    </div>
 
-    <div class="user-state-change">
-        <div> <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> {{{ message }}} <span class="timestamp">{{{formatDate created}}}</span></div>
+    <div class="info">
+        
+        <span class="name"> {{name}} </span>
+        <span class="time"> {{formatTime created}} </span>        
+        
+    </div>
+    
+    <div class="message">
+        <div>{{{ message }}}</div>
     </div>
     
     <div class="clearfix"></div>
     
 </div>
+
 

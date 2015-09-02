@@ -62,10 +62,9 @@
             .avatar{
                 
                 position: absolute;
-                bottom: 0px;
                 
                 width: 45px;
-                padding: 10px;
+                padding: 0px 10px 10px 10px;
                 text-align: center;
 
                 img{
@@ -77,14 +76,22 @@
 
             .infoicon{
                 position: absolute;
-                top: 10px;
+                bottom: 0px;
                 font-size: 20px;
+                margin-bottom: -5px;
             }
-
+            
+            .info {
+                position: absolute;
+                top: 0px;
+                max-width: 100%;
+                font-size: 12px;
+            }
+            
             .message{
                 
                 position: absolute;
-                top: 0px;
+                top: 20px;
                 max-width: 100%;
                                 
                 div{
@@ -97,9 +104,10 @@
             .status{
                 
                 position: absolute;
-                bottom: -5px;
+                top: 30px;
                 z-index: 100;
                 font-size: 10px;
+                padding-right: 25px;
             }
                        
             .user-state-change{
@@ -129,7 +137,7 @@
             
                 position: absolute;                
                 min-width: 300px;
-                top: 10px;
+                top: 20px;
 
                 div{
                 
@@ -149,7 +157,7 @@
             
                 position: absolute;                
                 min-width: 300px;
-                top: 10px;
+                top: 20px;
 
                 div{
                     display: inline-block;
@@ -182,7 +190,16 @@
                 right: 0px;
                               
             }
+
+            .info{  
+
+                right: 0px;
+                padding-right: 45px;
+                text-align: right;
+
+            }
             
+
             .message{  
 
                 right: 0px;
@@ -197,14 +214,14 @@
             }
 
             .infoicon{
-                right: 10px;
+                right: 25px;
+                z-index: 100;
             }
 
 
             .status0{
                 
                 right: 0px;
-                padding-right: 5px;
                 color: $brand-primary;
                 
                 .sending{
@@ -219,7 +236,6 @@
             .status1{
                 
                 right: 0px;
-                padding-right: 5px;
                 color: $brand-success;
  
                 .sending{
@@ -239,7 +255,8 @@
 
             .file-container{
                 right: 0px;
-                margin-right: 25px;
+                padding-right: 25px;
+                margin-right: 20px;
 
                 div{
                     background-color: $brand-primary; 
@@ -279,6 +296,13 @@
             .infoicon{
                 left: 10px;
             }
+
+            .info{  
+
+                left: 0px;
+                padding-left: 45px;
+                          
+            } 
             
             .message{  
 
@@ -335,6 +359,41 @@
                 }
             }
             
+        }
+        
+        .message-cell.not-first{
+            
+            .avatar{
+                display: none;
+            }
+            
+            .info{
+                display : none;
+            }
+            
+            .message{
+                top: 0px;
+            }
+    
+            .file-container{
+                top: 0px;
+            }
+    
+            .status{
+                top: 0px;
+            }
+            
+            .thumb-container{
+                top: 10px;
+            }
+        }
+        
+        .message-cell.thumb{
+    
+            .status{
+                top: 10px;
+            }
+
         }
         
     }
