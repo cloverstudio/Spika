@@ -1,0 +1,25 @@
+#main-view {
+    
+    .col-header{
+        height: 50px;
+        border-bottom: 1px solid $gray-lighter;
+        padding-left: 10px;
+        margin-top: 0px;
+        
+        h5{
+            margin: 0px;
+            line-height: 50px;
+            
+        }
+    }
+    
+    #sidebar{
+        padding: 0px;
+        border-right: 1px solid $gray-light;
+    }
+    
+    #messaging{
+        padding: 0px;
+    }
+    
+}

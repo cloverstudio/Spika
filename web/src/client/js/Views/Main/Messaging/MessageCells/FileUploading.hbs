@@ -1,0 +1,28 @@
+<div class="message-cell {{isMine}} fileupload" id="{{id}}">
+    
+    <div class="status status{{status}}">
+        
+        <span class="sending glyphicon glyphicon-arrow-right"></span>
+        <span class="sent glyphicon glyphicon-ok-circle  "></span>
+      
+    </div>
+        
+	<div class="avatar">
+		<img src="{{ avatarURL }}" />
+    </div>
+    
+    <div class="progress-container">
+        
+        Uploading : {{{filename}}} <span>({{{size}}}MB)</span>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="{{{uploadProgress}}}" aria-valuemin="0" aria-valuemax="100" style="width: {{{uploadProgress}}}%;">
+                {{{uploadProgress}}}%
+            </div>
+        </div>
+    
+    </div>
+    
+    <div class="clearfix"></div>
+    
+</div>
+

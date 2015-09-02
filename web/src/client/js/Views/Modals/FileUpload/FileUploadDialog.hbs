@@ -1,0 +1,37 @@
+<div class="modal fade" id="modal1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Sned File</h4>
+      </div>
+      <div class="modal-body">
+        
+        <form id="upload-form" name="form" action="{{postURL}}" method="POST" enctype="multipart/form-data" >
+        
+            <div id="main">
+                <input name="file" id="fileupload-dialog-file-input" type="file" />
+                <input name="userID" value="{{params.userID}}" type="hidden" />
+                <input name="token" value="{{params.token}}"  type="hidden" />
+                <input name="localID" value="{{params.localID}}"  type="hidden" />
+                <input name="roomID" value="{{params.roomID}}"  type="hidden" />
+                <input name="type" value="{{params.type}}"  type="hidden" />
+                
+                <iframe id='fileupload-dialog-iframe' name='fileupload-dialog-iframe' src="" style="display:none" ></iframe>
+            </div>
+            
+            <div id="fileupload-dialog-uploading" style="display:none">
+                Uploaing file...  <img src="img/loader.gif" />
+            </div>
+            
+        </form>
+        
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" id="modal-btn-close" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+      
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

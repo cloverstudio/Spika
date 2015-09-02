@@ -1,0 +1,342 @@
+#messaging-content{
+    
+    position: relative;
+    
+    #additional-notification-container{
+        
+        overflow: hidden;
+        position: absolute;
+        width: 100%;
+        background-color: rgba( $gray-lighter, .7 );
+        color: $gray-light;
+        font-size: 12px;
+        padding: 5px;
+        height: 0px;
+        display: none;
+    }
+    
+    #text-message-box-container{
+    
+        position: absolute;
+        bottom: 0;
+        left: 0px;
+        width: 100%;
+        height: 40px;
+        border-top: 1px solid $gray-lighter;
+        z-index: 100;
+        
+        textarea{
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 40px;
+            border: none;
+            padding: 10px;
+        }
+        
+        #btn-fileupload{
+            position: absolute;
+            right: 10px;
+            top: 5px;
+            z-index: 110;
+            font-size: 20pt;
+            cursor: pointer;
+        }
+        
+    }
+    
+    #messages{
+    
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        
+        .message-cell{
+            
+            margin-top: 5px;
+            margin-bottom: 5px;
+            width: 100%;
+            position: relative;
+            
+            .avatar{
+                
+                position: absolute;
+                bottom: 0px;
+                
+                width: 45px;
+                padding: 10px;
+                text-align: center;
+
+                img{
+                    width: 25px;
+                    vertical-align: bottom;
+                }
+                              
+            }
+
+            .infoicon{
+                position: absolute;
+                top: 10px;
+                font-size: 20px;
+            }
+
+            .message{
+                
+                position: absolute;
+                top: 0px;
+                max-width: 100%;
+                                
+                div{
+                    word-wrap: normal;
+                    display: inline-block;
+                    padding: 10px;
+                }
+            }
+ 
+            .status{
+                
+                position: absolute;
+                bottom: -5px;
+                z-index: 100;
+                font-size: 10px;
+            }
+                       
+            .user-state-change{
+                color: $gray-light;
+                padding: 10px 0px 10px 5px;
+            
+                vertical-align: middle;
+                background-color: $gray-lighter;
+                
+                .timestamp{
+                    color:  lighten($gray-light, 25);
+                }
+            }
+            
+            .progress-container{
+                position: absolute;                
+                width: 50%;
+                top: 10px;
+                
+                span{
+                    color: $gray-light;
+                    font-size: 10pt;
+                }
+            }
+
+            .file-container{
+            
+                position: absolute;                
+                min-width: 300px;
+                top: 10px;
+
+                div{
+                
+                    padding: 3px;
+                                        
+                    .icon{
+                        font-size: 30px;
+                        text-align: center;
+                    }
+
+                
+                }
+                
+            }
+
+            .thumb-container{
+            
+                position: absolute;                
+                min-width: 300px;
+                top: 10px;
+
+                div{
+                    display: inline-block;
+                    padding: 10px;
+                }
+                
+            }
+                        
+            .typing{
+                
+                position: absolute;
+                top: 0px;
+
+                width: 100%;
+                                
+                div{
+                    display: inline-block;
+                    padding: 10px;
+                }
+            }
+            
+            
+        }
+        
+    
+        .message-cell.mine{
+                        
+            .avatar{
+                
+                right: 0px;
+                              
+            }
+            
+            .message{  
+
+                right: 0px;
+                padding-right: 45px;
+                text-align: right;
+                
+                div{
+                    background-color: $brand-primary; 
+                    color: #fff;  
+                    text-align: left;          
+                }
+            }
+
+            .infoicon{
+                right: 10px;
+            }
+
+
+            .status0{
+                
+                right: 0px;
+                padding-right: 5px;
+                color: $brand-primary;
+                
+                .sending{
+                    display: inline-block;
+                }
+                
+                .sent{
+                    display: none;
+                }
+            }
+            
+            .status1{
+                
+                right: 0px;
+                padding-right: 5px;
+                color: $brand-success;
+ 
+                .sending{
+                    display: none;
+                }
+                
+                .sent{
+                    display: inline-block;
+                }
+                
+            }
+
+            .progress-container{
+                right: 0px;
+                padding-right: 45px;
+            }
+
+            .file-container{
+                right: 0px;
+                margin-right: 25px;
+
+                div{
+                    background-color: $brand-primary; 
+                    color: #fff;  
+                    text-align: left; 
+
+                    a{
+                        color: #fff;
+                        text-decoration: underline;
+                    }
+                             
+                }    
+            }
+
+            .thumb-container{
+                right: 0px;
+                margin-right: 25px; 
+
+                div{
+                    background-color: $brand-primary; 
+                }
+
+            }
+                        
+            a{
+                color: #fff;
+            }
+            
+        }
+        
+        .message-cell.other{
+                        
+            .avatar{
+                left: 0px;
+            }
+
+            .infoicon{
+                left: 10px;
+            }
+            
+            .message{  
+
+                left: 0px;
+                padding-left: 45px;
+                          
+                div{
+                    background-color: $gray-lighter;             
+                    color: $gray-dark;            
+                }
+            } 
+
+            .status{
+                display: none;
+            }
+            
+            .file-container{
+            
+                left: 0px;
+                margin-left: 45px;
+
+                div{
+                    background-color: $gray-lighter; 
+                    color: $gray-dark;  
+                    text-align: left;          
+
+                    
+                    a{
+                        color: $gray-dark; 
+                        text-decoration: underline;
+                    }
+
+                }
+                
+            }
+
+            .thumb-container{
+            
+                left: 0px;
+                margin-left: 45px;
+
+                div{
+                    background-color: $gray-lighter; 
+                }
+            }
+            
+            .typing{
+                
+                left: 0px;
+                padding-left: 45px;
+                                
+                div{
+                    color: $gray-lighter;
+                }
+            }
+            
+        }
+        
+    }
+
+}

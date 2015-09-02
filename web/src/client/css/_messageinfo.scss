@@ -1,0 +1,130 @@
+#message-info {
+
+    width: 0px;
+    position: absolute;
+    top: 50px;
+    left:100%;
+    background-color: $gray-lighter;
+    padding: 0px;
+    overflow-x: hidden;
+    z-index: 1000;
+    background: $gray-dark;
+    color: white;
+    
+    #message-info-container{
+        
+        padding: 5px;
+        
+        .message-info-header{
+            
+            font-size: 20px;
+            
+            text-align: center;
+            
+            span{
+                float: left;
+                padding-bottom: 10px;
+                cursor: pointer;
+            }
+            
+            h4{
+                margin-left: 6px;
+            }
+        }
+        
+        .deltedalert{
+            background: darken($alert-danger-bg,50%);
+            border: none;
+            color: lighten($alert-danger-text,50%);
+        }
+        
+        .message-param{
+            padding: 10px;
+        }
+        
+        .users{
+            
+            tr{
+                border: none;
+            }
+            
+            td{
+                border: none;
+            }
+        }
+        
+        .message-information{
+            overflow-y: auto;
+        }
+    }
+
+        
+    #message-action-container{
+        position: absolute;
+        bottom: 0px;
+        height: 50px;
+        width: 100%;
+        padding: 10px;
+        text-align: right;
+    }
+    
+    
+}
+
+/* Mobile Phones Portrait or Landscape */
+@media screen and (max-width: 320px){
+    #message-info.on
+    {    
+        width:100%;
+        left:0%;
+        -webkit-transition: all 0.3s ease 0s;
+        -moz-transition: all 0.3s ease 0s;
+        -o-transition: all 0.3s ease 0s;
+        transition: all 0.3s ease 0s;
+    }  
+}
+
+
+/* Mobile Phones Portrait or Landscape */
+@media screen and (min-width: 320px){
+    #message-info.on
+    {    
+        width:100%;
+        left:0%;
+        -webkit-transition: all 0.3s ease 0s;
+        -moz-transition: all 0.3s ease 0s;
+        -o-transition: all 0.3s ease 0s;
+        transition: all 0.3s ease 0s;
+    }  
+}
+
+/* tablet */
+@media screen and (min-width: 992px){
+
+    #message-info.on
+    {    
+        width:50%;
+        left:50%;
+        -webkit-transition: all 0.3s ease 0s;
+        -moz-transition: all 0.3s ease 0s;
+        -o-transition: all 0.3s ease 0s;
+        transition: all 0.3s ease 0s;
+    }  
+
+}
+
+/* Desktops */
+@media screen and (min-width: 1280px){
+
+    #message-info.on
+    {    
+        width:30%;
+        left:70%;
+        -webkit-transition: all 0.3s ease 0s;
+        -moz-transition: all 0.3s ease 0s;
+        -o-transition: all 0.3s ease 0s;
+        transition: all 0.3s ease 0s;
+    }  
+
+}
+

@@ -1,0 +1,5 @@
+# generated files
+web/public
+
+# third party modules
+web/node_modules

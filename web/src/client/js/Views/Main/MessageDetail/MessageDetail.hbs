@@ -1,0 +1,39 @@
+<div id="message-info-container">
+
+    <div class="message-info-header">
+        <span class="glyphicon glyphicon-remove" id="btn-closeinfoview" ></span>
+        <h4 class="align-center">Message Information</h4>
+    </div>
+
+    <div class="deltedalert alert alert-danger">
+        This message is deleted at {{{formatDate deleted}}}
+    </div>
+
+    <table class="table">
+        
+        <tr><td>Sender</td><td>{{{user.name}}}</td></tr>
+        <tr><td>Sent At</td><td>{{{formatDate created}}}</td></tr>
+    
+    </table>
+
+    <h4 class="align-center">Users Seen</h4>
+
+    <table class="table users">
+        
+    {{#each seenBy}}
+        <tr><td><img src="{{user.avatarURL}}" height="30px"/></td><td>{{user.name}}</td><td>{{{formatDate at}}}
+        </td></tr>
+    {{~/each}}
+    
+    </table>
+
+</div>
+
+
+<div id="message-action-container">
+    
+    <button type="button" id="btn-deletemessage" class="btn btn-danger">Delete Message</button>
+    
+</div>
+
+    

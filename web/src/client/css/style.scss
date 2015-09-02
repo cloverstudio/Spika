@@ -1,0 +1,46 @@
+
+$border-radius-base:             0px;
+$border-radius-large:            0px;
+$border-radius-small:            0px;
+$input-border-radius:            0px;
+$input-border-radius-large:      0px;
+$input-border-radius-small:      0px;
+$btn-border-radius-base:         0px;
+$btn-border-radius-large:        0px;
+$btn-border-radius-small:        0px;
+
+
+@import "../../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+@import "../../../node_modules/jquery-colorbox/example1/colorbox";
+
+// loading Spika css
+@import "login";
+@import "main";
+@import "sidebar";
+@import "messaging";
+@import "messageinfo";
+
+// global style settings
+.spacer {
+    margin-top: 20px;
+}
+
+#modal-processing{
+        
+    .modal-dialog{
+        width: 100%;
+        position: absolute;
+        top: 40%;    
+    }
+    
+    .modal-content{
+        background: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        -o-box-shadow: none;
+        box-shadow: none;
+        border: none;
+        text-align: center;
+    }
+
+}

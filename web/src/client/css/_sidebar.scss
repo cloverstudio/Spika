@@ -1,0 +1,38 @@
+#sidebar-content{
+    
+    ul#online-users{
+        
+        li.cell-user {
+            
+            .avatar-holder{
+                
+                width: 50px;
+                height: 50px;
+                float: left;
+                margin-right: 15px;
+                background-repeat: no-repeat;
+                background-size: contain;                
+                -ms-behavior: url(/backgroundsize.min.htc);
+
+            }
+            
+            padding: 15px;
+            height: 80px;
+            border-bottom: 1px solid $gray-lighter;
+            
+        };
+        
+        overflow-y: auto;
+        overflow-x: hidden;
+        
+    }
+    
+}
+
+#side_nav_button{
+    display: none;
+    position: relative;
+    float: left;
+    top: 6px;
+    left: 3px;
+}

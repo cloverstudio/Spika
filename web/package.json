@@ -1,0 +1,73 @@
+{
+  "name": "spika",
+  "version": "0.0.1",
+  "author": "Clover Studio Ltd",
+  "description": "Spika is opensource messenger microservice",
+  "main": "src/server/index.js",
+  "dependencies": {
+    "JSON2": "latest",
+    "backbone": "latest",
+    "body-parser": "^1.13.1",
+    "connect": "^3.4.0",
+    "connect-busboy": "0.0.2",
+    "express": "latest",
+    "filereader": "^0.10.3",
+    "formidable": "^1.0.17",
+    "fs": "0.0.2",
+    "fs-extra": "^0.20.1",
+    "handlebars ": "latest",
+    "hbsfy ": "latest",
+    "imagemagick": "^0.1.3",
+    "jquery": "^1.9.0",
+    "js-cookie": "js-cookie/js-cookie",
+    "lodash": "latest",
+    "bootstrap-sass": "^3.3.5",
+    "mongoose": "^4.0.6",
+    "multer": "^0.1.8",
+    "nouislider": "^7.0.10",
+    "quickthumb": "0.0.11",
+    "socket.io": "^1.3.5",
+    "socket.io-client": "latest",
+    "async": "1.4.0",
+    "mime": "1.3.4",
+    "bowser": "1.0.0",
+    "easyimage": "2.0.3",
+    "jquery-colorbox": "1.6.3"
+  },
+  "devDependencies": {
+    "browserify": "^2.3.0",
+    "browserify-shim": "^3.8.9",
+    "gulp": "^3.9.0",
+    "gulp-apidoc": "^0.1.5",
+    "gulp-copy": "latest",
+    "gulp-jshint": "latest",
+    "gulp-plumber": "latest",
+    "gulp-sass": "latest",
+    "gulp-util": "latest",
+    "vinyl-source-stream": "latest",
+    "watchify": "latest",
+    "gulp-jsdoc": "latest"
+  },
+  "scripts": {
+    "build-js": "browserify src/client/js/main.js > public/js/bundle.js -d",
+    "watch-js": "watchify src/client/js/main.js -o public/js/bundle.js -v -d "
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "js-cookie": {
+      "exports": "js-cookie"
+    },
+    "three": "global:THREE"
+  },
+  "apidoc": {
+      "name": "Spika",
+      "version": "0.1.0",
+      "description": "Spika Web API's reference",
+      "title": "Spika Web API",
+      "url" : ""
+  }
+}
