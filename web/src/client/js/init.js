@@ -4,8 +4,8 @@
 
     var Config = {};
 
-    Config.apiBaseUrl = "http://45.55.81.215/v1";
-    Config.socketUrl = "http://45.55.81.215";
+    Config.apiBaseUrl = "http://128.199.248.72/spika/v1";
+    Config.socketUrl = "http://128.199.248.72/spika";
     Config.defaultContainer = "#spika-container";
     Config.showSidebar = true;
     Config.showTitlebar = true;
