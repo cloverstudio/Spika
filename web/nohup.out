@@ -1,0 +1,30 @@
+Connecting mongoDB mongodb://localhost/spika
+Server listening on port 8080!
+Connecting mongoDB mongodb://localhost/spika
+Server listening on port 8080!
+Connecting mongoDB mongodb://localhost/test
+Server listening on port 80!
+{ file: 
+   { domain: null,
+     _events: {},
+     _maxListeners: 10,
+     size: 241658,
+     path: '/tmp/upload_71af3f5f316592392b7b4198bad34679',
+     name: 'photo.jpg',
+     type: 'image/jpeg',
+     hash: null,
+     lastModifiedDate: Wed Sep 02 2015 10:25:57 GMT-0400 (EDT),
+     _writeStream: 
+      { _writableState: [Object],
+        writable: true,
+        domain: null,
+        _events: {},
+        _maxListeners: 10,
+        path: '/tmp/upload_71af3f5f316592392b7b4198bad34679',
+        fd: null,
+        flags: 'w',
+        mode: 438,
+        start: undefined,
+        pos: undefined,
+        bytesWritten: 241658,
+        closed: true } } }

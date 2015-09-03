@@ -16,6 +16,7 @@ var socketIOManager = require('./libs/socketIOManager');
 var Config = require('./init.js');
 var Const = require('./consts.js');
 var UrlGenerator = require('./libs/urlGenerator');
+var LocalizationManager = require('./libs/localizationManager.js');
 var WebAPIManager = require('./libs/webAPIManager');
 var ErrorDialog = require('./Views/Modals/ErrorDialog/ErrorDialog');
 var ProcessingDialog = require('./Views/Modals/ProcessingDialog/ProcessingDialog');
@@ -32,6 +33,7 @@ window.app = {
         var self = this;
         
         socketIOManager.init();
+		LocalizationManager.init(Settings.options.lang);
 
         ProcessingDialog.show();
                 

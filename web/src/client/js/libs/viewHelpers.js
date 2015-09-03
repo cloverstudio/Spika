@@ -1,6 +1,7 @@
 var CONST = require('../consts');
 var _ = require('lodash');
 var U = require('./utils.js');
+var LocalizationManager = require('./localizationManager.js');
 var Handlebars = require('hbsfy/runtime');
 Handlebars.registerHelper('test', function(context, options) {
   return options.fn(context);
@@ -30,6 +31,10 @@ Handlebars.registerHelper('test', function(context, options) {
 
         Handlebars.registerHelper("length", function(ary) {
           return  ary.length;
+        });
+        
+        Handlebars.registerHelper("l10n", function(text) {
+          return  LocalizationManager.localize(text);
         });
         
     }

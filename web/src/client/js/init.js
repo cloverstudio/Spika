@@ -7,6 +7,7 @@
     Config.apiBaseUrl = "http://128.199.248.72/spika/v1";
     Config.socketUrl = "http://128.199.248.72/spika";
     Config.defaultContainer = "#spika-container";
+    Config.lang = "ja";
     Config.showSidebar = true;
     Config.showTitlebar = true;
     Config.thumbnailHeight = 256;
