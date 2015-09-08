@@ -1,4 +1,5 @@
 var _ = require('lodash');
+var Observer = require("node-observer");
 
 var UsersManager = require("../lib/UsersManager");
 var DatabaseManager = require("../lib/DatabaseManager");
@@ -51,6 +52,8 @@ SendTypingActionHandler.prototype.attach = function(io,socket){
             
             param.user = user;
             io.of(Settings.options.socketNameSpace).in(param.roomID).emit('sendTyping', param);
+            Observer.send(this, Const.notificationUserTyping, param);
+
             
         });
         

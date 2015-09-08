@@ -1,4 +1,5 @@
 var _ = require('lodash');
+var Observer = require("node-observer");
 
 var UsersManager = require("../lib/UsersManager");
 var DatabaseManager = require("../lib/DatabaseManager");
@@ -67,6 +68,8 @@ DeleteMessageActionHandler.prototype.attach = function(io,socket){
 
                         // send updated messages
                         io.of(Settings.options.socketNameSpace).in(messages[0].roomID).emit('messageUpdated', [obj]);
+                        Observer.send(this, Const.notificationMessageChanges, [obj]);
+
                         
                     }
 

@@ -7,6 +7,7 @@ var Const = require("../const");
 var UserModel = require("../Models/UserModel");
 var MessageModel = require("../Models/MessageModel");
 var Settings = require("../lib/Settings");
+var Observer = require("node-observer");
 
 
 var SocketAPIHandler = {
@@ -98,7 +99,8 @@ var SocketAPIHandler = {
                         messageObj.localID = param.localID;
                                         
                     self.io.of(Settings.options.socketNameSpace).in(param.roomID).emit('newMessage', data[0]);
-                                    
+                    Observer.send(this, Const.notificationSendMessage, data[0]);
+                    
                     if(callBack)
                         callBack();
 

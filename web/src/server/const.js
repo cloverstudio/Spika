@@ -24,6 +24,12 @@
     
     Const.pagingLimit = 50;
 
+    Const.notificationSendMessage = "SendMessage";
+    Const.notificationNewUser = "NewUser";
+    Const.notificationUserTyping = "UserTyping";
+    Const.notificationMessageChanges = "MessageChanges";
+
+
     // Exports ----------------------------------------------
     module["exports"] = Const;
 

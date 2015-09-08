@@ -1,4 +1,5 @@
 var _ = require('lodash');
+var Observer = require("node-observer");
 
 var UsersManager = require("../lib/UsersManager");
 var DatabaseManager = require("../lib/DatabaseManager");
@@ -31,7 +32,8 @@ LoginActionHandler.prototype.attach = function(io,socket){
         socket.join(param.roomID);
                 
         io.of(Settings.options.socketNameSpace).in(param.roomID).emit('newUser', param);
-        
+        Observer.send(this, Const.notificationNewUser, param);
+
         if(Utils.isEmpty(param.userID)){
             console.log('err');                    
             return;

@@ -6,10 +6,14 @@
   "main": "src/server/index.js",
   "dependencies": {
     "JSON2": "latest",
+    "async": "1.4.0",
     "backbone": "latest",
     "body-parser": "^1.13.1",
+    "bootstrap-sass": "^3.3.5",
+    "bowser": "1.0.0",
     "connect": "^3.4.0",
     "connect-busboy": "0.0.2",
+    "easyimage": "2.0.3",
     "express": "latest",
     "filereader": "^0.10.3",
     "formidable": "^1.0.17",
@@ -19,20 +23,17 @@
     "hbsfy ": "latest",
     "imagemagick": "^0.1.3",
     "jquery": "^1.9.0",
+    "jquery-colorbox": "1.6.3",
     "js-cookie": "js-cookie/js-cookie",
     "lodash": "latest",
-    "bootstrap-sass": "^3.3.5",
+    "mime": "1.3.4",
     "mongoose": "^4.0.6",
     "multer": "^0.1.8",
+    "node-observer": "^0.3.2",
     "nouislider": "^7.0.10",
     "quickthumb": "0.0.11",
     "socket.io": "^1.3.5",
-    "socket.io-client": "latest",
-    "async": "1.4.0",
-    "mime": "1.3.4",
-    "bowser": "1.0.0",
-    "easyimage": "2.0.3",
-    "jquery-colorbox": "1.6.3"
+    "socket.io-client": "latest"
   },
   "devDependencies": {
     "browserify": "^2.3.0",
@@ -64,10 +65,10 @@
     "three": "global:THREE"
   },
   "apidoc": {
-      "name": "Spika",
-      "version": "0.1.0",
-      "description": "Spika Web API's reference",
-      "title": "Spika Web API",
-      "url" : ""
+    "name": "Spika",
+    "version": "0.1.0",
+    "description": "Spika Web API's reference",
+    "title": "Spika Web API",
+    "url": ""
   }
 }
