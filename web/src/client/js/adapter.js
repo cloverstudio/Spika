@@ -1,4 +1,4 @@
-var SpikaAdopter = {
+var SpikaAdapter = {
     
     listener : null,
     attach : function(options){
@@ -52,4 +52,4 @@ var SpikaAdopter = {
 }
 
 // export to global
-window.SpikaAdopter = SpikaAdopter;
+window.SpikaAdapter = SpikaAdapter;

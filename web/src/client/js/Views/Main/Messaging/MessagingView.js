@@ -506,20 +506,89 @@ var MessagingView = Backbone.View.extend({
         });
         
         // attach lightbox
-        SS('.spika-thumb').colorbox({photo:true,fixed:true,width:'80%',height:'80%%¥'});
-        
+        SS('.spika-thumb').colorbox({photo:true,fixed:true,width:'80%',height:'80%%¥',
+            onOpen:function(evt){
+
+                // call listener
+                if(!_.isEmpty(window.parent.SpikaAdapter) &&
+                
+                    !_.isEmpty(window.parent.SpikaAdapter.listener)){
+                    
+                    var listener = window.parent.SpikaAdapter.listener;
+                    
+                    if(_.isFunction(listener.OnOpenFile)){
+                        
+                        var messageID = $(evt.el).attr('id');
+                        var obj = self.messages.findMessageByID(messageID).attributes;
+                        obj = _.clone(obj);
+                        obj.user = obj.user.attributes;
+                                            
+                        if(!listener.OnOpenFile(obj)){
+                            $.colorbox.close();
+                        }
+                    }
+                }
+
+            }
+        });
+
         SS('.message-cell .message').css('cursor','pointer');
         SS('.message-cell .message').unbind().on('click',function(){
-           
-           self.openMessageInfoView($(this).parent().attr('id'));
+
+            // call listener
+            if(!_.isEmpty(window.parent.SpikaAdapter) &&
+            
+                !_.isEmpty(window.parent.SpikaAdapter.listener)){
+                
+                var listener = window.parent.SpikaAdapter.listener;
+                
+                if(_.isFunction(listener.onOpenMessage)){
+                    
+                    var messageID = $(this).parent().attr('id');
+                    var obj = self.messages.findMessageByID(messageID).attributes;
+                    obj = _.clone(obj);
+                    obj.user = obj.user.attributes;
+                                        
+                    if(listener.onOpenMessage(obj)){
+                        self.openMessageInfoView(messageID);
+                    }
+                    
+                    return;
+                    
+                }
+            }
+
+            self.openMessageInfoView($(this).parent().attr('id'));
 
         });
 
         SS('.message-cell .infoicon').css('cursor','pointer');
         SS('.message-cell .infoicon').unbind().on('click',function(){
-           
-           self.openMessageInfoView($(this).parent().attr('id'));
 
+            // call listener
+            if(!_.isEmpty(window.parent.SpikaAdapter) &&
+            
+                !_.isEmpty(window.parent.SpikaAdapter.listener)){
+                
+                var listener = window.parent.SpikaAdapter.listener;
+                
+                if(_.isFunction(listener.onOpenMessage)){
+                    
+                    var messageID = $(this).parent().attr('id');
+                    var obj = self.messages.findMessageByID(messageID).attributes;
+                    obj = _.clone(obj);
+                    obj.user = obj.user.attributes;
+                    
+                    if(listener.onOpenMessage(obj)){
+                        self.openMessageInfoView(messageID);
+                    }  
+
+                    return;
+                }
+            }
+            
+            self.openMessageInfoView($(this).parent().attr('id'));
+            
         });
                 
         SS('.message-cell .file-container').css('cursor','pointer');
@@ -528,9 +597,40 @@ var MessagingView = Backbone.View.extend({
            self.openMessageInfoView($(this).parent().attr('id'));
 
         });
-        
+
         // disable opening messsage detail view
-        $(".message-cell .file-container a").click(function(e) { e.stopPropagation(); });
+        $(".message-cell .file-container a").click(function(e) { 
+            e.stopPropagation(); 
+            
+            var link = $(this).attr('downloadlink');
+
+            // call listener
+            if(!_.isEmpty(window.parent.SpikaAdapter) &&
+            
+                !_.isEmpty(window.parent.SpikaAdapter.listener)){
+                
+                var listener = window.parent.SpikaAdapter.listener;
+                
+                if(_.isFunction(listener.onOpenMessage)){
+                    
+                    var messageID = $(this).attr('id');
+                    var obj = self.messages.findMessageByID(messageID).attributes;
+                    obj = _.clone(obj);
+                    obj.user = obj.user.attributes;
+                    
+                    if(listener.OnOpenFile(obj)){
+                        window.open(link);
+                    }  
+
+                    return;
+                }
+            }
+
+
+            // open in new window
+            window.open(link);
+            
+        });
                   
     },
     openMessageInfoView: function(messageID){

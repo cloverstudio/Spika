@@ -20,10 +20,10 @@ var Config = require('../init');
                 Backbone.trigger(CONST.EVENT_ON_LOGIN_NOTIFY, param);
                                 
                 // call listener
-                if(!_.isEmpty(window.parent.SpikaAdopter) &&
-                    !_.isEmpty(window.parent.SpikaAdopter.listener)){
+                if(!_.isEmpty(window.parent.SpikaAdapter) &&
+                    !_.isEmpty(window.parent.SpikaAdapter.listener)){
                     
-                    var listener = window.parent.SpikaAdopter.listener;
+                    var listener = window.parent.SpikaAdapter.listener;
                     
                     if(_.isFunction(listener.onNewUser))
                         listener.onNewMessage(param);
@@ -36,10 +36,10 @@ var Config = require('../init');
                 Backbone.trigger(CONST.EVENT_ON_LOGOUT_NOTIFY, param);
 
                 // call listener
-                if(!_.isEmpty(window.parent.SpikaAdopter) &&
-                    !_.isEmpty(window.parent.SpikaAdopter.listener)){
+                if(!_.isEmpty(window.parent.SpikaAdapter) &&
+                    !_.isEmpty(window.parent.SpikaAdapter.listener)){
                     
-                    var listener = window.parent.SpikaAdopter.listener;
+                    var listener = window.parent.SpikaAdapter.listener;
                     
                     if(_.isFunction(listener.onUserLeft))
                         listener.onUserLeft(param);
@@ -53,10 +53,10 @@ var Config = require('../init');
                 Backbone.trigger(CONST.EVENT_ON_MESSAGE,param);	
                     
                 // call listener
-                if(!_.isEmpty(window.parent.SpikaAdopter) &&
-                    !_.isEmpty(window.parent.SpikaAdopter.listener)){
+                if(!_.isEmpty(window.parent.SpikaAdapter) &&
+                    !_.isEmpty(window.parent.SpikaAdapter.listener)){
                     
-                    var listener = window.parent.SpikaAdopter.listener;
+                    var listener = window.parent.SpikaAdapter.listener;
                     
                     if(_.isFunction(listener.onNewMessage))
                         listener.onNewMessage(param);
@@ -69,10 +69,10 @@ var Config = require('../init');
                 Backbone.trigger(CONST.EVENT_ON_TYPING,param);	    
  
                  // call listener
-                if(!_.isEmpty(window.parent.SpikaAdopter) &&
-                    !_.isEmpty(window.parent.SpikaAdopter.listener)){
+                if(!_.isEmpty(window.parent.SpikaAdapter) &&
+                    !_.isEmpty(window.parent.SpikaAdapter.listener)){
                     
-                    var listener = window.parent.SpikaAdopter.listener;
+                    var listener = window.parent.SpikaAdapter.listener;
                     
                     if(_.isFunction(listener.OnUserTyping))
                         listener.OnUserTyping(param);
@@ -93,10 +93,10 @@ var Config = require('../init');
                 Backbone.trigger(CONST.EVENT_ON_MESSAGE_UPDATED, param);
  
                  // call listener
-                if(!_.isEmpty(window.parent.SpikaAdopter) &&
-                    !_.isEmpty(window.parent.SpikaAdopter.listener)){
+                if(!_.isEmpty(window.parent.SpikaAdapter) &&
+                    !_.isEmpty(window.parent.SpikaAdapter.listener)){
                     
-                    var listener = window.parent.SpikaAdopter.listener;
+                    var listener = window.parent.SpikaAdapter.listener;
                     
                     if(_.isFunction(listener.OnMessageChanges))
                         listener.OnMessageChanges(param);
