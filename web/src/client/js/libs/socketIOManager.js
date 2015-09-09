@@ -18,19 +18,68 @@ var Config = require('../init');
 
             this.io.on('newUser', function(param){
                 Backbone.trigger(CONST.EVENT_ON_LOGIN_NOTIFY, param);
+                                
+                // call listener
+                if(!_.isEmpty(window.parent.SpikaAdopter) &&
+                    !_.isEmpty(window.parent.SpikaAdopter.listener)){
+                    
+                    var listener = window.parent.SpikaAdopter.listener;
+                    
+                    if(_.isFunction(listener.onNewUser))
+                        listener.onNewMessage(param);
+                    
+                }
+                
             });
 
             this.io.on('userLeft', function(param){
                 Backbone.trigger(CONST.EVENT_ON_LOGOUT_NOTIFY, param);
+
+                // call listener
+                if(!_.isEmpty(window.parent.SpikaAdopter) &&
+                    !_.isEmpty(window.parent.SpikaAdopter.listener)){
+                    
+                    var listener = window.parent.SpikaAdopter.listener;
+                    
+                    if(_.isFunction(listener.onUserLeft))
+                        listener.onUserLeft(param);
+                    
+                }
+
             });
 
             this.io.on('newMessage', function(param){ 
-                Backbone.trigger(CONST.EVENT_ON_MESSAGE,param);	    
+            
+                Backbone.trigger(CONST.EVENT_ON_MESSAGE,param);	
+                    
+                // call listener
+                if(!_.isEmpty(window.parent.SpikaAdopter) &&
+                    !_.isEmpty(window.parent.SpikaAdopter.listener)){
+                    
+                    var listener = window.parent.SpikaAdopter.listener;
+                    
+                    if(_.isFunction(listener.onNewMessage))
+                        listener.onNewMessage(param);
+                    
+                }
+
             }); 
 
             this.io.on('sendTyping', function(param){ 
                 Backbone.trigger(CONST.EVENT_ON_TYPING,param);	    
-            }); 
+ 
+                 // call listener
+                if(!_.isEmpty(window.parent.SpikaAdopter) &&
+                    !_.isEmpty(window.parent.SpikaAdopter.listener)){
+                    
+                    var listener = window.parent.SpikaAdopter.listener;
+                    
+                    if(_.isFunction(listener.OnUserTyping))
+                        listener.OnUserTyping(param);
+                    
+                }
+
+           }); 
             
             this.io.on('login', function(param){
                 Backbone.trigger(CONST.EVENT_ON_LOGIN, param);
@@ -42,6 +91,18 @@ var Config = require('../init');
 
             this.io.on('messageUpdated', function(param){
                 Backbone.trigger(CONST.EVENT_ON_MESSAGE_UPDATED, param);
+ 
+                 // call listener
+                if(!_.isEmpty(window.parent.SpikaAdopter) &&
+                    !_.isEmpty(window.parent.SpikaAdopter.listener)){
+                    
+                    var listener = window.parent.SpikaAdopter.listener;
+                    
+                    if(_.isFunction(listener.OnMessageChanges))
+                        listener.OnMessageChanges(param);
+                    
+                }
+
             });
 
             

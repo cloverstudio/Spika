@@ -1,5 +1,6 @@
 var SpikaAdopter = {
     
+    listener : null,
     attach : function(options){
         
         if(!options)
@@ -42,7 +43,13 @@ var SpikaAdopter = {
         }
 
         node.appendChild(iframe);
+
+        if(options.listener)
+            this.listener = options.listener;
         
     }
     
 }
+
+// export to global
+window.SpikaAdopter = SpikaAdopter;
