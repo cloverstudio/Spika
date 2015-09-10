@@ -33,8 +33,8 @@ window.app = {
         var self = this;
         
         socketIOManager.init();
-		LocalizationManager.init(Settings.options.lang);
-
+        LocalizationManager.init(Settings.options.lang);
+        
         ProcessingDialog.show();
                 
         WebAPIManager.post(
@@ -88,6 +88,10 @@ U.ie8Fix();
 $.ajaxSetup({
     cache: false
 });
+
+// load default language 
+LocalizationManager.init(Config.lang);
+
 
 // setting up router
 var AppRouter = Backbone.Router.extend({

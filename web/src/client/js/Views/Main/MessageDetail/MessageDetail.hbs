@@ -2,21 +2,21 @@
 
     <div class="message-info-header">
         <span class="glyphicon glyphicon-remove" id="btn-closeinfoview" ></span>
-        <h4 class="align-center">Message Information</h4>
+        <h4 class="align-center">{{l10n "Message Information"}}</h4>
     </div>
 
     <div class="deltedalert alert alert-danger">
-        This message is deleted at {{{formatDate deleted}}}
+        {{l10n "This message is deleted at "}} {{{formatDate deleted}}}
     </div>
 
     <table class="table">
         
-        <tr><td>Sender</td><td>{{{user.name}}}</td></tr>
-        <tr><td>Sent At</td><td>{{{formatDate created}}}</td></tr>
+        <tr><td>{{l10n "Sender"}}</td><td>{{{user.name}}}</td></tr>
+        <tr><td>{{l10n "Sent At"}}</td><td>{{{formatDate created}}}</td></tr>
     
     </table>
 
-    <h4 class="align-center">Users Seen</h4>
+    <h4 class="align-center">{{l10n "Users Seen"}}</h4>
 
     <table class="table users">
         
@@ -32,7 +32,7 @@
 
 <div id="message-action-container">
     
-    <button type="button" id="btn-deletemessage" class="btn btn-danger">Delete Message</button>
+    <button type="button" id="btn-deletemessage" class="btn btn-danger">{{l10n "Delete Message"}}</button>
     
 </div>
 

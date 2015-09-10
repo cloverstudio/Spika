@@ -10,6 +10,7 @@ var WebAPIManager = require('../../../libs/webAPIManager');
 var CONST = require('../../../consts');
 var ProcessingDialog = require('../../Modals/ProcessingDialog/ProcessingDialog');
 var User = require('../../../Models/user.js');
+var LocalizationManager = require('../../../libs/localizationManager');
 
 var template = require('./MessageDetail.hbs');
 
@@ -59,7 +60,7 @@ var MessageDetailView = Backbone.View.extend({
             
             SS('#btn-deletemessage').unbind().on('click',function(){
                 
-                if(confirm('Are you sure to delete this message ?')){
+                if(confirm(LocalizationManager.localize('Are you sure to delete this message ?'))){
                     
                     socketIOManager.emit('deleteMessage',{
                         messageID: self.currentMessage.get('id'),
