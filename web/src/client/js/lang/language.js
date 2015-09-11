@@ -1,5 +1,28 @@
 var LangTable = {
     
+    ar : {
+        'Type your text ...' : 'أكتب النص هنا ..',
+        'Login to Spika' : 'سجل دخولك',
+        'Name' : 'الإسم',
+        'Avatar URL' : 'رابط الصورة الرمزية',
+        'Room name' : 'إسم الغرفة',
+        'Sign in' : 'تسجيل الدخول',
+        'Spika v2.0' : 'سبيكا v2.0',
+        'Room Name' : 'إسم الغرفة',
+        'Message Information' : 'معلومات الرسالة',
+        'This message is deleted at ' : 'هذه الرسالة ستحذف بعد ',
+        'Sender' : 'المرسل',
+        'Sent At' : 'أرسلت في',
+        'Users Seen' : 'المستخدمين المتابعين',
+        'Delete Message' : 'حذف الرسالة',
+        'Retry' : 'إعادة',
+        'Close' : 'إغلاق',
+        'Sned File' : 'إرسال ملف',
+        'Uploaing file...' : 'جاري رفع الملف...',
+        'Are you sure to delete this message ?' : 'هل انت متأكد من حذف الرسالة؟',
+        'ID' : 'رقم ID'        
+    }
+    
     ja : {
         'Type your text ...' : 'メッセージを入力してください。',
         'Login to Spika' : 'スピカへログイン',
