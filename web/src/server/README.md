@@ -47,6 +47,7 @@ Config.socketUrl = "http://localhost:8080/spika";
 ```
 
 Config.apiBaseUrl should be host + urlPrefix + "v1" from server configuration.
+
 Config.socketUrl should be same as host + socketNameSpace.
 
 
