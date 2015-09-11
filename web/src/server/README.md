@@ -10,14 +10,16 @@ $ sudo apt-get install git mongodb npm nodejs imagemagick
 $ ln -s /usr/bin/nodejs /usr/bin/node
 $ git clone https://github.com/cloverstudio/Spika.git
 $ cd Spika
-$ npm install gulp
-$ gulp build-dist
+$ npm install 
+$ npm install gulp -g
+
 ```
-
-
 
 Edit src/server/init.js
 
+Edit src/client/js/init.js
+
 ```{r, engine='bash', count_lines}
+$ gulp build-dist
 node src/server/main.js
 ```
