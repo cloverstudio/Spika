@@ -107,7 +107,7 @@ gulp.task("jsdoc", function() {
 });
 
 
-gulp.task('build-dist',['copy','browserify-build','build-css','build-apidoc'],function(){
+gulp.task('build-dist',['browserify-build','build-css','build-apidoc','copy'],function(){
 
     
 });
