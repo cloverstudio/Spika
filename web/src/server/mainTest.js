@@ -15,7 +15,7 @@ var spika = require('./index.js');
 
 
 init.host = "localhost";
-init.port = 80;
+init.port = 8181;
 init.urlPrefix = '/spika';
 init.socketNameSpace = '/spika';
 init.imageDownloadURL = "http://" + init.host + "/:" + init.port + init.urlPrefix + "/media/images/";
@@ -27,4 +27,11 @@ init.sendAttendanceMessage = true;
     
 var SpikaServer = new spika(app,io,init);
     
+app.init = init;
+
+    
+server.listen(init.port, function(){
+    console.log('Server listening on port ' + init.port + '!');
+});
+
 module.exports = app;

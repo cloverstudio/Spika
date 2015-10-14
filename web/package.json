@@ -33,8 +33,8 @@
     "nouislider": "^7.0.10",
     "quickthumb": "0.0.11",
     "sinon": "^1.17.1",
-    "socket.io": "^1.3.5",
-    "socket.io-client": "latest"
+    "socket.io": "^1.3.5"
+
   },
   "devDependencies": {
     "browserify": "^2.3.0",
@@ -51,7 +51,8 @@
     "should": "^7.1.0",
     "vinyl-source-stream": "latest",
     "watchify": "latest",
-    "supertest": "^1.1.0"
+    "supertest": "^1.1.0",
+    "socket.io-client": "latest"
   },
   "scripts": {
     "build-js": "browserify src/client/js/main.js > public/js/bundle.js -d",

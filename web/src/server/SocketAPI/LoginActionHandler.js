@@ -28,17 +28,20 @@ LoginActionHandler.prototype.attach = function(io,socket){
      *
      */
     socket.on('login', function(param){
-                                        
-        socket.join(param.roomID);
-                
-        io.of(Settings.options.socketNameSpace).in(param.roomID).emit('newUser', param);
-        Observer.send(this, Const.notificationNewUser, param);
+                     
+        if(Utils.isEmpty(param.userID)){                 
+            return;
+        }
 
-        if(Utils.isEmpty(param.userID)){
-            console.log('err');                    
+        if(Utils.isEmpty(param.roomID)){                 
             return;
         }
         
+                
+        socket.join(param.roomID);
+        io.of(Settings.options.socketNameSpace).in(param.roomID).emit('newUser', param);
+        Observer.send(this, Const.notificationNewUser, param);
+
         //save as message
         UserModel.findUserbyId(param.userID,function (err,user) {
             

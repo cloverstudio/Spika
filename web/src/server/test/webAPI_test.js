@@ -2,7 +2,7 @@ var should = require('should');
 var request = require('supertest');
 var app = require('../mainTest');
 
-describe('routes', function () {
+describe('WEB', function () {
 
     var req, res;
 
