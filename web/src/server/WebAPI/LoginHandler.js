@@ -1,3 +1,10 @@
+var express = require('express');
+var router = express.Router();
+var async = require('async');
+var formidable = require('formidable');
+var fs = require('fs-extra');
+var path = require('path');
+var mime = require('mime');
 var bodyParser = require("body-parser");
 var path = require('path');
 var _ = require('lodash');
@@ -6,15 +13,10 @@ var RequestHandlerBase = require("./RequestHandlerBase");
 var UsersManager = require("../lib/UsersManager");
 var DatabaseManager = require("../lib/DatabaseManager");
 var Utils = require("../lib/Utils");
-var Const = require("../const");
-var async = require('async');
-var formidable = require('formidable');
-var fs = require('fs-extra');
-var path = require('path');
-var mime = require('mime');
 var SocketAPIHandler = require('../SocketAPI/SocketAPIHandler');
 var UserModel = require("../Models/UserModel");
 var Settings = require("../lib/Settings");
+var Const = require("../const");
 
 var LoginHandler = function(){
     
@@ -22,7 +24,7 @@ var LoginHandler = function(){
 
 _.extend(LoginHandler.prototype,RequestHandlerBase.prototype);
 
-LoginHandler.prototype.attach = function(app){
+LoginHandler.prototype.attach = function(router){
         
     var self = this;
 
@@ -57,7 +59,7 @@ LoginHandler.prototype.attach = function(app){
               }
             }
     */
-     app.post(this.path('/user/login'),function(request,response){
+     router.post('/',function(request,response){
         
         var name = request.body.name;
         var avatarURL = request.body.avatarURL;
@@ -178,5 +180,5 @@ LoginHandler.prototype.attach = function(app){
 
 }
 
-
-module["exports"] = new LoginHandler();
+new LoginHandler().attach(router);
+module["exports"] = router;

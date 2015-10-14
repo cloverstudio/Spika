@@ -1,3 +1,5 @@
+var express = require('express');
+var router = express.Router();
 var bodyParser = require("body-parser");
 var path = require('path');
 var _ = require('lodash');
@@ -21,7 +23,7 @@ var FileDownloadHandler = function(){
 
 _.extend(FileDownloadHandler.prototype,RequestHandlerBase.prototype);
 
-FileDownloadHandler.prototype.attach = function(app){
+FileDownloadHandler.prototype.attach = function(router){
         
     var self = this;
 
@@ -34,7 +36,7 @@ FileDownloadHandler.prototype.attach = function(app){
      *
      * @apiSuccess {Binary} ResponseBody  Entity of file
      */
-    app.get(this.path('/file/download/:fileID'), function (request, response) {
+    router.get('/:fileID', function (request, response) {
 
         var fileID = request.params.fileID;
 
@@ -92,4 +94,5 @@ FileDownloadHandler.prototype.attach = function(app){
 }
 
 
-module["exports"] = new FileDownloadHandler();
+new FileDownloadHandler().attach(router);
+module["exports"] = router;

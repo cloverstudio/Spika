@@ -1,3 +1,5 @@
+var express = require('express');
+var router = express.Router();
 var bodyParser = require("body-parser");
 var path = require('path');
 var _ = require('lodash');
@@ -21,7 +23,7 @@ var FileUploadHandler = function(){
 
 _.extend(FileUploadHandler.prototype,RequestHandlerBase.prototype);
 
-FileUploadHandler.prototype.attach = function(app){
+FileUploadHandler.prototype.attach = function(router){
         
     var self = this;
     
@@ -49,7 +51,7 @@ FileUploadHandler.prototype.attach = function(app){
             }
         }
     */
-    app.post(this.path('/file/upload'),function(request,response){
+    router.post('',function(request,response){
         
         var form = new formidable.IncomingForm();
         
@@ -251,6 +253,5 @@ FileUploadHandler.prototype.attach = function(app){
     });
 
 }
-
-
-module["exports"] = new FileUploadHandler();
+new FileUploadHandler().attach(router);
+module["exports"] = router;

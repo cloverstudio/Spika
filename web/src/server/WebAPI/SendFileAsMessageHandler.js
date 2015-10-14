@@ -1,3 +1,5 @@
+var express = require('express');
+var router = express.Router();
 var bodyParser = require("body-parser");
 var path = require('path');
 var _ = require('lodash');
@@ -21,7 +23,7 @@ var TempHandler = function(){
 
 _.extend(TempHandler.prototype,RequestHandlerBase.prototype);
 
-TempHandler.prototype.attach = function(app){
+TempHandler.prototype.attach = function(router){
         
     var self = this;
 
@@ -45,7 +47,7 @@ TempHandler.prototype.attach = function(app){
           "result": 'ok'
         }
     */
-    app.post(this.path('/message/sendFile'),function(request,response){
+    router.post('',function(request,response){
         
         var form = new formidable.IncomingForm();
                             
@@ -219,4 +221,5 @@ TempHandler.prototype.attach = function(app){
 }
 
 
-module["exports"] = new TempHandler();
+new TempHandler().attach(router);
+module["exports"] = router;

@@ -1,3 +1,5 @@
+var express = require('express');
+var router = express.Router();
 var bodyParser = require("body-parser");
 var path = require('path');
 var _ = require('lodash');
@@ -20,7 +22,7 @@ var UserListHandler = function(){
 
 _.extend(UserListHandler.prototype,RequestHandlerBase.prototype);
 
-UserListHandler.prototype.attach = function(app){
+UserListHandler.prototype.attach = function(router){
         
     var self = this;
 
@@ -54,7 +56,7 @@ UserListHandler.prototype.attach = function(app){
   ]
 }
     */
-    app.get(this.path('/user/list/:roomID'),function(request,response){
+    router.get('/:roomID',function(request,response){
         var roomID = request.params.roomID;
         var users = UsersManager.getUsers(roomID);
 
@@ -66,5 +68,5 @@ UserListHandler.prototype.attach = function(app){
 
 }
 
-
-module["exports"] = new UserListHandler();
+new UserListHandler().attach(router);
+module["exports"] = router;

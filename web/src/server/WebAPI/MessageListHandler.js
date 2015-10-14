@@ -1,3 +1,5 @@
+var express = require('express');
+var router = express.Router();
 var bodyParser = require("body-parser");
 var path = require('path');
 var _ = require('lodash');
@@ -22,7 +24,7 @@ var MessageListHandler = function(){
 
 _.extend(MessageListHandler.prototype,RequestHandlerBase.prototype);
 
-MessageListHandler.prototype.attach = function(app){
+MessageListHandler.prototype.attach = function(router){
         
     var self = this;
 
@@ -94,7 +96,7 @@ MessageListHandler.prototype.attach = function(app){
 
     */
     
-    app.get(this.path('/message/list/:roomID/:lastMessageID'),function(request,response){
+    router.get('/:roomID/:lastMessageID',function(request,response){
         
         var roomID = request.params.roomID;
         var lastMessageID = request.params.lastMessageID;
@@ -142,5 +144,5 @@ MessageListHandler.prototype.attach = function(app){
 
 }
 
-
-module["exports"] = new MessageListHandler();
+new MessageListHandler().attach(router);
+module["exports"] = router;

@@ -4,7 +4,7 @@
     // Class ------------------------------------------------
     var Config = {};
     
-    Config.host = "192.168.1.104";
+    Config.host = "localhost";
     Config.port = 8080;
     Config.urlPrefix = '/spika';
     Config.socketNameSpace = '/spika';
