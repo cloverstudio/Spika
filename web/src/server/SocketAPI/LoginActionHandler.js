@@ -45,6 +45,12 @@ LoginActionHandler.prototype.attach = function(io,socket){
         //save as message
         UserModel.findUserbyId(param.userID,function (err,user) {
             
+            if(_.isEmpty(user)){
+                
+                console.log(param);
+                console.log(3);
+            }
+            
             UsersManager.addUser(param.userID,user.name,user.avatarURL,param.roomID,user.token);
             UsersManager.pairSocketIDandUserID(param.userID,socket.id);            
 

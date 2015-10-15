@@ -10,8 +10,6 @@ var BridgeManager = {
 
         Observer.subscribe(this, Const.notificationSendMessage, function(who, obj) {
             
-            console.log(Settings);
-            
             if(_.isEmpty(Settings.listeners))
                 return;
                 

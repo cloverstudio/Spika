@@ -46,8 +46,10 @@ describe('SOCKET', function () {
             
                 responseCount++;
                 
-                if(responseCount == 2)
+                if(responseCount == 2){
                     done();
+                    client1.disconnect();
+                }
 
             });
                         
@@ -87,6 +89,7 @@ describe('SOCKET', function () {
             
             setTimeout(function(){
                 done();
+                client1.disconnect();
             }, 0.3 * 1000);
 
         });
@@ -123,6 +126,7 @@ describe('SOCKET', function () {
             });
             
             setTimeout(function(){
+                client1.disconnect();
                 done();
             }, 0.3 * 1000);
 

@@ -4,6 +4,7 @@
   "author": "Clover Studio Ltd",
   "description": "Spika is opensource messenger microservice",
   "main": "src/server/index.js",
+  "private" : false,
   "dependencies": {
     "JSON2": "latest",
     "async": "1.4.0",

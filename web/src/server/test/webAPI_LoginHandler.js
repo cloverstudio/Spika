@@ -3,18 +3,8 @@ var request = require('supertest');
 var app = require('../mainTest');
 
 describe('WEB', function () {
-
-    var req, res;
-
-    beforeEach(function () {
-        req = {};
-        res = {
-            redirect: function () { },
-            render : function () { }
-        };
-    });
-
-    describe('/login POST', function () {
+  
+    describe('/user/login POST', function () {
 
         it('Login passes when all parameters is given.', function (done) {
                    

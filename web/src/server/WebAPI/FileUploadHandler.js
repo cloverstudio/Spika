@@ -100,8 +100,6 @@ FileUploadHandler.prototype.attach = function(router){
             
                     var destPath = Settings.options.uploadDir;
                     
-                    console.log(files);
-                    
                     done(err,files.file);
                     
                 });

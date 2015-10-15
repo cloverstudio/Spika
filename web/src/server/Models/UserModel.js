@@ -29,8 +29,8 @@ UserModel.prototype.init = function(){
 
 UserModel.prototype.findUserbyId = function(id,callBack){
 
-    this.model.findOne({ userID: new RegExp("^" + id + "$","g") },function (err, user) {
-
+    this.model.findOne({ userID: id },function (err, user) {
+        
         if (err) 
             console.error(err);
         

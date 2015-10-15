@@ -22,7 +22,7 @@ init.imageDownloadURL = "http://" + init.host + "/:" + init.port + init.urlPrefi
 init.noavatarImg = "http://" + init.host + ":" + init.port + init.urlPrefix + "/img/noavatar.png";
 init.chatDatabaseUrl = "mongodb://localhost/test";
 init.dbCollectionPrefix = "spika_";
-init.uploadDir = 'public/uploads/';
+init.uploadDir = '../../public/uploads/';
 init.sendAttendanceMessage = true;
     
 var SpikaServer = new spika(app,io,init);
