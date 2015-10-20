@@ -21,7 +21,7 @@ var LangTable = {
         'Uploaing file...' : 'جاري رفع الملف...',
         'Are you sure to delete this message ?' : 'هل انت متأكد من حذف الرسالة؟',
         'ID' : 'رقم ID'        
-    }
+    },
     
     ja : {
         'Type your text ...' : 'メッセージを入力してください。',
