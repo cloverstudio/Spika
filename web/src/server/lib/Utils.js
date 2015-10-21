@@ -34,6 +34,24 @@ var Utils = {
     },
     now: function(){
         return Math.floor(Date.now());
+    },
+    stripPrivacyParams: function(user){
+        delete user.token;
+        return user;
+    },
+    stripPrivacyParamsFromArray: function(users){
+        
+        var result = [];
+        var self = this;
+        
+        _.forEach(users,function(user){
+            
+            result.push(self.stripPrivacyParams(user));
+            
+        });
+        
+        
+        return result;
     }
     
 }

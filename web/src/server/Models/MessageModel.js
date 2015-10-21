@@ -182,7 +182,7 @@ MessageModel.prototype.populateMessages = function(messages,callBack){
                     
                     // replace user to userObj
                     if(messageElement.user.toString() == userElement._id.toString()){
-                        obj.user = userElement.toObject();
+                        obj.user = Util.stripPrivacyParams(userElement.toObject());
                     }
 
                 }); 
@@ -198,7 +198,7 @@ MessageModel.prototype.populateMessages = function(messages,callBack){
                         if(seenByRow.user.toString() == userElement._id.toString()){
                             
                             seenByAry.push({
-                                user:userElement,
+                                user:Util.stripPrivacyParams(userElement.toObject()),
                                 at:seenByRow.at 
                             });
                             

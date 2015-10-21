@@ -60,8 +60,9 @@ UserListHandler.prototype.attach = function(router){
         var roomID = request.params.roomID;
         var users = UsersManager.getUsers(roomID);
 
+        var result = [];
         
-        self.successResponse(response,users);
+        self.successResponse(response,Utils.stripPrivacyParamsFromArray(users));
         
     });
 
