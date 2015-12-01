@@ -12,7 +12,7 @@
     Config.imageDownloadURL = "http://" + Config.host + "/:" + Config.port + Config.urlPrefix + "/media/images/";
     Config.noavatarImg = "http://" + Config.host + ":" + Config.port + Config.urlPrefix + "/img/noavatar.png";
 
-    Config.chatDatabaseUrl = "mongodb://localhost/spika";
+    Config.chatDatabaseUrl = "mongodb://localhost/simplemessenger";
     Config.dbCollectionPrefix = "spika_";
     
     Config.uploadDir = 'public/uploads/';

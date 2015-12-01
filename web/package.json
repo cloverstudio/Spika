@@ -1,10 +1,12 @@
 {
   "name": "spika",
   "version": "0.0.1",
-  "author": "Clover Studio Ltd",
+  "author": {
+    "name": "Clover Studio Ltd"
+  },
   "description": "Spika is opensource messenger microservice",
   "main": "src/server/index.js",
-  "private" : false,
+  "private": false,
   "dependencies": {
     "JSON2": "latest",
     "async": "1.4.0",
@@ -25,7 +27,7 @@
     "imagemagick": "^0.1.3",
     "jquery": "^1.9.0",
     "jquery-colorbox": "1.6.3",
-    "js-cookie": "js-cookie/js-cookie",
+    "js-cookie": "git+https://github.com/js-cookie/js-cookie",
     "lodash": "latest",
     "mime": "1.3.4",
     "mongoose": "^4.0.6",
@@ -35,7 +37,6 @@
     "quickthumb": "0.0.11",
     "sinon": "^1.17.1",
     "socket.io": "^1.3.5"
-
   },
   "devDependencies": {
     "browserify": "^2.3.0",
@@ -76,5 +77,27 @@
     "description": "Spika Web API's reference",
     "title": "Spika Web API",
     "url": ""
-  }
+  },
+  "_id": "spika@0.0.1",
+  "_shasum": "7d52cb98e7fa9466be08c8e2911527994976d258",
+  "_from": "spika@0.0.1",
+  "_npmVersion": "2.5.1",
+  "_nodeVersion": "0.12.0",
+  "_npmUser": {
+    "name": "cloverstudio",
+    "email": "github@clover-studio.com"
+  },
+  "dist": {
+    "shasum": "7d52cb98e7fa9466be08c8e2911527994976d258",
+    "tarball": "http://registry.npmjs.org/spika/-/spika-0.0.1.tgz"
+  },
+  "maintainers": [
+    {
+      "name": "cloverstudio",
+      "email": "github@clover-studio.com"
+    }
+  ],
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/spika/-/spika-0.0.1.tgz",
+  "readme": "ERROR: No README data found!"
 }

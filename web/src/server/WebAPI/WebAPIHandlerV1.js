@@ -39,6 +39,7 @@ var WebAPIHandler ={
         router.use("/user/login", require('./LoginHandler'));
         router.use("/temp", require('./TempHandler'));
         router.use("/message/list", require('./MessageListHandler'));
+        router.use("/message/latest", require('./LatestMessageListHandler').router);
         router.use("/user/list", require('./UserListHandler'));
         router.use("/message/sendFile", require('./SendFileAsMessageHandler'));
         router.use("/file/upload", require('./FileUploadHandler'));

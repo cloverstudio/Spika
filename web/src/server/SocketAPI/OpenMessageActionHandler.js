@@ -153,7 +153,8 @@ OpenMessageActionHandler.prototype.attach = function(io,socket){
         }
         
         var updatedMessages = [];
-    
+        
+        console.log("param",param);
     
         UserModel.findUserbyId(param.userID,function (err,user) {
 
@@ -165,7 +166,11 @@ OpenMessageActionHandler.prototype.attach = function(io,socket){
                         console.log(err);
                         return;
                     } 
-                    
+
+                    if(!message){
+                        return;
+                    } 
+                                        
                     var listOfUsers = [];
                     
                     _.forEach(message.seenBy,function(seenObj){

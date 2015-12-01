@@ -11,7 +11,7 @@ describe('WEB', function () {
             request(app)
                 .post('/spika/v1/file/upload')
         		.expect(200) 
-                .attach('file', 'test/samplefiles/max.jpg')
+                .attach('file', 'modules_customised/spika/src/server/test/samplefiles/max.jpg')
                 .end(function (err, res) {
 
     			if (err) {
@@ -38,7 +38,7 @@ describe('WEB', function () {
             
                 .post('/spika/v1/file/upload')
         		.expect(200) 
-                .attach('file', 'test/samplefiles/test.text')
+                .attach('file', 'modules_customised/spika/src/server/test/samplefiles/test.text')
                 .end(function (err, res) {
 
     			if (err) {

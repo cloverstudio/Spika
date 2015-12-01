@@ -97,7 +97,7 @@ MessageListHandler.prototype.attach = function(router){
     */
     
     router.get('/:roomID/:lastMessageID',function(request,response){
-        
+                
         var roomID = request.params.roomID;
         var lastMessageID = request.params.lastMessageID;
         

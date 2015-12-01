@@ -7,7 +7,6 @@ var LocalizationManager = {
     init : function(language){
         
         this.langTable = LangTable[language];
-	    console.log(LangTable,language,this.langTable);
 
     },
     localize : function(baseString){

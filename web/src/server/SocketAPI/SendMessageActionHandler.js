@@ -11,6 +11,9 @@ var SendMessageActionHandler = function(){
     
 }
 
+var SendMessageLogic = require('../Logics/SendMessage');
+
+
 _.extend(SendMessageActionHandler.prototype,SocketHandlerBase.prototype);
 
 SendMessageActionHandler.prototype.attach = function(io,socket){
@@ -67,7 +70,7 @@ SendMessageActionHandler.prototype.attach = function(io,socket){
         
         var userID = param.userID;
     
-        SocketAPIHandler.sendNewMessage(userID,param);
+        SendMessageLogic.execute(userID,param);
         
     });
 

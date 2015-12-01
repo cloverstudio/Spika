@@ -171,8 +171,7 @@ var LoginUserManager = require('./loginUserManager.js');
                     }
                     
                     if(isSucceed == 1){
-                        
-                        console.log('success');
+                       
                                            
                         if(!_.isUndefined(onSuccess))
                             onSuccess(response.result);

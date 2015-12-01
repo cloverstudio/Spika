@@ -14,8 +14,8 @@
     Const.httpCodeFileNotFound = 404;
     
     Const.messageTypeText = 1;
-    Const.messageTypeFile = 2;
-    Const.messageTypeLocation = 3;
+    Const.messageTypeFile = 6;
+    Const.messageTypeLocation = 7;
     Const.messageNewUser = 1000;
     Const.messageUserLeave = 1001;
 

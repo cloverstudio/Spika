@@ -95,12 +95,20 @@ FileUploadHandler.prototype.attach = function(router){
                 
                 form.parse(request, function(err, fields, files) {
             
-                    var tempPath = files.file.path;
-                    var fileName = files.file.name;
-            
-                    var destPath = Settings.options.uploadDir;
+                    if(!files.file){
+                        
+                        done("no file",null);
+                        
+                    }else{
                     
-                    done(err,files.file);
+                        var tempPath = files.file.path;
+                        var fileName = files.file.name;
+                
+                        var destPath = Settings.options.uploadDir;
+                        
+                        done(err,files.file);
+
+                    }
                     
                 });
                 

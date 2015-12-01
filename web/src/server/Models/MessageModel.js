@@ -17,6 +17,7 @@ MessageModel.prototype.init = function(){
     // Defining a schema
     var messageSchema = new mongoose.Schema({
         user: { type: mongoose.Schema.Types.ObjectId, index: true },
+        localID: { type: String, index: true },
         userID: { type: String, index: true },
         roomID: { type: String, index: true },
         type: Number,
@@ -76,7 +77,7 @@ MessageModel.prototype.init = function(){
         }
 
     }
-
+    
     this.model = mongoose.model(Settings.options.dbCollectionPrefix + "messages", messageSchema);
     return this.model;
         
@@ -97,6 +98,39 @@ MessageModel.prototype.findMessagebyId = function(id,callBack){
             
 }
 
+MessageModel.prototype.findAllMessages = function(roomID,lastMessageID,callBack){
+
+    var self = this;
+
+    this.model.findOne({ _id: lastMessageID },function (err, message) {
+
+        if (err) callBack(err,null)
+        
+        var query = {
+            roomID:roomID
+        };
+        
+        if(message) {
+            var lastCreated = message.created;
+            query.created = {$gt:lastCreated};
+        }        
+        
+        var query = self.model.find(query).sort({'created': 'desc'});        
+        
+        query.exec(function(err,data){
+            
+            if (err)
+                console.error(err);
+            
+            if(callBack)
+                callBack(err,data)
+            
+        });                
+            
+    
+    });
+
+}
 
 MessageModel.prototype.findMessages = function(roomID,lastMessageID,limit,callBack){
             
@@ -182,7 +216,7 @@ MessageModel.prototype.populateMessages = function(messages,callBack){
                     
                     // replace user to userObj
                     if(messageElement.user.toString() == userElement._id.toString()){
-                        obj.user = Util.stripPrivacyParams(userElement.toObject());
+                        obj.user = userElement.toObject();
                     }
 
                 }); 
@@ -198,7 +232,7 @@ MessageModel.prototype.populateMessages = function(messages,callBack){
                         if(seenByRow.user.toString() == userElement._id.toString()){
                             
                             seenByAry.push({
-                                user:Util.stripPrivacyParams(userElement.toObject()),
+                                user:userElement,
                                 at:seenByRow.at 
                             });
                             
