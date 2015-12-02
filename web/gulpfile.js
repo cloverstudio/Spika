@@ -13,6 +13,8 @@ var browserify = require('browserify'),
     destCSS = 'public/css/',
     apidoc = require('gulp-apidoc'),
     fs = require('fs-extra'),
+    mocha = require('gulp-mocha'),
+    exit = require('gulp-exit'),
     jsdoc = require("gulp-jsdoc");
 
 var props = {
@@ -109,6 +111,9 @@ gulp.task("jsdoc", function() {
 
 gulp.task('build-dist',['browserify-build','build-css','build-apidoc','copy'],function(){
 
+    console.log('test');
+    
+    exit();
     
 });
 
@@ -131,3 +136,11 @@ gulp.task('default',['dev-all'],function(){
     
     
 });
+
+// tests
+gulp.task('server-test', function (done) {
+    return gulp.src('src/server/test/**/*.js', { read: false })
+    .pipe(mocha({ reporter: 'spec' }))
+    .pipe(exit());
+});
+

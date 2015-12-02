@@ -54,7 +54,9 @@
     "vinyl-source-stream": "latest",
     "watchify": "latest",
     "supertest": "^1.1.0",
-    "socket.io-client": "latest"
+    "socket.io-client": "latest",
+    "gulp-mocha": "^2.2.0",
+    "gulp-exit": "0.0.2"
   },
   "scripts": {
     "build-js": "browserify src/client/js/main.js > public/js/bundle.js -d",

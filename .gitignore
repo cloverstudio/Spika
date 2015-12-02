@@ -1,5 +1,7 @@
 # generated files
 web/public
+web/doc/API
+web/doc/WebClient
 
 # third party modules
 web/node_modules

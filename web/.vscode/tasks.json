@@ -7,9 +7,21 @@
     ],
     "tasks": [
         {
-            "taskName": "dev-all",
+            "taskName": "build-dist",
             "args": [],
             "isBuildCommand": true,
+            "isWatching": false,
+            "problemMatcher": [
+                "$lessCompile",
+                "$tsc",
+                "$jshint"
+            ]
+        },
+        {
+            "taskName": "server-test",
+            "args": [],
+            "isTestCommand": true,
+            "isBuildCommand": false,
             "isWatching": false,
             "problemMatcher": [
                 "$lessCompile",
