@@ -73,11 +73,16 @@ SendMessageActionHandler.prototype.attach = function(io,socket){
     
         SendMessageLogic.execute(userID,param,function(result){
             
-            socket.emit('socketerror', {code:Const.resCodeSocketSendMessageFail}); 
+            
             
         },function(err,code){
             
-            socket.emit('socketerror', {code:code}); 
+            if(err){
+                socket.emit('socketerror', {code:Const.resCodeSocketSendMessageFail}); 
+            }else{
+                socket.emit('socketerror', {code:code}); 
+            }
+            
             
         });
         

@@ -46,7 +46,7 @@ CellGenerator.prototype.generate = function(messageModel){
     flatData.message = flatData.message.replace(new RegExp('  ','g'), '&nbsp;&nbsp;');
     flatData.message = flatData.message.replace(new RegExp('\t','g'), '&nbsp;&nbsp;&nbsp;&nbsp;');
     flatData.message = flatData.message.replace(new RegExp('\r?\n','g'), '<br/>');
-    flatData.message = U.linkify(flatData.message);
+    flatData.message = U.contentExtract(flatData.message);
         
     if(flatData.userID == LoginUserManager.user.get('id') && Settings.options.useBothSide){
         flatData.isMine = 'mine';

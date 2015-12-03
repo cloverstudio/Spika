@@ -448,62 +448,22 @@ var MessagingView = Backbone.View.extend({
     afterRender: function(){
         
         var self = this;
-        var lastUserID = '';
         
-        SS('.message-cell').each(function(){
+        SS('.message-cell img').each(function(){
             
-            var userID = $(this).attr('userid');
-            var isFirst = (userID != lastUserID);
+            if($(this)[0].complete === true){
 
-            lastUserID = userID;
-            
-            $(this).removeClass('not-first');
-            
-            if(!isFirst)
-                $(this).addClass('not-first');
-                
-            if($(this).find('.message').length){    
-
-                if(isFirst)
-                    $(this).height($(this).find('.message').height() + $(this).find('.info').height()); 
-                else
-                    $(this).height($(this).find('.message').height()); 
+            } else {
+                $(this).unbind().on('load',function(){
                     
-            }
-            
-            if($(this).find('.progress-container').length){
-                $(this).height($(this).find('.progress-container').height()); 
-            }
-            
-            if($(this).find('.file-container').length){
-
-                if(isFirst)
-                    $(this).height($(this).find('.file-container').height() + $(this).find('.info').height()); 
-                else
-                    $(this).height($(this).find('.file-container').height()); 
-
-                
-            }
-
-            if($(this).find('.thumb-container').length){
-                
-
-                if(isFirst)
-                    $(this).height(Settings.options.thumbnailHeight + $(this).find('.info').height() + 30); 
-                else
-                    $(this).height(Settings.options.thumbnailHeight + 30); 
+                    self.setupHeights();
                     
-                
-                
+                });
             }
-
-            if($(this).find('.typing').length){
-                $(this).height($(this).find('.typing').height()); 
-            }
-
-           
         });
-        
+
+        self.setupHeights();
+
         // attach lightbox
         SS('.spika-thumb').colorbox({photo:true,fixed:true,width:'80%',height:'80%%¥',
             onOpen:function(evt){
@@ -631,6 +591,65 @@ var MessagingView = Backbone.View.extend({
             
         });
                   
+    },
+    setupHeights : function(){
+
+        var lastUserID = '';
+        
+        SS('.message-cell').each(function(){
+            
+            var userID = $(this).attr('userid');
+            var isFirst = (userID != lastUserID);
+
+            lastUserID = userID;
+            
+            $(this).removeClass('not-first');
+            
+            if(!isFirst)
+                $(this).addClass('not-first');
+                
+            if($(this).find('.message').length){    
+
+                if(isFirst)
+                    $(this).height($(this).find('.message').height() + $(this).find('.info').height()); 
+                else
+                    $(this).height($(this).find('.message').height()); 
+                    
+            }
+            
+            if($(this).find('.progress-container').length){
+                $(this).height($(this).find('.progress-container').height()); 
+            }
+            
+            if($(this).find('.file-container').length){
+
+                if(isFirst)
+                    $(this).height($(this).find('.file-container').height() + $(this).find('.info').height()); 
+                else
+                    $(this).height($(this).find('.file-container').height()); 
+
+                
+            }
+
+            if($(this).find('.thumb-container').length){
+                
+
+                if(isFirst)
+                    $(this).height(Settings.options.thumbnailHeight + $(this).find('.info').height() + 30); 
+                else
+                    $(this).height(Settings.options.thumbnailHeight + 30); 
+                    
+                
+                
+            }
+
+            if($(this).find('.typing').length){
+                $(this).height($(this).find('.typing').height()); 
+            }
+
+        
+        });
+        
     },
     openMessageInfoView: function(messageID){
            

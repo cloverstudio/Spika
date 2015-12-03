@@ -32,7 +32,30 @@ var Const = {
     TYPING_OFF: 0,
     TYPING_ON:1,
     
-    PAGING_ROW: 50
+    PAGING_ROW: 50,
+    
+    ERROR_CODES : {
+              1000001 : "Name is not provided.",
+              1000002 : "Room ID is not provided.",
+              1000003 : "User ID is not provided.",
+              1000004 : "Room ID is not provided.",
+              1000005 : "Roomo ID is not provided.",
+              1000006 : "Last Meesage ID is not provided.",
+              1000007 : "File not provided.",
+              1000008 : "Room ID not provided.",
+              1000009 : "User ID is not provided.",
+              1000010 : "Type is not provided.",
+              1000011 : "File is not provided.",
+              1000012 : "Unknown Error",
+              1000013 : "User ID is not provided.",
+              1000014 : "Message ID is not provided.",
+              1000015 : "Room ID is not provided.",
+              1000016 : "User ID is not provided.",
+              1000017 : "Type is not provided.",
+              1000018 : "Message is not provided.",
+              1000019 : "Location is not provided.",
+              1000020 : "Failed to send message."
+    }
 
     
 };

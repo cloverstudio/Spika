@@ -8,7 +8,7 @@ var LoginUserManager = require('./loginUserManager.js');
     "use strict;"
 
     var webAPIManager = {
-        
+
         post : function(url,data,onSuccess,onError){
             
             var self = this;
@@ -37,7 +37,7 @@ var LoginUserManager = require('./loginUserManager.js');
                     // server handled error
                     if(errorCode != 1){
 
-                        var message = errorCode;
+                        var message = CONST.ERROR_CODES[errorCode];
                         
                         ErrorDialog.show('Error',message);
                         
@@ -128,7 +128,7 @@ var LoginUserManager = require('./loginUserManager.js');
                     // server handled error
                     if(errorCode != 1){
                         
-                        var message = errorCode;
+                        var message = CONST.ERROR_CODES[errorCode];
                         
                         ErrorDialog.show('Error',message);
                         
@@ -197,7 +197,7 @@ var LoginUserManager = require('./loginUserManager.js');
                     // server handled error
                     if(errorCode != 1){
                         
-                        var message = errorCode;
+                        var message = CONST.ERROR_CODES[errorCode];
                         
                         ErrorDialog.show('Error',message);
 

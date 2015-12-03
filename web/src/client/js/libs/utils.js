@@ -15,6 +15,8 @@
     Utils.prototype.now = now;
     Utils.prototype.escapeHtml = escapeHtml;
     Utils.prototype.linkify = linkify;
+    Utils.prototype.imagefy = imagefy;
+    Utils.prototype.contentExtract = contentExtract;
     Utils.prototype.getURLQuery = getURLQuery;
     
     // Implementation ---------------------------------------
@@ -185,6 +187,26 @@
         });
     }
 
+    function imagefy(inputText) {
+
+        return '<img style="max-width:500px" src="' + inputText + '" />';
+        
+    }
+    
+    function contentExtract(inputText){
+       
+        if(/^http.+\.png$/.test(inputText) ||
+            /^http.+\.gif$/.test(inputText) ||
+            /^http.+\.jpg$/.test(inputText) ||
+            /^http.+\.jpeg$/.test(inputText))
+            
+            return imagefy(inputText)
+            
+        else
+            return linkify(inputText);
+        
+    }
+    
     function linkify(inputText) {
         var replacedText, replacePattern1, replacePattern2, replacePattern3;
     
