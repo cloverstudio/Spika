@@ -19,30 +19,32 @@ RequestHandlerBase.prototype.path = function(path){
 
 RequestHandlerBase.prototype.errorResponse = function(
         response,
-        httpCode,
-        errorCode,
-        reason,
-        retry){
+        httpCode){
 
     response.status(httpCode);
-    response.json({
-        success : Const.responsecodeError,
-        error : {
-            code : errorCode,
-            message : reason,
-            retry : retry
-        }
-    });
+    response.send("");
     
 }
 
-RequestHandlerBase.prototype.successResponse = function(response,data){
-
+RequestHandlerBase.prototype.successResponse = function(response,code,data){
+    
     response.status(Const.httpCodeSucceed);
-    response.json({
-        success : Const.responsecodeSucceed,
-        result : data
-    });
+    
+    if(code != Const.responsecodeSucceed){
+        
+        response.json({
+            code : code
+        });
+        
+    } else {
+
+        response.json({
+            code : Const.responsecodeSucceed,
+            data : data
+        });
+    
+    }
+
     
 }
 

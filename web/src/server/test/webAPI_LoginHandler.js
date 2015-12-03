@@ -26,11 +26,12 @@ describe('WEB', function () {
     				throw err;
     			}
                 
-                res.body.should.have.property('success');
-                res.body.success.should.equal(1);
-                res.body.should.have.property('result');
-                res.body.result.should.have.property('user');
-                res.body.result.user.should.have.property('token');
+                
+                res.body.should.have.property('code');
+                res.body.code.should.equal(1);
+                res.body.should.have.property('data');
+                res.body.data.should.have.property('user');
+                res.body.data.user.should.have.property('token');
                 
                 done();
             
@@ -58,11 +59,40 @@ describe('WEB', function () {
     				throw err;
     			}
                 
-                res.body.should.have.property('success');
-                res.body.success.should.equal(1);
-                res.body.should.have.property('result');
-                res.body.result.should.have.property('user');
-                res.body.result.user.should.have.property('token');
+                res.body.should.have.property('code');
+                res.body.code.should.equal(1);
+                res.body.should.have.property('data');
+                res.body.data.should.have.property('user');
+                res.body.data.user.should.have.property('token');
+                
+                done();
+            
+            });   
+            
+        });
+
+        it('Login failes when userID is not given.', function (done) {
+
+        	var body = {
+                name : "test",
+                avatarURL : "test",
+                roomID : "test",
+                userID : "",
+        	};
+    	
+            request(app)
+                .post('/spika/v1/user/login')
+                .send(body)
+        		.expect('Content-Type', /json/)
+        		.expect(200) 
+                .end(function (err, res) {
+
+    			if (err) {
+    				throw err;
+    			}
+                
+                res.body.should.have.property('code');
+                res.body.code.should.equal(1000003);
                 
                 done();
             
@@ -90,45 +120,15 @@ describe('WEB', function () {
     				throw err;
     			}
                 
-                res.body.should.have.property('success');
-                res.body.success.should.equal(0);
+                res.body.should.have.property('code');
+                res.body.code.should.equal(1000002);
                 
                 done();
             
             });   
             
         });
-
-
-        it('Login failes when userID is not given.', function (done) {
-
-        	var body = {
-                name : "test",
-                avatarURL : "test",
-                roomID : "test",
-                userID : "",
-        	};
-    	
-            request(app)
-                .post('/spika/v1/user/login')
-                .send(body)
-        		.expect('Content-Type', /json/)
-        		.expect(200) 
-                .end(function (err, res) {
-
-    			if (err) {
-    				throw err;
-    			}
-                
-                res.body.should.have.property('success');
-                res.body.success.should.equal(0);
-                
-                done();
-            
-            });   
-            
-        });
-
+        
         it('Login failes when name is not given.', function (done) {
 
         	var body = {
@@ -149,15 +149,15 @@ describe('WEB', function () {
     				throw err;
     			}
                 
-                res.body.should.have.property('success');
-                res.body.success.should.equal(0);
+                res.body.should.have.property('code');
+                res.body.code.should.equal(1000001);
                 
                 done();
             
             });   
             
         });
-              
+        
               
     });
     

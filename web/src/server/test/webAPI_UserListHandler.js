@@ -16,8 +16,10 @@ describe('WEB', function () {
     			if (err) {
     				throw err;
     			}
-                
-                res.body.should.have.property('success');
+
+                res.body.should.have.property('code');
+                res.body.code.should.equal(1);
+                res.body.should.have.property('data');
                 
                 done();
             

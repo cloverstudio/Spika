@@ -34,21 +34,26 @@ SendTypingActionHandler.prototype.attach = function(io,socket){
     socket.on('sendTyping', function(param){
 
         if(Utils.isEmpty(param.userID)){
-            console.log('param error userID');
+            socket.emit('socketerror', {code:Const.resCodeSocketTypingNoUserID});
             return;
         }
         
         if(Utils.isEmpty(param.roomID)){
-            console.log('param error roomID');
+            socket.emit('socketerror', {code:Const.resCodeSocketTypingNoRoomID});
             return;
         }
         
         if(Utils.isEmpty(param.type)){
-            console.log('param error type');
+            socket.emit('socketerror', {code:Const.resCodeSocketTypingNoType});
             return;
         }
         
         UserModel.findUserbyId(param.userID,function (err,user) {
+            
+            if(err){
+                socket.emit('socketerror', {code:Const.resCodeSocketTypingFaild});
+                return;   
+            }
             
             param.user = user;
             io.of(Settings.options.socketNameSpace).in(param.roomID).emit('sendTyping', param);

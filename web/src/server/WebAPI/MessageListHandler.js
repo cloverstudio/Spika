@@ -45,7 +45,7 @@ MessageListHandler.prototype.attach = function(router){
 
 {
     "success": 1,
-    "result": [
+    "data": [
         {
             "__v": 0,
             "_id": "55d2d194caf997b543836fc8",
@@ -101,6 +101,14 @@ MessageListHandler.prototype.attach = function(router){
         var roomID = request.params.roomID;
         var lastMessageID = request.params.lastMessageID;
         
+        if(Utils.isEmpty(roomID)){
+            
+            self.successResponse(response,Const.resCodeMessageListNoRoomID);
+                
+            return;
+            
+        }
+        
         async.waterfall([
         
             function (done) {
@@ -125,22 +133,23 @@ MessageListHandler.prototype.attach = function(router){
             function (err, result) {
                 
                 if(err){
+
                     self.errorResponse(
                         response,
-                        Const.httpCodeSucceed,
-                        Const.responsecodeParamError,
-                        Utils.localizeString(err),
-                        true
+                        Const.httpCodeSeverError
                     );
+                
                 }else{
-                    self.successResponse(response,result);
+                    
+                    self.successResponse(response,Const.responsecodeSucceed,result);
+                    
                 }
                      
             }
+            
         );
         
     });
-    
 
 }
 

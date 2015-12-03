@@ -36,24 +36,25 @@ SendMessageActionHandler.prototype.attach = function(io,socket){
      
     socket.on('sendMessage', function(param){
                         
+                        
         if(Utils.isEmpty(param.roomID)){
-            console.log('param error roomID');
+            socket.emit('socketerror', {code:Const.resCodeSocketSendMessageNoRoomID}); 
             return;
         }
-            
+
 
         if(Utils.isEmpty(param.userID)){
-            console.log('param error userID');
+            socket.emit('socketerror', {code:Const.resCodeSocketSendMessageNoUserId});
             return;
         }
 
         if(Utils.isEmpty(param.type)){
-            console.log('param error type');
+            socket.emit('socketerror', {code:Const.resCodeSocketSendMessageNoType}); 
             return;
         }
                         
         if(param.type == Const.messageTypeText && Utils.isEmpty(param.message)){
-            console.log('param error message');
+            socket.emit('socketerror', {code:Const.resCodeSocketSendMessageNoMessage});               
             return;
         }
 
@@ -62,7 +63,7 @@ SendMessageActionHandler.prototype.attach = function(io,socket){
                                         Utils.isEmpty(param.location.lat) ||
                                         Utils.isEmpty(param.location.lng))){
                                         
-            console.log('param error message');
+            socket.emit('socketerror', {code:Const.resCodeSocketSendMessageNoLocation});               
             
             return;
         
@@ -70,7 +71,15 @@ SendMessageActionHandler.prototype.attach = function(io,socket){
         
         var userID = param.userID;
     
-        SendMessageLogic.execute(userID,param);
+        SendMessageLogic.execute(userID,param,function(result){
+            
+            socket.emit('socketerror', {code:Const.resCodeSocketSendMessageFail}); 
+            
+        },function(err,code){
+            
+            socket.emit('socketerror', {code:code}); 
+            
+        });
         
     });
 

@@ -21,7 +21,8 @@ describe('WEB', function () {
     				throw err;
     			}
                         
-                res.body.should.have.property('success');
+                res.body.should.have.property('code');
+                res.body.code.should.equal(1000006);
                 
                 done();
             

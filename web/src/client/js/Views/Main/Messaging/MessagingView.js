@@ -441,8 +441,7 @@ var MessagingView = Backbone.View.extend({
         
         this.afterRender();
 
-        if(isBottom)
-            this.scrollToBottom();  
+        this.scrollToBottom();
                       
                     
     },

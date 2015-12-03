@@ -47,7 +47,7 @@ TempHandler.prototype.attach = function(router){
      * @apiSuccessExample Success-Response:
         {
           "success": 1,
-          "result": 'ok'
+          "data": 'ok'
         }
     */
     router.post('',function(request,response){
@@ -59,11 +59,39 @@ TempHandler.prototype.attach = function(router){
             function (done) {
                 
                 form.parse(request, function(err, fields, files) {
+                    
+                    // validation
+                    if(_.isEmpty(files.file)){
+                        
+                        self.successResponse(response,Const.resCodeSendMessageNoFile);
+                        return; 
+                    };
 
+                    if(_.isEmpty(fields.roomID)){
+                        
+                        self.successResponse(response,Const.resCodeSendMessageNoRoomID);
+                        return; 
+                    };
+ 
+                    if(_.isEmpty(fields.userID)){
+                        
+                        self.successResponse(response,Const.resCodeSendMessageNoUserID);
+                        return; 
+                    };
+ 
+  
+                    if(_.isEmpty(fields.type)){
+                        
+                        self.successResponse(response,Const.resCodeSendMessageNoType);
+                        return; 
+                    };
+                                                                   
+                    
                     var tempPath = files.file.path;
                     var fileName = files.file.name;
             
                     var destPath = Settings.options.uploadDir;
+                    
                     
                     // search user
                     done(err,{file:files.file,fields:fields});

@@ -38,7 +38,7 @@ UserListHandler.prototype.attach = function(router){
      * @apiSuccessExample Success-Response:
 {
   "success": 1,
-  "result": [
+  "data": [
     {
       "userID": "test",
       "name": "test",
@@ -57,12 +57,18 @@ UserListHandler.prototype.attach = function(router){
 }
     */
     router.get('/:roomID',function(request,response){
+      
         var roomID = request.params.roomID;
         var users = UsersManager.getUsers(roomID);
-
-        var result = [];
         
-        self.successResponse(response,Utils.stripPrivacyParamsFromArray(users));
+        if(_.isEmpty(roomID)){
+          self.successResponse(response,Const.resCodeUserListNoRoomID);
+          return;
+        }
+        
+        self.successResponse(response,
+          Const.responsecodeSucceed,
+          Utils.stripPrivacyParamsFromArray(users));
         
     });
 

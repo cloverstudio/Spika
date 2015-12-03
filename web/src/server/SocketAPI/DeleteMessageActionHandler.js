@@ -33,21 +33,21 @@ DeleteMessageActionHandler.prototype.attach = function(io,socket){
     socket.on('deleteMessage', function(param){
         
         if(Utils.isEmpty(param.userID)){
-            console.log('param error userID');
+            socket.emit('socketerror', {code:Const.resCodeSocketDeleteMessageNoUserID});               
             return;
         }
 
         if(Utils.isEmpty(param.messageID)){
-            console.log('param error messageID');
+            socket.emit('socketerror', {code:Const.resCodeSocketDeleteMessageNoMessageID});               
             return;
         }
         
         MessageModel.findMessagebyId(param.messageID,function(err,message){
             
-            if(err){
-                console.log(err);
+            if(err) {
+                socket.emit('socketerror', {code:Const.resCodeSocketUnknownError});               
                 return;
-            } 
+            }
             
             message.update({
                 message: '',
@@ -57,6 +57,11 @@ DeleteMessageActionHandler.prototype.attach = function(io,socket){
             },{},function(err,userResult){
 
                 MessageModel.populateMessages(message,function (err,messages) {
+
+                    if(err) {
+                        socket.emit('socketerror', {code:Const.resCodeSocketUnknownError});               
+                        return;
+                    }
                     
                     if(messages.length > 0){
                                                 

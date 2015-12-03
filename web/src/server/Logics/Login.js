@@ -18,17 +18,17 @@ var Settings = require("../lib/Settings");
 var Const = require("../const");
 
 var LoginLogic = {
-    execute : function(param,callBack){
+    execute : function(param,onSuccess,onError){
         
         var name = param.name;
         var avatarURL = param.avatarURL;
         var roomID = param.roomID;
         var userID = param.userID;
-                   
+          
         if(Utils.isEmpty(name)){
-            
-            if(callBack)
-                callBack(Utils.localizeString("Please specify name."),null);
+
+            if(onError)
+                onError(null,Const.resCodeLoginNoName);
                 
             return;
             
@@ -40,8 +40,8 @@ var LoginLogic = {
         
         if(Utils.isEmpty(roomID)){
 
-            if(callBack)
-                callBack(Utils.localizeString("Please specify room id."),null);
+            if(onError)
+                onError(null,Const.resCodeLoginNoRoomID);
 
             return;
             
@@ -49,8 +49,8 @@ var LoginLogic = {
         
         if(Utils.isEmpty(userID)){
 
-            if(callBack)
-                callBack(Utils.localizeString("Please specify user id."),null);
+            if(onError)
+                onError(null,Const.resCodeLoginNoUserID);
             
             return;
             
@@ -76,13 +76,20 @@ var LoginLogic = {
 
                 newUser.save(function(err,user){
                 
-                    if(err) throw err;
-            
-                    if(callBack)
-                        callBack(null,{
-                            token: token,
-                            user: user
-                        });
+                    if(err){
+
+                        if(onError)
+                            onError(err,null);
+                        
+                    }else{
+
+                        if(onSuccess)
+                            onSuccess({
+                                token: token,
+                                user: user
+                            });
+                            
+                    }      
             
                 });
 
@@ -97,13 +104,13 @@ var LoginLogic = {
                 
                     if(err){
 
-                        if(callBack)
-                            callBack(Utils.localizeString(err),null);
+                        if(onError)
+                            onError(err,null);
                         
                     }else{
 
-                        if(callBack)
-                            callBack(null,{
+                        if(onSuccess)
+                            onSuccess({
                                 token: token,
                                 user: user
                             });

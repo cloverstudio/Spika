@@ -43,7 +43,7 @@ LatestMessageListHandler.prototype.attach = function(router){
      * @apiSuccessExample Success-Response:
 {
     "success": 1,
-    "result": {
+    "data": {
         "messages": [
             {
                 "_id": "564d7c613e84a5407599ce8b",
@@ -92,18 +92,26 @@ LatestMessageListHandler.prototype.attach = function(router){
     
     router.get('/:roomID/:lastMessageID',function(request,response){
         
-        self.logic(request,response,function(err,result){
+        self.logic(request.params,function(result){
+
+            self.successResponse(response,Const.responsecodeSucceed,{
+                token: result.token,
+                user: result.user
+            });
+            
+        },function(err,code){
             
             if(err){
+                
                 self.errorResponse(
                     response,
-                    Const.httpCodeSucceed,
-                    Const.responsecodeParamError,
-                    err,
-                    false
+                    Const.httpCodeSeverError
                 );
+                
             }else{
-                self.successResponse(response,result);
+                
+                self.successResponse(response,code);
+                
             }
             
         });
@@ -113,26 +121,36 @@ LatestMessageListHandler.prototype.attach = function(router){
 
 }
 
-LatestMessageListHandler.prototype.logic = function(request,response,callBack){
+LatestMessageListHandler.prototype.logic = function(params,onSuccess,onError){
     
     var self = this;
     
-    
-    var roomID = request.params.roomID;
-    var lastMessageID = request.params.lastMessageID;
-            
+    var roomID = params.roomID;
+    var lastMessageID = params.lastMessageID;
+     
     if(Utils.isEmpty(lastMessageID)){
-        
-        callBack(Utils.localizeString("Please specify lastMessageID."),null);
-    
+
+        if(onError)
+            onError(null,Const.resCodeMessageListNoLastMessageID);
+            
         return;
         
     }
 
     if(Utils.isEmpty(roomID)){
         
-        callBack(Utils.localizeString("Please specify roomID."),null);
+        if(onError)
+            onError(null,Const.resCodeMessageListNoRoomID);
+            
+        return;
+        
+    }
 
+    if(lastMessageID == 0){
+
+        if(onError)
+            onError(null,Const.resCodeMessageListNoLastMessageID);
+            
         return;
         
     }
@@ -161,9 +179,8 @@ LatestMessageListHandler.prototype.logic = function(request,response,callBack){
         function (err, result) {
             
             if(err){
-
                 
-                callBack(err,null);
+                onError(err,null);
                 
             }else{
                 
@@ -171,7 +188,7 @@ LatestMessageListHandler.prototype.logic = function(request,response,callBack){
                     messages : result
                 }
                 
-                callBack(null,responseJson);
+                onSuccess(responseJson);
 
             }
                  

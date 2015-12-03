@@ -87,10 +87,13 @@ describe('SOCKET', function () {
 
             });
             
-            setTimeout(function(){
+            client1.on('socketerror', function(data){
+                
+                data.code.should.equal(1000012);
                 done();
                 client1.disconnect();
-            }, 0.3 * 1000);
+                
+            });
 
         });
 
@@ -125,10 +128,13 @@ describe('SOCKET', function () {
 
             });
             
-            setTimeout(function(){
-                client1.disconnect();
+            client1.on('socketerror', function(data){
+                
+                data.code.should.equal(1000013);
                 done();
-            }, 0.3 * 1000);
+                client1.disconnect();
+                
+            });
 
         });
 

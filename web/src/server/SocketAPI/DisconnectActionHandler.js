@@ -26,6 +26,7 @@ DisconnectActionHandler.prototype.attach = function(io,socket){
         if(!_.isNull(user)){
         
             UsersManager.removeUser(roomID,user.userID);
+            socket.leave(roomID);
             
             io.of(Settings.options.socketNameSpace).in(roomID).emit('userLeft', user);
             

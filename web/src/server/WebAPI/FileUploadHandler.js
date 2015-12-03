@@ -41,7 +41,7 @@ FileUploadHandler.prototype.attach = function(router){
      * @apiSuccessExample Success-Response:
         {
             "success": 1,
-            "result": {
+            "data": {
                 "file": {
                     "id": "55cdeba8a2d0956d24b421df",
                     "name": "Procijena.xlsx",
@@ -97,7 +97,8 @@ FileUploadHandler.prototype.attach = function(router){
             
                     if(!files.file){
                         
-                        done("no file",null);
+                        self.successResponse(response,Const.resCodeFileUploadNoFile);
+                        return; 
                         
                     }else{
                     
@@ -223,13 +224,12 @@ FileUploadHandler.prototype.attach = function(router){
             function (err, result) {
                 
                 if(err){
+
                     self.errorResponse(
                         response,
-                        Const.httpCodeSucceed,
-                        Const.responsecodeParamError,
-                        Utils.localizeString("Upload Failed"),
-                        true
+                        Const.httpCodeSeverError
                     );
+                
                 }else{
                                             
                     var responseJson = {
@@ -250,7 +250,8 @@ FileUploadHandler.prototype.attach = function(router){
                         };
                     }
                     
-                    self.successResponse(response,responseJson);
+                    self.successResponse(response,Const.responsecodeSucceed,
+                        responseJson);
                 }
                      
             }

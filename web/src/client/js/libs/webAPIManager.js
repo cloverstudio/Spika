@@ -20,9 +20,6 @@ var LoginUserManager = require('./loginUserManager.js');
                 
                 if(!_.isEmpty(token)){
                     header.token = token;
-                    
-                    
-                    
                 }
             }
             
@@ -35,39 +32,24 @@ var LoginUserManager = require('./loginUserManager.js');
                 headers: header,
                 success: function (response) {  
                     
-                    var isSucceed = response.success;
+                    var errorCode = response.code;
                     
                     // server handled error
-                    if(isSucceed != 1 && !_.isUndefined(response.error)){
+                    if(errorCode != 1){
+
+                        var message = errorCode;
                         
-                        var needRetry = response.error.retry;
-                        var message = response.error.message;
-                        
-                        if(needRetry == true){
-                        
-                            ErrorDialog.show('Error',message,function(){
-                                
-                                ErrorDialog.hide(function(){
-                                    self.post(url,data,onSuccess,onError);
-                                });
-                                
-                            });
-                            
-                        }else{
-                        
-                            ErrorDialog.show('Error',message);
-                            
-                        }
+                        ErrorDialog.show('Error',message);
                         
                         if(!_.isUndefined(onError)){
                             onError();
                         }
                     }
                     
-                    if(isSucceed == 1){
+                    if(errorCode == 1){
                                                 
                         if(!_.isUndefined(onSuccess))
-                            onSuccess(response.result);
+                            onSuccess(response.data);
                         
                     }
                     
@@ -79,8 +61,8 @@ var LoginUserManager = require('./loginUserManager.js');
                 },
                 error: function (e) {
                         
-                    ErrorDialog.show('Network Error','API Error',function(){
-                        
+                    ErrorDialog.show('Network Error','Critical Error',function(){
+                            
                         ErrorDialog.hide(function(){
                             self.post(url,data,onSuccess,onError);
                         });
@@ -141,40 +123,25 @@ var LoginUserManager = require('./loginUserManager.js');
                 },
                 success: function (response) {  
                                         
-                    var isSucceed = response.success;
+                    var errorCode = response.code;
                     
                     // server handled error
-                    if(isSucceed != 1 && !_.isUndefined(response.error)){
+                    if(errorCode != 1){
                         
-                        var needRetry = response.error.retry;
-                        var message = response.error.message;
+                        var message = errorCode;
                         
-                        if(needRetry == true){
-                        
-                            ErrorDialog.show('Error',message,function(){
-                                
-                                ErrorDialog.hide(function(){
-                                    self.post(url,data,onSuccess,onError);
-                                });
-                                
-                            });
-                            
-                        }else{
-                        
-                            ErrorDialog.show('Error',message);
-                            
-                        }
+                        ErrorDialog.show('Error',message);
                         
                         if(!_.isUndefined(onError)){
                             onError();
                         }
+                        
                     }
                     
-                    if(isSucceed == 1){
-                       
-                                           
+                    if(errorCode == 1){
+                                       
                         if(!_.isUndefined(onSuccess))
-                            onSuccess(response.result);
+                            onSuccess(response.data);
                         
                     }
                     
@@ -186,8 +153,8 @@ var LoginUserManager = require('./loginUserManager.js');
                 },
                 error: function (e) {
                     
-                    ErrorDialog.show('Network Error','API Error',function(){
-                        
+                    ErrorDialog.show('Network Error','Critical Error',function(){
+                            
                         ErrorDialog.hide(function(){
                             self.post(url,data,onSuccess,onError);
                         });
@@ -225,37 +192,22 @@ var LoginUserManager = require('./loginUserManager.js');
                 headers: header,
                 success: function (response) {  
                     
-                    var isSucceed = response.success;
+                    var errorCode = response.code;
                     
                     // server handled error
-                    if(isSucceed != 1 && !_.isUndefined(response.error)){
+                    if(errorCode != 1){
                         
-                        var needRetry = response.error.retry;
-                        var message = response.error.message;
+                        var message = errorCode;
                         
-                        if(needRetry == true){
-                        
-                            ErrorDialog.show('Error',message,function(){
-                                
-                                ErrorDialog.hide(function(){
-                                    self.post(url,data,onSuccess,onError);
-                                });
-                                
-                            });
-                            
-                        }else{
-                        
-                            ErrorDialog.show('Error',message);
-                            
-                        }
+                        ErrorDialog.show('Error',message);
 
                         
                     }
                     
-                    if(isSucceed == 1){
+                    if(errorCode == 1){
                                                 
                         if(!_.isUndefined(onSuccess))
-                            onSuccess(response.result);
+                            onSuccess(response.data);
                         
                     }
                     
@@ -267,10 +219,10 @@ var LoginUserManager = require('./loginUserManager.js');
                 },
                 error: function (e) {
                         
-                    ErrorDialog.show('Network Error','API Error',function(){
-                        
+                    ErrorDialog.show('Network Error','Critical Error',function(){
+                            
                         ErrorDialog.hide(function(){
-                            self.post(url,data,onSuccess,onError);
+                            self.get(url,onSuccess,onError);
                         });
                         
                     });

@@ -29,11 +29,13 @@ LoginActionHandler.prototype.attach = function(io,socket){
      */
     socket.on('login', function(param){
                     
-        if(Utils.isEmpty(param.userID)){                 
+        if(Utils.isEmpty(param.userID)){  
+            socket.emit('socketerror', {code:Const.resCodeSocketLoginNoUserID});               
             return;
         }
 
         if(Utils.isEmpty(param.roomID)){                 
+            socket.emit('socketerror', {code:Const.resCodeSocketLoginNoRoomID});               
             return;
         }
         
@@ -68,7 +70,10 @@ LoginActionHandler.prototype.attach = function(io,socket){
                             
                 newMessage.save(function(err,message){
                 
-                    if(err) throw err;
+                    if(err) {
+                        socket.emit('socketerror', {code:Const.resCodeSocketUnknownError});               
+                        return;
+                    }
             
                     var messageObj = message.toObject();
                     messageObj.user = user.toObject();

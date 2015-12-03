@@ -13,7 +13,7 @@ var Observer = require("node-observer");
 var SocketAPIHandler = require('../SocketAPI/SocketAPIHandler');
 
 var SendMessage = {
-    execute : function(userID,param,callBack){
+    execute : function(userID,param,onSucess,onError){
         
         //save to DB
         UserModel.findUserbyId(userID,function (err,user) {
@@ -64,7 +64,10 @@ var SendMessage = {
 
             newMessage.save(function(err,message){
 
-                if(err) throw err;
+                if(err) {
+                    if(onError)
+                        onError(err);
+                }
 
                 MessageModel.populateMessages(message,function (err,data) {
                                         
@@ -78,8 +81,8 @@ var SendMessage = {
                     SocketAPIHandler.io.of(Settings.options.socketNameSpace).in(param.roomID).emit('newMessage', data[0]);
                     Observer.send(this, Const.notificationSendMessage, data[0]);
                     
-                    if(callBack)
-                        callBack(message);
+                    if(onSucess)
+                        onSucess(message);
 
                 });
 

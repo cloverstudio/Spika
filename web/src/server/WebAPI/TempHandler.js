@@ -29,8 +29,9 @@ TempHandler.prototype.attach = function(router){
     //Login data (requires body-parser)
     router.get('',function(request,response){
         
-        self.successResponse(response,{
-            ok: 'ok'
+        self.successResponse(response,Const.responsecodeSucceed,{
+            param1:1,
+            param2:2
         });
         
     });

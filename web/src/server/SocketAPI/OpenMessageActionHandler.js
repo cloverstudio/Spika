@@ -138,23 +138,22 @@ OpenMessageActionHandler.prototype.attach = function(io,socket){
     socket.on('openMessage', function(param){
 
         if(Utils.isEmpty(param.userID)){
-            console.log('param error userID');
+            socket.emit('socketerror', {code:Const.resCodeSocketOpenMessageNoUserID});               
             return;
         }
         
         if(Utils.isEmpty(param.messageIDs)){
-            console.log('param error messageIDs');
+            socket.emit('socketerror', {code:Const.resCodeSocketOpenMessageNoMessageID});               
             return;
         }
         
         if(!_.isArray(param.messageIDs)){
-            console.log('param error messageIDs');
+            socket.emit('socketerror', {code:Const.resCodeSocketOpenMessageNoMessageID});               
             return;
         }
         
         var updatedMessages = [];
         
-        console.log("param",param);
     
         UserModel.findUserbyId(param.userID,function (err,user) {
 
@@ -162,12 +161,14 @@ OpenMessageActionHandler.prototype.attach = function(io,socket){
 
                 MessageModel.findMessagebyId(messageID,function(err,message){
                     
-                    if(err){
-                        console.log(err);
+                    if(err) {
+                        socket.emit('socketerror', {code:Const.resCodeSocketUnknownError});               
                         return;
-                    } 
+                    }
+                    
 
                     if(!message){
+                        socket.emit('socketerror', {code:Const.resCodeSocketUnknownError});               
                         return;
                     } 
                                         
@@ -194,8 +195,19 @@ OpenMessageActionHandler.prototype.attach = function(io,socket){
                 
         
             }, function(err) {
-                
+
+                if(err) {
+                    socket.emit('socketerror', {code:Const.resCodeSocketUnknownError});               
+                    return;
+                }
+                    
+                    
                 MessageModel.populateMessages(updatedMessages,function (err,messages) {
+
+                    if(err) {
+                        socket.emit('socketerror', {code:Const.resCodeSocketUnknownError});               
+                        return;
+                    }
                     
                     if(messages.length > 0){
     

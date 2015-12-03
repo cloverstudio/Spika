@@ -45,40 +45,45 @@ LoginHandler.prototype.attach = function(router){
      * @apiSuccess {String} User Model of loginned user
      *     
      * @apiSuccessExample Success-Response:
-            {
-              "success": 1,
-              "result": {
-                "token": "v3S8mMex95HFJmWm5io5RhgW",
-                "user": {
-                  "_id": "55cde8271d8ccb18230fe20f",
-                  "userID": "testuser",
-                  "name": "testuser",
-                  "avatarURL": "http://localhost:8080/img/noavatar.png",
-                  "token": "5pMroCXBQzpxxUElGusLOzXp",
-                  "created": 1439557671981,
-                  "__v": 0
-                }
-              }
-            }
+
+{
+	code: 1,
+	data: {
+		token: 'FPzdinKSETyXrx0zoxZVYoVt',
+		user: {
+			_id: '564b128a94b8f880877eb47f',
+			userID: 'test',
+			name: 'test',
+			avatarURL: 'test',
+			token: 'zJd0rlkS6OWk4mBUDTL5Eg5U',
+			created: 1447760522576,
+			__v: 0
+		}
+	}
+}
+
     */
     router.post('/',function(request,response){
                 
-        LoginLogic.execute(request.body,function(err,result){
+        LoginLogic.execute(request.body,function(result){
+
+            self.successResponse(response,Const.responsecodeSucceed,{
+                token: result.token,
+                user: result.user
+            });
+            
+        },function(err,code){
             
             if(err){
+                
                 self.errorResponse(
                     response,
-                    Const.httpCodeSucceed,
-                    Const.responsecodeParamError,
-                    err,
-                    false
+                    Const.httpCodeSeverError
                 );
+                
             }else{
                 
-                self.successResponse(response,{
-                    token: result.token,
-                    user: result.user
-                });
+                self.successResponse(response,code);
                 
             }
             
