@@ -13,6 +13,7 @@ var SendMessageActionHandler = function(){
 
 var SendMessageLogic = require('../Logics/SendMessage');
 
+var BridgeManager = require('../lib/BridgeManager');
 
 _.extend(SendMessageActionHandler.prototype,SocketHandlerBase.prototype);
 
@@ -70,19 +71,29 @@ SendMessageActionHandler.prototype.attach = function(io,socket){
         }
         
         var userID = param.userID;
-    
-        SendMessageLogic.execute(userID,param,function(result){
+
+        BridgeManager.hook('sendMessage',param,function(result){
             
+            if(result == null || result.canSend){
+                
+                var userID = param.userID;
             
+                SendMessageLogic.execute(userID,param,function(result){
+                    
+                    
+                    
+                },function(err,code){
+                    
+                    if(err){
+                        socket.emit('socketerror', {code:Const.resCodeSocketSendMessageFail}); 
+                    }else{
+                        socket.emit('socketerror', {code:code}); 
+                    }
+                    
+                    
+                });
             
-        },function(err,code){
-            
-            if(err){
-                socket.emit('socketerror', {code:Const.resCodeSocketSendMessageFail}); 
-            }else{
-                socket.emit('socketerror', {code:code}); 
             }
-            
             
         });
         

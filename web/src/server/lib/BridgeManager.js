@@ -51,7 +51,23 @@ var BridgeManager = {
             
         });
 
+    },
+    
+    hook: function(method,param,callBack){
+        
+        if(_.isEmpty(Settings.hooks)){
+            callBack(null);
+            return;
+        }
+        
+        if(Settings.hooks[method] && _.isFunction(Settings.hooks[method])){
+            Settings.hooks[method](param,callBack);
+        }else{
+            callBack(null);
+        }
+        
     }
+
     
 }
 

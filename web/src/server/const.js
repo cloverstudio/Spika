@@ -36,8 +36,8 @@
     Const.resCodeSocketTypingNoType = 1000023;
     Const.resCodeSocketTypingFaild = 1000024;
                 
-    Const.resCodeSocketLoginNoUserID = 1000012;
-    Const.resCodeSocketLoginNoRoomID = 1000013;
+    Const.resCodeSocketLoginNoUserID = 1000025;      
+    Const.resCodeSocketLoginNoRoomID = 1000026;    
         
     Const.responsecodeParamError = 2001;
     Const.responsecodeTokenError = 2100;

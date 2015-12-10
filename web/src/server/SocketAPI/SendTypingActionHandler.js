@@ -9,6 +9,8 @@ var SocketHandlerBase = require("./SocketHandlerBase");
 var UserModel = require("../Models/UserModel");
 var Settings = require("../lib/Settings");
 
+var BridgeManager = require('../lib/BridgeManager');
+
 var SendTypingActionHandler = function(){
     
 }
@@ -48,26 +50,29 @@ SendTypingActionHandler.prototype.attach = function(io,socket){
             return;
         }
         
-        UserModel.findUserbyId(param.userID,function (err,user) {
+        BridgeManager.hook('typing',param,function(result){
             
-            if(err){
-                socket.emit('socketerror', {code:Const.resCodeSocketTypingFaild});
-                return;   
+            if(result == null || result.canSend){
+                
+                UserModel.findUserbyId(param.userID,function (err,user) {
+                    
+                    if(err){
+                        socket.emit('socketerror', {code:Const.resCodeSocketTypingFaild});
+                        return;   
+                    }
+                    
+                    param.user = user;
+                    io.of(Settings.options.socketNameSpace).in(param.roomID).emit('sendTyping', param);
+                    Observer.send(this, Const.notificationUserTyping, param);
+        
+                    
+                });
+            
             }
-            
-            param.user = user;
-            io.of(Settings.options.socketNameSpace).in(param.roomID).emit('sendTyping', param);
-            Observer.send(this, Const.notificationUserTyping, param);
-
             
         });
         
-        
-        
     });
-
-
-
 
 }
 

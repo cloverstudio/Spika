@@ -89,7 +89,7 @@ describe('SOCKET', function () {
             
             client1.on('socketerror', function(data){
                 
-                data.code.should.equal(1000012);
+                data.code.should.equal(1000025);
                 done();
                 client1.disconnect();
                 
@@ -130,7 +130,7 @@ describe('SOCKET', function () {
             
             client1.on('socketerror', function(data){
                 
-                data.code.should.equal(1000013);
+                data.code.should.equal(1000026);
                 done();
                 client1.disconnect();
                 
