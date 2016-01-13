@@ -40,7 +40,7 @@ FileUploadHandler.prototype.attach = function(router){
      *     
      * @apiSuccessExample Success-Response:
         {
-            "success": 1,
+            "code": 1,
             "data": {
                 "file": {
                     "id": "55cdeba8a2d0956d24b421df",

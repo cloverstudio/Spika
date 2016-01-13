@@ -44,7 +44,7 @@ MessageListHandler.prototype.attach = function(router){
 {
 
 {
-    "success": 1,
+    "code": 1,
     "data": [
         {
             "__v": 0,
@@ -130,7 +130,7 @@ MessageListHandler.prototype.attach = function(router){
                 
             }
         ],
-            function (err, result) {
+            function (err, data) {
                 
                 if(err){
 
@@ -141,7 +141,7 @@ MessageListHandler.prototype.attach = function(router){
                 
                 }else{
                     
-                    self.successResponse(response,Const.responsecodeSucceed,result);
+                    self.successResponse(response,Const.responsecodeSucceed,{messages:data});
                     
                 }
                      

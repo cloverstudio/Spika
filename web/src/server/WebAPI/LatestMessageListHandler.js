@@ -42,7 +42,7 @@ LatestMessageListHandler.prototype.attach = function(router){
      *     
      * @apiSuccessExample Success-Response:
 {
-    "success": 1,
+    "code": 1,
     "data": {
         "messages": [
             {
@@ -96,7 +96,7 @@ LatestMessageListHandler.prototype.attach = function(router){
 
             self.successResponse(response,Const.responsecodeSucceed,{
                 token: result.token,
-                user: result.user
+                messages: result.messages
             });
             
         },function(err,code){

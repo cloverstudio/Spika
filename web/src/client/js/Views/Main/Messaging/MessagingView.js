@@ -229,6 +229,8 @@ var MessagingView = Backbone.View.extend({
                 
                 var html = '';
                 
+                data = data.messages;
+                
                 if(data.length < CONST.PAGING_ROW){
                     
                     self.pagingReachesToLast = true;

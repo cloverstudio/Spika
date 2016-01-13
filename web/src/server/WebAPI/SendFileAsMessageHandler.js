@@ -46,7 +46,7 @@ TempHandler.prototype.attach = function(router){
      *     
      * @apiSuccessExample Success-Response:
         {
-          "success": 1,
+          "code": 1,
           "data": 'ok'
         }
     */
