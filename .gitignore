@@ -2,7 +2,7 @@
 
 # init
 web/src/server/init.js
-web/src/client/init.js
+web/src/client/js/init.js
 
 # generated files
 web/public
