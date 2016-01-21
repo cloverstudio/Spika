@@ -21,8 +21,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-//    [SDWebImageManager sharedManager].delegate = [CSImageLoaderDelegate sharedImageLoader];
-
     return YES;
 }
 
