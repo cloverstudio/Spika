@@ -1,0 +1,15 @@
+/* 
+  CSChatLocalization.strings
+  Spika
+
+  Created by mislav on 20/01/16.
+  Copyright © 2016 Clover Studio. All rights reserved.
+*/
+
+"%@ is typing..." = "%@ tipka...";
+"%@ are typing..." = "%@ tipkaju...";
+"Privacy Error" = "Greška privatnosti";
+"Go to\nSettings > Privacy > Contacts\nand enable access" = "Idite u\nPostavke > Privatnost > Kontakti\ni odobrite pristup";
+"Socket Error" = "Socket Error";
+"Add to contacts" = "Dodaj u kontakte";
+"Do you want add this contact to address book?" = "Da li želite dodati ovaj kontakt u vaše kontakte?";

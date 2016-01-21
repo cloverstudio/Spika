@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CSMapViewController">
+            <connections>
+                <outlet property="buttonsLayoutHeight" destination="w7Z-ja-sBE" id="90R-7F-P5m"/>
+                <outlet property="mkMap" destination="Mhh-zV-Aop" id="dGS-dz-vwV"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Mhh-zV-Aop">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="550"/>
+                </mapView>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WsY-Ho-xyE" userLabel="ButtonsViewController">
+                    <rect key="frame" x="0.0" y="550" width="600" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WbB-ji-4Lh">
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onCancelClicked:" destination="-1" eventType="touchUpInside" id="OVJ-fU-xra"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rvF-Nt-xPw">
+                            <rect key="frame" x="300" y="0.0" width="300" height="50"/>
+                            <state key="normal" title="Ok">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onOkClicked:" destination="-1" eventType="touchUpInside" id="djz-FU-PXx"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="WbB-ji-4Lh" firstAttribute="leading" secondItem="WsY-Ho-xyE" secondAttribute="leading" id="1mm-Te-tRo"/>
+                        <constraint firstAttribute="bottom" secondItem="rvF-Nt-xPw" secondAttribute="bottom" id="HmO-vS-uNj"/>
+                        <constraint firstItem="rvF-Nt-xPw" firstAttribute="leading" secondItem="WsY-Ho-xyE" secondAttribute="centerX" id="IcP-lb-8gU"/>
+                        <constraint firstItem="rvF-Nt-xPw" firstAttribute="top" secondItem="WsY-Ho-xyE" secondAttribute="top" id="Z6l-8f-wz0"/>
+                        <constraint firstAttribute="bottom" secondItem="WbB-ji-4Lh" secondAttribute="bottom" id="aMU-Cg-7Lp"/>
+                        <constraint firstItem="WbB-ji-4Lh" firstAttribute="top" secondItem="WsY-Ho-xyE" secondAttribute="top" id="nAl-7y-A1V"/>
+                        <constraint firstItem="WbB-ji-4Lh" firstAttribute="trailing" secondItem="WsY-Ho-xyE" secondAttribute="centerX" id="sIF-A1-GTy"/>
+                        <constraint firstAttribute="trailing" secondItem="rvF-Nt-xPw" secondAttribute="trailing" id="sj5-5G-3oE"/>
+                        <constraint firstAttribute="height" constant="50" id="w7Z-ja-sBE"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="WsY-Ho-xyE" secondAttribute="bottom" id="Ewy-xD-tms"/>
+                <constraint firstAttribute="trailing" secondItem="Mhh-zV-Aop" secondAttribute="trailing" id="IMY-C1-41c"/>
+                <constraint firstItem="Mhh-zV-Aop" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="JnH-O5-KXb"/>
+                <constraint firstItem="WsY-Ho-xyE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bhn-fF-5Py"/>
+                <constraint firstItem="Mhh-zV-Aop" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nKT-9B-ehB"/>
+                <constraint firstAttribute="trailing" secondItem="WsY-Ho-xyE" secondAttribute="trailing" id="qaU-6R-Qoq"/>
+                <constraint firstItem="WsY-Ho-xyE" firstAttribute="top" secondItem="Mhh-zV-Aop" secondAttribute="bottom" id="xsI-9S-eOb"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

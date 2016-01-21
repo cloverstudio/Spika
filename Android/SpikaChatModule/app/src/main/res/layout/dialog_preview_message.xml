@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/message_info_back_color">
+
+        <com.clover_studio.spikachatmodule.view.CustomTextView
+            android:id="@+id/messageInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/message_information"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+
+        <View
+            android:id="@+id/firstLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white"
+            android:layout_below="@id/messageInformation"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/firstLine"
+            android:id="@+id/senderLayout"
+            android:weightSum="100">
+
+            <com.clover_studio.spikachatmodule.view.CustomTextView
+                android:id="@+id/senderLabel"
+                android:layout_width="0dp"
+                android:layout_weight="35"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="@string/sender"
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
+
+            <com.clover_studio.spikachatmodule.view.CustomTextView
+                android:id="@+id/sender"
+                android:layout_width="0dp"
+                android:layout_weight="65"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/secondLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white"
+            android:layout_below="@id/senderLayout"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/secondLine"
+            android:id="@+id/sentAtLayout"
+            android:weightSum="100">
+
+            <com.clover_studio.spikachatmodule.view.CustomTextView
+                android:id="@+id/sentAtLabel"
+                android:layout_width="0dp"
+                android:layout_weight="35"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="@string/sent_at"
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
+
+            <com.clover_studio.spikachatmodule.view.CustomTextView
+                android:id="@+id/sentAt"
+                android:layout_width="0dp"
+                android:layout_weight="65"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+        <com.clover_studio.spikachatmodule.view.CustomTextView
+            android:id="@+id/userSeenLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="@string/users_seen"
+            android:layout_below="@id/sentAtLayout"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvUsersSeen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/userSeenLabel"
+            android:layout_above="@+id/buttonsLayout"
+            android:cacheColorHint="@android:color/transparent"
+            android:clipToPadding="false"
+            android:scrollbars="vertical"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

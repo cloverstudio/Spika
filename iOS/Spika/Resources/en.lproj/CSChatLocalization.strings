@@ -1,0 +1,15 @@
+/* 
+  CSChatLocalization.strings
+  Spika
+
+  Created by mislav on 20/01/16.
+  Copyright © 2016 Clover Studio. All rights reserved.
+*/
+
+"%@ is typing..." = "%@ is typing...";
+"%@ are typing..." = "%@ are typing...";
+"Privacy Error" = "Privacy Error";
+"Go to\nSettings > Privacy > Contacts\nand enable access" = "Go to\nSettings > Privacy > Contacts\nand enable access";
+"Socket Error" = "Socket Error";
+"Add to contacts" = "Add to contacts";
+"Do you want add this contact to address book?" = "Do you want add this contact to address book?";

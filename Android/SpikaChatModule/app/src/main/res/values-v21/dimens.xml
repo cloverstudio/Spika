@@ -1,0 +1,4 @@
+<resources>
+    <!-- different for pre 21 android -->
+    <dimen name="float_button_border">0.5dp</dimen>
+</resources>

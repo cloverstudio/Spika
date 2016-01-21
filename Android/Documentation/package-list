@@ -1,0 +1,17 @@
+com.clover_studio.spikachatmodule
+com.clover_studio.spikachatmodule.adapters
+com.clover_studio.spikachatmodule.base
+com.clover_studio.spikachatmodule.dialogs
+com.clover_studio.spikachatmodule.lazy
+com.clover_studio.spikachatmodule.listeners
+com.clover_studio.spikachatmodule.managers.socket
+com.clover_studio.spikachatmodule.models
+com.clover_studio.spikachatmodule.robospice
+com.clover_studio.spikachatmodule.robospice.api
+com.clover_studio.spikachatmodule.robospice.spice
+com.clover_studio.spikachatmodule.utils
+com.clover_studio.spikachatmodule.view
+com.clover_studio.spikachatmodule.view.circularview.animation
+com.clover_studio.spikachatmodule.view.circularview.layout
+com.clover_studio.spikachatmodule.view.menu
+com.clover_studio.spikachatmodule.view.roundimage

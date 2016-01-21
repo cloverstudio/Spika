@@ -1,0 +1,12 @@
+
+/* Class = "UILabel"; text = "User Data"; ObjectID = "2KV-rd-oB3"; */
+"2KV-rd-oB3.text" = "User Data";
+
+/* Class = "UIViewController"; title = "Example"; ObjectID = "BYZ-38-t0r"; */
+"BYZ-38-t0r.title" = "Example";
+
+/* Class = "UILabel"; text = "Enable Config"; ObjectID = "grz-lp-gAR"; */
+"grz-lp-gAR.text" = "Enable Config";
+
+/* Class = "UIButton"; normalTitle = "START CHAT"; ObjectID = "mpa-UG-tc2"; */
+"mpa-UG-tc2.normalTitle" = "START CHAT";

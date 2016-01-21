@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toolbar_height"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_centerHorizontal="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/toolbar_gradient"
+            />
+
+        <com.balysv.materialmenu.MaterialMenuView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            app:mm_color="@color/default_color"
+            android:paddingRight="10dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/selector_trans_to_white"
+            android:id="@+id/sidebarBtnMaterial"/>
+
+        <com.clover_studio.spikachatmodule.view.CustomTextView
+            android:id="@+id/toolbarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_vertical"
+            android:text="@string/preview"
+            android:textColor="@color/devil_gray_color"
+            android:textSize="@dimen/title_text_size"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray_light_light_color"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>

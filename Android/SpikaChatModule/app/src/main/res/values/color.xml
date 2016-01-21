@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="title_text_color">#FFFFFF</color>
+
+    <color name="toolbar_color">#FFFFFF</color>
+    <color name="status_bar_color">#009E9F</color>
+
+    <color name="default_color">#009E9F</color>
+    <color name="default_color_light">#009E9F</color>
+    <color name="devil_gray_color">#666666</color>
+    <color name="gray_light_color">#AAAAAA</color>
+    <color name="gray_light_light_color">#CCCCCC</color>
+    <color name="gray_send_message_background">#F7F7F7</color>
+
+    <color name="gray_in_adapter">#EFEFEF</color>
+    <color name="chat_settings_gray">#F4F4F4</color>
+    <color name="chat_settings_separator">#D7D7D7</color>
+
+    <color name="default_trans">#44FFFFFF</color>
+    <color name="trans">#00000000</color>
+    <color name="black_trans">#44000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_trans">#77FFFFFF</color>
+    <color name="defaut_blue_trans">#774BA4DF</color>
+    <color name="defaut_blue_more_trans">#444BA4DF</color>
+    <color name="message_info_back_color">#333333</color>
+
+    <color name="gray_list_background">#EEF2F5</color>
+    <color name="gray_trans">#99FFFFFF</color>
+
+    <color name="my_message_background_color">@color/default_color</color>
+    <color name="you_message_background_color">#EBEBEB</color>
+    <color name="my_message_text_color">#FFFFFF</color>
+    <color name="you_message_text_color">#4C4C4C</color>
+    <color name="info_message_text_color">@color/devil_gray_color</color>
+    <color name="info_message_background_color">@color/white</color>
+</resources>

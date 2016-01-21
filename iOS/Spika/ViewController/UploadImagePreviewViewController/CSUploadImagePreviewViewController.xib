@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CSUploadImagePreviewViewController">
+            <connections>
+                <outlet property="imageControllerBackground" destination="GQD-QT-P34" id="W26-Lz-Bdm"/>
+                <outlet property="imageView" destination="maF-wf-8WB" id="8MG-iD-CoH"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GQD-QT-P34" userLabel="ImageViewController">
+                    <rect key="frame" x="8" y="8" width="584" height="534"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="maF-wf-8WB">
+                            <rect key="frame" x="8" y="8" width="568" height="518"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="maF-wf-8WB" firstAttribute="leading" secondItem="GQD-QT-P34" secondAttribute="leading" constant="8" id="eNs-9e-mgM"/>
+                        <constraint firstItem="maF-wf-8WB" firstAttribute="top" secondItem="GQD-QT-P34" secondAttribute="top" constant="8" id="hMs-Og-5uG"/>
+                        <constraint firstAttribute="trailing" secondItem="maF-wf-8WB" secondAttribute="trailing" constant="8" id="kkT-v1-J8q"/>
+                        <constraint firstAttribute="bottom" secondItem="maF-wf-8WB" secondAttribute="bottom" constant="8" id="osI-Qt-XKR"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bxQ-Uq-P8d" userLabel="ButtonsViewController">
+                    <rect key="frame" x="0.0" y="550" width="600" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NtJ-yS-H6W">
+                            <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                            <state key="normal" title="Cancel">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onCancel:" destination="-1" eventType="touchUpInside" id="2Tn-d9-MRv"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SEf-5b-TUH">
+                            <rect key="frame" x="300" y="0.0" width="300" height="50"/>
+                            <state key="normal" title="Ok">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="onOk:" destination="-1" eventType="touchUpInside" id="06K-ST-zNP"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="NtJ-yS-H6W" firstAttribute="leading" secondItem="bxQ-Uq-P8d" secondAttribute="leading" id="5Ba-ug-gzq"/>
+                        <constraint firstItem="NtJ-yS-H6W" firstAttribute="top" secondItem="bxQ-Uq-P8d" secondAttribute="top" id="BbQ-O9-DMp"/>
+                        <constraint firstAttribute="bottom" secondItem="NtJ-yS-H6W" secondAttribute="bottom" id="FIN-F3-k7Z"/>
+                        <constraint firstAttribute="trailing" secondItem="SEf-5b-TUH" secondAttribute="trailing" id="Gd6-Ax-e74"/>
+                        <constraint firstItem="NtJ-yS-H6W" firstAttribute="trailing" secondItem="bxQ-Uq-P8d" secondAttribute="centerX" id="czv-EC-iTi"/>
+                        <constraint firstAttribute="bottom" secondItem="SEf-5b-TUH" secondAttribute="bottom" id="osT-pq-YO1"/>
+                        <constraint firstAttribute="height" constant="50" id="rnv-S4-rUl"/>
+                        <constraint firstItem="SEf-5b-TUH" firstAttribute="top" secondItem="bxQ-Uq-P8d" secondAttribute="top" id="t2B-wR-dWt"/>
+                        <constraint firstItem="SEf-5b-TUH" firstAttribute="leading" secondItem="bxQ-Uq-P8d" secondAttribute="centerX" id="xoc-zt-QfQ"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="bxQ-Uq-P8d" secondAttribute="trailing" id="2vY-4u-qXe"/>
+                <constraint firstItem="GQD-QT-P34" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="N46-Za-x8Q"/>
+                <constraint firstAttribute="bottom" secondItem="bxQ-Uq-P8d" secondAttribute="bottom" id="ePr-AT-3Sb"/>
+                <constraint firstItem="bxQ-Uq-P8d" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hMu-y7-rRr"/>
+                <constraint firstItem="bxQ-Uq-P8d" firstAttribute="top" secondItem="GQD-QT-P34" secondAttribute="bottom" constant="8" id="psC-9z-yzL"/>
+                <constraint firstAttribute="trailing" secondItem="GQD-QT-P34" secondAttribute="trailing" constant="8" id="sX7-GU-aUg"/>
+                <constraint firstItem="GQD-QT-P34" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="8" id="zIA-cD-JKE"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

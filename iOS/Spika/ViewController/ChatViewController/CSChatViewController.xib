@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CSChatViewController">
+            <connections>
+                <outlet property="bottomMargin" destination="aQc-jn-eXH" id="YPC-Fn-ej0"/>
+                <outlet property="chatsettingsView" destination="REB-79-x6o" id="t1b-h0-tFh"/>
+                <outlet property="etMessage" destination="qxh-NL-GgN" id="YKU-V6-yYL"/>
+                <outlet property="footerView" destination="0YB-L4-u8I" id="zmg-j5-fMo"/>
+                <outlet property="sendButton" destination="KuR-fL-FAs" id="QVd-fr-RLW"/>
+                <outlet property="tableView" destination="tWy-uq-8j4" id="0KE-9G-FXJ"/>
+                <outlet property="view" destination="xwW-LC-kvo" id="C8B-Ja-IMe"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="xwW-LC-kvo">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0YB-L4-u8I">
+                    <rect key="frame" x="0.0" y="550" width="600" height="50"/>
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qxh-NL-GgN">
+                            <rect key="frame" x="8" y="2" width="546" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="ocL-Qz-q9r"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <action selector="changeEditing:" destination="-1" eventType="editingChanged" id="oar-By-xLx"/>
+                                <action selector="changedTextInTextField:" destination="-1" eventType="editingDidEnd" id="57H-Dj-6q9"/>
+                            </connections>
+                        </textField>
+                        <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KuR-fL-FAs">
+                            <rect key="frame" x="562" y="2" width="30" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="2Zf-8N-gyI"/>
+                                <constraint firstAttribute="height" constant="30" id="VhP-ol-iNq"/>
+                                <constraint firstAttribute="height" constant="40" id="r5S-NW-NMn"/>
+                            </constraints>
+                            <state key="normal" image="attach_btn">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="VhP-ol-iNq"/>
+                                </mask>
+                            </variation>
+                            <connections>
+                                <action selector="sendMessage:" destination="-1" eventType="touchUpInside" id="4Aw-L0-lv5"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="KuR-fL-FAs" secondAttribute="trailing" constant="8" id="A2t-DI-3kN"/>
+                        <constraint firstAttribute="bottom" secondItem="qxh-NL-GgN" secondAttribute="bottom" constant="8" id="J6n-Yy-Fsz"/>
+                        <constraint firstItem="KuR-fL-FAs" firstAttribute="leading" secondItem="qxh-NL-GgN" secondAttribute="trailing" constant="8" id="OdP-jZ-uoU"/>
+                        <constraint firstAttribute="height" constant="50" id="Ori-0Y-kpS"/>
+                        <constraint firstItem="qxh-NL-GgN" firstAttribute="leading" secondItem="0YB-L4-u8I" secondAttribute="leading" constant="8" id="RpV-gM-i9f"/>
+                        <constraint firstAttribute="bottom" secondItem="KuR-fL-FAs" secondAttribute="bottom" constant="8" id="aHa-1o-crr"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="tWy-uq-8j4">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="550"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="u6m-mI-PW1"/>
+                        <outlet property="delegate" destination="-1" id="5PN-r3-Y8J"/>
+                    </connections>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="REB-79-x6o" customClass="CSChatSettingsView">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="550"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="0YB-L4-u8I" secondAttribute="trailing" id="5Wr-YM-KvR"/>
+                <constraint firstItem="0YB-L4-u8I" firstAttribute="top" secondItem="tWy-uq-8j4" secondAttribute="bottom" id="7ej-cz-vue"/>
+                <constraint firstItem="REB-79-x6o" firstAttribute="top" secondItem="tWy-uq-8j4" secondAttribute="top" id="8Py-fD-w4G"/>
+                <constraint firstItem="tWy-uq-8j4" firstAttribute="leading" secondItem="xwW-LC-kvo" secondAttribute="leading" id="ZUo-GI-Lcb"/>
+                <constraint firstAttribute="bottom" secondItem="0YB-L4-u8I" secondAttribute="bottom" id="aQc-jn-eXH"/>
+                <constraint firstItem="REB-79-x6o" firstAttribute="leading" secondItem="tWy-uq-8j4" secondAttribute="leading" id="bp8-X8-5GV"/>
+                <constraint firstAttribute="trailing" secondItem="tWy-uq-8j4" secondAttribute="trailing" id="eJo-Nz-jzH"/>
+                <constraint firstItem="REB-79-x6o" firstAttribute="bottom" secondItem="tWy-uq-8j4" secondAttribute="bottom" id="h8x-3p-RAH"/>
+                <constraint firstItem="REB-79-x6o" firstAttribute="trailing" secondItem="tWy-uq-8j4" secondAttribute="trailing" id="poO-7D-daG"/>
+                <constraint firstItem="tWy-uq-8j4" firstAttribute="top" secondItem="xwW-LC-kvo" secondAttribute="top" id="qFN-i9-TyA"/>
+                <constraint firstItem="0YB-L4-u8I" firstAttribute="leading" secondItem="xwW-LC-kvo" secondAttribute="leading" id="qiu-FP-b8o"/>
+            </constraints>
+            <point key="canvasLocation" x="-8" y="315"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="attach_btn" width="30" height="30"/>
+    </resources>
+</document>
