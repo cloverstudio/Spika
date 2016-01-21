@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/parent"
+        android:padding="15dp"
+        android:layout_centerInParent="true">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView"
+            style="@style/CardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:cardBackgroundColor="@color/white"
+            app:cardElevation="2dp"
+            app:cardPreventCornerOverlap="false"
+            app:cardUseCompatPadding="true"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp" >
+
+                <com.clover_studio.spikachatmodule.view.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/default_color"
+                    android:textSize="15sp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/nameOfAudio"/>
+
+                <RelativeLayout
+                    android:id="@+id/meRlSound"
+                    android:layout_below="@id/nameOfAudio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <ImageButton
+                        android:id="@+id/playPause"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/ic_play" />
+
+                    <Chronometer
+                        android:id="@+id/chronoPlay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/playPause"
+                        android:text="00:00"
+                        android:textColor="@color/default_color" />
+
+                    <SeekBar
+                        android:id="@+id/seekBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:thumbTint="@color/default_color"
+                        android:progressTint="@color/default_color"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@id/chronoPlay"/>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
+
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignTop="@id/parent"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/default_color_circle"
+        android:alpha="0.8"
+        android:padding="2dp"
+        android:layout_margin="5dp"
+        android:id="@+id/closeButton"
+        android:src="@drawable/ic_close"/>
+
+</RelativeLayout>

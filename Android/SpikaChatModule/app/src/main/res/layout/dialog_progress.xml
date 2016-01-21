@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent">
+
+    <RelativeLayout
+        android:id="@+id/loadingPanel"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:background="@android:color/transparent">
+
+        <ProgressBar
+            android:layout_width="@dimen/progress_big"
+            android:layout_height="@dimen/progress_big"
+            android:layout_centerInParent="true"
+            android:background="@android:color/transparent"
+            android:indeterminate="true" />
+    </RelativeLayout>
+
+</RelativeLayout>

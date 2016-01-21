@@ -1,0 +1,145 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/parentView"
+                android:background="@color/white"
+                tools:context=".ChatActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/typingTextView"
+        android:layout_below="@+id/tToolbar"
+        android:splitMotionEvents="false"
+        android:cacheColorHint="@android:color/transparent"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@android:color/white"
+        android:id="@+id/newMessagesButton"
+        android:gravity="center"
+        android:text="@string/new_messages"
+        android:layout_alignBottom="@id/rvMain"
+        android:visibility="gone"
+        android:background="@drawable/new_message_background"
+        android:padding="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:layout_marginBottom="10dp"
+        android:paddingRight="20dp"/>
+
+    <com.clover_studio.spikachatmodule.view.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/typingTextView"
+        android:textSize="15sp"
+        android:textColor="@color/default_color"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:gravity="right"
+        android:paddingRight="10dp"
+        android:textStyle="italic"
+        android:visibility="gone"
+        android:layout_above="@+id/layoutForSend"/>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        android:background="@color/toolbar_color"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <RelativeLayout
+        android:id="@+id/layoutForSend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray_send_message_background"
+        android:layout_alignParentBottom="true">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_light_light_color" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:contentDescription="@null"
+            android:layout_centerVertical="true"
+            android:background="@color/trans"
+            android:src="@drawable/attach"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="5dp"
+            android:id="@+id/btnSend"
+            />
+
+        <com.clover_studio.spikachatmodule.view.CustomEditText
+            android:id="@+id/etMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:layout_toLeftOf="@id/btnSend"
+            android:maxLines="5"
+            android:background="@drawable/edittext_background_white_border_corners"
+            android:textSize="15sp"
+            />
+
+    </RelativeLayout>
+
+    <!-- include menu layout -->
+    <View
+        android:id="@+id/viewForMenuBehind"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_trans"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"/>
+
+    <include
+        layout="@layout/layout_menu_message"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+    <View
+        android:id="@+id/viewForSettingBehind"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tToolbar"
+        android:background="@color/black_trans"
+        android:visibility="gone"/>
+
+    <ListView
+        android:id="@+id/settings_list_view"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/tToolbar"
+        android:animationCache="false"
+        android:background="@color/chat_settings_gray"
+        android:cacheColorHint="@color/chat_settings_gray"
+        android:divider="@color/chat_settings_separator"
+        android:dividerHeight="0.5dp"
+        android:fadingEdge="none"
+        android:listSelector="@color/gray_in_adapter"
+        android:scrollbars="vertical"
+        android:scrollingCache="false"
+        android:smoothScrollbar="true"
+        android:visibility="invisible"/>
+
+</RelativeLayout>

@@ -1,0 +1,29 @@
+<resources>
+    <string name="error_login_no_name">Login error - no name</string>
+    <string name="error_login_no_room_id">Login error - no room id</string>
+    <string name="error_login_no_user_id">Login error - no user id</string>
+    <string name="error_user_list_no_room_id">User list error - no room id</string>
+    <string name="error_message_list_no_room_id">Message list error - no room id</string>
+    <string name="error_message_list_no_last_message_id">Message list error - no last message id</string>
+    <string name="error_send_message_no_file">Send message error - no file</string>
+    <string name="error_send_message_no_room_id">Send message error - no room id</string>
+    <string name="error_send_message_no_user_id">Send message error - no user id</string>
+    <string name="error_send_message_no_type">Send message error - no type</string>
+    <string name="error_file_upload_no_file">Upload error - no file</string>
+    <string name="error_socket_unknown_error">Socket error - unknown error</string>
+    <string name="error_socket_delete_message_no_user_id">Socket delete message error - no user id</string>
+    <string name="error_socket_delete_message_no_message_id">Socket delete message error - no message id</string>
+    <string name="error_socket_send_message_no_room_id">Socket send message error - no room id</string>
+    <string name="error_socket_send_message_no_user_id">Socket send message error - no user id</string>
+    <string name="error_socket_send_message_no_type">Socket send message error - no type</string>
+    <string name="error_socket_send_message_no_message">Socket send message error - no message</string>
+    <string name="error_socket_send_message_no_location">Socket send message error - no location</string>
+    <string name="error_socket_send_message_fail">Socket send message error - failed</string>
+    <string name="error_socket_typing_no_user_id">Socket typing error - no user id</string>
+    <string name="error_socket_typing_no_room_id">Socket typing error - no room id</string>
+    <string name="error_socket_typing_no_type">Socket typing error - no type</string>
+    <string name="error_socket_typing_failed">Socket typing error - failed</string>
+    <string name="error_socket_login_no_user_id">Socket login error - no user id</string>
+    <string name="error_socket_login_no_room_id">Socket login error - no room id</string>
+    <string name="error_connection_error">Unknown error - connection error</string>
+</resources>
