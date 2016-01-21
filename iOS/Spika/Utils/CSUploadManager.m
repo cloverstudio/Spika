@@ -10,6 +10,7 @@
 #import "CSConfig.h"
 #import "CSProgressUploadingView.h"
 #import "CSCustomConfig.h"
+#import "UIAlertView+Blocks.h"
 
 @interface CSUploadManager()
 
@@ -57,6 +58,15 @@
                                          finished(responseObject);
                                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                          NSLog(@"Failure %@", error.description);
+                                         if(parentView){
+                                             [_progressView removeFromSuperview];
+                                         }
+                                         [UIAlertView showWithTitle:NSLocalizedStringFromTable(@"Server Error", @"CSChatLocalization", nil)
+                                                            message:error.localizedDescription
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil
+                                                           tapBlock:nil
+                                          ];
                                      }];
     
     // 4. Set the progress block of the operation.
@@ -113,6 +123,15 @@
                                          finished(responseObject);
                                      } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                          NSLog(@"Failure %@", error.description);
+                                         if(parentView){
+                                             [_progressView removeFromSuperview];
+                                         }
+                                         [UIAlertView showWithTitle:NSLocalizedStringFromTable(@"Server Error", @"CSChatLocalization", nil)
+                                                            message:error.localizedDescription
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil
+                                                           tapBlock:nil
+                                          ];
                                      }];
     
     // 4. Set the progress block of the operation.
