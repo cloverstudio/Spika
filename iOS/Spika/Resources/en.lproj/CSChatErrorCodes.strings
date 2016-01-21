@@ -1,0 +1,34 @@
+/* 
+  CSChatErrorCodes.strings
+  Spika
+
+  Created by mislav on 20/01/16.
+  Copyright © 2016 Clover Studio. All rights reserved.
+*/
+
+"Login No Name" = "Login No Name";
+"Login No Room ID" = "Login No Room ID";
+"Login No User ID" = "Login No User ID";
+"User List No Room ID" = "User List No Room ID";
+"Message List No Room ID" = "Message List No Room ID";
+"Message List No Last Message ID" = "Message List No Last Message ID";
+"Send Message No File" = "Send Message No File";
+"Send Message No Room ID" = "Send Message No Room ID";
+"Send Message No User ID" = "Send Message No User ID";
+"Send Message No Type" = "Send Message No Type";
+"File Upload No File" = "File Upload No File";
+"Socket Unknown Error" = "Socket Unknown Error";
+"Socket Delete Message No User ID" = "Socket Delete Message No User ID";
+"Socket Delete Message No Message ID" = "Socket Delete Message No Message ID";
+"Socket Send Message No Room ID" = "Socket Send Message No Room ID";
+"Socket Send Message No User Id" = "Socket Send Message No User Id";
+"Socket Send Message No Type" = "Socket Send Message No Type";
+"Socket Send Message No Message" = "Socket Send Message No Message";
+"Socket Send Message No Location" = "Socket Send Message No Location";
+"Socket Send Message Fail" = "Socket Send Message Fail";
+"Socket Typing No User ID" = "Socket Typing No User ID";
+"Socket Typing No Room ID" = "Socket Typing No Room ID";
+"Socket Typing No Type" = "Socket Typing No Type";
+"Socket Typing Faild" = "Socket Typing Faild";
+"Socket Login No User ID" = "Socket Login No User ID";
+"Socket Login No Room ID" = "Socket Login No Room ID";
