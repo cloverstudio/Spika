@@ -35,8 +35,8 @@
     
     self.userIdTextField.text = [[UIDevice currentDevice] name];
     self.usernameTextField.text = [[UIDevice currentDevice] name];
-    self.avatarUrlTextField.text = @"http://www.tvbest.rs/files/article/zabava/estrada-poznate-licnosti/1/nives(4).jpg";
-    self.roomTextField.text = @"danas";
+    self.avatarUrlTextField.text = @"http://45.55.81.215/spika/img/avatar.jpg";
+    self.roomTextField.text = @"default";
     
     self.serverTextField.enabled = NO;
     self.socketTextField.enabled = NO;
