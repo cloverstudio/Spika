@@ -49,6 +49,7 @@
 @property (nonatomic, strong) NSDictionary *parameters;
 @property (nonatomic) BOOL isLoading;
 @property (nonatomic, strong) CSTitleView *titleView;
+@property (nonatomic, strong) UIActivityIndicatorView *indicator;
 
 @end
 
@@ -102,11 +103,11 @@
                                                  name:kAppLocationSelectedNotification
                                                object:nil];
     
-    self.tableView.tableFooterView.hidden = YES;
-    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [indicator setFrame:CGRectMake(0, 0, 44, 44)];
-    [indicator startAnimating];
-    self.tableView.tableFooterView = indicator;
+    self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [self.indicator setFrame:CGRectMake(0, 0, 44, 44)];
+    [self.indicator setHidesWhenStopped:YES];
+    self.tableView.tableFooterView = self.indicator;
+
     
     self.tableView.backgroundColor = [UIColor whiteColor];
     
@@ -488,7 +489,8 @@
         [self.tableView reloadData];
         
         self.isLoading = NO;
-        self.tableView.tableFooterView.hidden = YES;
+//        self.tableView.tableFooterView.hidden = YES;
+        [self.indicator stopAnimating];
     }];
 }
 
@@ -753,7 +755,8 @@
     if(self.lastDataLoadedFromNet.count > 0){
         
         self.isLoading = YES;
-        self.tableView.tableFooterView.hidden = NO;
+        [self.indicator startAnimating];
+//        self.tableView.tableFooterView.hidden = NO;
         
         CSMessageModel* lastMessage = [self.lastDataLoadedFromNet lastObject];
         lastMessageId = lastMessage._id;
