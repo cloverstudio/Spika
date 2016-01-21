@@ -45,8 +45,8 @@ public class LoginActivity extends BaseActivity{
 
         id.setText(model);
         name.setText(model);
-        avatar.setText("https://pbs.twimg.com/profile_images/1314621221/pavel-nedved1_400x400.jpg");
-        roomId.setText("danas");
+        avatar.setText("http://45.55.81.215/spika/img/avatar.jpg");
+        roomId.setText("default");
 
         //CONFIG
         final EditText socket = (EditText) findViewById(R.id.socketUrl);
