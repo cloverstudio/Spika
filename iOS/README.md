@@ -1,28 +1,28 @@
-Spika iOS module
+# Spika iOS module
 
-- Example project compile instruction
+## Example project compile instruction
 
-Clone project to your computer.
-Go to iOS folder
-run pod install (if you are not familiar with cocoapods visit https://cocoapods.org/)
-open Spika.xcworkspace with Xcode
-Build and run
+- Clone project to your computer.
+- Go to iOS folder
+- Run pod install (if you are not familiar with cocoapods visit https://cocoapods.org/)
+- Open Spika.xcworkspace with Xcode
+- Build and run
 
-- Integrate in new or existing project instruction
+## Integrate in new or existing project instruction
 
-Only for new project:
-Create new single view application
-exit xcode
-run pod init (if you are not familiar with cocoapods visit https://cocoapods.org/)
+### Only for new project:
+- Create new single view application
+- Exit xcode
+- Run pod init (if you are not familiar with cocoapods visit https://cocoapods.org/)
 
-Continued for exististing projects:
-open Podfile in Spika/iOS folder & copy/paste pod dependancies to your Podfile in root of project
-run pod instal
-open YourProjectName.xcworkspace with Xcode
-Drag and drop Spika/iOS/Spika folder to your project in Xcode & check Copy items if needed option
-Open Info.plist file in your project and add new key NSAppTransportSecurity/NSAllowsArbitraryLoads = YES (temporarily to allow read from non https urls)
+### Continued for exististing projects:
+- Open Podfile in Spika/iOS folder & copy/paste pod dependancies to your Podfile in root of project
+- Run pod instal
+- Open YourProjectName.xcworkspace with Xcode
+- Drag and drop Spika/iOS/Spika folder to your project in Xcode & check Copy items if needed option
+- Open Info.plist file in your project and add new key NSAppTransportSecurity/NSAllowsArbitraryLoads = YES (temporarily to allow read from non https urls)
 
-To instantiate and show CSChatViewController use this code:
+##To instantiate and show CSChatViewController use this code:
 
 ```
 #import "CSChatViewController.h"
