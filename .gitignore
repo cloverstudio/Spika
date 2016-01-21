@@ -1,3 +1,9 @@
+# Web -------------------------------------
+
+# init
+web/src/server/init.js
+web/src/client/init.js
+
 # generated files
 web/public
 web/doc/API
@@ -5,6 +11,8 @@ web/doc/WebClient
 
 # third party modules
 web/node_modules
+
+# Android -------------------------------------
 
 # built application files
 *.apk
@@ -61,6 +69,8 @@ proguard/
 .DS_Store
 /build
 /captures
+
+# iOS -------------------------------------
 
 # Xcode
 #
