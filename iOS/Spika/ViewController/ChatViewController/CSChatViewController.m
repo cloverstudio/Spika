@@ -128,9 +128,9 @@
     
     self.titleView = [CSTitleView new];
     [self.titleView setTitle:self.activeUser.roomID];
-    [self.titleView setSubtitle:@"subtitle"];
+    [self.titleView setSubtitle:self.activeUser.name];
     
-    self.navigationController.navigationBar.topItem.titleView = self.titleView;
+    self.navigationItem.titleView = self.titleView;
     
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"•••" style:UIBarButtonItemStylePlain target:self action:@selector(onSettingsClicked)];
     self.navigationItem.rightBarButtonItem = anotherButton;
@@ -526,7 +526,7 @@
 -(void) generateTypingLabel{
     
     if (self.typingUsers.count < 1) {
-        [self.titleView setSubtitle:@"subtitle"];
+        [self.titleView setSubtitle:self.activeUser.name];
     }
     else if (self.typingUsers.count == 1) {
         CSUserModel* user = [self.typingUsers objectAtIndex:0];
