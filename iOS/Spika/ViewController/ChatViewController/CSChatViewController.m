@@ -49,6 +49,7 @@
 @property (nonatomic, strong) NSDictionary *parameters;
 @property (nonatomic) BOOL isLoading;
 @property (nonatomic, strong) CSTitleView *titleView;
+@property (nonatomic, strong) UIActivityIndicatorView *indicator;
 
 @end
 
@@ -102,11 +103,11 @@
                                                  name:kAppLocationSelectedNotification
                                                object:nil];
     
-    self.tableView.tableFooterView.hidden = YES;
-    UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-    [indicator setFrame:CGRectMake(0, 0, 44, 44)];
-    [indicator startAnimating];
-    self.tableView.tableFooterView = indicator;
+    self.indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [self.indicator setFrame:CGRectMake(0, 0, 44, 44)];
+    [self.indicator setHidesWhenStopped:YES];
+    self.tableView.tableFooterView = self.indicator;
+
     
     self.tableView.backgroundColor = [UIColor whiteColor];
     
@@ -127,9 +128,9 @@
     
     self.titleView = [CSTitleView new];
     [self.titleView setTitle:self.activeUser.roomID];
-    [self.titleView setSubtitle:@"subtitle"];
+    [self.titleView setSubtitle:self.activeUser.name];
     
-    self.navigationController.navigationBar.topItem.titleView = self.titleView;
+    self.navigationItem.titleView = self.titleView;
     
     UIBarButtonItem *anotherButton = [[UIBarButtonItem alloc] initWithTitle:@"•••" style:UIBarButtonItemStylePlain target:self action:@selector(onSettingsClicked)];
     self.navigationItem.rightBarButtonItem = anotherButton;
@@ -488,7 +489,8 @@
         [self.tableView reloadData];
         
         self.isLoading = NO;
-        self.tableView.tableFooterView.hidden = YES;
+//        self.tableView.tableFooterView.hidden = YES;
+        [self.indicator stopAnimating];
     }];
 }
 
@@ -524,7 +526,7 @@
 -(void) generateTypingLabel{
     
     if (self.typingUsers.count < 1) {
-        [self.titleView setSubtitle:@"subtitle"];
+        [self.titleView setSubtitle:self.activeUser.name];
     }
     else if (self.typingUsers.count == 1) {
         CSUserModel* user = [self.typingUsers objectAtIndex:0];
@@ -753,7 +755,8 @@
     if(self.lastDataLoadedFromNet.count > 0){
         
         self.isLoading = YES;
-        self.tableView.tableFooterView.hidden = NO;
+        [self.indicator startAnimating];
+//        self.tableView.tableFooterView.hidden = NO;
         
         CSMessageModel* lastMessage = [self.lastDataLoadedFromNet lastObject];
         lastMessageId = lastMessage._id;

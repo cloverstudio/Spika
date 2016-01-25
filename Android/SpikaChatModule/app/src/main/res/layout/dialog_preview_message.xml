@@ -7,7 +7,7 @@
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/message_info_back_color">
+        android:background="@color/default_color">
 
         <com.clover_studio.spikachatmodule.view.CustomTextView
             android:id="@+id/messageInformation"
