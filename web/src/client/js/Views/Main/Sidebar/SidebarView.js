@@ -51,10 +51,11 @@ var SidebarView = Backbone.View.extend({
             	return;
             	
             var userID = obj.user.userID;
+            var userIDEscapted = encodeURIComponent(userID).replace("'","quote").replace("%","");
             
 			if(obj.type == CONST.MESSAGE_TYPE_TEXT){
 	            self.lastMessages[userID] = obj.message;
-	            SS("#online-users #" + userID + " p").text(obj.message);
+	            SS("#online-users #" + userIDEscapted + " p").text(obj.message);
 			}
             
         });
@@ -67,19 +68,21 @@ var SidebarView = Backbone.View.extend({
             	
             if(_.isEmpty(obj.userID))
             	return;
-
+            	
             var userID = obj.userID;
+            var userIDEscapted = encodeURIComponent(obj.userID).replace("'","quote").replace("%","");
 
+            
             if(obj.type == CONST.TYPING_ON){
                 
-                SS("#online-users #" + userID + " p").text("Typing...");
+                SS("#online-users #" + userIDEscapted + " p").text("Typing...");
                 
             } else {
                 
                 if(!_.isEmpty(self.lastMessages[userID])){
-		            SS("#online-users #" + userID + " p").text(self.lastMessages[userID]);
+		            SS("#online-users #" + userIDEscapted + " p").text(self.lastMessages[userID]);
                 }else{
-	                SS("#online-users #" + userID + " p").text("");	                
+	                SS("#online-users #" + userIDEscapted + " p").text("");	                
                 }
 
             }
@@ -170,7 +173,12 @@ var SidebarView = Backbone.View.extend({
                                 
                 self.usersCollection.each(function(model,index){
                     //U.l(model.attributes);
-                    SS('#online-users').append(self.userTemplate(model.attributes));
+                    var obj = model.attributes;
+                    obj.userIDEscapted = encodeURIComponent(obj.id).replace("'","quote").replace("%","");
+                    
+                    console.log(obj);
+                    
+                    SS('#online-users').append(self.userTemplate(obj));
                 });
 
                 // hide processing which appears before login

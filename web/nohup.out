@@ -28,3 +28,38 @@ Server listening on port 80!
         pos: undefined,
         bytesWritten: 241658,
         closed: true } } }
+Connecting mongoDB mongodb://localhost/simplemessenger
+Server listening on port 80!
+
+module.js:340
+    throw err;
+    ^
+Error: Cannot find module './NewMessageListHandler'
+    at Function.Module._resolveFilename (module.js:338:15)
+    at Function.Module._load (module.js:280:25)
+    at Module.require (module.js:364:17)
+    at require (module.js:380:17)
+    at Object.WebAPIHandler.init (/root/SpikaNew/Spika/web/src/server/WebAPI/WebAPIHandlerV1.js:42:36)
+    at new spika (/root/SpikaNew/Spika/web/src/server/index.js:13:21)
+    at Object.<anonymous> (/root/SpikaNew/Spika/web/src/server/main.js:16:19)
+    at Module._compile (module.js:456:26)
+    at Object.Module._extensions..js (module.js:474:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+    at Function.Module.runMain (module.js:497:10)
+    at startup (node.js:119:16)
+    at node.js:902:3
+Connecting mongoDB mongodb://localhost/simplemessenger
+Server listening on port 80!
+
+module.js:340
+    throw err;
+          ^
+Error: Cannot find module '/root/SpikaNew/Spika/src/server/main'
+    at Function.Module._resolveFilename (module.js:338:15)
+    at Function.Module._load (module.js:280:25)
+    at Function.Module.runMain (module.js:497:10)
+    at startup (node.js:119:16)
+    at node.js:902:3
+Connecting mongoDB mongodb://localhost/simplemessenger
+Server listening on port 80!

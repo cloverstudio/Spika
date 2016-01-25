@@ -84,7 +84,6 @@ var MessagingView = Backbone.View.extend({
         
         Backbone.on(CONST.EVENT_ON_TYPING,function(obj){
             
-            
             if(obj.userID == LoginUserManager.user.get('id'))
                 return;
                 
@@ -721,9 +720,11 @@ var MessagingView = Backbone.View.extend({
         
     },
     removeTyping: function(userID){
-        
+
+        var userIDEscapted = encodeURIComponent(userID).replace("'","quote").replace("%","");
         var emlContainer = SS('#additional-notification-container');
-        SS('#' + userID + "-typing").remove();
+        
+        SS('#' + userIDEscapted + "-typing").remove();
 
        if(_.isEmpty(emlContainer.html())){
             emlContainer.height(0);
@@ -735,9 +736,13 @@ var MessagingView = Backbone.View.extend({
     addTyping: function(obj){
         
         var emlContainer = SS('#additional-notification-container');
-        
+        var userIDEscapted = encodeURIComponent(obj.userID).replace("'","quote").replace("%","");
+
+
         var text = obj.user.name + " is typing...";
-        var id = obj.user.userID + "-typing";
+        var id = userIDEscapted + "-typing";
+        
+        console.log('addtyping',id);
         
         var html = '<span id="' + id + '">' + text + '</span>';
         

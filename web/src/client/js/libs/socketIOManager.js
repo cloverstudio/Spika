@@ -47,6 +47,7 @@ var ErrorDialog = require('../Views/Modals/ErrorDialog/ErrorDialog');
             });
 
             this.io.on('userLeft', function(param){
+            
                 Backbone.trigger(CONST.EVENT_ON_LOGOUT_NOTIFY, param);
 
                 // call listener
@@ -80,6 +81,7 @@ var ErrorDialog = require('../Views/Modals/ErrorDialog/ErrorDialog');
             }); 
 
             this.io.on('sendTyping', function(param){ 
+                
                 Backbone.trigger(CONST.EVENT_ON_TYPING,param);	    
  
                  // call listener
