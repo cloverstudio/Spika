@@ -19,6 +19,7 @@ import com.clover_studio.spikachatmodule.utils.LogCS;
 import com.clover_studio.spikachatmodule.utils.MessageSortByCreated;
 import com.clover_studio.spikachatmodule.utils.Tools;
 import com.clover_studio.spikachatmodule.utils.VCardParser;
+import com.clover_studio.spikachatmodule.view.roundimage.RoundedImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -441,11 +442,12 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
 
     public class ImageViewHolder extends BaseViewHolder {
 
-        ImageView imageIV;
+        RoundedImageView imageIV;
 
         public ImageViewHolder(View itemView) {
             super(itemView);
-            imageIV = (ImageView) itemView.findViewById(R.id.image);
+            imageIV = (RoundedImageView) itemView.findViewById(R.id.image);
+            imageIV.setCornerRadius(R.dimen.corners_for_bubble);
         }
 
         @Override
