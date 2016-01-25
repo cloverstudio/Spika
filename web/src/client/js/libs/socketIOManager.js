@@ -65,6 +65,8 @@ var ErrorDialog = require('../Views/Modals/ErrorDialog/ErrorDialog');
 
             this.io.on('newMessage', function(param){ 
                 
+                console.log('newMessage',param);
+                
                 Backbone.trigger(CONST.EVENT_ON_MESSAGE,param);	
                     
                 // call listener
@@ -81,6 +83,7 @@ var ErrorDialog = require('../Views/Modals/ErrorDialog/ErrorDialog');
             }); 
 
             this.io.on('sendTyping', function(param){ 
+                
                 
                 Backbone.trigger(CONST.EVENT_ON_TYPING,param);	    
  
