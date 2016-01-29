@@ -74,4 +74,4 @@ Then start spika like this.
 
 ```
 
-** It creates iframe inside of div which id is given to attachTo parameter.
+It creates iframe inside of div which id is given to attachTo parameter.
