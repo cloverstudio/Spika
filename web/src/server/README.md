@@ -63,6 +63,6 @@ $ node src/server/main.js
 ####5. Open standalone web client in browser
 http[s]://host:port/[urlPrefix]
 
-ex): http://spikaapp.com/spika
+ex): http://45.55.81.215/spika/
 
 
