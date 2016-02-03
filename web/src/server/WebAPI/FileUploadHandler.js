@@ -171,7 +171,7 @@ FileUploadHandler.prototype.attach = function(router){
                     file.type.indexOf("png") > -1){
                     
                         var easyimg = require('easyimage');
-                        var tempThumbFileName = result.fileModel.id + "_thumb";
+                        var tempThumbFileName = result.fileModel.id + "_thumb.jpg"; // force to be jpg
                         var destPathTmp = Settings.options.uploadDir + tempThumbFileName;
                         
                         easyimg.thumbnail({
@@ -183,7 +183,7 @@ FileUploadHandler.prototype.attach = function(router){
                                 // save to database
                                 var thumbObj = new DatabaseManager.fileModel({
                                     name:"thumb_" + result.file.name,
-                                    mimeType: result.file.type,
+                                    mimeType: "image/jpeg",
                                     size: image.size,
                                     created: Utils.now()                   
                                 });

@@ -13,8 +13,29 @@
 
     <div class="info">
         
-        <span class="name"> {{name}} </span>
-        <span class="time"> {{formatTime created}} </span>        
+        
+        {{#if isMainForIf}}
+        
+            <span class="name"> {{name}} </span>
+            <span class="time"> {{formatTime created}} </span>   
+
+            <span class="infoicon">
+                <span class="glyphicon glyphicon-info-sign"></span>
+            </span>
+        
+        {{/if}}  
+        
+        {{#unless isMainForIf}}
+
+            <span class="infoicon">
+                <span class="glyphicon glyphicon-info-sign"></span>
+            </span>
+            
+            <span class="name"> {{name}} </span>
+            <span class="time"> {{formatTime created}} </span>   
+        
+        {{/unless}}     
+         
         
     </div>
     

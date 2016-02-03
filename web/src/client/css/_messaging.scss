@@ -54,14 +54,10 @@
         
         .message-cell{
             
-            margin-top: 5px;
-            margin-bottom: 5px;
+            margin-top: 20px;
             width: 100%;
-            position: relative;
             
             .avatar{
-                
-                position: absolute;
                 
                 width: 45px;
                 padding: 0px 10px 10px 10px;
@@ -75,24 +71,18 @@
             }
 
             .infoicon{
-                position: absolute;
-                bottom: 0px;
                 font-size: 20px;
                 margin-bottom: -5px;
             }
             
             .info {
-                position: absolute;
-                top: 0px;
                 max-width: 100%;
                 font-size: 12px;
             }
             
             .message{
-                
-                position: absolute;
-                top: 20px;
-                max-width: 100%;
+
+                max-width: 80%;
                                 
                 div{
                     word-wrap: normal;
@@ -102,12 +92,9 @@
             }
  
             .status{
-                
-                position: absolute;
-                top: 30px;
                 z-index: 100;
                 font-size: 10px;
-                padding-right: 25px;
+                padding-right: 5px;
             }
                        
             .user-state-change{
@@ -122,10 +109,8 @@
                 }
             }
             
-            .progress-container{
-                position: absolute;                
+            .progress-container{             
                 width: 50%;
-                top: 10px;
                 
                 span{
                     color: $gray-light;
@@ -135,7 +120,7 @@
 
             .file-container{
             
-                position: absolute;                
+                display: inline-block;
                 min-width: 300px;
                 top: 20px;
 
@@ -154,10 +139,6 @@
             }
 
             .thumb-container{
-            
-                position: absolute;                
-                min-width: 300px;
-                top: 20px;
 
                 div{
                     display: inline-block;
@@ -167,9 +148,6 @@
             }
                         
             .typing{
-                
-                position: absolute;
-                top: 0px;
 
                 width: 100%;
                                 
@@ -186,14 +164,11 @@
         .message-cell.mine{
                         
             .avatar{
-                
-                right: 0px;
-                              
+                float: right;
             }
 
             .info{  
 
-                right: 0px;
                 padding-right: 45px;
                 text-align: right;
 
@@ -201,9 +176,7 @@
             
 
             .message{  
-
-                right: 0px;
-                padding-right: 45px;
+                float: right;
                 text-align: right;
                 
                 div{
@@ -214,14 +187,14 @@
             }
 
             .infoicon{
-                right: 25px;
+
                 z-index: 100;
             }
 
 
             .status0{
                 
-                right: 0px;
+                float: right;
                 color: $brand-primary;
                 
                 .sending{
@@ -235,7 +208,7 @@
             
             .status1{
                 
-                right: 0px;
+                float: right;
                 color: $brand-success;
  
                 .sending{
@@ -249,14 +222,11 @@
             }
 
             .progress-container{
-                right: 0px;
-                padding-right: 45px;
+                float: right;
             }
 
             .file-container{
-                right: 0px;
-                padding-right: 25px;
-                margin-right: 20px;
+                float: right;
 
                 div{
                     background-color: $brand-primary; 
@@ -272,8 +242,7 @@
             }
 
             .thumb-container{
-                right: 0px;
-                margin-right: 25px; 
+                float: right;
 
                 div{
                     background-color: $brand-primary; 
@@ -290,24 +259,21 @@
         .message-cell.other{
                         
             .avatar{
-                left: 0px;
+                float: left;
             }
 
             .infoicon{
-                left: 10px;
+
             }
 
             .info{  
 
-                left: 0px;
                 padding-left: 45px;
                           
             } 
             
             .message{  
-
-                left: 0px;
-                padding-left: 45px;
+                float: left;
                           
                 div{
                     background-color: $gray-lighter;             
@@ -320,10 +286,6 @@
             }
             
             .file-container{
-            
-                left: 0px;
-                margin-left: 45px;
-
                 div{
                     background-color: $gray-lighter; 
                     color: $gray-dark;  
@@ -340,8 +302,7 @@
             }
 
             .thumb-container{
-            
-                left: 0px;
+
                 margin-left: 45px;
 
                 div{
@@ -350,8 +311,7 @@
             }
             
             .typing{
-                
-                left: 0px;
+
                 padding-left: 45px;
                                 
                 div{
@@ -372,26 +332,26 @@
             }
             
             .message{
-                top: 0px;
+
             }
     
             .file-container{
-                top: 0px;
+
             }
     
             .status{
-                top: 0px;
+
             }
             
             .thumb-container{
-                top: 10px;
+
             }
         }
         
         .message-cell.thumb{
     
             .status{
-                top: 10px;
+
             }
 
         }

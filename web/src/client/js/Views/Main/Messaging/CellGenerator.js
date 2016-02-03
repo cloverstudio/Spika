@@ -47,9 +47,10 @@ CellGenerator.prototype.generate = function(messageModel){
     flatData.message = flatData.message.replace(new RegExp('\t','g'), '&nbsp;&nbsp;&nbsp;&nbsp;');
     flatData.message = flatData.message.replace(new RegExp('\r?\n','g'), '<br/>');
     flatData.message = U.contentExtract(flatData.message);
-        
+    
     if(flatData.userID == LoginUserManager.user.get('id') && Settings.options.useBothSide){
         flatData.isMine = 'mine';
+        flatData.isMainForIf = 1;
     }else{
         flatData.isMine = 'other';
     }
