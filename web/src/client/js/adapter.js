@@ -24,25 +24,36 @@ var SpikaAdapter = {
         if(!options.user.roomID)
             return;
         
-        // attach to dom
-        var iframe = document.createElement('iframe');
         
-        var url = options.spikaURL;
-                
-        url += "?params=" + encodeURIComponent(JSON.stringify(options));
-        
-        iframe.src = url;
-        iframe.width = '100%';
-        iframe.height = '100%';
-        iframe.frameBorder = 0;
-        
-        var node = document.getElementById(options.attachTo);
-        
-        while (node.hasChildNodes()) {
-            node.removeChild(node.firstChild);
-        }
+        window.bootOptions = options;
 
-        node.appendChild(iframe);
+        if(options.mode == 'div'){
+        
+            window.startSpikaIntoDiv();   	
+                    
+        }else{
+	            
+            // attach to dom
+            var iframe = document.createElement('iframe');
+        
+            var url = options.spikaURL;
+                
+            url += "?params=" + encodeURIComponent(JSON.stringify(options));
+        
+            iframe.src = url;
+            iframe.width = '100%';
+            iframe.height = '100%';
+            iframe.frameBorder = 0;
+        
+            var node = document.getElementById(options.attachTo);
+        
+            while (node.hasChildNodes()) {
+                node.removeChild(node.firstChild);
+            }
+
+            node.appendChild(iframe);
+       
+        }
 
         if(options.listener)
             this.listener = options.listener;

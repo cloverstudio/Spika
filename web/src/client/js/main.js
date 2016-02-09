@@ -226,5 +226,33 @@ $(function() {
 
 });
 
+window.startSpikaIntoDiv = function(){
+    
+    Settings.options = _.merge(Config,window.bootOptions.config);
+    
+    Config.defaultContainer = "#" + window.bootOptions.attachTo;
+    
+    var userid = window.bootOptions.user.id;
+    var roomId = window.bootOptions.user.roomID;
+    var avatarURL = window.bootOptions.user.avatarURL;
+    var name = window.bootOptions.user.name;
+    
+    app.login(
+        userid,
+        name,
+        avatarURL,
+        roomId,
+        function(){
+                                
+            var MainView = require('./Views/Main/MainView.js');
+                                
+            var view = new MainView({
+                'el': Config.defaultContainer
+            });
 
+        }
+    );
+    
+            
+}
 
