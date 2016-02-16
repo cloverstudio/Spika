@@ -14,7 +14,7 @@ import com.clover_studio.spikachatmodule.utils.Const;
  */
 public class DemoChatActivity extends ChatActivity{
 
-    public static void starChatActivity(Context context, User user){
+    public static void startChatActivity(Context context, User user){
         Intent intent = new Intent(context, DemoChatActivity.class);
         intent.putExtra(Const.Extras.USER, user);
         context.startActivity(intent);

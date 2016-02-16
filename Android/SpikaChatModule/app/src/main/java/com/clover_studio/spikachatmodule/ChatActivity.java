@@ -139,7 +139,7 @@ public class ChatActivity extends BaseActivity {
      * @param context
      * @param user    user to login
      */
-    public static void starChatActivity(Context context, User user) {
+    public static void startChatActivity(Context context, User user) {
         Intent intent = new Intent(context, ChatActivity.class);
         intent.putExtra(Const.Extras.USER, user);
         context.startActivity(intent);
