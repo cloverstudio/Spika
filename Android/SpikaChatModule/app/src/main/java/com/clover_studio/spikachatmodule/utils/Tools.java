@@ -21,12 +21,11 @@ import android.text.format.DateFormat;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.clover_studio.spikachatmodule.R;
 import com.clover_studio.spikachatmodule.base.BaseActivity;
-import com.clover_studio.spikachatmodule.base.SpikaApp;
+import com.clover_studio.spikachatmodule.base.SingletonLikeApp;
 import com.clover_studio.spikachatmodule.robospice.api.DownloadFileManager;
 
 import java.io.ByteArrayOutputStream;
@@ -297,8 +296,8 @@ public class Tools {
      * @param id id of file
      * @return full url to download
      */
-    public static String getFileUrlFromId(String id) {
-        return SpikaApp.getConfig().apiBaseUrl + Const.Api.DOWNLOAD_FILE + "/" + id;
+    public static String getFileUrlFromId(String id, Context context) {
+        return SingletonLikeApp.getInstance().getConfig(context).apiBaseUrl + Const.Api.DOWNLOAD_FILE + "/" + id;
     }
 
     /**

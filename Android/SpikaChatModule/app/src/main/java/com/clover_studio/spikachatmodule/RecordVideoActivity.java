@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,7 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.VideoView;
 
 import com.clover_studio.spikachatmodule.base.BaseActivity;
-import com.clover_studio.spikachatmodule.base.SpikaApp;
+import com.clover_studio.spikachatmodule.base.SingletonLikeApp;
 import com.clover_studio.spikachatmodule.dialogs.NotifyDialog;
 import com.clover_studio.spikachatmodule.dialogs.UploadFileDialog;
 import com.clover_studio.spikachatmodule.models.UploadFileResult;
@@ -166,7 +165,7 @@ public class RecordVideoActivity extends BaseActivity {
             final UploadFileDialog dialog = UploadFileDialog.startDialog(getActivity());
 
             UploadFileManagement tt = new UploadFileManagement();
-            tt.new BackgroundUploader(SpikaApp.getConfig().apiBaseUrl + Const.Api.UPLOAD_FILE, new File(filePath), Const.ContentTypes.VIDEO_MP4, new UploadFileManagement.OnUploadResponse() {
+            tt.new BackgroundUploader(SingletonLikeApp.getInstance().getConfig(getActivity()).apiBaseUrl + Const.Api.UPLOAD_FILE, new File(filePath), Const.ContentTypes.VIDEO_MP4, new UploadFileManagement.OnUploadResponse() {
                 @Override
                 public void onStart() {
                     LogCS.d("LOG", "START UPLOADING");

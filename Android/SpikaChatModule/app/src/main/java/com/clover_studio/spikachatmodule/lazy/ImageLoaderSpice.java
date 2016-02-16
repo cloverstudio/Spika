@@ -176,7 +176,7 @@ public class ImageLoaderSpice {
 		private String fileId;
 
 		public ImageSpiceWeb(ImageView imageView, String fileId) {
-			super(Bitmap.class);
+			super(Bitmap.class, ctx);
 
 			this.imageView = imageView;
 			this.fileId = fileId;
@@ -247,7 +247,7 @@ public class ImageLoaderSpice {
 		private Bitmap bitmap;
 
 		public ImageSpiceMemory(String fileId, Bitmap bitmap) {
-			super(Bitmap.class);
+			super(Bitmap.class, ctx);
 			this.fileId = fileId;
 			this.bitmap = bitmap;
 		}

@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -19,7 +18,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.clover_studio.spikachatmodule.base.BaseActivity;
-import com.clover_studio.spikachatmodule.base.SpikaApp;
+import com.clover_studio.spikachatmodule.base.SingletonLikeApp;
 import com.clover_studio.spikachatmodule.dialogs.NotifyDialog;
 import com.clover_studio.spikachatmodule.dialogs.UploadFileDialog;
 import com.clover_studio.spikachatmodule.models.UploadFileResult;
@@ -465,7 +464,7 @@ public class RecordAudioActivity extends BaseActivity {
             final UploadFileDialog dialog = UploadFileDialog.startDialog(getActivity());
 
             UploadFileManagement tt = new UploadFileManagement();
-            tt.new BackgroundUploader(SpikaApp.getConfig().apiBaseUrl + Const.Api.UPLOAD_FILE, new File(mFilePath), Const.ContentTypes.AUDIO_WAV, new UploadFileManagement.OnUploadResponse() {
+            tt.new BackgroundUploader(SingletonLikeApp.getInstance().getConfig(getActivity()).apiBaseUrl + Const.Api.UPLOAD_FILE, new File(mFilePath), Const.ContentTypes.AUDIO_WAV, new UploadFileManagement.OnUploadResponse() {
                 @Override
                 public void onStart() {
                     LogCS.d("LOG", "START UPLOADING");

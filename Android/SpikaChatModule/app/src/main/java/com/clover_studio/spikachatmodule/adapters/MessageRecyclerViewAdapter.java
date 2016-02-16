@@ -453,7 +453,7 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
         @Override
         public void bindItem(int position) {
             super.bindItem(position);
-            Picasso.with(imageIV.getContext()).load(Tools.getFileUrlFromId(message.file.thumb.id)).into(imageIV);
+            Picasso.with(imageIV.getContext()).load(Tools.getFileUrlFromId(message.file.thumb.id, imageIV.getContext())).into(imageIV);
         }
     }
 

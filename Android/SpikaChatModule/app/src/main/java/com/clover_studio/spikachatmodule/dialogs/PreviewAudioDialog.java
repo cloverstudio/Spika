@@ -219,7 +219,7 @@ public class PreviewAudioDialog extends Dialog {
 
             final DownloadFileDialog dialog = DownloadFileDialog.startDialog(getOwnerActivity());
 
-            DownloadFileManager.downloadVideo(getOwnerActivity(), Tools.getFileUrlFromId(fileModel.file.id), audioFile, new DownloadFileManager.OnDownloadListener() {
+            DownloadFileManager.downloadVideo(getOwnerActivity(), Tools.getFileUrlFromId(fileModel.file.id, getOwnerActivity()), audioFile, new DownloadFileManager.OnDownloadListener() {
                 @Override
                 public void onStart() {
                     LogCS.d("LOG", "START DOWNLOADING");

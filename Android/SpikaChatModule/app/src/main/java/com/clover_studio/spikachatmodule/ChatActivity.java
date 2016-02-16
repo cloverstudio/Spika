@@ -35,7 +35,7 @@ import android.widget.TextView;
 import com.clover_studio.spikachatmodule.adapters.MessageRecyclerViewAdapter;
 import com.clover_studio.spikachatmodule.adapters.SettingsAdapter;
 import com.clover_studio.spikachatmodule.base.BaseActivity;
-import com.clover_studio.spikachatmodule.base.SpikaApp;
+import com.clover_studio.spikachatmodule.base.SingletonLikeApp;
 import com.clover_studio.spikachatmodule.dialogs.DownloadFileDialog;
 import com.clover_studio.spikachatmodule.dialogs.InfoMessageDialog;
 import com.clover_studio.spikachatmodule.dialogs.NotifyDialog;
@@ -157,18 +157,20 @@ public class ChatActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
+        SingletonLikeApp.getInstance().setApplicationState(getActivity());
+
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, Const.PermissionCode.CHAT_STORAGE);
         }
 
         if (getIntent().hasExtra(Const.Extras.CONFIG)) {
             Config config = getIntent().getParcelableExtra(Const.Extras.CONFIG);
-            SpikaApp.getSharedPreferences().setConfig(config);
-            SpikaApp.setConfig(config);
+            SingletonLikeApp.getInstance().getSharedPreferences(getActivity()).setConfig(config);
+            SingletonLikeApp.getInstance().setConfig(config);
         } else {
             Config config = new Config("", "");
-            SpikaApp.getSharedPreferences().setConfig(config);
-            SpikaApp.setConfig(null);
+            SingletonLikeApp.getInstance().getSharedPreferences(getActivity()).setConfig(config);
+            SingletonLikeApp.getInstance().setConfig(null);
         }
 
         setToolbar(R.id.tToolbar, R.layout.custom_chat_toolbar);
@@ -290,7 +292,7 @@ public class ChatActivity extends BaseActivity {
 
         if (pausedForSocket) {
             SocketManager.getInstance().setListener(socketListener);
-            SocketManager.getInstance().tryToReconnect();
+            SocketManager.getInstance().tryToReconnect(getActivity());
 
             pausedForSocket = false;
         }
@@ -435,7 +437,7 @@ public class ChatActivity extends BaseActivity {
      */
     private void login(User user) {
         handleProgress(true);
-        LoginApi.Login spice = new LoginApi.Login(user);
+        LoginApi.Login spice = new LoginApi.Login(user, getActivity());
 
         getSpiceManager().execute(spice, new CustomSpiceListener<Login>(this) {
 
@@ -444,8 +446,8 @@ public class ChatActivity extends BaseActivity {
                 doNotHideProgressNow = true;
                 super.onRequestSuccess(result);
                 if (result.code == 1) {
-                    SpikaApp.getSharedPreferences().setToken(result.data.token);
-                    SpikaApp.getSharedPreferences().setUserId(result.data.token);
+                    SingletonLikeApp.getInstance().getSharedPreferences(getActivity()).setToken(result.data.token);
+                    SingletonLikeApp.getInstance().getSharedPreferences(getActivity()).setUserId(result.data.token);
 
                     if (TextUtils.isEmpty(activeUser.avatarURL)) {
                         activeUser.avatarURL = result.data.user.avatarURL;
@@ -464,7 +466,7 @@ public class ChatActivity extends BaseActivity {
      */
     private void getMessages(final boolean isInit, final String lastMessageId) {
         handleProgress(true);
-        MessagesApi.GetMessages spice = new MessagesApi.GetMessages(activeUser.roomID, lastMessageId);
+        MessagesApi.GetMessages spice = new MessagesApi.GetMessages(activeUser.roomID, lastMessageId, getActivity());
 
         getSpiceManager().execute(spice, new CustomSpiceListener<GetMessagesModel>(this) {
 
@@ -502,7 +504,7 @@ public class ChatActivity extends BaseActivity {
      * @param lastMessageId id of newest message
      */
     private void getLatestMessages(final String lastMessageId) {
-        MessagesApi.GetLatestMessages spice = new MessagesApi.GetLatestMessages(activeUser.roomID, lastMessageId);
+        MessagesApi.GetLatestMessages spice = new MessagesApi.GetLatestMessages(activeUser.roomID, lastMessageId, getActivity());
 
         boolean showErrorDialog = false;
         getSpiceManager().execute(spice, new CustomSpiceListener<GetMessagesModel>(this, showErrorDialog) {
@@ -565,7 +567,7 @@ public class ChatActivity extends BaseActivity {
             }
             if (item.type == Const.MessageType.TYPE_FILE) {
                 if (Tools.isMimeTypeImage(item.file.file.mimeType)) {
-                    PreviewPhotoDialog.startDialog(getActivity(), Tools.getFileUrlFromId(item.file.file.id), item);
+                    PreviewPhotoDialog.startDialog(getActivity(), Tools.getFileUrlFromId(item.file.file.id, getActivity()), item);
                 } else if (Tools.isMimeTypeVideo(item.file.file.mimeType)) {
                     PreviewVideoDialog.startDialog(getActivity(), item.file);
                 } else if (Tools.isMimeTypeAudio(item.file.file.mimeType)) {
@@ -627,7 +629,7 @@ public class ChatActivity extends BaseActivity {
                     if(file.exists()){
                         Tools.shareImage(getActivity(), file);
                     }else{
-                        DownloadFileManager.downloadVideo(getActivity(), Tools.getFileUrlFromId(message.file.file.id), file, new DownloadFileManager.OnDownloadListener() {
+                        DownloadFileManager.downloadVideo(getActivity(), Tools.getFileUrlFromId(message.file.file.id, getActivity()), file, new DownloadFileManager.OnDownloadListener() {
                             @Override
                             public void onStart() {}
 
@@ -1043,7 +1045,7 @@ public class ChatActivity extends BaseActivity {
     private void connectToSocket() {
 
         SocketManager.getInstance().setListener(socketListener);
-        SocketManager.getInstance().connectToSocket();
+        SocketManager.getInstance().connectToSocket(getActivity());
 
     }
 
@@ -1309,7 +1311,7 @@ public class ChatActivity extends BaseActivity {
         final UploadFileDialog dialog = UploadFileDialog.startDialog(getActivity());
 
         UploadFileManagement tt = new UploadFileManagement();
-        tt.new BackgroundUploader(SpikaApp.getConfig().apiBaseUrl + Const.Api.UPLOAD_FILE, new File(filePath), mimeType, new UploadFileManagement.OnUploadResponse() {
+        tt.new BackgroundUploader(SingletonLikeApp.getInstance().getConfig(getActivity()).apiBaseUrl + Const.Api.UPLOAD_FILE, new File(filePath), mimeType, new UploadFileManagement.OnUploadResponse() {
             @Override
             public void onStart() {
                 LogCS.d("LOG", "START UPLOADING");
@@ -1390,7 +1392,7 @@ public class ChatActivity extends BaseActivity {
 
             final DownloadFileDialog dialog = DownloadFileDialog.startDialog(getActivity());
 
-            DownloadFileManager.downloadVideo(getActivity(), Tools.getFileUrlFromId(item.file.file.id), file, new DownloadFileManager.OnDownloadListener() {
+            DownloadFileManager.downloadVideo(getActivity(), Tools.getFileUrlFromId(item.file.file.id, getActivity()), file, new DownloadFileManager.OnDownloadListener() {
                 @Override
                 public void onStart() {
                     LogCS.d("LOG", "START UPLOADING");
@@ -1506,7 +1508,7 @@ public class ChatActivity extends BaseActivity {
                 LogCS.e("******* RESUMED *******" + getActivity().getClass().getName());
                 if (pausedForSocket) {
                     SocketManager.getInstance().setListener(socketListener);
-                    SocketManager.getInstance().tryToReconnect();
+                    SocketManager.getInstance().tryToReconnect(getActivity());
                     pausedForSocket = false;
                 }
             }

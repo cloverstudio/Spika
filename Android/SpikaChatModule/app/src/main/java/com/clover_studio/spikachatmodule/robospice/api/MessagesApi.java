@@ -1,10 +1,11 @@
 package com.clover_studio.spikachatmodule.robospice.api;
 
-import com.clover_studio.spikachatmodule.base.SpikaApp;
+import android.content.Context;
+
+import com.clover_studio.spikachatmodule.base.SingletonLikeApp;
 import com.clover_studio.spikachatmodule.models.GetMessagesModel;
 import com.clover_studio.spikachatmodule.robospice.spice.CustomSpiceRequest;
 import com.clover_studio.spikachatmodule.utils.Const;
-import com.clover_studio.spikachatmodule.utils.LogCS;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -21,17 +22,19 @@ public class MessagesApi {
 
         String roomId;
         String lastMessageId;
+        Context context;
 
-        public GetMessages(String roomId, String lastMessageId) {
-            super(GetMessagesModel.class);
+        public GetMessages(String roomId, String lastMessageId, Context context) {
+            super(GetMessagesModel.class, context);
             this.roomId = roomId;
             this.lastMessageId = lastMessageId;
+            this.context = context;
         }
 
         @Override
         public GetMessagesModel loadDataFromNetwork() throws Exception {
 
-            String url = SpikaApp.getConfig().apiBaseUrl + Const.Api.MESSAGES + "/" + roomId;
+            String url = SingletonLikeApp.getInstance().getConfig(context).apiBaseUrl + Const.Api.MESSAGES + "/" + roomId;
 
             if(lastMessageId != null) {
                 url = url + "/" + lastMessageId;
@@ -58,17 +61,19 @@ public class MessagesApi {
 
         String roomId;
         String lastMessageId;
+        Context context;
 
-        public GetLatestMessages(String roomId, String lastMessageId) {
-            super(GetMessagesModel.class);
+        public GetLatestMessages(String roomId, String lastMessageId, Context context) {
+            super(GetMessagesModel.class, context);
             this.roomId = roomId;
             this.lastMessageId = lastMessageId;
+            this.context = context;
         }
 
         @Override
         public GetMessagesModel loadDataFromNetwork() throws Exception {
 
-            String url = SpikaApp.getConfig().apiBaseUrl + Const.Api.LATEST + "/" + roomId;
+            String url = SingletonLikeApp.getInstance().getConfig(context).apiBaseUrl + Const.Api.LATEST + "/" + roomId;
 
             if(lastMessageId != null) {
                 url = url + "/" + lastMessageId;

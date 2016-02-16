@@ -1,11 +1,9 @@
 package com.clover_studio.spikachatmodule.managers.socket;
 
-import android.util.Log;
+import android.content.Context;
 
-import com.clover_studio.spikachatmodule.R;
 import com.clover_studio.spikachatmodule.base.BaseModel;
-import com.clover_studio.spikachatmodule.base.SpikaApp;
-import com.clover_studio.spikachatmodule.dialogs.NotifyDialog;
+import com.clover_studio.spikachatmodule.base.SingletonLikeApp;
 import com.clover_studio.spikachatmodule.models.Message;
 import com.clover_studio.spikachatmodule.models.SendTyping;
 import com.clover_studio.spikachatmodule.models.User;
@@ -47,7 +45,7 @@ public class SocketManager {
     /**
      * connect to socket
      */
-    public void connectToSocket(){
+    public void connectToSocket(Context context){
         LogCS.e("LOG", "Connecting to socket");
         if(mSocket != null){
             mSocket.close();
@@ -58,7 +56,7 @@ public class SocketManager {
 
             IO.Options opts = new IO.Options();
             opts.forceNew = true;
-            mSocket = IO.socket(SpikaApp.getConfig().socketUrl, opts);
+            mSocket = IO.socket(SingletonLikeApp.getInstance().getConfig(context).socketUrl, opts);
             mSocket.connect();
 
         } catch (URISyntaxException e) {
@@ -207,15 +205,15 @@ public class SocketManager {
     /**
      * reconnect to socket if socket is null or disconnected
      */
-    public void tryToReconnect(){
+    public void tryToReconnect(Context context){
         LogCS.e("LOG", "Check for socket reconnect");
         if(mSocket != null){
             if(mSocket.connected()){
             }else{
-                connectToSocket();
+                connectToSocket(context);
             }
         }else{
-            connectToSocket();
+            connectToSocket(context);
         }
     }
 

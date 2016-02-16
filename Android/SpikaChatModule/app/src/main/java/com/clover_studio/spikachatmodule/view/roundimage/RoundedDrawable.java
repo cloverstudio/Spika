@@ -276,12 +276,6 @@ public class RoundedDrawable extends Drawable {
 	}
 
 	@Override
-	public void setDither(boolean dither) {
-		mBitmapPaint.setDither(dither);
-		invalidateSelf();
-	}
-
-	@Override
 	public void setFilterBitmap(boolean filter) {
 		mBitmapPaint.setFilterBitmap(filter);
 		invalidateSelf();
