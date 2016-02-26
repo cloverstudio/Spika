@@ -1104,9 +1104,12 @@ public class ChatActivity extends BaseActivity {
         typingText = typingText.substring(0, typingText.length() - 2);
 
         if (typingUsers.size() > 1) {
-            tvTyping.setText(typingText + " " + getString(R.string.are_typing));
+            String typingTextSetText = typingText + " " + getString(R.string.are_typing);
+            tvTyping.setText(typingTextSetText);
         } else {
-            tvTyping.setText(typingText + " " + getString(R.string.is_typing));
+            String typingTextSetText = typingText + " " + getString(R.string.is_typing);
+
+            tvTyping.setText(typingTextSetText);
         }
     }
 
@@ -1272,6 +1275,7 @@ public class ChatActivity extends BaseActivity {
                         }
                     }).execute(getContentResolver().openInputStream(fileUri));
                     // async task initialized, exit
+                    cursor.close();
                     return;
                 } catch (FileNotFoundException ignored) {
                     filePath = "";
@@ -1279,6 +1283,8 @@ public class ChatActivity extends BaseActivity {
             } else {
                 filePath = cursor.getString(column_index_path);
             }
+
+            cursor.close();
 
         } else if (fileUri.getScheme().equals("file")) {
 

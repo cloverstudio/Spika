@@ -120,7 +120,10 @@ public class Tools {
             int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             cursor.moveToFirst();
 
-            return cursor.getString(column_index);
+            String returnedString = cursor.getString(column_index);
+            cursor.close();
+
+            return returnedString;
         }
     }
 
@@ -165,6 +168,7 @@ public class Tools {
                 os.write(bytes, 0, count);
             }
         } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 

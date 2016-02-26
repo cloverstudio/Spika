@@ -1,29 +1,17 @@
 package com.clover_studio.spikachatmodule.robospice.api;
 
-import android.content.DialogInterface;
 import android.os.AsyncTask;
-import android.util.Log;
 
-import com.clover_studio.spikachatmodule.models.UploadFileResult;
 import com.clover_studio.spikachatmodule.utils.Const;
-
-import org.springframework.http.converter.FormHttpMessageConverter;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by ubuntu_ivo on 12.08.15..

@@ -194,9 +194,12 @@ public class RecordAudioActivity extends BaseActivity {
                 File forSize = new File(mFilePath);
                 if(forSize.exists()){
                     size = forSize.length();
-                    okButton.setText(getString(R.string.OK) + ", " + Tools.readableFileSize(size));
+                    String text = getString(R.string.OK) + ", " + Tools.readableFileSize(size);
+                    okButton.setText(text);
                 }
-            }catch (Exception e){};
+            }catch (Exception e){
+                e.printStackTrace();
+            };
 
         }
     }

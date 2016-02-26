@@ -48,15 +48,15 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:capitalize="characters"
+                style="?android:attr/buttonBarButtonStyle"
                 android:text="@string/CANCEL"/>
 
             <Button
                 android:id="@+id/okButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_weight="1"
-                android:capitalize="characters"
                 android:text="@string/OK"/>
 
         </LinearLayout>

@@ -1,6 +1,5 @@
 package com.clover_studio.spikachatmodule.base;
 
-import com.clover_studio.spikachatmodule.models.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**

@@ -2,7 +2,6 @@
 <RelativeLayout
     android:id="@+id/parentView"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
@@ -21,13 +20,15 @@
             android:layout_centerVertical="true"
             android:background="@color/gray_light_light_color"
             android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@+id/dateSeparatorTV"/>
+            android:layout_marginEnd="10dp"
+            android:layout_toLeftOf="@+id/dateSeparatorTV"
+            android:layout_toStartOf="@+id/dateSeparatorTV"/>
 
         <com.clover_studio.spikachatmodule.view.CustomTextView
             android:id="@+id/dateSeparatorTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="temp"
+            android:text=""
             android:textStyle="bold"
             android:layout_centerHorizontal="true"
             android:textColor="@color/devil_gray_color"
@@ -40,7 +41,9 @@
             android:layout_centerVertical="true"
             android:background="@color/gray_light_light_color"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/dateSeparatorTV"/>
+            android:layout_marginStart="10dp"
+            android:layout_toRightOf="@+id/dateSeparatorTV"
+            android:layout_toEndOf="@+id/dateSeparatorTV"/>
 
     </RelativeLayout>
 
@@ -48,7 +51,7 @@
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="temp"
+        android:text=""
         android:layout_below="@id/rlDateSeparator"
         android:layout_centerHorizontal="true"
         android:textColor="@color/devil_gray_color"
@@ -59,7 +62,7 @@
         android:id="@+id/info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="temp"
+        android:text=""
         android:layout_below="@id/date"
         android:textColor="@color/devil_gray_color"
         android:layout_centerHorizontal="true"

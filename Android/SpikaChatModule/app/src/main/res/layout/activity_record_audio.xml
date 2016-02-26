@@ -70,8 +70,10 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:background="@null"
                         android:contentDescription="@null"
                         android:scaleType="fitCenter"
@@ -83,7 +85,9 @@
                         android:layout_height="match_parent"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
                         android:layout_toRightOf="@id/ivPlayPauseSound"
+                        android:layout_toEndOf="@id/ivPlayPauseSound"
                         android:gravity="center_vertical"
                         android:textColor="@color/default_color"
                         android:textSize="13sp"
@@ -95,10 +99,13 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
                         android:thumbTint="@color/default_color"
                         android:progressTint="@color/default_color"
                         android:layout_toLeftOf="@+id/secondChrono"
+                        android:layout_toStartOf="@id/secondChrono"
                         android:layout_toRightOf="@+id/firstChrono"
+                        android:layout_toEndOf="@id/firstChrono"
                         android:progress="0"/>
 
                     <TextView
@@ -107,9 +114,12 @@
                         android:layout_height="match_parent"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginEnd="10dp"
                         android:layout_marginRight="10dp"
                         android:gravity="center_vertical"
+                        android:layout_marginStart="5dp"
                         android:text="00:00"
                         android:textColor="@color/default_color"
                         android:textSize="13sp"
@@ -142,8 +152,8 @@
                 android:id="@+id/cancelButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_weight="1"
-                android:capitalize="characters"
                 android:text="@string/CANCEL"/>
 
             <Button
@@ -151,7 +161,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:capitalize="characters"
+                style="?android:attr/buttonBarButtonStyle"
                 android:text="@string/OK"/>
 
         </LinearLayout>

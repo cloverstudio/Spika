@@ -30,4 +30,10 @@
 
     </style>
 
+    <!-- button neutral style -->
+    <style name="ColoredButtonNeutral" parent="Widget.AppCompat.Button">
+        <item name="colorButtonNormal">@color/default_color</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
 </resources>

@@ -67,9 +67,11 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:background="@drawable/default_color_circle"
         android:alpha="0.8"
         android:padding="2dp"
+        android:contentDescription="@null"
         android:layout_margin="5dp"
         android:id="@+id/closeButton"
         android:src="@drawable/ic_close"/>

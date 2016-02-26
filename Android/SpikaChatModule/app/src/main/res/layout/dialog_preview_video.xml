@@ -53,6 +53,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginStart="10dp"
                         android:contentDescription="@null"
                         android:src="@drawable/ic_play" />
 
@@ -63,8 +64,11 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp"
                         android:layout_marginLeft="15dp"
+                        android:layout_marginStart="15dp"
                         android:layout_toRightOf="@+id/ivPlayPause"
+                        android:layout_toEndOf="@+id/ivPlayPause"
                         android:progress="0" />
                 </RelativeLayout>
             </RelativeLayout>
@@ -79,6 +83,8 @@
         android:layout_alignParentRight="true"
         android:background="@drawable/default_color_circle"
         android:alpha="0.8"
+        android:contentDescription="@null"
+        android:layout_alignParentEnd="true"
         android:padding="2dp"
         android:layout_margin="5dp"
         android:id="@+id/closeButton"

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:visibility="invisible">
@@ -35,6 +34,7 @@
                 <LinearLayout
                     android:id="@+id/firstRow"
                     android:layout_width="match_parent"
+                    android:baselineAligned="false"
                     android:layout_height="wrap_content"
                     android:weightSum="99"
                     android:layout_below="@id/select_and_attach_label"
@@ -60,6 +60,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/icon_menu_camera"
+                            android:contentDescription="@null"
                             android:background="@android:color/transparent"
                             />
 
@@ -89,6 +90,7 @@
                         <ImageView
                             android:id="@+id/galleryBtn"
                             android:layout_width="wrap_content"
+                            android:contentDescription="@null"
                             android:layout_height="wrap_content"
                             android:src="@drawable/icon_menu_gallery"
                             android:background="@android:color/transparent"
@@ -119,6 +121,7 @@
 
                         <ImageView
                             android:id="@+id/locationBtn"
+                            android:contentDescription="@null"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/icon_menu_location"
@@ -145,6 +148,7 @@
                     android:layout_below="@id/firstRow"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="1dp"
+                    android:baselineAligned="false"
                     android:background="@color/default_color_light"
                     android:weightSum="99"
                     android:orientation="horizontal">
@@ -163,6 +167,7 @@
 
                         <ImageView
                             android:id="@+id/fileBtn"
+                            android:contentDescription="@null"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/icon_menu_file"
@@ -194,6 +199,7 @@
 
                         <ImageView
                             android:id="@+id/contactBtn"
+                            android:contentDescription="@null"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/icon_menu_contact"
@@ -220,6 +226,7 @@
                     android:layout_below="@id/secondRow"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="1dp"
+                    android:baselineAligned="false"
                     android:background="@color/default_color_light"
                     android:weightSum="99"
                     android:orientation="horizontal">
@@ -241,6 +248,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/icon_menu_audio"
+                            android:contentDescription="@null"
                             android:background="@android:color/transparent"
                             />
 
@@ -270,6 +278,7 @@
                         <ImageView
                             android:id="@+id/videoBtn"
                             android:layout_width="wrap_content"
+                            android:contentDescription="@null"
                             android:layout_height="wrap_content"
                             android:src="@drawable/icon_menu_video"
                             android:background="@android:color/transparent"

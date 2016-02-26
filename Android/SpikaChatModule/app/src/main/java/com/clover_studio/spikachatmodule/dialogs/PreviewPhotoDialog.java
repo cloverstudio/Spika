@@ -6,13 +6,10 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.clover_studio.spikachatmodule.R;
-import com.clover_studio.spikachatmodule.models.FileModelDetails;
 import com.clover_studio.spikachatmodule.models.Message;
 import com.clover_studio.spikachatmodule.robospice.api.DownloadFileManager;
 import com.clover_studio.spikachatmodule.utils.Tools;
@@ -85,7 +82,8 @@ public class PreviewPhotoDialog extends Dialog {
                     getOwnerActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            tvPercentLoading.setText((int)(currentProgress * 100) + "%");
+                            String text = (int)(currentProgress * 100) + "%";
+                            tvPercentLoading.setText(text);
                         }
                     });
                 }
@@ -95,7 +93,8 @@ public class PreviewPhotoDialog extends Dialog {
                     getOwnerActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            tvPercentLoading.setText(100 + "%");
+                            String text = 100 + "%";
+                            tvPercentLoading.setText(text);
                         }
                     });
                 }

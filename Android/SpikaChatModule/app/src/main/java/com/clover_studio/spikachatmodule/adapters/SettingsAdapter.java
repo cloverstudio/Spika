@@ -18,7 +18,7 @@ public class SettingsAdapter extends BaseAdapter {
 	Context ctx;
 	int chatType = 0;
 
-	List<String> data = new ArrayList<String>();
+	List<String> data = new ArrayList<>();
 
 	public SettingsAdapter(Context context) {
 		this.ctx = context;

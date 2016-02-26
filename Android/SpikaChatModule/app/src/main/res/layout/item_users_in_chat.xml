@@ -29,6 +29,7 @@
                 android:layout_width="50dp"
                 android:layout_height="70dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp">
 
@@ -52,7 +53,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_toRightOf="@id/relativeForAvatar"
+                android:layout_toEndOf="@id/relativeForAvatar"
                 android:textColor="@color/devil_gray_color"
                 android:textSize="@dimen/user_in_adapter_text_size"/>
         </RelativeLayout>

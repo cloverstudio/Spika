@@ -32,7 +32,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_toRightOf="@id/sidebarBtnMaterial"
+            android:layout_toEndOf="@id/sidebarBtnMaterial"
             android:layout_toLeftOf="@+id/settings"
+            android:layout_toStartOf="@+id/settings"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -51,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="subtitle"
+                android:text=""
                 android:ellipsize="start"
                 android:singleLine="true"
                 android:textColor="@color/devil_gray_color"
@@ -64,10 +66,12 @@
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:paddingLeft="10dp"
+            android:contentDescription="@null"
             android:paddingRight="10dp"
             android:id="@+id/settings"
             android:background="@drawable/selector_trans_to_white"
             android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:src="@drawable/ic_setting"/>
 
         <View

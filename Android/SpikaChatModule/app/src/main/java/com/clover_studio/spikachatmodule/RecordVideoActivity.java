@@ -295,7 +295,8 @@ public class RecordVideoActivity extends BaseActivity {
         if(forSize.exists()){
             long size = forSize.length();
             Button ok = (Button) findViewById(R.id.okButton);
-            ok.setText(ok.getText() + ", " + Tools.readableFileSize(size));
+            String text = ok.getText() + ", " + Tools.readableFileSize(size);
+            ok.setText(text);
         }
     }
 
@@ -309,7 +310,11 @@ public class RecordVideoActivity extends BaseActivity {
             int column_index_path = cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA);
             cursor.moveToFirst();
 
-            return cursor.getString(column_index_path);
+            String returnedString = cursor.getString(column_index_path);
+
+            cursor.close();
+
+            return returnedString;
 
         } else if (uri.getScheme().equals("file")) {
             return new File(URI.create(uri.toString())).getAbsolutePath();
