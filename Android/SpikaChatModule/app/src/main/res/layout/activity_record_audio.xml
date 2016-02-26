@@ -7,138 +7,171 @@
                 tools:context=".ChatActivity">
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="20dp">
+            android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@+id/scCardView">
+            <View
+                android:id="@+id/viewSolidForAnimate"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/shape_solid_default"/>
+
+            <View
+                android:id="@+id/viewStrokeForAnimate"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/shape_stroke_white"/>
+
+            <View
+                android:id="@+id/viewBorderHolderForAnimate"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/shape_solid_white_with_default_border"/>
+
+            <LinearLayout
+                android:id="@+id/buttonAndSave"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/startRec"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/selector_audio_original"
+                    android:layout_marginTop="18dp"
+                    android:layout_width="42dp"
+                    android:layout_height="65dp"
+                    android:background="@drawable/audio_2"
                     android:contentDescription="@null"/>
 
-                <ImageView
-                    android:id="@+id/imageForAnimation"
+                <com.clover_studio.spikachatmodule.view.CustomTextView
+                    android:id="@+id/tvSaveInRecord"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:visibility="gone"
-                    android:background="@drawable/audio_rec_2"
-                    android:contentDescription="@null"/>
+                    android:text="@string/save"
+                    android:visibility="invisible"
+                    android:textColor="@color/default_color"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+
+
+            <Chronometer
+                android:id="@+id/recordTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/viewBorderHolderForAnimate"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
+                android:padding="10dp"
+                android:textColor="@color/default_color"
+                android:textSize="20sp"
+                android:visibility="gone"/>
+        </RelativeLayout>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/scCardView"
+            style="@style/CardView"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="70dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardElevation="2dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            app:cardPreventCornerOverlap="false"
+            app:cardUseCompatPadding="true"
+            >
+
+            <RelativeLayout
+                android:id="@+id/soundController"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/ivPlayPauseSound"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@null"
+                    android:contentDescription="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_play"/>
 
                 <Chronometer
-                    android:id="@+id/recordTime"
+                    android:id="@+id/firstChrono"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_above="@+id/startRec"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="20dp"
-                    android:padding="10dp"
+                    android:layout_height="match_parent"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@id/ivPlayPauseSound"
+                    android:layout_toRightOf="@id/ivPlayPauseSound"
+                    android:gravity="center_vertical"
                     android:textColor="@color/default_color"
-                    android:textSize="20sp"
-                    android:visibility="gone"/>
-            </RelativeLayout>
+                    android:textSize="13sp"
+                    android:visibility="visible"/>
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/scCardView"
-                style="@style/CardView"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="70dp"
-                app:cardBackgroundColor="@color/white"
-                app:cardElevation="2dp"
-                app:cardPreventCornerOverlap="false"
-                app:cardUseCompatPadding="true"
-                >
-
-                <RelativeLayout
-                    android:id="@+id/soundController"
+                <SeekBar
+                    android:id="@+id/seekBarSound"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@id/firstChrono"
+                    android:layout_toLeftOf="@+id/secondChrono"
+                    android:layout_toRightOf="@+id/firstChrono"
+                    android:layout_toStartOf="@id/secondChrono"
+                    android:progress="0"
+                    android:progressTint="@color/default_color"
+                    android:thumbTint="@color/default_color"/>
 
-                    <ImageButton
-                        android:id="@+id/ivPlayPauseSound"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginStart="10dp"
-                        android:background="@null"
-                        android:contentDescription="@null"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/ic_play"/>
-
-                    <Chronometer
-                        android:id="@+id/firstChrono"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_toRightOf="@id/ivPlayPauseSound"
-                        android:layout_toEndOf="@id/ivPlayPauseSound"
-                        android:gravity="center_vertical"
-                        android:textColor="@color/default_color"
-                        android:textSize="13sp"
-                        android:visibility="visible"/>
-
-                    <SeekBar
-                        android:id="@+id/seekBarSound"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginStart="5dp"
-                        android:thumbTint="@color/default_color"
-                        android:progressTint="@color/default_color"
-                        android:layout_toLeftOf="@+id/secondChrono"
-                        android:layout_toStartOf="@id/secondChrono"
-                        android:layout_toRightOf="@+id/firstChrono"
-                        android:layout_toEndOf="@id/firstChrono"
-                        android:progress="0"/>
-
-                    <TextView
-                        android:id="@+id/secondChrono"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginRight="10dp"
-                        android:gravity="center_vertical"
-                        android:layout_marginStart="5dp"
-                        android:text="00:00"
-                        android:textColor="@color/default_color"
-                        android:textSize="13sp"
-                        android:visibility="visible"/>
-                </RelativeLayout>
-            </android.support.v7.widget.CardView>
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/secondChrono"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center_vertical"
+                    android:text="00:00"
+                    android:textColor="@color/default_color"
+                    android:textSize="13sp"
+                    android:visibility="visible"/>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/buttonsAll"
         android:layout_width="match_parent"
-        android:background="@color/gray_send_message_background"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:background="@color/gray_send_message_background">
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/gray_light_light_color" />
+            android:background="@color/gray_light_light_color"/>
 
         <LinearLayout
             android:id="@+id/buttonsLayout"
@@ -150,18 +183,18 @@
 
             <Button
                 android:id="@+id/cancelButton"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_weight="1"
                 android:text="@string/CANCEL"/>
 
             <Button
                 android:id="@+id/okButton"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                style="?android:attr/buttonBarButtonStyle"
                 android:text="@string/OK"/>
 
         </LinearLayout>

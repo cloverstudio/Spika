@@ -1,5 +1,7 @@
 package com.clover_studio.spikachatmodule;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +12,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.support.v7.widget.CardView;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -29,6 +32,7 @@ import com.clover_studio.spikachatmodule.utils.ExtAudioRecorder;
 import com.clover_studio.spikachatmodule.utils.LogCS;
 import com.clover_studio.spikachatmodule.utils.Tools;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.squareup.okhttp.internal.Util;
 
 import java.io.File;
 import java.io.IOException;
@@ -59,7 +63,6 @@ public class RecordAudioActivity extends BaseActivity {
     private CardView mRlSoundControler;
 
     private ImageView startRec;
-    private ImageView forAnimation;
 
     private AsyncTask<Void, Void, Void> recordingAsync;
     private CountDownTimer mRecordingTimer;
@@ -69,6 +72,12 @@ public class RecordAudioActivity extends BaseActivity {
     private CountDownTimer soundLeft;
     private SeekBar seekBarSound;
     private Button okButton;
+
+    private boolean animating = false;
+    private View animateSolid;
+    private View animateStroke;
+    private View viewBorderForHolder;
+    private TextView tvSave;
 
     public static void starRecordAudioActivity(Context context){
         Intent intent = new Intent(context, RecordAudioActivity.class);
@@ -112,8 +121,9 @@ public class RecordAudioActivity extends BaseActivity {
         mPlayPause = (ImageView) findViewById(R.id.ivPlayPauseSound);
 
         startRec = (ImageView) findViewById(R.id.startRec);
-        forAnimation = (ImageView) findViewById(R.id.imageForAnimation);
-        startRec.setOnClickListener(new View.OnClickListener() {
+        viewBorderForHolder = findViewById(R.id.viewBorderHolderForAnimate);
+        tvSave = (TextView) findViewById(R.id.tvSaveInRecord);
+        viewBorderForHolder.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -157,7 +167,86 @@ public class RecordAudioActivity extends BaseActivity {
             }
         });
 
+        animateSolid = findViewById(R.id.viewSolidForAnimate);
+        animateStroke = findViewById(R.id.viewStrokeForAnimate);
 
+        float widthOfImage = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 150, getResources().getDisplayMetrics());
+        float width = getResources().getDisplayMetrics().widthPixels;
+        float height = getResources().getDisplayMetrics().heightPixels;
+
+        if(width > height){
+            scale = width / widthOfImage;
+        }else{
+            scale = height / widthOfImage;
+        }
+    }
+
+    float scale;
+
+    private void startAnimate(){
+        animateSolid.setVisibility(View.VISIBLE);
+        AnimUtils.fade(animateSolid, 0, 1, 0, null);
+        animateStroke.setVisibility(View.VISIBLE);
+        animating = true;
+        AnimUtils.scale(animateSolid, 1, scale, 1000, new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                animateViewBorder();
+            }
+        });
+        AnimUtils.scale(startRec, 1, 0.85f, 350, new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                tvSave.setVisibility(View.VISIBLE);
+                AnimUtils.fade(tvSave, 0, 1, 350, null);
+                AnimUtils.translateY(tvSave, 0, -20, 350, null);
+                AnimUtils.translateY(startRec, 0, -20, 350, null);
+            }
+        });
+        AnimUtils.scale(animateStroke, 1, 0.92f, 350, null);
+        AnimUtils.scale(viewBorderForHolder, 1, 0.92f, 800, new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                AnimUtils.scale(viewBorderForHolder, 0.92f, 1, 350, null);
+                AnimUtils.scale(animateStroke, 0.92f, 1, 350, null);
+
+            }
+        });
+
+        setToolbarTitle(getString(R.string.recording_));
+    }
+
+    private void stopAnimating(){
+        animating = false;
+        animateStroke.setVisibility(View.GONE);
+        AnimUtils.fadeThenGoneOrVisible(animateSolid, 1, 0, 300);
+        AnimUtils.scale(startRec, 0.85f, 1, 200, null);
+        AnimUtils.translateY(startRec, -20, 0, 200, null);
+        AnimUtils.fade(tvSave, 1, 0, 200, new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                tvSave.setVisibility(View.INVISIBLE);
+            }
+        });
+        AnimUtils.translateY(tvSave, -20, 0, 200, null);
+
+        setToolbarTitle(getString(R.string.audio));
+    }
+
+    private void animateViewBorder(){
+        AnimUtils.scale(animateStroke, 1, scale, 1000, new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                if(animating){
+                    animateViewBorder();
+                }
+            }
+        });
     }
 
     /**
@@ -171,8 +260,7 @@ public class RecordAudioActivity extends BaseActivity {
 
             startRecordingAsync();
 
-            forAnimation.setVisibility(View.VISIBLE);
-            forAnimation.setTag(AnimUtils.fadingInfinite(forAnimation, Const.AnimationDuration.RECORDING_ANIMATION_DURATION));
+            startAnimate();
 
         } else {
 
@@ -180,14 +268,9 @@ public class RecordAudioActivity extends BaseActivity {
                 recordingAsync.cancel(true);
             }
 
-            if(forAnimation.getTag() != null && forAnimation.getTag() instanceof AnimatorSet){
-                ((AnimatorSet)forAnimation.getTag()).end();
-                ((AnimatorSet)forAnimation.getTag()).cancel();
-                forAnimation.clearAnimation();
-                forAnimation.setVisibility(View.GONE);
-            }
-
             stopRecording();
+
+            stopAnimating();
 
             try{
                 long size = 0;
@@ -208,7 +291,7 @@ public class RecordAudioActivity extends BaseActivity {
         recordingAsync = new AsyncTask<Void, Void, Void>() {
 
             protected void onPreExecute() {
-                mRecordTime.setVisibility(View.VISIBLE);
+//                mRecordTime.setVisibility(View.VISIBLE);
                 mRecordTime.setBase(SystemClock.elapsedRealtime());
                 mRecordTime.start();
                 mRecordingTimer.start();
@@ -235,7 +318,7 @@ public class RecordAudioActivity extends BaseActivity {
         mExtAudioRecorder.stop();
         mExtAudioRecorder.release();
         mRecordTime.stop();
-        mRecordTime.setVisibility(View.INVISIBLE);
+//        mRecordTime.setVisibility(View.INVISIBLE);
         showSoundController();
         mIsRecording = false;
         mRecordingTimer.cancel();
@@ -248,7 +331,7 @@ public class RecordAudioActivity extends BaseActivity {
         okButton.setEnabled(false);
         okButton.setClickable(false);
 
-        mRecordTime.setVisibility(View.INVISIBLE);
+//        mRecordTime.setVisibility(View.INVISIBLE);
 
         mPlayPause.setImageResource(R.drawable.ic_play);
         if (mPlayer != null) {

@@ -94,5 +94,7 @@
     <string name="new_messages">New messages</string>
     <string name="share____">Share&#8230;</string>
     <string name="no_name">No name</string>
+    <string name="save">Save</string>
+    <string name="recording_">Recording&#8230;</string>
 
 </resources>
