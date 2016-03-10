@@ -3,7 +3,6 @@ package com.clover_studio.spikachatmodule.models;
 import android.content.res.Resources;
 import android.text.TextUtils;
 
-import com.clover_studio.spikachatmodule.R;
 import com.clover_studio.spikachatmodule.base.BaseModel;
 import com.clover_studio.spikachatmodule.utils.Const;
 import com.clover_studio.spikachatmodule.utils.Tools;

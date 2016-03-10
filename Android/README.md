@@ -51,7 +51,7 @@
 ```
 and start activity with:  
 ```
-		ChatActivity.starChatActivity(this, user);
+		ChatActivity.startChatActivity(this, user);
 ```
  - You can use Your own backend server, just create Config object
 ```

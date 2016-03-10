@@ -3,7 +3,6 @@ package com.clover_studio.spikachatmodule.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import com.clover_studio.spikachatmodule.models.Config;
 

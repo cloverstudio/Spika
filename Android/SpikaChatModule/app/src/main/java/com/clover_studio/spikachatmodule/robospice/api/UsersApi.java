@@ -1,6 +1,8 @@
 package com.clover_studio.spikachatmodule.robospice.api;
 
-import com.clover_studio.spikachatmodule.base.SpikaApp;
+import android.content.Context;
+
+import com.clover_studio.spikachatmodule.base.SingletonLikeApp;
 import com.clover_studio.spikachatmodule.models.GetUserModel;
 import com.clover_studio.spikachatmodule.robospice.spice.CustomSpiceRequest;
 import com.clover_studio.spikachatmodule.utils.Const;
@@ -19,16 +21,18 @@ public class UsersApi {
     public static class GetUsersInRoom extends CustomSpiceRequest<GetUserModel> {
 
         String roomId;
+        Context context;
 
-        public GetUsersInRoom(String roomId) {
-            super(GetUserModel.class);
+        public GetUsersInRoom(String roomId, Context context) {
+            super(GetUserModel.class, context);
             this.roomId = roomId;
+            this.context = context;
         }
 
         @Override
         public GetUserModel loadDataFromNetwork() throws Exception {
 
-            URI uri = new URI(SpikaApp.getConfig().apiBaseUrl + Const.Api.USER_LIST + "/" + roomId);
+            URI uri = new URI(SingletonLikeApp.getInstance().getConfig(context).apiBaseUrl + Const.Api.USER_LIST + "/" + roomId);
 
             HttpEntity<?> entity = new HttpEntity<>(null, getHeaders());
 

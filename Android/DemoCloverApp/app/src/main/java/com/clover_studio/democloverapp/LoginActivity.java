@@ -82,7 +82,7 @@ public class LoginActivity extends BaseActivity{
                     Config config = generateConfigModel(api.getText().toString(), socket.getText().toString());
                     DemoChatActivity.startChatActivityWithConfig(LoginActivity.this, user, config);
                 }else{
-                    DemoChatActivity.starChatActivity(LoginActivity.this, user);
+                    DemoChatActivity.startChatActivity(LoginActivity.this, user);
                 }
             }
         });

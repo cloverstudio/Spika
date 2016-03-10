@@ -47,6 +47,7 @@
                         android:id="@+id/playPause"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
+                        android:contentDescription="@null"
                         android:layout_centerVertical="true"
                         android:background="@drawable/ic_play" />
 
@@ -56,7 +57,9 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
                         android:layout_toRightOf="@id/playPause"
+                        android:layout_toEndOf="@id/playPause"
                         android:text="00:00"
                         android:textColor="@color/default_color" />
 
@@ -68,6 +71,8 @@
                         android:thumbTint="@color/default_color"
                         android:progressTint="@color/default_color"
                         android:layout_marginLeft="5dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_toEndOf="@id/chronoPlay"
                         android:layout_toRightOf="@id/chronoPlay"/>
 
                 </RelativeLayout>
@@ -81,8 +86,10 @@
     <ImageView
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:contentDescription="@null"
         android:layout_alignTop="@id/parent"
         android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:background="@drawable/default_color_circle"
         android:alpha="0.8"
         android:padding="2dp"

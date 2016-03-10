@@ -66,8 +66,8 @@
     <string name="downloading">Downloading</string>
     <string name="NO_CAPITAL">NO</string>
     <string name="YES_CAPITAL">YES</string>
-    <string name="are_typing">are typing...</string>
-    <string name="is_typing">is typing...</string>
+    <string name="are_typing">are typing&#8230;</string>
+    <string name="is_typing">is typing&#8230;</string>
     <string name="joined_to_conversation">joined to conversation.</string>
     <string name="left_from_conversation">left from conversation.</string>
     <string name="finishing">Finishing</string>
@@ -81,7 +81,7 @@
     <string name="CLOSE">CLOSE</string>
     <string name="message_deleted_at">"Message deleted at "</string>
     <string name="seen">"Seen, "</string>
-    <string name="sending___">Sending...</string>
+    <string name="sending___">Sending&#8230;</string>
     <string name="sent">"Sent, "</string>
     <string name="message_option">Message option</string>
     <string name="copy">Copy</string>
@@ -92,7 +92,9 @@
     <string name="select_and_attach_file_or_contact">Select and attach file or contact:</string>
     <string name="there_is_new_messages">There is new messages!</string>
     <string name="new_messages">New messages</string>
-    <string name="share____">Share...</string>
+    <string name="share____">Share&#8230;</string>
     <string name="no_name">No name</string>
+    <string name="save">Save</string>
+    <string name="recording_">Recording&#8230;</string>
 
 </resources>

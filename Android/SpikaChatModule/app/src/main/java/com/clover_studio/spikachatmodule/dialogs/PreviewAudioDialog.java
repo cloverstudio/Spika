@@ -3,13 +3,9 @@ package com.clover_studio.spikachatmodule.dialogs;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.PorterDuff;
 import android.media.MediaPlayer;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.View;
 import android.widget.Chronometer;
 import android.widget.ImageButton;
@@ -21,7 +17,6 @@ import com.clover_studio.spikachatmodule.models.FileModel;
 import com.clover_studio.spikachatmodule.robospice.api.DownloadFileManager;
 import com.clover_studio.spikachatmodule.utils.LogCS;
 import com.clover_studio.spikachatmodule.utils.Tools;
-import com.squareup.okhttp.internal.Util;
 
 import java.io.File;
 import java.io.IOException;
@@ -219,7 +214,7 @@ public class PreviewAudioDialog extends Dialog {
 
             final DownloadFileDialog dialog = DownloadFileDialog.startDialog(getOwnerActivity());
 
-            DownloadFileManager.downloadVideo(getOwnerActivity(), Tools.getFileUrlFromId(fileModel.file.id), audioFile, new DownloadFileManager.OnDownloadListener() {
+            DownloadFileManager.downloadVideo(getOwnerActivity(), Tools.getFileUrlFromId(fileModel.file.id, getOwnerActivity()), audioFile, new DownloadFileManager.OnDownloadListener() {
                 @Override
                 public void onStart() {
                     LogCS.d("LOG", "START DOWNLOADING");

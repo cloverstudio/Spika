@@ -1,5 +1,6 @@
 package com.clover_studio.spikachatmodule;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -13,15 +14,15 @@ import android.graphics.PorterDuff;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.clover_studio.spikachatmodule.base.BaseActivity;
-import com.clover_studio.spikachatmodule.base.SpikaApp;
+import com.clover_studio.spikachatmodule.base.SingletonLikeApp;
 import com.clover_studio.spikachatmodule.dialogs.NotifyDialog;
 import com.clover_studio.spikachatmodule.dialogs.UploadFileDialog;
 import com.clover_studio.spikachatmodule.models.UploadFileResult;
@@ -66,6 +67,7 @@ public class CameraPhotoPreviewActivity extends BaseActivity {
         ((Activity)context).startActivityForResult(intent, Const.RequestCode.PHOTO_CHOOSE);
     }
 
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -160,7 +162,7 @@ public class CameraPhotoPreviewActivity extends BaseActivity {
         final UploadFileDialog dialog = UploadFileDialog.startDialog(getActivity());
 
         UploadFileManagement tt = new UploadFileManagement();
-        tt.new BackgroundUploader(SpikaApp.getConfig().apiBaseUrl + Const.Api.UPLOAD_FILE, new File(path), Const.ContentTypes.IMAGE_JPG, new UploadFileManagement.OnUploadResponse() {
+        tt.new BackgroundUploader(SingletonLikeApp.getInstance().getConfig(getActivity()).apiBaseUrl + Const.Api.UPLOAD_FILE, new File(path), Const.ContentTypes.IMAGE_JPG, new UploadFileManagement.OnUploadResponse() {
             @Override
             public void onStart() {
                 LogCS.d("LOG", "START UPLOADING");

@@ -36,6 +36,30 @@ public class AnimUtils {
     }
 
     /**
+     * translate along the y axis
+     *
+     * @param view
+     * @param from
+     * @param to
+     * @param duration
+     * @param listener animator listener adapter, can be null
+     * @return ObjectAnimator
+     */
+    public static ObjectAnimator translateY(View view, float from, float to, int duration, AnimatorListenerAdapter listener) {
+        ObjectAnimator translationY = ObjectAnimator.ofFloat(view, "translationY", from, to);
+        translationY.setDuration(duration);
+
+        if (listener != null) {
+            translationY.addListener(listener);
+        }
+
+        translationY.start();
+
+        return translationY;
+
+    }
+
+    /**
      * apply alpha animation to given view
      * @param view
      * @param from

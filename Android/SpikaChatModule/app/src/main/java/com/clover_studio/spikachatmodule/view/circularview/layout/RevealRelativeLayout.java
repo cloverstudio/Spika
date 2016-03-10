@@ -6,7 +6,6 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.clover_studio.spikachatmodule.view.circularview.animation.RevealAnimator;

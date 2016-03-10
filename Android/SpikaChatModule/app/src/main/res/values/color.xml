@@ -9,6 +9,7 @@
     <color name="default_color_light">#009E9F</color>
     <color name="devil_gray_color">#666666</color>
     <color name="gray_light_color">#AAAAAA</color>
+    <color name="gray_light_color_trans">#AAAAAAAA</color>
     <color name="gray_light_light_color">#CCCCCC</color>
     <color name="gray_send_message_background">#F7F7F7</color>
 

@@ -64,7 +64,7 @@ public class UsersInChatActivity extends BaseActivity {
      */
     private void getUsers(String roomId) {
         handleProgress(true);
-        UsersApi.GetUsersInRoom spice = new UsersApi.GetUsersInRoom(roomId);
+        UsersApi.GetUsersInRoom spice = new UsersApi.GetUsersInRoom(roomId, getActivity());
         getSpiceManager().execute(spice, new CustomSpiceListener<GetUserModel>(this){
 
             @Override

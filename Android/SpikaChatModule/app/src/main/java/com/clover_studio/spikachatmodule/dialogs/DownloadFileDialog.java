@@ -54,12 +54,14 @@ public class DownloadFileDialog extends Dialog {
         progressPb.setMax(max);
         this.max = max;
         this.maxString = Tools.readableFileSize(max);
-        progressTv.setText("0/" + maxString);
+        String text = "0/" + maxString;
+        progressTv.setText(text);
     }
 
     public void setCurrent(int current){
         progressPb.setProgress(current);
-        progressTv.setText(Tools.readableFileSize(current) + "/" + maxString);
+        String text = Tools.readableFileSize(current) + "/" + maxString;
+        progressTv.setText(text);
     }
 
     public void fileDownloaded(){

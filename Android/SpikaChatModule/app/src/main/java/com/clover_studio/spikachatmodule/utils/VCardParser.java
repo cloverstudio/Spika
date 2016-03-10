@@ -1,7 +1,5 @@
 package com.clover_studio.spikachatmodule.utils;
 
-import com.clover_studio.spikachatmodule.R;
-
 import java.util.List;
 
 import ezvcard.Ezvcard;

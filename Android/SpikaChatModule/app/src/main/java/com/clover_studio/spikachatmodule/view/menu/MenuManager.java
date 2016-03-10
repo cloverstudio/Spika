@@ -2,10 +2,7 @@ package com.clover_studio.spikachatmodule.view.menu;
 
 import android.app.Activity;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -16,7 +13,6 @@ import com.clover_studio.spikachatmodule.utils.AnimUtils;
 import com.clover_studio.spikachatmodule.utils.Const;
 import com.clover_studio.spikachatmodule.view.circularview.animation.SupportAnimator;
 import com.clover_studio.spikachatmodule.view.circularview.animation.ViewAnimationUtils;
-import com.clover_studio.spikachatmodule.utils.Tools;
 
 /**
  * Created by ubuntu_ivo on 24.07.15..

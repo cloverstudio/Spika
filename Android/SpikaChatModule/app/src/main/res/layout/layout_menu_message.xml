@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:visibility="invisible">
@@ -35,23 +34,25 @@
                 <LinearLayout
                     android:id="@+id/firstRow"
                     android:layout_width="match_parent"
+                    android:baselineAligned="false"
                     android:layout_height="wrap_content"
                     android:weightSum="99"
                     android:layout_below="@id/select_and_attach_label"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="1dp"
-                    android:paddingTop="15dp"
-                    android:paddingBottom="10dp"
-                    android:background="@color/default_color_light"
+                    android:background="@color/default_color"
                     android:orientation="horizontal">
 
                     <LinearLayout
                         android:id="@+id/camera"
                         android:layout_width="0dp"
                         android:layout_weight="33"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
+                        android:background="@drawable/menu_background_click_state"
                         android:visibility="invisible">
 
                         <ImageView
@@ -59,6 +60,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/icon_menu_camera"
+                            android:contentDescription="@null"
                             android:background="@android:color/transparent"
                             />
 
@@ -66,7 +68,7 @@
                             android:id="@+id/cameraTv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingTop="12dp"
+                            android:paddingTop="5dp"
                             android:text="@string/camera"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/menu_text_size"/>
@@ -77,14 +79,18 @@
                         android:id="@+id/gallery"
                         android:layout_width="0dp"
                         android:layout_weight="33"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
+                        android:background="@drawable/menu_background_click_state"
                         android:orientation="vertical"
                         android:visibility="invisible">
 
                         <ImageView
                             android:id="@+id/galleryBtn"
                             android:layout_width="wrap_content"
+                            android:contentDescription="@null"
                             android:layout_height="wrap_content"
                             android:src="@drawable/icon_menu_gallery"
                             android:background="@android:color/transparent"
@@ -94,7 +100,7 @@
                             android:id="@+id/galleryTv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingTop="12dp"
+                            android:paddingTop="5dp"
                             android:text="@string/gallery"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/menu_text_size"/>
@@ -105,13 +111,17 @@
                         android:id="@+id/location"
                         android:layout_width="0dp"
                         android:layout_weight="33"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/menu_background_click_state"
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
                         android:visibility="invisible">
 
                         <ImageView
                             android:id="@+id/locationBtn"
+                            android:contentDescription="@null"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/icon_menu_location"
@@ -122,7 +132,7 @@
                             android:id="@+id/locationTv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingTop="12dp"
+                            android:paddingTop="5dp"
                             android:text="@string/location"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/menu_text_size"/>
@@ -138,23 +148,26 @@
                     android:layout_below="@id/firstRow"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="1dp"
-                    android:paddingTop="15dp"
+                    android:baselineAligned="false"
                     android:background="@color/default_color_light"
                     android:weightSum="99"
-                    android:paddingBottom="10dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
                         android:id="@+id/file"
                         android:layout_width="0dp"
-                        android:layout_weight="33"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:layout_weight="50"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/menu_background_click_state"
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
                         android:visibility="invisible">
 
                         <ImageView
                             android:id="@+id/fileBtn"
+                            android:contentDescription="@null"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/icon_menu_file"
@@ -165,36 +178,8 @@
                             android:id="@+id/fileTv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingTop="12dp"
+                            android:paddingTop="5dp"
                             android:text="@string/file"
-                            android:textColor="@android:color/white"
-                            android:textSize="@dimen/menu_text_size"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/video"
-                        android:layout_width="0dp"
-                        android:layout_weight="33"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical"
-                        android:visibility="invisible">
-
-                        <ImageView
-                            android:id="@+id/videoBtn"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/icon_menu_video"
-                            android:background="@android:color/transparent"
-                            />
-
-                        <com.clover_studio.spikachatmodule.view.CustomTextView
-                            android:id="@+id/videoTv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingTop="12dp"
-                            android:text="@string/video"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/menu_text_size"/>
 
@@ -203,7 +188,10 @@
                     <LinearLayout
                         android:id="@+id/contact"
                         android:layout_width="0dp"
-                        android:layout_weight="33"
+                        android:layout_weight="50"
+                        android:background="@drawable/menu_background_click_state"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
@@ -211,6 +199,7 @@
 
                         <ImageView
                             android:id="@+id/contactBtn"
+                            android:contentDescription="@null"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/icon_menu_contact"
@@ -221,7 +210,7 @@
                             android:id="@+id/contactTv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingTop="12dp"
+                            android:paddingTop="5dp"
                             android:text="@string/contact"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/menu_text_size"/>
@@ -237,29 +226,19 @@
                     android:layout_below="@id/secondRow"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="1dp"
-                    android:paddingTop="15dp"
+                    android:baselineAligned="false"
                     android:background="@color/default_color_light"
                     android:weightSum="99"
-                    android:paddingBottom="10dp"
                     android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:id="@+id/left_unknown"
-                        android:layout_width="0dp"
-                        android:layout_weight="33"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical"
-                        android:visibility="invisible">
-
-
-                    </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/audio"
                         android:layout_width="0dp"
-                        android:layout_weight="33"
+                        android:layout_weight="50"
                         android:layout_height="wrap_content"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:background="@drawable/menu_background_click_state"
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
                         android:visibility="invisible">
@@ -269,6 +248,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/icon_menu_audio"
+                            android:contentDescription="@null"
                             android:background="@android:color/transparent"
                             />
 
@@ -276,7 +256,7 @@
                             android:id="@+id/audioTv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingTop="12dp"
+                            android:paddingTop="5dp"
                             android:text="@string/audio"
                             android:textColor="@android:color/white"
                             android:textSize="@dimen/menu_text_size"/>
@@ -284,14 +264,34 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/right_unknown"
+                        android:id="@+id/video"
                         android:layout_width="0dp"
-                        android:layout_weight="33"
+                        android:background="@drawable/menu_background_click_state"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="15dp"
+                        android:layout_weight="50"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
                         android:orientation="vertical"
                         android:visibility="invisible">
 
+                        <ImageView
+                            android:id="@+id/videoBtn"
+                            android:layout_width="wrap_content"
+                            android:contentDescription="@null"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icon_menu_video"
+                            android:background="@android:color/transparent"
+                            />
+
+                        <com.clover_studio.spikachatmodule.view.CustomTextView
+                            android:id="@+id/videoTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="5dp"
+                            android:text="@string/video"
+                            android:textColor="@android:color/white"
+                            android:textSize="@dimen/menu_text_size"/>
 
                     </LinearLayout>
 

@@ -1,16 +1,18 @@
 package com.clover_studio.spikachatmodule.robospice;
 
-import com.clover_studio.spikachatmodule.base.SpikaApp;
+import android.content.Context;
+
+import com.clover_studio.spikachatmodule.base.SingletonLikeApp;
 import com.clover_studio.spikachatmodule.utils.Const;
 
 import org.springframework.http.HttpHeaders;
 
 public class NetworkUtils {
 
-    public static HttpHeaders getHeaders() {
+    public static HttpHeaders getHeaders(Context context) {
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add(Const.Params.TOKEN, SpikaApp.getSharedPreferences().getToken());
+        headers.add(Const.Params.TOKEN, SingletonLikeApp.getInstance().getSharedPreferences(context).getToken());
         return headers;
 
     }

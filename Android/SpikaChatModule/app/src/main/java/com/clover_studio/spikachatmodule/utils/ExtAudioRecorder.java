@@ -351,6 +351,7 @@ public class ExtAudioRecorder {
 				try {
 					randomAccessWriter.close(); // Remove prepared file
 				} catch (IOException e) {
+					e.printStackTrace();
 				}
 				(new File(filePath)).delete();
 			}

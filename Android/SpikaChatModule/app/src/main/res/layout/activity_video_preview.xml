@@ -51,6 +51,7 @@
                     android:layout_height="30dp"
                     android:layout_marginLeft="10dp"
                     android:contentDescription="@null"
+                    android:layout_marginStart="10dp"
                     android:src="@drawable/ic_play"/>
 
                 <ProgressBar
@@ -60,8 +61,11 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="15dp"
+                    android:layout_marginStart="15dp"
                     android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_toRightOf="@+id/ivPlayPause"
+                    android:layout_toEndOf="@+id/ivPlayPause"
                     android:progress="0"/>
             </RelativeLayout>
         </RelativeLayout>
@@ -94,8 +98,8 @@
                 android:id="@+id/galleryBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_weight="1"
-                android:capitalize="characters"
                 android:text="@string/gallery"/>
 
             <Button
@@ -103,7 +107,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:capitalize="characters"
+                style="?android:attr/buttonBarButtonStyle"
                 android:text="@string/camera"/>
 
         </LinearLayout>
@@ -122,7 +126,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:capitalize="characters"
+                style="?android:attr/buttonBarButtonStyle"
                 android:text="@string/CANCEL"/>
 
             <Button
@@ -130,7 +134,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:capitalize="characters"
+                style="?android:attr/buttonBarButtonStyle"
                 android:text="@string/OK"/>
 
         </LinearLayout>

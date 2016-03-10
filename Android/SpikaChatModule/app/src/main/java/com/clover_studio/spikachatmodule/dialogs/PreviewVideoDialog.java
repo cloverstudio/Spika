@@ -7,7 +7,6 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -112,7 +111,7 @@ public class PreviewVideoDialog extends Dialog {
 
             final DownloadFileDialog dialog = DownloadFileDialog.startDialog(getOwnerActivity());
 
-            DownloadFileManager.downloadVideo(getOwnerActivity(), Tools.getFileUrlFromId(fileModel.file.id), videoFile, new DownloadFileManager.OnDownloadListener() {
+            DownloadFileManager.downloadVideo(getOwnerActivity(), Tools.getFileUrlFromId(fileModel.file.id, getOwnerActivity()), videoFile, new DownloadFileManager.OnDownloadListener() {
                 @Override
                 public void onStart() {
                     LogCS.d("LOG", "START DOWNLOADING");

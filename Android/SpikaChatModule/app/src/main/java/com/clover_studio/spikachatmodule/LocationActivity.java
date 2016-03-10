@@ -3,21 +3,22 @@ package com.clover_studio.spikachatmodule;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 
 import com.clover_studio.spikachatmodule.base.BaseActivity;
 import com.clover_studio.spikachatmodule.dialogs.NotifyDialog;
-import com.clover_studio.spikachatmodule.models.UploadFileResult;
-import com.clover_studio.spikachatmodule.robospice.NetworkUtils;
 import com.clover_studio.spikachatmodule.utils.Const;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -188,13 +189,20 @@ public class LocationActivity extends BaseActivity implements OnMapReadyCallback
 
         Criteria criteria = new Criteria();
         String provider = locationManager.getBestProvider(criteria, true);
-        Location myLocation = locationManager.getLastKnownLocation(provider);
 
-        if(myLocation != null){
-            LatLng latLng = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
-            activeLatLng = latLng;
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
-            googleMap.addMarker(new MarkerOptions().position(latLng));
+        if (Build.VERSION.SDK_INT >= 23 &&
+                ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission( getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+        }else{
+            Location myLocation = locationManager.getLastKnownLocation(provider);
+
+            if(myLocation != null){
+                LatLng latLng = new LatLng(myLocation.getLatitude(), myLocation.getLongitude());
+                activeLatLng = latLng;
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+                googleMap.addMarker(new MarkerOptions().position(latLng));
+            }
         }
 
     }

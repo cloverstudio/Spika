@@ -108,7 +108,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/userSeenLabel"
-            android:layout_above="@+id/buttonsLayout"
             android:cacheColorHint="@android:color/transparent"
             android:clipToPadding="false"
             android:scrollbars="vertical"/>

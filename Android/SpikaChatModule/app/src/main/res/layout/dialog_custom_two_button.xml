@@ -68,13 +68,17 @@
                     android:id="@+id/leftButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:textColor="@color/white"
                     android:layout_weight="1"
                     android:text="@string/CANCEL"/>
 
                 <Button
                     android:id="@+id/rightButton"
                     android:layout_width="0dp"
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     android:layout_weight="1"
                     android:text="@string/OK"/>
 

@@ -1,9 +1,6 @@
 package com.clover_studio.spikachatmodule.adapters;
 
-import android.graphics.Color;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +12,6 @@ import com.clover_studio.spikachatmodule.R;
 import com.clover_studio.spikachatmodule.models.Message;
 import com.clover_studio.spikachatmodule.models.User;
 import com.clover_studio.spikachatmodule.utils.Const;
-import com.clover_studio.spikachatmodule.utils.LogCS;
 import com.clover_studio.spikachatmodule.utils.MessageSortByCreated;
 import com.clover_studio.spikachatmodule.utils.Tools;
 import com.clover_studio.spikachatmodule.utils.VCardParser;
@@ -274,10 +270,12 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
             message = data.get(position);
 
             if (message.type == Const.MessageType.TYPE_NEW_USER) {
-                infoMessageTV.setText(message.user.name + " " + infoMessageTV.getContext().getString(R.string.joined_to_conversation));
+                String text = message.user.name + " " + infoMessageTV.getContext().getString(R.string.joined_to_conversation);
+                infoMessageTV.setText(text);
             }
             else if (message.type == Const.MessageType.TYPE_USER_LEAVE) {
-                infoMessageTV.setText(message.user.name + " " + infoMessageTV.getContext().getString(R.string.left_from_conversation));
+                String text = message.user.name + " " + infoMessageTV.getContext().getString(R.string.left_from_conversation);
+                infoMessageTV.setText(text);
             }
 
             if(position == 0 || !isMessageInSameDate(message, data.get(Math.max(0, position - 1)))){
@@ -367,11 +365,13 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
 
             if (isMessageFromUser(message, myUser)) {
                 if(message.seenBy != null && message.seenBy.size() > 0){
-                    time.setText(time.getResources().getString(R.string.seen) + message.getTimeCreated(time.getResources()));
+                    String text = time.getResources().getString(R.string.seen) + message.getTimeCreated(time.getResources());
+                    time.setText(text);
                 } else if (message.status == Const.MessageStatus.SENT) {
                     time.setText(time.getResources().getString(R.string.sending___));
                 } else {
-                    time.setText(time.getResources().getString(R.string.sent) + message.getTimeCreated(time.getResources()));
+                    String text = time.getResources().getString(R.string.sent) + message.getTimeCreated(time.getResources());
+                    time.setText(text);
                 }
             }else{
                 time.setText(message.getTimeCreated(time.getResources()));
@@ -426,13 +426,16 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
             super.bindItem(position);
 
             if (message.deleted != -1 && message.deleted != 0) {
-                messageTV.setText(messageTV.getContext().getString(R.string.message_deleted_at) + " " + Tools.generateDate(Const.DateFormats.USER_JOINED_DATE_FORMAT, message.deleted));
+                String text = messageTV.getContext().getString(R.string.message_deleted_at) + " " + Tools.generateDate(Const.DateFormats.USER_JOINED_DATE_FORMAT, message.deleted);
+                messageTV.setText(text);
             }
             else if (message.type == Const.MessageType.TYPE_NEW_USER) {
-                messageTV.setText(message.user.name + " " + messageTV.getContext().getString(R.string.joined_to_conversation));
+                String text = message.user.name + " " + messageTV.getContext().getString(R.string.joined_to_conversation);
+                messageTV.setText(text);
             }
             else if (message.type == Const.MessageType.TYPE_USER_LEAVE) {
-                messageTV.setText(message.user.name + " " + messageTV.getContext().getString(R.string.left_from_conversation));
+                String text = message.user.name + " " + messageTV.getContext().getString(R.string.left_from_conversation);
+                messageTV.setText(text);
             }
             else {
                 messageTV.setText(message.message);
@@ -453,7 +456,7 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
         @Override
         public void bindItem(int position) {
             super.bindItem(position);
-            Picasso.with(imageIV.getContext()).load(Tools.getFileUrlFromId(message.file.thumb.id)).into(imageIV);
+            Picasso.with(imageIV.getContext()).load(Tools.getFileUrlFromId(message.file.thumb.id, imageIV.getContext())).into(imageIV);
         }
     }
 
