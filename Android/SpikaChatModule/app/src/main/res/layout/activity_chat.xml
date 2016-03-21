@@ -90,6 +90,14 @@
             android:id="@+id/btnSend"
             />
 
+        <ProgressBar
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/loadingAboveSendButton"
+            android:layout_alignRight="@id/btnSend"
+            android:layout_centerVertical="true"
+            android:visibility="gone"/>
+
         <com.clover_studio.spikachatmodule.view.CustomEditText
             android:id="@+id/etMessage"
             android:layout_width="match_parent"

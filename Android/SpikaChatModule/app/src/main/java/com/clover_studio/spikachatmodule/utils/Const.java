@@ -8,7 +8,7 @@ public class Const {
     public static final class Api{
 //        public static final String BASE_URL = "http://192.168.1.104:8080/v1/"; //test url
 //        public static final String BASE_URL = "http://52.91.91.133/spika/v1/"; //production url
-        public static final String BASE_URL = "http://45.55.81.215/spika/v1/"; //new server url
+        public static final String BASE_URL = "http://ossdemo.spika.chat/spika/v1/"; //new server url
         public static final String USER_LOGIN = "user/login";
         public static final String USER_LIST = "user/list";
         public static final String MESSAGES = "message/list";
@@ -20,7 +20,7 @@ public class Const {
     public static final class Socket{
 //        public static final String SOCKET_URL = "http://192.168.1.104:8080"; //production url
 //        public static final String SOCKET_URL = "http://52.91.91.133/spika"; //test url
-    public static final String SOCKET_URL = "http://45.55.81.215/spika"; //new server url
+    public static final String SOCKET_URL = "http://ossdemo.spika.chat/spika"; //new server url
     }
 
     public static final class Extras{

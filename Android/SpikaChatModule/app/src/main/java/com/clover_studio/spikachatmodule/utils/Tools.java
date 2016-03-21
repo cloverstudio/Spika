@@ -19,6 +19,7 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.util.Patterns;
 import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -41,6 +42,8 @@ import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by ubuntu_ivo on 17.07.15..
@@ -628,6 +631,30 @@ public class Tools {
 
             }
         }.execute();
+
+    }
+
+    /**
+     * check if message has link
+     * @param msg message
+     * @return result not null if message has string
+     */
+    public static String checkForLink(String msg) {
+
+        if (msg == null) {
+            return null;
+        } else {
+
+            String result = null;
+            Pattern pattern = Patterns.WEB_URL;
+            Matcher matchURL = pattern.matcher(msg);
+
+            if (matchURL.find()) {
+                result = matchURL.group();
+            }
+
+            return result;
+        }
 
     }
 

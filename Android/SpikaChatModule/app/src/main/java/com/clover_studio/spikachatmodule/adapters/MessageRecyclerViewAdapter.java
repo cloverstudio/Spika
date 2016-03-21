@@ -1,9 +1,12 @@
 package com.clover_studio.spikachatmodule.adapters;
 
+import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.URLUtil;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -13,11 +16,17 @@ import com.clover_studio.spikachatmodule.models.Message;
 import com.clover_studio.spikachatmodule.models.User;
 import com.clover_studio.spikachatmodule.utils.Const;
 import com.clover_studio.spikachatmodule.utils.MessageSortByCreated;
+import com.clover_studio.spikachatmodule.utils.ParseUrlLinkMetadata;
 import com.clover_studio.spikachatmodule.utils.Tools;
 import com.clover_studio.spikachatmodule.utils.VCardParser;
 import com.clover_studio.spikachatmodule.view.roundimage.RoundedImageView;
 import com.squareup.picasso.Picasso;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -175,11 +184,23 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
         int cellType = 0;
         switch (message.type) {
             case Const.MessageType.TYPE_TEXT:
+                boolean isLink = false;
+                if(message.attributes != null){
+                    isLink = true;
+                }
                 if (isMessageFromUser(message, myUser)) {
-                    cellType = R.layout.item_message_text_right;
+                    if(isLink){
+                        cellType = R.layout.item_message_link_right;
+                    }else{
+                        cellType = R.layout.item_message_text_right;
+                    }
                 }
                 else {
-                    cellType = R.layout.item_message_text_left;
+                    if(isLink){
+                        cellType = R.layout.item_message_link_right;
+                    }else{
+                        cellType = R.layout.item_message_text_left;
+                    }
                 }
                 break;
             case Const.MessageType.TYPE_FILE:
@@ -236,6 +257,9 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
         }
         else if (viewType == R.layout.item_message_image_left || viewType == R.layout.item_message_image_right) {
             return new ImageViewHolder(view);
+        }
+        else if (viewType == R.layout.item_message_link_left || viewType == R.layout.item_message_link_right) {
+            return new LinkViewHolder(view);
         }
         else if (viewType == R.layout.item_message_file_left || viewType == R.layout.item_message_file_right) {
             return new FileViewHolder(view);
@@ -440,6 +464,47 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
             else {
                 messageTV.setText(message.message);
             }
+        }
+    }
+
+    public class LinkViewHolder extends BaseViewHolder {
+
+        ImageView image;
+        TextView title;
+        TextView desc;
+        TextView host;
+
+        public LinkViewHolder(View itemView) {
+            super(itemView);
+
+            image = (ImageView) itemView.findViewById(R.id.linkImgView);
+            title = (TextView) itemView.findViewById(R.id.linkTitle);
+            desc = (TextView) itemView.findViewById(R.id.linkDescription);
+            host = (TextView) itemView.findViewById(R.id.linkHost);
+
+        }
+
+        @Override
+        public void bindItem (int position) {
+            super.bindItem(position);
+
+            if(message.parsedUrlData == null){
+                message.parseUrl();
+            }
+
+            Log.e("LOG", "URL MODEL: " + message.attributes);
+
+            if(message.parsedUrlData.imageUrl != null){
+                Picasso.with(image.getContext()).load(message.parsedUrlData.imageUrl).resize(256, 256).into(image);
+                image.setVisibility(View.VISIBLE);
+            }else{
+                image.setVisibility(View.GONE);
+            }
+
+            title.setText(message.parsedUrlData.title);
+            desc.setText(message.parsedUrlData.desc);
+
+            host.setText(message.message);
         }
     }
 

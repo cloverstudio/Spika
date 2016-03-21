@@ -5,9 +5,12 @@ import android.text.TextUtils;
 
 import com.clover_studio.spikachatmodule.base.BaseModel;
 import com.clover_studio.spikachatmodule.utils.Const;
+import com.clover_studio.spikachatmodule.utils.ParseUrlLinkMetadata;
 import com.clover_studio.spikachatmodule.utils.Tools;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,8 +35,11 @@ public class Message extends BaseModel {
     public LocationModel location;
     public List<SeenByModel> seenBy;
     public long deleted = -1;
+    public String attributes;
 
     public int status;
+
+    public ParsedUrlData parsedUrlData;
 
     //for date compare, this is used just in live adapter, do not save to base or make it parcelable
     public String timestampFormatted;
@@ -58,6 +64,7 @@ public class Message extends BaseModel {
         seenBy = message.seenBy;
         deleted = message.deleted;
         status = message.status;
+        attributes = message.attributes;
     }
 
     @Override
@@ -76,6 +83,7 @@ public class Message extends BaseModel {
                 ", location=" + location +
                 ", seenBy=" + seenBy +
                 ", status=" + status +
+                ", attributes=" + attributes +
                 '}';
     }
 
@@ -181,6 +189,18 @@ public class Message extends BaseModel {
             locationMessage.lat = latLng.latitude;
             locationMessage.lng = latLng.longitude;
             location = locationMessage;
+        }
+
+    }
+
+    public void parseUrl(){
+        parsedUrlData = new ParsedUrlData();
+
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            parsedUrlData = mapper.readValue(attributes, ParsedUrlData.class);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }

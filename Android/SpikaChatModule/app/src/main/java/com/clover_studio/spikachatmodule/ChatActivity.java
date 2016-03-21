@@ -30,6 +30,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.clover_studio.spikachatmodule.adapters.MessageRecyclerViewAdapter;
@@ -51,6 +52,7 @@ import com.clover_studio.spikachatmodule.models.GetMessagesModel;
 import com.clover_studio.spikachatmodule.models.LocationModel;
 import com.clover_studio.spikachatmodule.models.Login;
 import com.clover_studio.spikachatmodule.models.Message;
+import com.clover_studio.spikachatmodule.models.ParsedUrlData;
 import com.clover_studio.spikachatmodule.models.SendTyping;
 import com.clover_studio.spikachatmodule.models.UploadFileResult;
 import com.clover_studio.spikachatmodule.models.User;
@@ -67,6 +69,7 @@ import com.clover_studio.spikachatmodule.utils.EmitJsonCreator;
 import com.clover_studio.spikachatmodule.utils.ErrorHandle;
 import com.clover_studio.spikachatmodule.utils.LogCS;
 import com.clover_studio.spikachatmodule.utils.OpenDownloadedFile;
+import com.clover_studio.spikachatmodule.utils.ParseUrlLinkMetadata;
 import com.clover_studio.spikachatmodule.utils.SeenByUtils;
 import com.clover_studio.spikachatmodule.utils.Tools;
 import com.clover_studio.spikachatmodule.view.menu.MenuManager;
@@ -96,6 +99,7 @@ public class ChatActivity extends BaseActivity {
 
     private EditText etMessage;
     private ImageButton btnSend;
+    private ProgressBar pbAboveSend;
     private ButtonType buttonType = ButtonType.MENU;
     private TypingType typingType = TypingType.BLANK;
     private TextView newMessagesButton;
@@ -194,6 +198,7 @@ public class ChatActivity extends BaseActivity {
         settingsListView.setOnItemClickListener(onSettingItemClick);
 
         btnSend = (ImageButton) findViewById(R.id.btnSend);
+        pbAboveSend = (ProgressBar) findViewById(R.id.loadingAboveSendButton);
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -514,13 +519,13 @@ public class ChatActivity extends BaseActivity {
                 super.onRequestSuccess(result);
                 if (result.code == 1) {
 
-                    if(result.data.messages.size() == 0){
+                    if (result.data.messages.size() == 0) {
                         return;
                     }
 
                     boolean toScrollBottom = false;
                     LinearLayoutManager llManager = (LinearLayoutManager) rvMessages.getLayoutManager();
-                    if(llManager.findLastVisibleItemPosition() == rvMessages.getAdapter().getItemCount() - 1){
+                    if (llManager.findLastVisibleItemPosition() == rvMessages.getAdapter().getItemCount() - 1) {
                         toScrollBottom = true;
                     }
 
@@ -531,10 +536,10 @@ public class ChatActivity extends BaseActivity {
                     List<String> unReadMessages = SeenByUtils.getUnSeenMessages(result.data.messages, activeUser);
                     sendOpenMessage(unReadMessages);
 
-                    if(toScrollBottom) {
+                    if (toScrollBottom) {
                         scrollRecyclerToBottom();
-                    }else{
-                        if(newMessagesButton.getVisibility() == View.GONE){
+                    } else {
+                        if (newMessagesButton.getVisibility() == View.GONE) {
                             AnimUtils.fadeThenGoneOrVisible(newMessagesButton, 0, 1, 250);
                         }
                     }
@@ -778,19 +783,52 @@ public class ChatActivity extends BaseActivity {
      */
     protected void sendMessage() {
 
-        Message message = new Message();
-        message.fillMessageForSend(activeUser, etMessage.getText().toString(), Const.MessageType.TYPE_TEXT, null, null);
-
-        etMessage.setText("");
-
-        if(SocketManager.getInstance().isSocketConnect()){
-            JSONObject emitMessage = EmitJsonCreator.createEmitSendMessage(message);
-            SocketManager.getInstance().emitMessage(Const.EmitKeyWord.SEND_MESSAGE, emitMessage);
-        }else{
-            unSentMessageList.add(message);
+        //***************************parse link*******************//
+        boolean hasLink = false;
+        String textMessage = etMessage.getText().toString();
+        if(Tools.checkForLink(textMessage) != null){
+//            hasLink = true;
+            //set hasLink to true when attributes implements on api
         }
 
-        onMessageSent(message);
+        final Message message = new Message();
+        message.fillMessageForSend(activeUser, etMessage.getText().toString(), Const.MessageType.TYPE_TEXT, null, null);
+        if(hasLink){
+            btnSend.setVisibility(View.INVISIBLE);
+            pbAboveSend.setVisibility(View.VISIBLE);
+            new ParseUrlLinkMetadata(textMessage, new ParseUrlLinkMetadata.OnUrlParsed() {
+                @Override
+                public void onUrlParsed(ParsedUrlData data, String json) {
+
+                    btnSend.setVisibility(View.VISIBLE);
+                    pbAboveSend.setVisibility(View.GONE);
+
+                    etMessage.setText("");
+
+                    message.attributes = json;
+
+                    if(SocketManager.getInstance().isSocketConnect()){
+                        JSONObject emitMessage = EmitJsonCreator.createEmitSendMessage(message);
+                        SocketManager.getInstance().emitMessage(Const.EmitKeyWord.SEND_MESSAGE, emitMessage);
+                    }else{
+                        unSentMessageList.add(message);
+                    }
+
+                    onMessageSent(message);
+                }
+            }).execute();
+        }else{
+            etMessage.setText("");
+
+            if(SocketManager.getInstance().isSocketConnect()){
+                JSONObject emitMessage = EmitJsonCreator.createEmitSendMessage(message);
+                SocketManager.getInstance().emitMessage(Const.EmitKeyWord.SEND_MESSAGE, emitMessage);
+            }else{
+                unSentMessageList.add(message);
+            }
+
+            onMessageSent(message);
+        }
 
     }
 
