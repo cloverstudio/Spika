@@ -167,6 +167,15 @@ var MessagingView = Backbone.View.extend({
 
             var view = new stickerPanelView({
                 'el': "body"
+            },function(selectedSticker){
+	            
+	            if(selectedSticker){
+		            
+	            }
+	            
+	            view = null;
+	            
+	            
             });
 
         });

@@ -4,11 +4,99 @@
     width: 280px;
     height: 360px;
     z-index: 100;
-    right: 0px;
+    right: 10px;
     bottom: 40px;
     background-color: #fff;
     border: 1px solid $gray-lighter;
 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+    img.loader{
+	    display: block;
+	    margin-top: 170px;
+	    margin-left: 130px;
+    }
+    
+    #stcker-tab-container{
+	    
+	    width: 100%;
+	    overflow-x: auto;
+	    text-align: left;
+	    height: 50px;
+	    background-color: $gray-lighter;
+	    
+	    ul{
+		    margin: 0px;
+		    padding: 0px;
+		    
+		    
+		    li{
+			    
+			    display: block;
+			    list-style: none;
+			    float:left;
+			    width:50px;
+			    text-align: center;
+			    line-height: 40px;
+			    vertical-align: middle;
+			    cursor: pointer;
+			    padding: 5px;
+			    background-color: $gray-lighter;
+			    border-bottom: 1px solid $gray-lighter;
+			    
+			    img{
+				    max-width: 40px;
+			    }
+			    
+		    }
+		    
+		    li:hover{
+			    border-bottom: 1px solid #fff;
+			    background-color: #fff;
+		    }
+		    
+		    li.selected{
+			    border-bottom: 1px solid #fff;
+			    background-color: #fff;
+		    }
+		    
+	    }
+	    
+    }
+    
+    #sticker-picture-container{
+	    
+	    height: 300px;
+	    overflow-y: auto;
+	    
+	    ul{
+			margin: 0px;
+		    padding: 0px;
+		    
+		    li{
+
+			    display: block;
+			    list-style: none;
+			    float:left;
+			    width:85px;
+			    height: 85px;
+			    text-align: center;
+			    vertical-align: middle;
+			    cursor: pointer;
+			    padding: 5px;
+			    border: 1px solid #fff;
+			    
+			    img{
+				    max-width: 70px;
+			    }
+			    
+		    }
+
+		    li:hover{
+			    border: 1px solid $brand-danger + #555;
+		    }
+		    
+	    }
+    }
     
 }

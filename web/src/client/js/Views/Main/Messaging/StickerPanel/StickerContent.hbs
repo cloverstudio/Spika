@@ -1,0 +1,44 @@
+<div id="stcker-tab-container">
+	<ul id="sticker-tabs">
+	
+		<!-- <li id="sticker-tabs-prev"> 
+			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+		</li> -->
+		
+		{{#each list}}
+			<li class="tabs" id="tab-{{@index}}">
+				<img src="{{{mainPic}}}">
+			</li>
+		{{/each}}
+		
+		<!-- <li id="sticker-tabs-next">
+			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+		</li> -->
+		
+		<div class="clearfix"></div>
+	</ul>
+	
+</div>
+
+<div id="sticker-picture-container">
+	
+	{{#each list}}
+
+		<ul id="pictures-{{@index}}">
+		
+			{{#each list}}
+				
+				<li class="tabs" id="picture-{{@index}}">
+					<img src="{{{this}}}">
+				</li>
+				
+			{{/each}}
+			
+			<div class="clearfix"></div>
+			
+		</ul>
+		
+		
+	{{/each}}
+
+</div>

@@ -9,6 +9,7 @@ var Const = {
     EVENT_ON_TYPING: 'event_typing',
     EVENT_ON_MESSAGE_UPDATED: 'event_message_updated',
     EVENT_MESSAGE_SELECTED: 'event_message_selected',
+    EVENT_ON_GLOBAL_CLICK: 'event_global_click',
     
     URL_LOGIN: "/user/login",
     URL_API_USERS: "/user/list",
