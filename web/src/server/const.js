@@ -21,6 +21,7 @@
     Const.resCodeSendMessageNoUserID = 1000009;
     Const.resCodeSendMessageNoType = 1000010;
     Const.resCodeFileUploadNoFile = 1000011;
+    
     Const.resCodeSocketUnknownError = 1000012;
     Const.resCodeSocketDeleteMessageNoUserID = 1000013;
     Const.resCodeSocketDeleteMessageNoMessageID = 1000014;
@@ -38,7 +39,11 @@
                 
     Const.resCodeSocketLoginNoUserID = 1000025;      
     Const.resCodeSocketLoginNoRoomID = 1000026;    
-        
+    
+    Const.resCodeTokenError = 1000027; 
+
+    Const.resCodeStickerListFailed = 1000028;
+    
     Const.responsecodeParamError = 2001;
     Const.responsecodeTokenError = 2100;
 

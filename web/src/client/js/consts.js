@@ -54,7 +54,8 @@ var Const = {
               1000017 : "Type is not provided.",
               1000018 : "Message is not provided.",
               1000019 : "Location is not provided.",
-              1000020 : "Failed to send message."
+              1000020 : "Failed to send message.",
+              1000027 : "Invalid token"
     }
 
     

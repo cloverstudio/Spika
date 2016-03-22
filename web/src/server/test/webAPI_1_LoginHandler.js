@@ -33,6 +33,8 @@ describe('WEB', function () {
                 res.body.data.should.have.property('user');
                 res.body.data.user.should.have.property('token');
                 
+                token1 = res.body.data.token;
+                
                 done();
             
             });   
@@ -64,6 +66,8 @@ describe('WEB', function () {
                 res.body.should.have.property('data');
                 res.body.data.should.have.property('user');
                 res.body.data.user.should.have.property('token');
+                
+                token1 = res.body.data.token;
                 
                 done();
             

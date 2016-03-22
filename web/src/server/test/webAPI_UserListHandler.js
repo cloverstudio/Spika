@@ -11,6 +11,7 @@ describe('WEB', function () {
             request(app)
                 .get('/spika/v1/user/list/test22')
         		.expect(200) 
+                .set('access-token', token1)
                 .end(function (err, res) {
 
     			if (err) {

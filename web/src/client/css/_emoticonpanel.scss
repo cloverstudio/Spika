@@ -1,0 +1,14 @@
+#emoticon-panel{
+    
+    position: absolute;
+    width: 280px;
+    height: 360px;
+    z-index: 100;
+    right: 0px;
+    bottom: 40px;
+    background-color: #fff;
+    border: 1px solid $gray-lighter;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+}

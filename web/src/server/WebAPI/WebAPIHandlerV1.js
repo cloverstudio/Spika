@@ -45,6 +45,7 @@ var WebAPIHandler ={
         router.use("/file/upload", require('./FileUploadHandler'));
         router.use("/file/download", require('./FileDownloadHandler'));
         router.use("/test", require('./TestHandler'));
+        router.use("/stickers", require('./StickerListHandler'));
         
         WebAPIHandler.router = router;
         app.use(Settings.options.urlPrefix + "/v1", router);

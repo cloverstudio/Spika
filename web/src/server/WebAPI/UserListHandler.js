@@ -15,6 +15,7 @@ var fs = require('fs-extra');
 var path = require('path');
 var mime = require('mime');
 var SocketAPIHandler = require('../SocketAPI/SocketAPIHandler');
+var tokenChecker = require('../lib/Auth');
 
 var UserListHandler = function(){
     
@@ -56,7 +57,7 @@ UserListHandler.prototype.attach = function(router){
   ]
 }
     */
-    router.get('/:roomID',function(request,response){
+    router.get('/:roomID',tokenChecker,function(request,response){
       
         var roomID = request.params.roomID;
         var users = UsersManager.getUsers(roomID);

@@ -38,12 +38,29 @@
         #btn-fileupload{
             position: absolute;
             right: 10px;
-            top: 5px;
+            top: 0px;
             z-index: 110;
             font-size: 20pt;
             cursor: pointer;
+            
+            img{
+                width: 30px;
+            }
         }
         
+        #btn-emoticons{
+            position: absolute;
+            right: 50px;
+            top: 0px;
+            z-index: 110;
+            font-size: 20pt;
+            cursor: pointer;
+
+            img{
+                width: 30px;
+            }
+            
+        }
     }
     
     #messages{
