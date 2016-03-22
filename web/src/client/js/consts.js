@@ -16,6 +16,8 @@ var Const = {
     URL_API_UPLOAD_FILE: "/file/upload",
     URL_API_DOWNLOAD_FILE: "/file/download",
     URL_API_SEND_FILE: "/message/sendFile",
+    URL_API_STICKERLIST: "/stickers",
+    
     
     COOKIE_KEY_LOGININFO: "cookie_logininfo",
     

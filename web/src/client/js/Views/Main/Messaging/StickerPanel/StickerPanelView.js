@@ -12,7 +12,7 @@ var ProcessingDialog = require('../../../Modals/ProcessingDialog/ProcessingDialo
 var User = require('../../../../Models/user.js');
 var LocalizationManager = require('../../../../libs/localizationManager');
 
-var template = require('./EmoticonPanel.hbs');
+var template = require('./StickerPanel.hbs');
 
 var EmoticonPanelView = Backbone.View.extend({
 
@@ -37,6 +37,23 @@ var EmoticonPanelView = Backbone.View.extend({
         
         var self = this;
         
+        WebAPIManager.get(
+            
+            UrlGenerator.stickerList(), 
+            
+            // success
+            function(data){
+                
+                console.log(data);
+
+            },
+            
+            //error
+            function(error){
+                
+            }
+            
+        );
         
         
     }

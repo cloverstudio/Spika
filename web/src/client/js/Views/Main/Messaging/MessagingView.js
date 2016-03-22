@@ -13,7 +13,7 @@ var CellGenerator = require('./CellGenerator');
 var Message = require('../../../Models/message.js');
 var browser = require('bowser');
 var Settings = require('../../../libs/Settings');
-var emoticonPanelView = require('./EmoticonPanel/EmoticonPanelView');
+var stickerPanelView = require('./StickerPanel/StickerPanelView');
 
 var MessagingView = Backbone.View.extend({
 
@@ -165,7 +165,7 @@ var MessagingView = Backbone.View.extend({
         
         SS('#btn-emoticons').on('click',function(){
 
-            var view = new emoticonPanelView({
+            var view = new stickerPanelView({
                 'el': "body"
             });
 

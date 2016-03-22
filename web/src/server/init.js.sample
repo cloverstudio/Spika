@@ -18,7 +18,9 @@
     Config.uploadDir = 'public/uploads/';
     Config.sendAttendanceMessage = true;
     
-
+    Config.stickerBaseURL = 'http://spika.chat';
+    Config.stickerAPI = Config.stickerBaseURL + '/api/v2/stickers/56e005b1695213295419f5df';
+    
     // Exports ----------------------------------------------
     module["exports"] = Config;
 
