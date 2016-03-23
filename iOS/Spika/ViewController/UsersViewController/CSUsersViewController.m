@@ -84,20 +84,20 @@
 
 -(void) getUsers{
     
-    [self.manager.requestSerializer setValue:self.token forHTTPHeaderField:paramTOKEN];
-    
     NSString* url = [NSString stringWithFormat:@"%@%@/%@", [CSCustomConfig sharedInstance].server_url, kAppGetUsersInRoom, self.roomID];
     
-    [self apiGETCallWithURL:url completition:^(CSResponseModel *responseModel) {
+    [[CSApiManager sharedManager] apiGETCallWithURL:url
+                                        indicatorVC:self
+                                       completition:^(CSResponseModel *responseModel) {
         
-        self.users = [NSMutableArray new];
+                                           self.users = [NSMutableArray new];
         
-        for(NSDictionary* item in (NSArray*)responseModel.data) {
-            CSUserModel *itemUser = [[CSUserModel alloc] initWithDictionary:item error:nil];
-            [self.users addObject:itemUser];
-            [self.tableView reloadData];
-        }
-    }];
+                                           for(NSDictionary* item in (NSArray*)responseModel.data) {
+                                               CSUserModel *itemUser = [[CSUserModel alloc] initWithDictionary:item error:nil];
+                                               [self.users addObject:itemUser];
+                                               [self.tableView reloadData];
+                                           }
+                                       }];
 }
 
 -(void)dealloc {

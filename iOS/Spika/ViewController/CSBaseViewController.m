@@ -24,12 +24,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _manager = [AFHTTPRequestOperationManager manager];
-    _manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    _manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    [_manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [_manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    
     [self setSelfViewSizeFromViewController:[[UIScreen mainScreen] bounds]];
     
     // Do any additional setup after loading the view.
@@ -40,93 +34,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
--(void) apiGETCallWithURL: (NSString*) url completition: (apiCallFinish) finish{
-    [self apiGETCallWithURL:url toShowIndicator:YES toHideIndicator:YES completition:finish];
-}
-
--(void) apiGETCallWithURL: (NSString*) url toShowIndicator: (BOOL) toShow toHideIndicator: (BOOL) toHide completition: (apiCallFinish) finish {
-    if(toShow){
-        [self showIndicator];
-    }
-    [self.manager GET:url
-           parameters:nil
-              success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                  
-                  if(toHide){
-                      [self hideIndicator];
-                  }
-                  
-                  CSResponseModel *responseModel = [[CSResponseModel alloc] initWithDictionary:responseObject error:nil];
-                  
-                  if (responseModel.code.intValue > 1) {
-                      NSLog(@"fail client");
-                      UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                      message:[CSChatErrorCodes errorForCode:responseModel.code]
-                                                                     delegate:nil
-                                                            cancelButtonTitle:@"OK"
-                                                            otherButtonTitles:nil, nil];
-                      [alert show];
-                      return;
-                  }
-                  NSLog(@"success %@", url);
-                  
-                  finish(responseModel);
-                  
-              } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                  [self hideIndicator];
-                  
-                  UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                  [alert show];
-                  NSLog(@"fail %@", url);
-              }];
-    
-}
-
--(void) apiPOSTCallWithUrl: (NSString*) url parameters: (NSDictionary*) params completition: (apiCallFinish) finish{
-    [self apiPOSTCallWithUrl:url parameters:params toShowIndicator:YES toHideIndicator:YES completition:finish];
-}
-
--(void) apiPOSTCallWithUrl: (NSString*) url parameters: (NSDictionary*) params toShowIndicator: (BOOL) toShow toHideIndicator: (BOOL) toHide completition:(apiCallFinish)finish {
-    if(toShow){
-        [self showIndicator];
-    }
-    [self.manager POST:url
-            parameters:params
-               success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                   
-                   if(toHide){
-                       [self hideIndicator];
-                   }
-                   
-                   CSResponseModel *responseModel = [[CSResponseModel alloc] initWithDictionary:responseObject error:nil];
-                   
-                   if (responseModel.code.intValue > 1) {
-                       NSLog(@"fail client");
-                       UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                       message:[CSChatErrorCodes errorForCode:responseModel.code]
-                                                                      delegate:nil
-                                                             cancelButtonTitle:@"OK"
-                                                             otherButtonTitles:nil, nil];
-                       [alert show];
-                       return;
-                   }
-                   NSLog(@"success %@", url);
-                   
-                   finish(responseModel);
-
-                   
-               } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                   
-                   [self hideIndicator];
-                   
-                   UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                   [alert show];
-                   
-                   NSLog(@"fail %@", url);
-               }];
-
 }
 
 -(void) setSelfViewSizeFromViewController: (CGRect) frame{
@@ -170,15 +77,5 @@
     }
     
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -67,6 +67,8 @@
     self.slider.value = 0;
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    self.okButton.enabled = NO;
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -88,8 +90,9 @@
 - (void) initAudio{
     
     _audioData = [NSData dataWithContentsOfURL:_recorder.url];
-    NSString* sizeString = [NSString stringWithFormat:@"%ld", _audioData.length];
+    NSString* sizeString = [NSString stringWithFormat:@"%i", _audioData.length];
     [self.okButton setTitle:[NSString stringWithFormat:@"Ok, %@", [CSUtils readableFileSize:sizeString]] forState:UIControlStateNormal];
+    self.okButton.enabled = YES;
     
     _player = [[AVAudioPlayer alloc] initWithContentsOfURL:_recorder.url error:nil];
     _player.delegate = self;

@@ -10,17 +10,17 @@
 #import <AFNetworking/AFNetworking.h>
 #import "CSUtils.h"
 #import "CSResponseModel.h"
+#import "CSApiManager.h"
 
 typedef void(^apiCallFinish)(CSResponseModel *responseModel);
 
 @interface CSBaseViewController : UIViewController
 
-@property (nonatomic, strong) AFHTTPRequestOperationManager *manager;
 @property (nonatomic, strong) CSUserModel *activeUser;
 
--(void) apiGETCallWithURL: (NSString*) url completition: (apiCallFinish) finish;
--(void) apiGETCallWithURL: (NSString*) url toShowIndicator: (BOOL) toShow toHideIndicator: (BOOL) toHide completition: (apiCallFinish) finish;
--(void) apiPOSTCallWithUrl: (NSString*) url parameters: (NSDictionary*) params completition: (apiCallFinish) finish;
--(void) apiPOSTCallWithUrl: (NSString*) url parameters: (NSDictionary*) params toShowIndicator: (BOOL) toShow toHideIndicator: (BOOL) toHide completition: (apiCallFinish) finish;
 -(void) setSelfViewSizeFromViewController: (CGRect) frame;
+
+-(void) showIndicator;
+-(void) hideIndicator;
+
 @end
