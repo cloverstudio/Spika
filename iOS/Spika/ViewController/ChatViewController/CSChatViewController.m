@@ -436,83 +436,96 @@
 
     NSString* urlLogin = [NSString stringWithFormat:@"%@%@", [CSCustomConfig sharedInstance].server_url, kAppLogin];
     
-    [self apiPOSTCallWithUrl:urlLogin parameters:parameters toShowIndicator:YES toHideIndicator:NO completition:^(CSResponseModel *responseModel) {
+    [[CSApiManager sharedManager] apiPOSTCallWithUrl:urlLogin
+                                          parameters:parameters
+                                         indicatorVC:self
+                                     toShowIndicator:YES
+                                     toHideIndicator:NO
+                                        completition:^(CSResponseModel *responseModel) {
     
-        CSLoginResult *login = [[CSLoginResult alloc] initWithDictionary:responseModel.data error:nil];
+                                            CSLoginResult *login = [[CSLoginResult alloc] initWithDictionary:responseModel.data error:nil];
         
-        self.token = [NSString alloc];
-        self.token = login.token;
+                                            self.token = [NSString alloc];
+                                            self.token = login.token;
+                                            
+                                            [CSApiManager sharedManager].accessToken = self.token;
         
-        [self connectToSocket];
-        [self getMessages];
-    }];
+                                            [self connectToSocket];
+                                            [self getMessages];
+                                        }];
 }
 
--(void) getMessages{
-    
-    [self.manager.requestSerializer setValue:self.token forHTTPHeaderField:paramTOKEN];
+-(void) getMessages {
     
     NSString* url = [NSString stringWithFormat:@"%@%@/%@/0", [CSCustomConfig sharedInstance].server_url, kAppGetMessages, self.activeUser.roomID];
-    [self apiGETCallWithURL:url toShowIndicator:NO toHideIndicator:YES completition:^(CSResponseModel *responseModel){
+    
+    [[CSApiManager sharedManager] apiGETCallWithURL:url
+                                        indicatorVC:self
+                                    toShowIndicator:NO
+                                    toHideIndicator:YES
+                                       completition:^(CSResponseModel *responseModel){
         
-        CSGetMessages *messages = [[CSGetMessages alloc] initWithDictionary:responseModel.data error:nil];
+                                           CSGetMessages *messages = [[CSGetMessages alloc] initWithDictionary:responseModel.data error:nil];
         
-        [self.lastDataLoadedFromNet removeAllObjects];
-        [self.lastDataLoadedFromNet addObjectsFromArray:messages.messages];
+                                           [self.lastDataLoadedFromNet removeAllObjects];
+                                           [self.lastDataLoadedFromNet addObjectsFromArray:messages.messages];
         
-        [self.messages addObjectsFromArray:messages.messages];
+                                           [self.messages addObjectsFromArray:messages.messages];
         
-        [self sortMessages];
-        [self.tableView reloadData];
+                                           [self sortMessages];
+                                           [self.tableView reloadData];
         
-        //send unseen messages
-        NSArray* unSeenMessages = [CSUtils generateUnSeenMessageIdsFrom:messages.messages andActiveUser:self.activeUser];
-        [self sendOpenMessages:unSeenMessages];
-    }];
+                                           //send unseen messages
+                                           NSArray* unSeenMessages = [CSUtils generateUnSeenMessageIdsFrom:messages.messages andActiveUser:self.activeUser];
+                                           [self sendOpenMessages:unSeenMessages];
+                                       }];
     
 }
 
 -(void) getMessagesWithLastMessageId:(NSString *) lastMessageId {
     
-    [self.manager.requestSerializer setValue:self.token forHTTPHeaderField:paramTOKEN];
-    
     NSString* url = [NSString stringWithFormat:@"%@%@/%@/%@", [CSCustomConfig sharedInstance].server_url, kAppGetMessages, self.activeUser.roomID, lastMessageId];
-    [self apiGETCallWithURL:url completition:^(CSResponseModel *responseModel) {
+    
+    [[CSApiManager sharedManager] apiGETCallWithURL:url
+                                        indicatorVC:self
+                                       completition:^(CSResponseModel *responseModel) {
         
-        CSGetMessages *messages = [[CSGetMessages alloc] initWithDictionary:responseModel.data error:nil];
+                                           CSGetMessages *messages = [[CSGetMessages alloc] initWithDictionary:responseModel.data error:nil];
         
-        [self.lastDataLoadedFromNet removeAllObjects];
-        [self.lastDataLoadedFromNet addObjectsFromArray:messages.messages];
-        [self.messages addObjectsFromArray:messages.messages];
+                                           [self.lastDataLoadedFromNet removeAllObjects];
+                                           [self.lastDataLoadedFromNet addObjectsFromArray:messages.messages];
+                                           [self.messages addObjectsFromArray:messages.messages];
         
-        [self sortMessages];
-        [self.tableView reloadData];
+                                           [self sortMessages];
+                                           [self.tableView reloadData];
         
-        self.isLoading = NO;
-//        self.tableView.tableFooterView.hidden = YES;
-        [self.indicator stopAnimating];
-    }];
+                                           self.isLoading = NO;
+                                           [self.indicator stopAnimating];
+                                       }];
 }
 
 -(void) getLatestMessages:(NSString *) lastMessageId {
     
-    [self.manager.requestSerializer setValue:self.token forHTTPHeaderField:paramTOKEN];
-    
     NSString* url = [NSString stringWithFormat:@"%@%@/%@/%@", [CSCustomConfig sharedInstance].server_url, kAppGetLatestMessages, self.activeUser.roomID, lastMessageId];
-    [self apiGETCallWithURL:url toShowIndicator:NO toHideIndicator:YES completition:^(CSResponseModel *responseModel) {
+    
+    [[CSApiManager sharedManager] apiGETCallWithURL:url
+                                        indicatorVC:self
+                                    toShowIndicator:NO
+                                    toHideIndicator:YES
+                                       completition:^(CSResponseModel *responseModel) {
         
-        CSGetMessages *messages = [[CSGetMessages alloc] initWithDictionary:responseModel.data error:nil];
+                                           CSGetMessages *messages = [[CSGetMessages alloc] initWithDictionary:responseModel.data error:nil];
         
-        [self.lastDataLoadedFromNet addObjectsFromArray:messages.messages];
-        [self.messages addObjectsFromArray:messages.messages];
+                                           [self.lastDataLoadedFromNet addObjectsFromArray:messages.messages];
+                                           [self.messages addObjectsFromArray:messages.messages];
         
-        [self sortMessages];
-        [self.tableView reloadData];
+                                           [self sortMessages];
+                                           [self.tableView reloadData];
         
-        //send unseen messages
-        NSArray* unSeenMessages = [CSUtils generateUnSeenMessageIdsFrom:messages.messages andActiveUser:self.activeUser];
-        [self sendOpenMessages:unSeenMessages];
-    }];
+                                           //send unseen messages
+                                           NSArray* unSeenMessages = [CSUtils generateUnSeenMessageIdsFrom:messages.messages andActiveUser:self.activeUser];
+                                           [self sendOpenMessages:unSeenMessages];
+                                       }];
 }
 
 -(void) sortMessages{
