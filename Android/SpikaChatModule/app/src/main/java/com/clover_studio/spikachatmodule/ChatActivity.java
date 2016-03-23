@@ -36,7 +36,6 @@ import android.widget.TextView;
 import com.clover_studio.spikachatmodule.adapters.MessageRecyclerViewAdapter;
 import com.clover_studio.spikachatmodule.adapters.SettingsAdapter;
 import com.clover_studio.spikachatmodule.base.BaseActivity;
-import com.clover_studio.spikachatmodule.base.BaseModel;
 import com.clover_studio.spikachatmodule.base.SingletonLikeApp;
 import com.clover_studio.spikachatmodule.dialogs.DownloadFileDialog;
 import com.clover_studio.spikachatmodule.dialogs.InfoMessageDialog;
@@ -79,7 +78,6 @@ import com.clover_studio.spikachatmodule.utils.Tools;
 import com.clover_studio.spikachatmodule.view.menu.MenuManager;
 import com.clover_studio.spikachatmodule.view.menu.OnMenuButtonsListener;
 import com.clover_studio.spikachatmodule.view.menu.OnMenuManageListener;
-import com.clover_studio.spikachatmodule.view.stickers.OnStickersListener;
 import com.clover_studio.spikachatmodule.view.stickers.OnStickersManageListener;
 import com.clover_studio.spikachatmodule.view.stickers.StickersManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -237,7 +235,7 @@ public class ChatActivity extends BaseActivity {
         menuManager.setMenuLayout(this, R.id.menuMain, onMenuManagerListener, onMenuButtonsListener);
 
         stickersManager = new StickersManager();
-        stickersManager.setStickersLayout(this, R.id.stickersMain, onStickersManageListener, onStickersListener);
+        stickersManager.setStickersLayout(this, R.id.stickersMain, onStickersManageListener);
 
         //check for user
         if (!getIntent().hasExtra(Const.Extras.USER)) {
@@ -448,10 +446,6 @@ public class ChatActivity extends BaseActivity {
             }
             onButtonMenuOpenedClicked();
         }
-    };
-
-    protected OnStickersListener onStickersListener = new OnStickersListener() {
-
     };
 
     private AdapterView.OnItemClickListener onSettingItemClick = new AdapterView.OnItemClickListener() {

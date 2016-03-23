@@ -1,15 +1,12 @@
 package com.clover_studio.spikachatmodule.view.stickers;
 
 import android.app.Activity;
-import android.content.Context;
-import android.graphics.Color;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewParent;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
@@ -17,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.clover_studio.spikachatmodule.ChatActivity;
 import com.clover_studio.spikachatmodule.R;
 import com.clover_studio.spikachatmodule.adapters.StickersPagerAdapter;
 import com.clover_studio.spikachatmodule.base.SingletonLikeApp;
@@ -26,11 +22,8 @@ import com.clover_studio.spikachatmodule.models.GetStickersData;
 import com.clover_studio.spikachatmodule.models.StickerCategory;
 import com.clover_studio.spikachatmodule.utils.AnimUtils;
 import com.clover_studio.spikachatmodule.utils.Const;
-import com.clover_studio.spikachatmodule.utils.Tools;
 import com.clover_studio.spikachatmodule.view.circularview.animation.SupportAnimator;
 import com.clover_studio.spikachatmodule.view.circularview.animation.ViewAnimationUtils;
-import com.clover_studio.spikachatmodule.view.menu.OnMenuButtonsListener;
-import com.clover_studio.spikachatmodule.view.menu.OnMenuManageListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -48,16 +41,14 @@ public class StickersManager {
     private SupportAnimator stickersAnimator;
 
     private OnStickersManageListener listener;
-    private OnStickersListener stickersListener;
 
-    public void setStickersLayout(Activity activity, int stickersLayoutId, OnStickersManageListener listener, final OnStickersListener stickersListener){
+    public void setStickersLayout(Activity activity, int stickersLayoutId, OnStickersManageListener listener){
 
         rlStickersMain = (RelativeLayout) activity.findViewById(stickersLayoutId);
         llForStickersCategory = (LinearLayout) rlStickersMain.findViewById(R.id.llStickersCategory);
         vpStickers = (ViewPager) rlStickersMain.findViewById(R.id.stickersViewPager);
         hsvStickers = (HorizontalScrollView) rlStickersMain.findViewById(R.id.hvStickersCategory);
         this.listener = listener;
-        this.stickersListener = stickersListener;
 
     }
 

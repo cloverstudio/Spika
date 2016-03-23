@@ -111,7 +111,6 @@ public class Preferences {
 
     public StickerCategory getStickersLikeObject(){
         String json = getStickersString();
-        Log.e("LOG", "STICKERS: " + json);
         if(TextUtils.isEmpty(json)){
             return null;
         }
