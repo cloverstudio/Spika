@@ -237,6 +237,14 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
                     cellType = R.layout.item_message_file_left;
                 }
                 break;
+            case Const.MessageType.TYPE_STICKER:
+                if (isMessageFromUser(message, myUser)) {
+                    cellType = R.layout.item_message_sticker_right;
+                }
+                else {
+                    cellType = R.layout.item_message_sticker_left;
+                }
+                break;
             default:
                 cellType = R.layout.item_message_text_left;
                 break;
@@ -263,6 +271,9 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
         }
         else if (viewType == R.layout.item_message_file_left || viewType == R.layout.item_message_file_right) {
             return new FileViewHolder(view);
+        }
+        else if (viewType == R.layout.item_message_sticker_left || viewType == R.layout.item_message_sticker_right) {
+            return new StickerViewHolder(view);
         }
         else {
             return new TextViewHolder(view);
@@ -522,6 +533,23 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
         public void bindItem(int position) {
             super.bindItem(position);
             Picasso.with(imageIV.getContext()).load(Tools.getFileUrlFromId(message.file.thumb.id, imageIV.getContext())).into(imageIV);
+        }
+    }
+
+    public class StickerViewHolder extends BaseViewHolder {
+
+        RoundedImageView imageIV;
+
+        public StickerViewHolder(View itemView) {
+            super(itemView);
+            imageIV = (RoundedImageView) itemView.findViewById(R.id.image);
+            imageIV.setCornerRadius(R.dimen.corners_for_bubble);
+        }
+
+        @Override
+        public void bindItem(int position) {
+            super.bindItem(position);
+            Picasso.with(imageIV.getContext()).load(message.message).into(imageIV);
         }
     }
 

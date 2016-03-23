@@ -36,6 +36,7 @@ import android.widget.TextView;
 import com.clover_studio.spikachatmodule.adapters.MessageRecyclerViewAdapter;
 import com.clover_studio.spikachatmodule.adapters.SettingsAdapter;
 import com.clover_studio.spikachatmodule.base.BaseActivity;
+import com.clover_studio.spikachatmodule.base.BaseModel;
 import com.clover_studio.spikachatmodule.base.SingletonLikeApp;
 import com.clover_studio.spikachatmodule.dialogs.DownloadFileDialog;
 import com.clover_studio.spikachatmodule.dialogs.InfoMessageDialog;
@@ -49,16 +50,19 @@ import com.clover_studio.spikachatmodule.managers.socket.SocketManager;
 import com.clover_studio.spikachatmodule.managers.socket.SocketManagerListener;
 import com.clover_studio.spikachatmodule.models.Config;
 import com.clover_studio.spikachatmodule.models.GetMessagesModel;
+import com.clover_studio.spikachatmodule.models.GetStickersData;
 import com.clover_studio.spikachatmodule.models.LocationModel;
 import com.clover_studio.spikachatmodule.models.Login;
 import com.clover_studio.spikachatmodule.models.Message;
 import com.clover_studio.spikachatmodule.models.ParsedUrlData;
 import com.clover_studio.spikachatmodule.models.SendTyping;
+import com.clover_studio.spikachatmodule.models.Sticker;
 import com.clover_studio.spikachatmodule.models.UploadFileResult;
 import com.clover_studio.spikachatmodule.models.User;
 import com.clover_studio.spikachatmodule.robospice.api.DownloadFileManager;
 import com.clover_studio.spikachatmodule.robospice.api.LoginApi;
 import com.clover_studio.spikachatmodule.robospice.api.MessagesApi;
+import com.clover_studio.spikachatmodule.robospice.api.StickersApi;
 import com.clover_studio.spikachatmodule.robospice.api.UploadFileManagement;
 import com.clover_studio.spikachatmodule.robospice.spice.CustomSpiceListener;
 import com.clover_studio.spikachatmodule.utils.AnimUtils;
@@ -75,6 +79,9 @@ import com.clover_studio.spikachatmodule.utils.Tools;
 import com.clover_studio.spikachatmodule.view.menu.MenuManager;
 import com.clover_studio.spikachatmodule.view.menu.OnMenuButtonsListener;
 import com.clover_studio.spikachatmodule.view.menu.OnMenuManageListener;
+import com.clover_studio.spikachatmodule.view.stickers.OnStickersListener;
+import com.clover_studio.spikachatmodule.view.stickers.OnStickersManageListener;
+import com.clover_studio.spikachatmodule.view.stickers.StickersManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.gms.maps.model.LatLng;
 
@@ -99,12 +106,15 @@ public class ChatActivity extends BaseActivity {
 
     private EditText etMessage;
     private ImageButton btnSend;
+    private ImageButton btnStickers;
     private ProgressBar pbAboveSend;
     private ButtonType buttonType = ButtonType.MENU;
+    private StickersType stickersType = StickersType.CLOSED;
     private TypingType typingType = TypingType.BLANK;
     private TextView newMessagesButton;
 
     protected MenuManager menuManager;
+    protected StickersManager stickersManager;
     protected List<String> sentMessages = new ArrayList<>();
     protected List<User> typingUsers = new ArrayList<>();
 
@@ -129,6 +139,10 @@ public class ChatActivity extends BaseActivity {
 
     public enum ButtonType {
         MENU, SEND, MENU_OPENED, IN_ANIMATION;
+    }
+
+    public enum StickersType {
+        CLOSED, OPENED, IN_ANIMATION;
     }
 
     public enum TypingType {
@@ -206,6 +220,14 @@ public class ChatActivity extends BaseActivity {
             }
         });
 
+        btnStickers = (ImageButton) findViewById(R.id.btnStickers);
+        btnStickers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onStickersButtonClicked();
+            }
+        });
+
         etMessage = (EditText) findViewById(R.id.etMessage);
         etMessage.addTextChangedListener(etMessageTextWatcher);
 
@@ -213,6 +235,9 @@ public class ChatActivity extends BaseActivity {
 
         menuManager = new MenuManager();
         menuManager.setMenuLayout(this, R.id.menuMain, onMenuManagerListener, onMenuButtonsListener);
+
+        stickersManager = new StickersManager();
+        stickersManager.setStickersLayout(this, R.id.stickersMain, onStickersManageListener, onStickersListener);
 
         //check for user
         if (!getIntent().hasExtra(Const.Extras.USER)) {
@@ -243,11 +268,16 @@ public class ChatActivity extends BaseActivity {
         findViewById(R.id.viewForMenuBehind).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onButtonMenuOpenedClicked();
+                if (stickersType == StickersType.OPENED) {
+                    onStickersButtonClicked();
+                } else if (buttonType == ButtonType.MENU_OPENED) {
+                    onButtonMenuOpenedClicked();
+                }
             }
         });
 
         login(activeUser);
+        loadStickers();
 
         rvMessages.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -281,12 +311,14 @@ public class ChatActivity extends BaseActivity {
 
         if(firstTime){
             //progress is visible, and it is showed in login method
-            doNotShowProgressNow = true;
-            boolean isInit = true;
-            String lastMessageId = null;
-            getMessages(isInit, lastMessageId);
+//            doNotShowProgressNow = true;
+//            boolean isInit = true;
+//            String lastMessageId = null;
+//            getMessages(isInit, lastMessageId);
+//
+//            firstTime = false;
 
-            firstTime = false;
+            //load data after login to socket (after get access token)
         }else{
             if(pausedForSocket){
                 MessageRecyclerViewAdapter adapter = (MessageRecyclerViewAdapter) rvMessages.getAdapter();
@@ -330,6 +362,20 @@ public class ChatActivity extends BaseActivity {
         @Override
         public void onMenuClosed() {
             buttonType = ButtonType.MENU;
+            etMessage.setEnabled(true);
+            findViewById(R.id.viewForMenuBehind).setVisibility(View.GONE);
+        }
+    };
+
+    protected OnStickersManageListener onStickersManageListener = new OnStickersManageListener() {
+        @Override
+        public void onStickersOpened() {
+            stickersType = StickersType.OPENED;
+        }
+
+        @Override
+        public void onStickersClosed() {
+            stickersType = StickersType.CLOSED;
             etMessage.setEnabled(true);
             findViewById(R.id.viewForMenuBehind).setVisibility(View.GONE);
         }
@@ -404,6 +450,10 @@ public class ChatActivity extends BaseActivity {
         }
     };
 
+    protected OnStickersListener onStickersListener = new OnStickersListener() {
+
+    };
+
     private AdapterView.OnItemClickListener onSettingItemClick = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -458,6 +508,16 @@ public class ChatActivity extends BaseActivity {
                         activeUser.avatarURL = result.data.user.avatarURL;
                     }
                     connectToSocket();
+
+                    //progress is visible, and it is showed in login method
+                    if (firstTime) {
+                        doNotShowProgressNow = true;
+                        boolean isInit = true;
+                        String lastMessageId = null;
+                        getMessages(isInit, lastMessageId);
+
+                        firstTime = false;
+                    }
                 }
             }
         });
@@ -712,6 +772,24 @@ public class ChatActivity extends BaseActivity {
         }
     }
 
+    protected void onStickersButtonClicked() {
+        if (stickersType == StickersType.CLOSED) {
+            if(stickersType == StickersType.IN_ANIMATION){
+                return;
+            }
+            etMessage.setEnabled(false);
+            stickersType = StickersType.IN_ANIMATION;
+            stickersManager.openMenu(btnStickers);
+            findViewById(R.id.viewForMenuBehind).setVisibility(View.VISIBLE);
+        } else if (stickersType == StickersType.OPENED) {
+            if(stickersType == StickersType.IN_ANIMATION){
+                return;
+            }
+            stickersType = StickersType.IN_ANIMATION;
+            stickersManager.closeMenu();
+        }
+    }
+
     private void onButtonMenuClicked() {
         if (buttonType == ButtonType.IN_ANIMATION) {
             return;
@@ -889,6 +967,26 @@ public class ChatActivity extends BaseActivity {
         message.fillMessageForSend(activeUser, vCardLikeString, Const.MessageType.TYPE_CONTACT, null, null);
 
         etMessage.setText("");
+
+        if(SocketManager.getInstance().isSocketConnect()){
+            JSONObject emitMessage = EmitJsonCreator.createEmitSendMessage(message);
+            SocketManager.getInstance().emitMessage(Const.EmitKeyWord.SEND_MESSAGE, emitMessage);
+        }else{
+            unSentMessageList.add(message);
+        }
+
+        onMessageSent(message);
+
+    }
+
+    /**
+     * send stickers
+     *
+     * @param sticker   sticker to send
+     */
+    protected void sendSticker(Sticker sticker) {
+        Message message = new Message();
+        message.fillMessageForSend(activeUser, sticker.fullPic, Const.MessageType.TYPE_STICKER, null, null);
 
         if(SocketManager.getInstance().isSocketConnect()){
             JSONObject emitMessage = EmitJsonCreator.createEmitSendMessage(message);
@@ -1194,6 +1292,10 @@ public class ChatActivity extends BaseActivity {
         }
         if (buttonType == ButtonType.MENU_OPENED) {
             onButtonMenuOpenedClicked();
+            return;
+        }
+        if (stickersType == StickersType.OPENED) {
+            onStickersButtonClicked();
             return;
         }
         super.onBackPressed();
@@ -1557,5 +1659,29 @@ public class ChatActivity extends BaseActivity {
                 }
             }
         }
+    }
+
+    //STICKERS
+    private void loadStickers() {
+        StickersApi.GetStickers spice = new StickersApi.GetStickers(getActivity());
+
+        getSpiceManager().execute(spice, new CustomSpiceListener<GetStickersData>(this) {
+
+            @Override
+            public void onRequestSuccess(GetStickersData result) {
+                super.onRequestSuccess(result);
+                if (result.code == 1) {
+                    stickersManager.setStickers(result, getSupportFragmentManager());
+                }
+            }
+        });
+    }
+
+    public void selectStickers(Sticker sticker){
+        onStickersButtonClicked();
+        sendSticker(sticker);
+        //save to shared
+        SingletonLikeApp.getInstance().getSharedPreferences(getActivity()).increaseClickSticker(sticker);
+        stickersManager.refreshRecent();
     }
 }

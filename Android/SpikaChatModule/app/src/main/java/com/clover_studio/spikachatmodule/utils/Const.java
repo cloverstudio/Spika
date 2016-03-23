@@ -6,7 +6,7 @@ package com.clover_studio.spikachatmodule.utils;
 public class Const {
 
     public static final class Api{
-//        public static final String BASE_URL = "http://192.168.1.104:8080/v1/"; //test url
+//        public static final String BASE_URL = "http://192.168.1.126:8080/v1/"; //test url
 //        public static final String BASE_URL = "http://52.91.91.133/spika/v1/"; //production url
         public static final String BASE_URL = "http://ossdemo.spika.chat/spika/v1/"; //new server url
         public static final String USER_LOGIN = "user/login";
@@ -15,10 +15,11 @@ public class Const {
         public static final String LATEST = "message/latest";
         public static final String UPLOAD_FILE = "file/upload";
         public static final String DOWNLOAD_FILE = "file/download";
+        public static final String STICKERS = "stickers";
     }
 
     public static final class Socket{
-//        public static final String SOCKET_URL = "http://192.168.1.104:8080"; //production url
+//        public static final String SOCKET_URL = "http://192.168.1.126:8080"; //production url
 //        public static final String SOCKET_URL = "http://52.91.91.133/spika"; //test url
     public static final String SOCKET_URL = "http://ossdemo.spika.chat/spika"; //new server url
     }
@@ -31,6 +32,7 @@ public class Const {
         public static final String UPLOAD_MODEL = "UPLOAD_MODEL";
         public static final String ADDRESS = "ADDRESS";
         public static final String LATLNG = "LATLNG";
+        public static final String STICKERS = "STICKERS";
     }
 
     public static final class Preferences{
@@ -38,11 +40,13 @@ public class Const {
         public static final String USER_ID = "USER_ID";
         public static final String SOCKET_URL = "SOCKET_URL";
         public static final String BASE_URL = "BASE_URL";
+        public static final String STICKERS_COUNT = "STICKERS_COUNT7";
     }
 
     public static final class Params{
         public static final String TOKEN = "TOKEN";
         public static final String FILE = "file";
+        public static final String ACCESS_TOKEN = "access-token";
     }
 
     public static final class AnimationDuration{
@@ -75,6 +79,7 @@ public class Const {
         public static final int TYPE_FILE = 2;
         public static final int TYPE_LOCATION = 3;
         public static final int TYPE_CONTACT = 4;
+        public static final int TYPE_STICKER = 5;
         public static final int TYPE_NEW_USER = 1000;
         public static final int TYPE_USER_LEAVE = 1001;
     }
