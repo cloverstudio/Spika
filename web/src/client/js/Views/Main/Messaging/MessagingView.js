@@ -58,7 +58,6 @@ var MessagingView = Backbone.View.extend({
         this.initialTBHeight = SS( "#text-message-box" ).height();
         this.initialTBContainerHeight = SS( "#text-message-box-container" ).height();
         
-
         // Room name
         $("#room_name").html(LoginUserManager.roomID);
                 

@@ -1,4 +1,6 @@
 var _ = require('lodash');
+var VCardParser = require('oniyi-vcard-parser');
+
 var CONST = require('../../../consts');
 var U = require('../../../libs/utils.js');
 var LoginUserManager = require('../../../libs/loginUserManager.js');
@@ -20,7 +22,8 @@ function CellGenerator(options){
     this.thumbTemplate = require('./MessageCells/Thumbnail.hbs');
     this.typingTemplate = require('./MessageCells/Typing.hbs');
     this.deletedTemplate = require('./MessageCells/DeletedMessage.hbs');
-
+    this.locationTemplate = require('./MessageCells/Location.hbs');
+    this.contactTemplate = require('./MessageCells/Contact.hbs');
 };
 
 CellGenerator.prototype.parentView = null;
@@ -70,7 +73,9 @@ CellGenerator.prototype.generate = function(messageModel){
             html = this.messageTemplate(flatData);
         
         if(messageModel.get('type') == CONST.MESSAGE_TYPE_FILE){
-                    
+            
+            console.log("flatData",flatData);
+             
             if(!_.isUndefined(flatData.file.thumb)){
                 
                 // thumbnail exists
@@ -90,6 +95,26 @@ CellGenerator.prototype.generate = function(messageModel){
             
         }
 
+        if(messageModel.get('type') == CONST.MESSAGE_TYPE_LOCATION){
+            html = this.locationTemplate(flatData);
+        }
+        
+        if(messageModel.get('type') == CONST.MESSAGE_TYPE_CONTACT){
+
+            var vcard = new VCardParser({
+                vCardToJSONAttributeMapping: {
+                    'FN': 'name',
+                    'TEL;HOME': 'telhome',
+                    'TEL;CELL': 'telcell'
+                }
+            });
+
+            var vcardObject = vcard.toObject(flatData.message);
+            
+            flatData.vcard = vcardObject;
+            html = this.contactTemplate(flatData);
+        }
+        
         if(messageModel.get('type') == CONST.MESSAGE_TYPE_STICKER)
             html = this.stickerTemplate(flatData);
             

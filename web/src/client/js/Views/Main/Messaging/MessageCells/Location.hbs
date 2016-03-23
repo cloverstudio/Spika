@@ -1,0 +1,30 @@
+<div class="message-cell {{isMine}} map" id="{{id}}" userid="{{userID}}">
+    
+    <div class="status status{{status}}">
+        
+        <span class="sending glyphicon glyphicon-arrow-right"></span>
+        <span class="sent glyphicon glyphicon-ok-circle  "></span>
+        
+    </div>
+        
+	<div class="avatar">
+		<img src="{{ avatarURL }}" />
+    </div>
+
+    <div class="info">
+        
+        <span class="name"> {{name}} </span>
+        <span class="time"> {{formatTime created}} </span>        
+        
+    </div>
+    
+    <div class="message">
+        <img src="https://maps.googleapis.com/maps/api/staticmap?center={{location.lat}},{{location.lng}}&zoom=15&size=600x300&maptype=roadmap&markers=color:red%7Clabel:S%7C{{location.lat}},{{location.lng}}&key=AIzaSyDOkqeO0MZ_igwH_zGyy95DO1ahM8-Ebrw" />
+        <br />
+        <a href="https://www.google.com/maps?q=loc:{{location.lat}},{{location.lng}}" target="_blank">{{l10n "Open Map"}}</a>
+    </div>
+    
+    <div class="clearfix"></div>
+    
+</div>
+

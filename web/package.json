@@ -35,6 +35,7 @@
     "multer": "^0.1.8",
     "node-observer": "^0.3.2",
     "nouislider": "^7.0.10",
+    "oniyi-vcard-parser": "^1.0.0",
     "quickthumb": "0.0.11",
     "request": "^2.69.0",
     "sinon": "^1.17.1",

@@ -12,7 +12,7 @@ public class NetworkUtils {
     public static HttpHeaders getHeaders(Context context) {
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add(Const.Params.TOKEN, SingletonLikeApp.getInstance().getSharedPreferences(context).getToken());
+        headers.add(Const.Params.ACCESS_TOKEN, SingletonLikeApp.getInstance().getSharedPreferences(context).getToken());
         return headers;
 
     }
