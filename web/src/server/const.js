@@ -48,8 +48,11 @@
     Const.responsecodeTokenError = 2100;
 
     Const.messageTypeText = 1;
-    Const.messageTypeFile = 6;
-    Const.messageTypeLocation = 7;
+    Const.messageTypeFile = 2;
+    Const.messageTypeLocation = 3;
+    Const.messageTypeContact = 4;
+    Const.messageTypeSticker = 5;
+        
     Const.messageNewUser = 1000;
     Const.messageUserLeave = 1001;
 

@@ -1,23 +1,29 @@
 <div id="stcker-tab-container">
-	<ul id="sticker-tabs">
-	
-		<!-- <li id="sticker-tabs-prev"> 
-			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-		</li> -->
-		
-		{{#each list}}
-			<li class="tabs" id="tab-{{@index}}">
-				<img src="{{{mainPic}}}">
-			</li>
-		{{/each}}
-		
-		<!-- <li id="sticker-tabs-next">
-			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-		</li> -->
-		
-		<div class="clearfix"></div>
-	</ul>
-	
+
+    <div class="tab-arrows" id="sticker-tabs-prev"> 
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    </div>
+ 
+    <div id="sticker-tabs-parent"> 
+
+        <ul id="sticker-tabs">
+        
+            {{#each list}}
+                <li class="tabs" id="tab-{{@index}}" key="{{@index}}">
+                    <img src="{{{mainPic}}}">
+                </li>
+            {{/each}}
+
+        </ul>
+
+    </div>
+
+    <div class="tab-arrows" id="sticker-tabs-next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    </div>
+
+    <div class="clearfix"></div>
+
 </div>
 
 <div id="sticker-picture-container">
@@ -28,8 +34,8 @@
 		
 			{{#each list}}
 				
-				<li class="tabs" id="picture-{{@index}}">
-					<img src="{{{this}}}">
+				<li class="picture" id="picture-{{@index}}" key="{{@index}}" url="{{{fullPic}}}">
+					<img src="{{{smallPic}}}">
 				</li>
 				
 			{{/each}}

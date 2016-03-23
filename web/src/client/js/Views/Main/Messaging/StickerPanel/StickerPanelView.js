@@ -21,6 +21,7 @@ var EmoticonPanelView = Backbone.View.extend({
     currentMessage:null,
     dataList : [],
     callBack : null,
+    ignoreClose : false,
     initialize: function(options,callBack) {
     
     	if($("#sticker-panel")[0])
@@ -56,6 +57,12 @@ var EmoticonPanelView = Backbone.View.extend({
 
 		        Backbone.on(CONST.EVENT_ON_GLOBAL_CLICK,function(){
 		            
+                    if(self.ignoreClose){
+                        self.ignoreClose = false;
+                        return;
+                    }
+                        
+                        
 		            self.hide();
 		                 
 		        });
@@ -86,19 +93,71 @@ var EmoticonPanelView = Backbone.View.extend({
 	    
 	    if(this.callBack)
 	    	this.callBack(null);
+            
     },
     
     afterRender: function(){
 	    
-	    var tabWidth = $('#sticker-tabs li').outerWidth();
-	    var totalWidth = tabWidth * this.dataList.length
+        var self = this;
+        
+	    var tabWidth = $('#sticker-tabs li.tabs').outerWidth();
+	    var totalWidth = tabWidth * this.dataList.length;
 	    
 	    $('#sticker-tabs').width(totalWidth);
-	    
 	    $('#sticker-picture-container ul').css('display','none');
 	    $('#sticker-picture-container #pictures-0').css('display','block');
-
 	    $('#sticker-tabs #tab-0').addClass('selected');
+        
+        $('#sticker-tabs .tabs').on('click',function(){
+            
+            self.ignoreClose = true;
+            var listNumber = $(this).attr('key');
+            
+            $('#sticker-tabs .tabs').removeClass('selected');
+            $(this).addClass('selected');
+            
+            $('#sticker-picture-container ul').css('display','none');
+            $('#sticker-picture-container #pictures-' + listNumber).css('display','block');
+            
+        });
+
+        $('#sticker-tabs-prev').on('click',function(){
+            
+            self.ignoreClose = true;
+            var scroll = $('#sticker-tabs-parent').scrollLeft();
+            var width = $('#sticker-tabs-parent').outerWidth();
+            
+            $('#sticker-tabs-parent').scrollLeft(scroll - width);
+            
+            
+        });
+ 
+        $('#sticker-tabs-next').on('click',function(){
+            
+            self.ignoreClose = true;
+            
+            var scroll = $('#sticker-tabs-parent').scrollLeft();
+            var width = $('#sticker-tabs-parent').outerWidth();
+            
+            $('#sticker-tabs-parent').scrollLeft(scroll + width);
+            
+        });
+        
+        $('#sticker-picture-container .picture').on('click',function(){
+            
+            self.ignoreClose = true;
+            self.sendMessage($(this).attr('url'));
+            
+        });
+        
+        
+    },
+    
+    sendMessage: function(url){
+        
+        console.log(url);
+        this.hide();
+        
     }
     
 });
