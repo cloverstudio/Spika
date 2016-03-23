@@ -275,7 +275,6 @@ public class ChatActivity extends BaseActivity {
         });
 
         login(activeUser);
-        loadStickers();
 
         rvMessages.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -512,6 +511,7 @@ public class ChatActivity extends BaseActivity {
 
                         firstTime = false;
                     }
+                    loadStickers();
                 }
             }
         });
