@@ -1,4 +1,6 @@
 var _ = require('lodash');
+var VCardParser = require('oniyi-vcard-parser');
+
 var CONST = require('../../../consts');
 var U = require('../../../libs/utils.js');
 var LoginUserManager = require('../../../libs/loginUserManager.js');
@@ -93,12 +95,26 @@ CellGenerator.prototype.generate = function(messageModel){
             
         }
 
-        if(messageModel.get('type') == CONST.MESSAGE_TYPE_LOCATION)
+        if(messageModel.get('type') == CONST.MESSAGE_TYPE_LOCATION){
             html = this.locationTemplate(flatData);
+        }
+        
+        if(messageModel.get('type') == CONST.MESSAGE_TYPE_CONTACT){
 
-        if(messageModel.get('type') == CONST.MESSAGE_TYPE_CONTACT)
+            var vcard = new VCardParser({
+                vCardToJSONAttributeMapping: {
+                    'FN': 'name',
+                    'TEL;HOME': 'telhome',
+                    'TEL;CELL': 'telcell'
+                }
+            });
+
+            var vcardObject = vcard.toObject(flatData.message);
+            
+            flatData.vcard = vcardObject;
             html = this.contactTemplate(flatData);
-             
+        }
+        
         if(messageModel.get('type') == CONST.MESSAGE_TYPE_STICKER)
             html = this.stickerTemplate(flatData);
             

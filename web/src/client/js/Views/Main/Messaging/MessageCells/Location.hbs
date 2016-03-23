@@ -1,4 +1,4 @@
-<div class="message-cell {{isMine}} text" id="{{id}}" userid="{{userID}}">
+<div class="message-cell {{isMine}} map" id="{{id}}" userid="{{userID}}">
     
     <div class="status status{{status}}">
         
@@ -19,7 +19,9 @@
     </div>
     
     <div class="message">
-        <div>{{{ message }}}</div>
+        <img src="https://maps.googleapis.com/maps/api/staticmap?center={{location.lat}},{{location.lng}}&zoom=15&size=600x300&maptype=roadmap&markers=color:red%7Clabel:S%7C{{location.lat}},{{location.lng}}&key=AIzaSyDOkqeO0MZ_igwH_zGyy95DO1ahM8-Ebrw" />
+        <br />
+        <a href="https://www.google.com/maps?q=loc:{{location.lat}},{{location.lng}}" target="_blank">{{l10n "Open Map"}}</a>
     </div>
     
     <div class="clearfix"></div>

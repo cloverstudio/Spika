@@ -6,6 +6,9 @@
 
     Config.apiBaseUrl = "http://45.55.81.215/spika/v1";
     Config.socketUrl = "http://45.55.81.215/spika";
+    
+    Config.googleMapAPIKey = "";
+    
     Config.defaultContainer = "#spika-container";
     Config.lang = "en";
     Config.showSidebar = true;

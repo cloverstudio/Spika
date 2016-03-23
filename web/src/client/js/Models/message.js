@@ -20,6 +20,10 @@ var User = require('./user');
                 file:null,
                 thubm:null,
             },
+            location: {
+                    lat: "",
+                    lng: ""
+            },
             seenBy:[],
             status: 0
         },
@@ -90,6 +94,7 @@ var User = require('./user');
             message: obj.message,
             type: obj.type,
             file: obj.file,
+            location: obj.location,
             created: obj.created,
             deleted: obj.deleted
         });
