@@ -35,6 +35,11 @@ var CONST = require('../consts');
             
             return Settings.options.apiBaseUrl + CONST.URL_API_SEND_FILE;            
             
+        },
+        stickerList: function(){
+            
+            return Settings.options.apiBaseUrl + CONST.URL_API_STICKERLIST;            
+            
         }
             
     };

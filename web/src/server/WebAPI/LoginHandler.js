@@ -66,7 +66,7 @@ LoginHandler.prototype.attach = function(router){
     router.post('/',function(request,response){
                 
         LoginLogic.execute(request.body,function(result){
-
+            
             self.successResponse(response,Const.responsecodeSucceed,{
                 token: result.token,
                 user: result.user
@@ -75,14 +75,14 @@ LoginHandler.prototype.attach = function(router){
         },function(err,code){
             
             if(err){
-                
+
                 self.errorResponse(
                     response,
                     Const.httpCodeSeverError
                 );
                 
             }else{
-                
+
                 self.successResponse(response,code);
                 
             }

@@ -13,7 +13,7 @@ var CellGenerator = require('./CellGenerator');
 var Message = require('../../../Models/message.js');
 var browser = require('bowser');
 var Settings = require('../../../libs/Settings');
-
+var stickerPanelView = require('./StickerPanel/StickerPanelView');
 
 var MessagingView = Backbone.View.extend({
 
@@ -58,7 +58,6 @@ var MessagingView = Backbone.View.extend({
         this.initialTBHeight = SS( "#text-message-box" ).height();
         this.initialTBContainerHeight = SS( "#text-message-box-container" ).height();
         
-
         // Room name
         $("#room_name").html(LoginUserManager.roomID);
                 
@@ -163,12 +162,29 @@ var MessagingView = Backbone.View.extend({
                         
         });
         
+        SS('#btn-emoticons').on('click',function(){
+
+            var view = new stickerPanelView({
+                'el': "body"
+            },function(selectedSticker){
+	            
+	            if(selectedSticker){
+		            
+	            }
+	            
+	            view = null;
+	            
+	            
+            });
+
+        });
+
         SS('#btn-fileupload').on('click',function(){
             
             self.fileUplaoder.handleClick();
             
         });
-
+        
         SS('#file-input').on('change',function(event){
                         
             self.fileUplaoder.startUploadingFile(event);

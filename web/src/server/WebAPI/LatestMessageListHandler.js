@@ -17,6 +17,7 @@ var mime = require('mime');
 var SocketAPIHandler = require('../SocketAPI/SocketAPIHandler');
 var UserModel = require("../Models/UserModel");
 var MessageModel = require("../Models/MessageModel");
+var tokenChecker = require('../lib/Auth');
 
 var LatestMessageListHandler = function(){
     
@@ -90,7 +91,7 @@ LatestMessageListHandler.prototype.attach = function(router){
 }
     */
     
-    router.get('/:roomID/:lastMessageID',function(request,response){
+    router.get('/:roomID/:lastMessageID',tokenChecker,function(request,response){
         
         self.logic(request.params,function(result){
 

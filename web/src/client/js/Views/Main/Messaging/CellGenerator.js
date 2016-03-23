@@ -1,4 +1,6 @@
 var _ = require('lodash');
+var VCardParser = require('oniyi-vcard-parser');
+
 var CONST = require('../../../consts');
 var U = require('../../../libs/utils.js');
 var LoginUserManager = require('../../../libs/loginUserManager.js');
@@ -13,13 +15,15 @@ function CellGenerator(options){
     
     // loading templates
     this.messageTemplate = require('./MessageCells/Message.hbs');
+    this.stickerTemplate = require('./MessageCells/Sticker.hbs');
     this.fileUploadingTemplate = require('./MessageCells/FileUploading.hbs');
     this.userStateChangeTemplate = require('./MessageCells/UserStateChange.hbs');
     this.fileTemplate = require('./MessageCells/File.hbs');
     this.thumbTemplate = require('./MessageCells/Thumbnail.hbs');
     this.typingTemplate = require('./MessageCells/Typing.hbs');
     this.deletedTemplate = require('./MessageCells/DeletedMessage.hbs');
-
+    this.locationTemplate = require('./MessageCells/Location.hbs');
+    this.contactTemplate = require('./MessageCells/Contact.hbs');
 };
 
 CellGenerator.prototype.parentView = null;
@@ -42,11 +46,13 @@ CellGenerator.prototype.generate = function(messageModel){
         flatData[key] = val;
     });
     
-    flatData.message = U.escapeHtml(flatData.message);
-    flatData.message = flatData.message.replace(new RegExp('  ','g'), '&nbsp;&nbsp;');
-    flatData.message = flatData.message.replace(new RegExp('\t','g'), '&nbsp;&nbsp;&nbsp;&nbsp;');
-    flatData.message = flatData.message.replace(new RegExp('\r?\n','g'), '<br/>');
-    flatData.message = U.contentExtract(flatData.message);
+    if(messageModel.get('type') == CONST.MESSAGE_TYPE_TEXT){
+        flatData.message = U.escapeHtml(flatData.message);
+        flatData.message = flatData.message.replace(new RegExp('  ','g'), '&nbsp;&nbsp;');
+        flatData.message = flatData.message.replace(new RegExp('\t','g'), '&nbsp;&nbsp;&nbsp;&nbsp;');
+        flatData.message = flatData.message.replace(new RegExp('\r?\n','g'), '<br/>');
+        flatData.message = U.contentExtract(flatData.message);
+    }
     
     if(flatData.userID == LoginUserManager.user.get('id') && Settings.options.useBothSide){
         flatData.isMine = 'mine';
@@ -67,7 +73,9 @@ CellGenerator.prototype.generate = function(messageModel){
             html = this.messageTemplate(flatData);
         
         if(messageModel.get('type') == CONST.MESSAGE_TYPE_FILE){
-                    
+            
+            console.log("flatData",flatData);
+             
             if(!_.isUndefined(flatData.file.thumb)){
                 
                 // thumbnail exists
@@ -86,7 +94,30 @@ CellGenerator.prototype.generate = function(messageModel){
             }
             
         }
+
+        if(messageModel.get('type') == CONST.MESSAGE_TYPE_LOCATION){
+            html = this.locationTemplate(flatData);
+        }
         
+        if(messageModel.get('type') == CONST.MESSAGE_TYPE_CONTACT){
+
+            var vcard = new VCardParser({
+                vCardToJSONAttributeMapping: {
+                    'FN': 'name',
+                    'TEL;HOME': 'telhome',
+                    'TEL;CELL': 'telcell'
+                }
+            });
+
+            var vcardObject = vcard.toObject(flatData.message);
+            
+            flatData.vcard = vcardObject;
+            html = this.contactTemplate(flatData);
+        }
+        
+        if(messageModel.get('type') == CONST.MESSAGE_TYPE_STICKER)
+            html = this.stickerTemplate(flatData);
+            
         if(messageModel.get('type') == CONST.MESSAGE_TYPE_FILE_UPLOADIND){
             
             if(messageModel.get('isUploading') == 1){

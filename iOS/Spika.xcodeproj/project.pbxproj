@@ -90,6 +90,7 @@
 		EAC6BF2E1C1725400038CCB6 /* CSAudioPreviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC6BF2C1C1725400038CCB6 /* CSAudioPreviewView.xib */; };
 		EAC6BF311C1725C00038CCB6 /* CSEmitJsonCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC6BF301C1725C00038CCB6 /* CSEmitJsonCreator.m */; };
 		EAC6BF331C172A330038CCB6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAC6BF321C172A330038CCB6 /* Images.xcassets */; };
+		EAEA8ABE1CA2A69B00E849E6 /* CSApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA8ABD1CA2A69B00E849E6 /* CSApiManager.m */; };
 		EAF67D2A1C1988C50039CA0C /* CSAvatarLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF67D291C1988C50039CA0C /* CSAvatarLoader.m */; };
 		EAF767DE1C4F9E8900EB126E /* CSChatErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF767DD1C4F9E8900EB126E /* CSChatErrorCodes.m */; };
 		EAF767E91C4FAF2E00EB126E /* CSChatErrorCodes.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAF767EB1C4FAF2E00EB126E /* CSChatErrorCodes.strings */; };
@@ -240,6 +241,8 @@
 		EAC6BF2F1C1725C00038CCB6 /* CSEmitJsonCreator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSEmitJsonCreator.h; sourceTree = "<group>"; };
 		EAC6BF301C1725C00038CCB6 /* CSEmitJsonCreator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSEmitJsonCreator.m; sourceTree = "<group>"; };
 		EAC6BF321C172A330038CCB6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		EAEA8ABC1CA2A69B00E849E6 /* CSApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSApiManager.h; sourceTree = "<group>"; };
+		EAEA8ABD1CA2A69B00E849E6 /* CSApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApiManager.m; sourceTree = "<group>"; };
 		EAF67D281C1988C50039CA0C /* CSAvatarLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSAvatarLoader.h; sourceTree = "<group>"; };
 		EAF67D291C1988C50039CA0C /* CSAvatarLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSAvatarLoader.m; sourceTree = "<group>"; };
 		EAF767DC1C4F9E8900EB126E /* CSChatErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSChatErrorCodes.h; sourceTree = "<group>"; };
@@ -395,6 +398,8 @@
 		EAC6BE5E1C1709C70038CCB6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				EAEA8ABC1CA2A69B00E849E6 /* CSApiManager.h */,
+				EAEA8ABD1CA2A69B00E849E6 /* CSApiManager.m */,
 				EAC6BF2F1C1725C00038CCB6 /* CSEmitJsonCreator.h */,
 				EAC6BF301C1725C00038CCB6 /* CSEmitJsonCreator.m */,
 				EAC6BF1A1C1724690038CCB6 /* CSDownloadManager.h */,
@@ -933,6 +938,7 @@
 				EAC6BE661C170D3A0038CCB6 /* JSONValueTransformer+CustomTransformer.m in Sources */,
 				EAC6BEB21C17186F0038CCB6 /* CSUploadVideoPreviewViewController.m in Sources */,
 				EAC6BED91C171D770038CCB6 /* CSSeenByTableViewCell.m in Sources */,
+				EAEA8ABE1CA2A69B00E849E6 /* CSApiManager.m in Sources */,
 				EAC6BF2D1C1725400038CCB6 /* CSAudioPreviewView.m in Sources */,
 				EAC6BEF51C171FE20038CCB6 /* CSYourTextMessageTableViewCell.m in Sources */,
 				EAC6BE781C170F290038CCB6 /* CSFileDetailsModel.m in Sources */,
@@ -1098,14 +1104,14 @@
 			baseConfigurationReference = 61CC48AE25EC9843EE5AEC4A /* Pods-Spika.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Tomislav Curkovic (387W7232FP)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tomislav Curkovic (387W7232FP)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mislav Bagovic (96YEKUB6MR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mislav Bagovic (96YEKUB6MR)";
 				INFOPLIST_FILE = "$(SRCROOT)/SpikaExample/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cloverstudio.Spika;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a3258fbf-2706-4e5b-8dee-1852dbe4e4b3";
+				PROVISIONING_PROFILE = "c5c5e39b-5c8c-4036-80b3-bef656c91b8a";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1115,14 +1121,14 @@
 			baseConfigurationReference = 1E24982593672E2BE1DCF485 /* Pods-Spika.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Tomislav Curkovic (387W7232FP)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tomislav Curkovic (387W7232FP)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mislav Bagovic (96YEKUB6MR)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Mislav Bagovic (96YEKUB6MR)";
 				INFOPLIST_FILE = "$(SRCROOT)/SpikaExample/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cloverstudio.Spika;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a3258fbf-2706-4e5b-8dee-1852dbe4e4b3";
+				PROVISIONING_PROFILE = "c5c5e39b-5c8c-4036-80b3-bef656c91b8a";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

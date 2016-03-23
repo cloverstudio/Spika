@@ -84,6 +84,12 @@ var MainView = Backbone.View.extend({
             
         });
         
+        $(window).on('click',function(){
+	    	
+	    	Backbone.trigger(CONST.EVENT_ON_GLOBAL_CLICK);
+	    	 
+        });
+        
     },
     
     adjustSize: function(){

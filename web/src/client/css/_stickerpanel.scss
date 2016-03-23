@@ -1,0 +1,131 @@
+#sticker-panel{
+    
+    position: absolute;
+    width: 280px;
+    height: 360px;
+    z-index: 100;
+    right: 10px;
+    bottom: 40px;
+    background-color: #fff;
+    border: 1px solid $gray-lighter;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+    img.loader{
+	    display: block;
+	    margin-top: 170px;
+	    margin-left: 130px;
+    }
+    
+    #stcker-tab-container{
+	    
+	    width: 100%;
+	    text-align: left;
+	    
+        #sticker-tabs-parent{
+            
+            overflow-x: auto;
+            width: 230px;
+            float: left;
+            
+            ul{
+
+                margin: 0px;
+                padding: 0px;
+                
+                li{
+                    display: block;
+                    list-style: none;
+                    float:left;
+                    width:50px;
+                    text-align: center;
+                    line-height: 40px;
+                    cursor: pointer;
+                    padding: 5px;
+                    
+                    border-bottom: 1px solid $gray-light;
+                    border-right: 1px solid $gray-light;
+                    
+                    img{
+                        max-width: 40px;
+                    }
+                    
+                }
+
+                li:hover{
+                    background-color: $gray-lighter;
+                }
+                
+                li.selected{
+                    border-bottom: 1px solid #fff;
+                    background-color: #fff;
+                }
+                
+                li:last-child{
+                    border-right: 1px solid #fff;
+                }
+            
+            }
+        
+        }
+        
+        #sticker-tabs-prev{
+            border-right: 1px solid $gray-light;
+        }
+
+        #sticker-tabs-next{
+            border-left: 1px solid $gray-light;
+        }
+        
+        .tab-arrows{
+            border-bottom: 1px solid $gray-light;
+            float: left;
+            text-align: center;
+            line-height: 40px;
+            cursor: pointer;
+            padding: 5px;
+            width: 23px;
+        }
+        
+        .tab-arrows:hover{
+            background-color: $gray-lighter;
+        }
+            
+    }
+    
+    #sticker-picture-container{
+	    
+	    height: 300px;
+	    overflow-y: auto;
+	    
+	    ul{
+			margin: 0px;
+		    padding: 0px;
+		    
+		    li{
+
+			    display: block;
+			    list-style: none;
+			    float:left;
+			    width:85px;
+			    height: 85px;
+			    text-align: center;
+			    vertical-align: middle;
+			    cursor: pointer;
+			    padding: 5px;
+			    border: 1px solid #fff;
+			    
+			    img{
+				    max-width: 70px;
+			    }
+			    
+		    }
+
+		    li:hover{
+			    background-color: $gray-lighter;
+		    }
+		    
+	    }
+    }
+    
+}

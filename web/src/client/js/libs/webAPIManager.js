@@ -17,9 +17,9 @@ var LoginUserManager = require('./loginUserManager.js');
             
             if(!_.isNull(LoginUserManager.user)){
                 var token = LoginUserManager.user.get('token');
-                
+
                 if(!_.isEmpty(token)){
-                    header.token = token;
+                    header['access-token'] = token;  
                 }
             }
             
@@ -83,18 +83,15 @@ var LoginUserManager = require('./loginUserManager.js');
             var self = this;
             
             var header = {};
-            
+
             if(!_.isNull(LoginUserManager.user)){
                 var token = LoginUserManager.user.get('token');
                 
                 if(!_.isEmpty(token)){
-                    header.token = token;
-                    
-                    
-                    
+                    header['access-token'] = token;  
                 }
+
             }
-            
 
             var data = new FormData();
             
@@ -177,10 +174,7 @@ var LoginUserManager = require('./loginUserManager.js');
                 var token = LoginUserManager.user.get('token');
                 
                 if(!_.isEmpty(token)){
-                    header.token = token;
-                    
-                    
-                        
+                    header['access-token'] = token;  
                 }
             }
 

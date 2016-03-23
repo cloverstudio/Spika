@@ -9,6 +9,7 @@ var Const = {
     EVENT_ON_TYPING: 'event_typing',
     EVENT_ON_MESSAGE_UPDATED: 'event_message_updated',
     EVENT_MESSAGE_SELECTED: 'event_message_selected',
+    EVENT_ON_GLOBAL_CLICK: 'event_global_click',
     
     URL_LOGIN: "/user/login",
     URL_API_USERS: "/user/list",
@@ -16,11 +17,16 @@ var Const = {
     URL_API_UPLOAD_FILE: "/file/upload",
     URL_API_DOWNLOAD_FILE: "/file/download",
     URL_API_SEND_FILE: "/message/sendFile",
+    URL_API_STICKERLIST: "/stickers",
+    
     
     COOKIE_KEY_LOGININFO: "cookie_logininfo",
     
     MESSAGE_TYPE_TEXT : 1,
     MESSAGE_TYPE_FILE : 2,
+    MESSAGE_TYPE_LOCATION : 3,
+    MESSAGE_TYPE_CONTACT : 4,
+    MESSAGE_TYPE_STICKER : 5,
     MESSAGE_TYPE_NEW_USER : 1000,
     MESSAGE_TYPE_USER_LEAVE : 1001,
     MESSAGE_TYPE_FILE_UPLOADIND : 10000,
@@ -54,7 +60,8 @@ var Const = {
               1000017 : "Type is not provided.",
               1000018 : "Message is not provided.",
               1000019 : "Location is not provided.",
-              1000020 : "Failed to send message."
+              1000020 : "Failed to send message.",
+              1000027 : "Invalid token"
     }
 
     

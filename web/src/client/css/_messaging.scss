@@ -38,12 +38,29 @@
         #btn-fileupload{
             position: absolute;
             right: 10px;
-            top: 5px;
+            top: 0px;
             z-index: 110;
             font-size: 20pt;
             cursor: pointer;
+            
+            img{
+                width: 30px;
+            }
         }
         
+        #btn-emoticons{
+            position: absolute;
+            right: 50px;
+            top: 0px;
+            z-index: 110;
+            font-size: 20pt;
+            cursor: pointer;
+
+            img{
+                width: 30px;
+            }
+            
+        }
     }
     
     #messages{
@@ -51,7 +68,14 @@
         overflow-y: auto;
         overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
-        
+
+            
+        .sticker{
+            img{
+                max-width: 256px;
+            }    
+        }
+            
         .message-cell{
             
             margin-top: 20px;
@@ -90,7 +114,7 @@
                     padding: 10px;
                 }
             }
- 
+
             .status{
                 z-index: 100;
                 font-size: 10px;
@@ -254,6 +278,12 @@
                 color: #fff;
             }
             
+        }
+
+        .message-cell.mine.map{
+            a{
+                color: #000;
+            }
         }
         
         .message-cell.other{

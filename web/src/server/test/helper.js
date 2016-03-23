@@ -14,6 +14,8 @@ var app = require('../mainTest');
         roomID : "test",
         userID : "test2"
     };
+    
+    var token1 = "";
         	
 before(function(done){
     

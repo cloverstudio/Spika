@@ -63,7 +63,9 @@ var LoginView = Backbone.View.extend({
                 });
 
             }
+            
         });
+        
     },
 
     validate: function(){

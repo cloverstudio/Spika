@@ -30,7 +30,7 @@
 #define kAppBubbleRightColor [UIColor colorWithRed:0/255. green:158/255. blue:159/255. alpha:255/255.]
 
 //API
-#define kAppBaseUrl @"http://45.55.81.215/spika/v1/"
+#define kAppBaseUrl @"http://ossdemo.spika.chat/spika/v1/"
 #define kAppDownloadSufix @"file/download"
 #define kAppUploadApi @"file/upload"
 #define kAppLogin @"user/login"
@@ -62,7 +62,7 @@
 #define paramAddress @"address"
 
 //socket
-#define kAppSocketURL @"http://45.55.81.215/spika"
+#define kAppSocketURL @"http://ossdemo.spika.chat/spika"
 #define kAppSocketLogin @"login"
 #define kAppSocketNewMessage @"newMessage"
 #define kAppSocketSendTyping @"sendTyping"

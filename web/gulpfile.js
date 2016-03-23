@@ -63,7 +63,7 @@ gulp.task('browserify-build', function() {
 });
 
 gulp.task('copy', function() {
-
+    
     fs.mkdirsSync('public/uploads')
     gulp.src('src/client/js/adapter.js').pipe( gulp.dest('public/js') );
     gulp.src('src/client/*.html').pipe( gulp.dest('public') );

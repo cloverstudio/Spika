@@ -54,7 +54,6 @@ FileDownloadHandler.prototype.attach = function(router){
                                     
             } else {
                 
-
                 var filePath = Settings.options.uploadDir + fileID;
                 var filename = file.name
                 var mimetype = file.mimeType;

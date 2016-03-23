@@ -35,7 +35,7 @@
     
     self.userIdTextField.text = [[UIDevice currentDevice] name];
     self.usernameTextField.text = [[UIDevice currentDevice] name];
-    self.avatarUrlTextField.text = @"http://45.55.81.215/spika/img/avatar.jpg";
+    self.avatarUrlTextField.text = @"http://ossdemo.spika.chat/spika/img/avatar.jpg";
     self.roomTextField.text = @"default";
     
     self.serverTextField.enabled = NO;
