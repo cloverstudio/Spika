@@ -155,9 +155,15 @@ var EmoticonPanelView = Backbone.View.extend({
     
     sendMessage: function(url){
         
-        console.log(url);
         this.hide();
         
+        socketIOManager.emit('sendMessage',{
+            message: url,
+            roomID: LoginUserManager.roomID,
+            userID: LoginUserManager.user.get('id'),
+            type:CONST.MESSAGE_TYPE_STICKER
+        });
+            
     }
     
 });
