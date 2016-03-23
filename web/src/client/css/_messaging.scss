@@ -68,7 +68,14 @@
         overflow-y: auto;
         overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
-        
+
+            
+        .sticker{
+            img{
+                max-width: 256px;
+            }    
+        }
+            
         .message-cell{
             
             margin-top: 20px;
@@ -107,7 +114,7 @@
                     padding: 10px;
                 }
             }
- 
+
             .status{
                 z-index: 100;
                 font-size: 10px;

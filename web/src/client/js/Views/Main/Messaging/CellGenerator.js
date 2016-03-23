@@ -13,6 +13,7 @@ function CellGenerator(options){
     
     // loading templates
     this.messageTemplate = require('./MessageCells/Message.hbs');
+    this.stickerTemplate = require('./MessageCells/Sticker.hbs');
     this.fileUploadingTemplate = require('./MessageCells/FileUploading.hbs');
     this.userStateChangeTemplate = require('./MessageCells/UserStateChange.hbs');
     this.fileTemplate = require('./MessageCells/File.hbs');
@@ -42,11 +43,13 @@ CellGenerator.prototype.generate = function(messageModel){
         flatData[key] = val;
     });
     
-    flatData.message = U.escapeHtml(flatData.message);
-    flatData.message = flatData.message.replace(new RegExp('  ','g'), '&nbsp;&nbsp;');
-    flatData.message = flatData.message.replace(new RegExp('\t','g'), '&nbsp;&nbsp;&nbsp;&nbsp;');
-    flatData.message = flatData.message.replace(new RegExp('\r?\n','g'), '<br/>');
-    flatData.message = U.contentExtract(flatData.message);
+    if(messageModel.get('type') == CONST.MESSAGE_TYPE_TEXT){
+        flatData.message = U.escapeHtml(flatData.message);
+        flatData.message = flatData.message.replace(new RegExp('  ','g'), '&nbsp;&nbsp;');
+        flatData.message = flatData.message.replace(new RegExp('\t','g'), '&nbsp;&nbsp;&nbsp;&nbsp;');
+        flatData.message = flatData.message.replace(new RegExp('\r?\n','g'), '<br/>');
+        flatData.message = U.contentExtract(flatData.message);
+    }
     
     if(flatData.userID == LoginUserManager.user.get('id') && Settings.options.useBothSide){
         flatData.isMine = 'mine';
@@ -86,7 +89,10 @@ CellGenerator.prototype.generate = function(messageModel){
             }
             
         }
-        
+
+        if(messageModel.get('type') == CONST.MESSAGE_TYPE_STICKER)
+            html = this.stickerTemplate(flatData);
+            
         if(messageModel.get('type') == CONST.MESSAGE_TYPE_FILE_UPLOADIND){
             
             if(messageModel.get('isUploading') == 1){
