@@ -4,15 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
-import android.widget.TextView;
 
 import com.clover_studio.spikachatmodule.ChatActivity;
 import com.clover_studio.spikachatmodule.R;
@@ -86,10 +82,7 @@ public class CategoryStickersFragment extends Fragment{
     }
 
     public void refreshData(StickerCategory category){
-        Log.d("LOG", "OLD CATEGORY " + this.category);
-        Log.d("LOG", "NEW CATEGORY " + category);
         this.category = category;
-        Log.d("LOG", "OLD CATEGORY AFTER " + this.category);
         if(rvStickers != null && rvStickers.getAdapter() != null){
             ((RecyclerStickersAdapter)rvStickers.getAdapter()).removeData();
             ((RecyclerStickersAdapter)rvStickers.getAdapter()).addData(category.list);
