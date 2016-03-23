@@ -37,6 +37,7 @@
 #define kAppGetMessages @"message/list"
 #define kAppGetLatestMessages @"message/latest"
 #define kAppGetUsersInRoom @"user/list"
+#define kAppGetStickers @"stickers"
 
 //API parameters
 #define paramUserID @"userID"

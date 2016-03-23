@@ -25,7 +25,7 @@
                     <rect key="frame" x="0.0" y="550" width="600" height="50"/>
                     <subviews>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qxh-NL-GgN">
-                            <rect key="frame" x="8" y="2" width="546" height="40"/>
+                            <rect key="frame" x="46" y="2" width="508" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="ocL-Qz-q9r"/>
                             </constraints>
@@ -55,6 +55,17 @@
                                 <action selector="sendMessage:" destination="-1" eventType="touchUpInside" id="4Aw-L0-lv5"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a49-Kv-OPe" userLabel="Sticker Button">
+                            <rect key="frame" x="8" y="2" width="30" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="Fms-PP-QkW"/>
+                                <constraint firstAttribute="width" constant="30" id="tEn-tJ-skx"/>
+                            </constraints>
+                            <state key="normal" image="emoticon"/>
+                            <connections>
+                                <action selector="onStickerButton:" destination="-1" eventType="touchUpInside" id="BIF-PT-7Fm"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -62,9 +73,19 @@
                         <constraint firstAttribute="bottom" secondItem="qxh-NL-GgN" secondAttribute="bottom" constant="8" id="J6n-Yy-Fsz"/>
                         <constraint firstItem="KuR-fL-FAs" firstAttribute="leading" secondItem="qxh-NL-GgN" secondAttribute="trailing" constant="8" id="OdP-jZ-uoU"/>
                         <constraint firstAttribute="height" constant="50" id="Ori-0Y-kpS"/>
+                        <constraint firstItem="a49-Kv-OPe" firstAttribute="centerY" secondItem="0YB-L4-u8I" secondAttribute="centerY" id="RAI-rV-e6k"/>
                         <constraint firstItem="qxh-NL-GgN" firstAttribute="leading" secondItem="0YB-L4-u8I" secondAttribute="leading" constant="8" id="RpV-gM-i9f"/>
                         <constraint firstAttribute="bottom" secondItem="KuR-fL-FAs" secondAttribute="bottom" constant="8" id="aHa-1o-crr"/>
+                        <constraint firstItem="a49-Kv-OPe" firstAttribute="leading" secondItem="0YB-L4-u8I" secondAttribute="leading" constant="8" id="j2L-LG-0AK"/>
+                        <constraint firstItem="qxh-NL-GgN" firstAttribute="leading" secondItem="a49-Kv-OPe" secondAttribute="trailing" constant="8" id="mz9-H5-t1p"/>
+                        <constraint firstAttribute="bottom" secondItem="a49-Kv-OPe" secondAttribute="bottom" constant="8" id="s5H-jx-RGk"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="RAI-rV-e6k"/>
+                            <exclude reference="RpV-gM-i9f"/>
+                        </mask>
+                    </variation>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="tWy-uq-8j4">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="550"/>
@@ -92,10 +113,11 @@
                 <constraint firstItem="tWy-uq-8j4" firstAttribute="top" secondItem="xwW-LC-kvo" secondAttribute="top" id="qFN-i9-TyA"/>
                 <constraint firstItem="0YB-L4-u8I" firstAttribute="leading" secondItem="xwW-LC-kvo" secondAttribute="leading" id="qiu-FP-b8o"/>
             </constraints>
-            <point key="canvasLocation" x="-8" y="315"/>
+            <point key="canvasLocation" x="-234" y="296"/>
         </view>
     </objects>
     <resources>
         <image name="attach_btn" width="30" height="30"/>
+        <image name="emoticon" width="30" height="30"/>
     </resources>
 </document>
