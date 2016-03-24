@@ -14,13 +14,4 @@
     [super awakeFromNib];    
 }
 
--(void)setSelected:(BOOL)selected {
-    if (selected) {
-        self.backgroundColor = [UIColor whiteColor];
-    }
-    else {
-        self.backgroundColor = [UIColor clearColor];
-    }
-}
-
 @end

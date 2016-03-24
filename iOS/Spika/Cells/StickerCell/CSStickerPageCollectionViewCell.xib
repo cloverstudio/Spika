@@ -40,7 +40,7 @@
             <connections>
                 <outlet property="collectionView" destination="X97-tG-zsq" id="IMg-5D-KrS"/>
             </connections>
-            <point key="canvasLocation" x="402.5" y="337.5"/>
+            <point key="canvasLocation" x="144.5" y="80.5"/>
         </collectionViewCell>
     </objects>
 </document>

@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "CSStickerPageModel.h"
+#import "CSStickerDelegate.h"
 
 @interface CSStickerPageCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, strong) CSStickerPageModel *model;
+@property (nonatomic, weak) id <CSStickerDelegate> delegate;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 

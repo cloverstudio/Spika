@@ -7,10 +7,10 @@
 //
 
 #import "CSStickerView.h"
-#import "CSStickerCollectionViewCell.h"
+#import "CSStickerCategoryCollectionViewCell.h"
 #import "CSStickerPageCollectionViewCell.h"
 
-@interface CSStickerView () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface CSStickerView () <UICollectionViewDataSource, UICollectionViewDelegate, CSStickerDelegate>
 
 @property (nonatomic) CGRect originalRect;
 @property (nonatomic) int selectedStickerCollection;
@@ -36,7 +36,7 @@
     self.originalRect = self.backgroundView.frame;
     
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CSStickerPageCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:@"page"];
-    [self.categoryCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CSStickerCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:@"cell"];
+    [self.categoryCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CSStickerCategoryCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:@"cell"];
     
     self.categoryCollectionView.allowsSelection = YES;
     self.collectionView.allowsSelection = NO;
@@ -106,13 +106,7 @@
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if (collectionView.tag == 0) {
-        return 5;
-    }
-    else {
-        return self.stickerList.stickers.count;
-    }
-    return 10;
+    return self.stickerList.stickers.count;
 }
 
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView {
@@ -123,11 +117,12 @@
     if (collectionView.tag == 0) {
         CSStickerPageCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"page" forIndexPath:indexPath];
         CSStickerPageModel *sticker = [self.stickerList.stickers objectAtIndex:indexPath.row];
+        cell.delegate = self;
         cell.model = sticker;
         return cell;
     }
     else if (collectionView.tag == 1) {
-        CSStickerCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+        CSStickerCategoryCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
         CSStickerPageModel *sticker = [self.stickerList.stickers objectAtIndex:indexPath.row];
         [cell.imageView sd_setImageWithURL:[NSURL URLWithString:sticker.mainPic]];
         return cell;
@@ -164,8 +159,11 @@
     }
 }
 
-- (NSInteger)getCurrentPage {
-    return self.collectionView.contentOffset.x / self.collectionView.frame.size.width;
+-(void)onSticker:(NSString *)stickerUrl {
+    if (self.delegate) {
+        [self.delegate onSticker:stickerUrl];
+    }
+    [self animateHide];
 }
 
 @end
