@@ -38,12 +38,6 @@
     self.fileButton.hidden = YES;
     self.videoButton.hidden = YES;
     self.contactButton.hidden = YES;
-        
-    UITapGestureRecognizer *singleFingerTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
-    [self addGestureRecognizer:singleFingerTap];
-    
-    UITapGestureRecognizer *singleFingerTap2 = [[UITapGestureRecognizer alloc] initWithTarget:nil action:nil];
-    [self.backgroundView addGestureRecognizer:singleFingerTap2];
     
     self.originalRect = self.backgroundView.frame;
     
@@ -164,10 +158,6 @@
                                           }];
                      }];
     
-}
-
-- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer {
-    [self animateHide];
 }
 
 - (IBAction)onCamera:(id)sender {
