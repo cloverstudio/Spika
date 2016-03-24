@@ -139,6 +139,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
+                android:autoLink="web"
                 android:textColor="@color/you_message_text_color"
                 android:textSize="@dimen/you_text_size"/>
 

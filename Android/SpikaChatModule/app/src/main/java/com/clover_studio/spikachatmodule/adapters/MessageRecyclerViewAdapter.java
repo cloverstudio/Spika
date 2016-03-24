@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.URLUtil;
@@ -449,11 +450,13 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
     public class TextViewHolder extends BaseViewHolder {
 
         TextView messageTV;
+        boolean isLongActivated;
 
         public TextViewHolder(View itemView) {
             super(itemView);
 
             messageTV = (TextView) itemView.findViewById(R.id.message);
+            isLongActivated = false;
         }
 
         @Override
@@ -475,6 +478,35 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
             else {
                 messageTV.setText(message.message);
             }
+
+            messageTV.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    if (message.deleted > 0) {
+                        return false;
+                    }
+                    if (lastItemListener != null) {
+                        lastItemListener.onLongClick(message);
+                    }
+                    isLongActivated = true;
+                    return false;
+                }
+            });
+
+            messageTV.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        if (isLongActivated) {
+                            isLongActivated = false;
+                            return true;
+                        }
+                    } else if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                        isLongActivated = false;
+                    }
+                    return false;
+                }
+            });
         }
     }
 
