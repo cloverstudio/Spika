@@ -91,6 +91,15 @@
 		EAC6BF311C1725C00038CCB6 /* CSEmitJsonCreator.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC6BF301C1725C00038CCB6 /* CSEmitJsonCreator.m */; };
 		EAC6BF331C172A330038CCB6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAC6BF321C172A330038CCB6 /* Images.xcassets */; };
 		EAEA8ABE1CA2A69B00E849E6 /* CSApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA8ABD1CA2A69B00E849E6 /* CSApiManager.m */; };
+		EAEA8AC21CA2B4BB00E849E6 /* CSStickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA8AC11CA2B4BB00E849E6 /* CSStickerView.m */; };
+		EAEA8AC41CA2B4D100E849E6 /* CSStickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEA8AC31CA2B4D100E849E6 /* CSStickerView.xib */; };
+		EAEA8ACA1CA2CA7200E849E6 /* CSStickerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA8AC81CA2CA7200E849E6 /* CSStickerCollectionViewCell.m */; };
+		EAEA8ACB1CA2CA7200E849E6 /* CSStickerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEA8AC91CA2CA7200E849E6 /* CSStickerCollectionViewCell.xib */; };
+		EAEA8ACF1CA2D1BC00E849E6 /* CSStickerPageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA8ACD1CA2D1BC00E849E6 /* CSStickerPageCollectionViewCell.m */; };
+		EAEA8AD01CA2D1BC00E849E6 /* CSStickerPageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAEA8ACE1CA2D1BC00E849E6 /* CSStickerPageCollectionViewCell.xib */; };
+		EAEA8AD31CA2D85600E849E6 /* CSStickerListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA8AD21CA2D85600E849E6 /* CSStickerListModel.m */; };
+		EAEA8AD61CA2D88A00E849E6 /* CSStickerPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA8AD51CA2D88A00E849E6 /* CSStickerPageModel.m */; };
+		EAEA8AD91CA2D8A300E849E6 /* CSStickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEA8AD81CA2D8A300E849E6 /* CSStickerModel.m */; };
 		EAF67D2A1C1988C50039CA0C /* CSAvatarLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF67D291C1988C50039CA0C /* CSAvatarLoader.m */; };
 		EAF767DE1C4F9E8900EB126E /* CSChatErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF767DD1C4F9E8900EB126E /* CSChatErrorCodes.m */; };
 		EAF767E91C4FAF2E00EB126E /* CSChatErrorCodes.strings in Resources */ = {isa = PBXBuildFile; fileRef = EAF767EB1C4FAF2E00EB126E /* CSChatErrorCodes.strings */; };
@@ -243,6 +252,21 @@
 		EAC6BF321C172A330038CCB6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		EAEA8ABC1CA2A69B00E849E6 /* CSApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSApiManager.h; sourceTree = "<group>"; };
 		EAEA8ABD1CA2A69B00E849E6 /* CSApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSApiManager.m; sourceTree = "<group>"; };
+		EAEA8AC01CA2B4BB00E849E6 /* CSStickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSStickerView.h; sourceTree = "<group>"; };
+		EAEA8AC11CA2B4BB00E849E6 /* CSStickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSStickerView.m; sourceTree = "<group>"; };
+		EAEA8AC31CA2B4D100E849E6 /* CSStickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSStickerView.xib; sourceTree = "<group>"; };
+		EAEA8AC71CA2CA7200E849E6 /* CSStickerCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSStickerCollectionViewCell.h; sourceTree = "<group>"; };
+		EAEA8AC81CA2CA7200E849E6 /* CSStickerCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSStickerCollectionViewCell.m; sourceTree = "<group>"; };
+		EAEA8AC91CA2CA7200E849E6 /* CSStickerCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSStickerCollectionViewCell.xib; sourceTree = "<group>"; };
+		EAEA8ACC1CA2D1BC00E849E6 /* CSStickerPageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSStickerPageCollectionViewCell.h; sourceTree = "<group>"; };
+		EAEA8ACD1CA2D1BC00E849E6 /* CSStickerPageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSStickerPageCollectionViewCell.m; sourceTree = "<group>"; };
+		EAEA8ACE1CA2D1BC00E849E6 /* CSStickerPageCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSStickerPageCollectionViewCell.xib; sourceTree = "<group>"; };
+		EAEA8AD11CA2D85600E849E6 /* CSStickerListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSStickerListModel.h; sourceTree = "<group>"; };
+		EAEA8AD21CA2D85600E849E6 /* CSStickerListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSStickerListModel.m; sourceTree = "<group>"; };
+		EAEA8AD41CA2D88A00E849E6 /* CSStickerPageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSStickerPageModel.h; sourceTree = "<group>"; };
+		EAEA8AD51CA2D88A00E849E6 /* CSStickerPageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSStickerPageModel.m; sourceTree = "<group>"; };
+		EAEA8AD71CA2D8A300E849E6 /* CSStickerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSStickerModel.h; sourceTree = "<group>"; };
+		EAEA8AD81CA2D8A300E849E6 /* CSStickerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSStickerModel.m; sourceTree = "<group>"; };
 		EAF67D281C1988C50039CA0C /* CSAvatarLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSAvatarLoader.h; sourceTree = "<group>"; };
 		EAF67D291C1988C50039CA0C /* CSAvatarLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSAvatarLoader.m; sourceTree = "<group>"; };
 		EAF767DC1C4F9E8900EB126E /* CSChatErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSChatErrorCodes.h; sourceTree = "<group>"; };
@@ -446,6 +470,12 @@
 				EAC6BE681C170DBB0038CCB6 /* CSResponseModel.m */,
 				EAC6BE601C170CE00038CCB6 /* CSModel.h */,
 				EAC6BE611C170CE00038CCB6 /* CSModel.m */,
+				EAEA8AD11CA2D85600E849E6 /* CSStickerListModel.h */,
+				EAEA8AD21CA2D85600E849E6 /* CSStickerListModel.m */,
+				EAEA8AD41CA2D88A00E849E6 /* CSStickerPageModel.h */,
+				EAEA8AD51CA2D88A00E849E6 /* CSStickerPageModel.m */,
+				EAEA8AD71CA2D8A300E849E6 /* CSStickerModel.h */,
+				EAEA8AD81CA2D8A300E849E6 /* CSStickerModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -534,6 +564,7 @@
 		EAC6BEB61C1719010038CCB6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EAEA8ABF1CA2B46D00E849E6 /* StickerView */,
 				EA77FAB71C4E5E2C003005E9 /* NotificationOverlayView */,
 				EA4724D01C47E53500D7B8D4 /* TitleView */,
 				EAB9AA5D1C19D19D00460730 /* AvatarView */,
@@ -575,6 +606,7 @@
 		EAC6BEC81C171C240038CCB6 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				EAEA8AC61CA2CA5000E849E6 /* StickerCell */,
 				EAC6BEE71C171F380038CCB6 /* BaseCell */,
 				EAC6BEFD1C17216D0038CCB6 /* CSCellClickedDelegate.h */,
 				EAC6BEFE1C1722460038CCB6 /* MyImageMessageCell */,
@@ -748,6 +780,29 @@
 			path = AudioPreviewView;
 			sourceTree = "<group>";
 		};
+		EAEA8ABF1CA2B46D00E849E6 /* StickerView */ = {
+			isa = PBXGroup;
+			children = (
+				EAEA8AC01CA2B4BB00E849E6 /* CSStickerView.h */,
+				EAEA8AC11CA2B4BB00E849E6 /* CSStickerView.m */,
+				EAEA8AC31CA2B4D100E849E6 /* CSStickerView.xib */,
+			);
+			path = StickerView;
+			sourceTree = "<group>";
+		};
+		EAEA8AC61CA2CA5000E849E6 /* StickerCell */ = {
+			isa = PBXGroup;
+			children = (
+				EAEA8AC71CA2CA7200E849E6 /* CSStickerCollectionViewCell.h */,
+				EAEA8AC81CA2CA7200E849E6 /* CSStickerCollectionViewCell.m */,
+				EAEA8AC91CA2CA7200E849E6 /* CSStickerCollectionViewCell.xib */,
+				EAEA8ACC1CA2D1BC00E849E6 /* CSStickerPageCollectionViewCell.h */,
+				EAEA8ACD1CA2D1BC00E849E6 /* CSStickerPageCollectionViewCell.m */,
+				EAEA8ACE1CA2D1BC00E849E6 /* CSStickerPageCollectionViewCell.xib */,
+			);
+			path = StickerCell;
+			sourceTree = "<group>";
+		};
 		EAF767E61C4FAEFB00EB126E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -829,14 +884,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAEA8ACB1CA2CA7200E849E6 /* CSStickerCollectionViewCell.xib in Resources */,
 				EAC6BEF01C171F940038CCB6 /* CSUserInfoTableViewCell.xib in Resources */,
 				EAC6BF031C1722460038CCB6 /* CSMyImageMessageTableViewCell.xib in Resources */,
 				EAC6BF151C1724090038CCB6 /* CSImagePreviewView.xib in Resources */,
 				EAC6BE4E1C1703D80038CCB6 /* Assets.xcassets in Resources */,
+				EAEA8AD01CA2D1BC00E849E6 /* CSStickerPageCollectionViewCell.xib in Resources */,
 				EAF767E91C4FAF2E00EB126E /* CSChatErrorCodes.strings in Resources */,
 				EAC6BEC41C171A290038CCB6 /* CSMenuView.xib in Resources */,
 				EA77FABF1C4E5E2C003005E9 /* CSNotificationOverlayView.xib in Resources */,
 				EAC6BEE61C171EF10038CCB6 /* CSMyTextMessageTableViewCell.xib in Resources */,
+				EAEA8AC41CA2B4D100E849E6 /* CSStickerView.xib in Resources */,
 				EAC6BF221C1724A00038CCB6 /* CSProgressLoadingView.xib in Resources */,
 				EAC6BE501C1703D80038CCB6 /* Main.storyboard in Resources */,
 				EAC6BEAD1C17186F0038CCB6 /* CSMessageInfoViewController.xib in Resources */,
@@ -919,6 +977,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EAC6BEE01C171E9A0038CCB6 /* CSGetMessages.m in Sources */,
+				EAEA8AD91CA2D8A300E849E6 /* CSStickerModel.m in Sources */,
 				EAC6BEDD1C171E5F0038CCB6 /* CSLoginResult.m in Sources */,
 				EAC6BF081C1722920038CCB6 /* CSYourMediaMessageTableViewCell.m in Sources */,
 				EAB9AA601C19D1B400460730 /* CSAvatarView.m in Sources */,
@@ -926,6 +985,8 @@
 				EAC6BF021C1722460038CCB6 /* CSMyImageMessageTableViewCell.m in Sources */,
 				EAC6BE821C1716890038CCB6 /* CSBaseViewController.m in Sources */,
 				EA77FAC21C4E5F00003005E9 /* CSNotificationOverlayQueue.m in Sources */,
+				EAEA8ACA1CA2CA7200E849E6 /* CSStickerCollectionViewCell.m in Sources */,
+				EAEA8ACF1CA2D1BC00E849E6 /* CSStickerPageCollectionViewCell.m in Sources */,
 				EAC6BEEA1C171F380038CCB6 /* CSBaseTableViewCell.m in Sources */,
 				EAC6BEBC1C1719260038CCB6 /* CSChatSettingsView.m in Sources */,
 				EAC6BEFB1C17206A0038CCB6 /* CSYourImageMessageTableViewCell.m in Sources */,
@@ -936,6 +997,7 @@
 				EAC6BE521C1703D80038CCB6 /* main.m in Sources */,
 				EAF67D2A1C1988C50039CA0C /* CSAvatarLoader.m in Sources */,
 				EAC6BE661C170D3A0038CCB6 /* JSONValueTransformer+CustomTransformer.m in Sources */,
+				EAEA8AC21CA2B4BB00E849E6 /* CSStickerView.m in Sources */,
 				EAC6BEB21C17186F0038CCB6 /* CSUploadVideoPreviewViewController.m in Sources */,
 				EAC6BED91C171D770038CCB6 /* CSSeenByTableViewCell.m in Sources */,
 				EAEA8ABE1CA2A69B00E849E6 /* CSApiManager.m in Sources */,
@@ -964,12 +1026,14 @@
 				EAC6BF191C17242B0038CCB6 /* CSBasePreviewView.m in Sources */,
 				EAC6BF211C1724A00038CCB6 /* CSProgressLoadingView.m in Sources */,
 				EAC6BEEF1C171F940038CCB6 /* CSUserInfoTableViewCell.m in Sources */,
+				EAEA8AD61CA2D88A00E849E6 /* CSStickerPageModel.m in Sources */,
 				EAC6BEA91C17186F0038CCB6 /* CSDisplayMap.m in Sources */,
 				EAC6BE621C170CE00038CCB6 /* CSModel.m in Sources */,
 				EAC6BEA71C17186F0038CCB6 /* CSChatViewController.m in Sources */,
 				EAC6BEAA1C17186F0038CCB6 /* CSMapViewController.m in Sources */,
 				EA4724D61C47E58300D7B8D4 /* CSTitleView.m in Sources */,
 				EAF767DE1C4F9E8900EB126E /* CSChatErrorCodes.m in Sources */,
+				EAEA8AD31CA2D85600E849E6 /* CSStickerListModel.m in Sources */,
 				EAC6BEC31C171A290038CCB6 /* CSMenuView.m in Sources */,
 				EAC6BE6C1C170E010038CCB6 /* CSMessageModel.m in Sources */,
 				EAC6BED31C171CFF0038CCB6 /* CSProgressUploadingView.m in Sources */,

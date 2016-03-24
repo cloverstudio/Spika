@@ -43,13 +43,16 @@
 #import "CSTitleView.h"
 #import "CSNotificationOverlayView.h"
 #import "CSChatErrorCodes.h"
+#import "CSStickerListModel.h"
 
-@interface CSChatViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, CSChatSettingsViewDelegate, CSCellClickedDelegate, UIDocumentInteractionControllerDelegate, CSMenuViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CSChatSocketControllerDelegate, ABPeoplePickerNavigationControllerDelegate>
+@interface CSChatViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, CSChatSettingsViewDelegate, CSCellClickedDelegate, UIDocumentInteractionControllerDelegate, CSMenuViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CSChatSocketControllerDelegate, ABPeoplePickerNavigationControllerDelegate, CSStickerViewDelegate>
 
 @property (nonatomic, strong) NSDictionary *parameters;
 @property (nonatomic) BOOL isLoading;
 @property (nonatomic, strong) CSTitleView *titleView;
 @property (nonatomic, strong) UIActivityIndicatorView *indicator;
+
+@property (nonatomic, strong) CSStickerListModel *stickerList;
 
 @end
 
@@ -115,6 +118,8 @@
     self.tempSentMessagesLocalId = [[NSMutableArray alloc] init];
     self.typingUsers = [[NSMutableArray alloc] init];
     self.lastDataLoadedFromNet = [[NSMutableArray alloc] init];
+    
+    self.stickerList = [CSStickerListModel new];
     
     NSError *error;
     self.activeUser = [[CSUserModel alloc] initWithDictionary:self.parameters error:&error];
@@ -347,6 +352,32 @@
     [[CSSocketController sharedController] emit:kAppSocketSendMessage args:array];
 }
 
+- (IBAction)onStickerButton:(id)sender {
+    
+    [self.etMessage resignFirstResponder];
+    
+    if(!self.stickerView){
+        
+        self.stickerView = [[CSStickerView alloc] init];
+        self.stickerView.stickerList = self.stickerList;
+        
+        [self.stickerView initializeInView:self.view dismiss:^(void){
+            [self.stickerView removeFromSuperview];
+            self.stickerView = nil;
+        }];
+        
+        self.stickerView.delegate = self;
+    }
+}
+
+#pragma mark - Sticker Delegate
+
+-(void)onSticker:(NSString *)stickerUrl {
+    
+}
+
+#pragma mark -
+
 - (void)sendContact:(NSString *)vCard {
     CSMessageModel* messageModel = [CSMessageModel createMessageWithUser:self.activeUser andMessage:vCard andType:[NSNumber numberWithInt:kAppContactMessageType] andFile:nil andLocation:nil];
     [self.tempSentMessagesLocalId addObject:messageModel.localID];
@@ -452,6 +483,7 @@
         
                                             [self connectToSocket];
                                             [self getMessages];
+                                            [self getStickers];
                                         }];
 }
 
@@ -532,6 +564,18 @@
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:paramCreated ascending:NO];
     [self.messages sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
     [self.lastDataLoadedFromNet sortUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+}
+
+-(void) getStickers {
+    NSString* url = [NSString stringWithFormat:@"%@%@", [CSCustomConfig sharedInstance].server_url, kAppGetStickers];
+    
+    [[CSApiManager sharedManager] apiGETCallWithURL:url
+                                       completition:^(CSResponseModel *responseModel) {
+                                           self.stickerList = [[CSStickerListModel alloc] initWithDictionary:responseModel.data error:nil];
+                                           if (self.stickerView != nil) {
+                                               self.stickerView.stickerList = self.stickerList;
+                                           }
+                                       }];
 }
 
 #pragma mark - UI HELPERS
