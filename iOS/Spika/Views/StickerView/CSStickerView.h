@@ -8,12 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CSStickerListModel.h"
-
-@protocol CSStickerViewDelegate <NSObject>
-
-@required
--(void) onSticker:(NSString*)stickerUrl;
-@end
+#import "CSStickerDelegate.h"
 
 typedef void(^dismissStickerView)(void);
 
@@ -22,7 +17,7 @@ typedef void(^dismissStickerView)(void);
 @property (nonatomic, strong) CSStickerListModel *stickerList;
 
 @property (nonatomic, strong) dismissStickerView dismiss;
-@property (nonatomic, weak) id <CSStickerViewDelegate> delegate;
+@property (nonatomic, weak) id <CSStickerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIView *backgroundView;
 @property (strong, nonatomic) IBOutlet UIView *rootView;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;

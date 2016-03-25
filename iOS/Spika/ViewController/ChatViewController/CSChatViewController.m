@@ -22,6 +22,8 @@
 #import "CSUsersViewController.h"
 #import "CSYourImageMessageTableViewCell.h"
 #import "CSMyImageMessageTableViewCell.h"
+#import "CSYourStickerMessageCell.h"
+#import "CSMyStickerMessageCell.h"
 #import "CSYourMediaMessageTableViewCell.h"
 #import "CSMyMediaMessageTableViewCell.h"
 #import "CSMessageInfoViewController.h"
@@ -45,7 +47,7 @@
 #import "CSChatErrorCodes.h"
 #import "CSStickerListModel.h"
 
-@interface CSChatViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, CSChatSettingsViewDelegate, CSCellClickedDelegate, UIDocumentInteractionControllerDelegate, CSMenuViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CSChatSocketControllerDelegate, ABPeoplePickerNavigationControllerDelegate, CSStickerViewDelegate>
+@interface CSChatViewController () <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, CSChatSettingsViewDelegate, CSCellClickedDelegate, UIDocumentInteractionControllerDelegate, CSMenuViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CSChatSocketControllerDelegate, ABPeoplePickerNavigationControllerDelegate, CSStickerDelegate>
 
 @property (nonatomic, strong) NSDictionary *parameters;
 @property (nonatomic) BOOL isLoading;
@@ -90,6 +92,10 @@
          forCellReuseIdentifier:kAppYourMediaMessageCell];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([CSMyMediaMessageTableViewCell class]) bundle:nil]
          forCellReuseIdentifier:kAppMyMediaMessageCell];
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([CSYourStickerMessageCell class]) bundle:nil]
+         forCellReuseIdentifier:kAppYourStickerMessageCell];
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([CSMyStickerMessageCell class]) bundle:nil]
+         forCellReuseIdentifier:kAppMyStickerMessageCell];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(deleteMessageInChat:)
@@ -373,10 +379,20 @@
 #pragma mark - Sticker Delegate
 
 -(void)onSticker:(NSString *)stickerUrl {
-    
+    [self sendSticker:stickerUrl];
 }
 
-#pragma mark -
+#pragma mark - send messages socket api
+
+- (void)sendSticker:(NSString *)stickerUrl {
+    CSMessageModel* messageModel = [CSMessageModel createMessageWithUser:self.activeUser andMessage:stickerUrl andType:[NSNumber numberWithInt:kAppStickerMessageType] andFile:nil andLocation:nil];
+    [self.tempSentMessagesLocalId addObject:messageModel.localID];
+    [self didSentMessage:messageModel];
+    
+    NSDictionary *parameters = [CSEmitJsonCreator createEmitSendMessage:messageModel andUser:self.activeUser andMessage:stickerUrl andFile:nil andLocation:nil];
+    NSArray *array = [NSArray arrayWithObject:parameters];
+    [[CSSocketController sharedController] emit:kAppSocketSendMessage args:array];
+}
 
 - (void)sendContact:(NSString *)vCard {
     CSMessageModel* messageModel = [CSMessageModel createMessageWithUser:self.activeUser andMessage:vCard andType:[NSNumber numberWithInt:kAppContactMessageType] andFile:nil andLocation:nil];
@@ -674,6 +690,14 @@
         }
         else {
             cell = [self.tableView dequeueReusableCellWithIdentifier:kAppYourMediaMessageCell forIndexPath:indexPath];
+        }
+    }
+    else if ([message.type intValue] == kAppStickerMessageType) {
+        if ([message.user.userID isEqualToString:self.activeUser.userID]) {
+            cell = [self.tableView dequeueReusableCellWithIdentifier:kAppMyStickerMessageCell forIndexPath:indexPath];
+        }
+        else {
+            cell = [self.tableView dequeueReusableCellWithIdentifier:kAppYourStickerMessageCell forIndexPath:indexPath];
         }
     }
     

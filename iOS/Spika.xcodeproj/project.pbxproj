@@ -16,6 +16,12 @@
 		EAB9AA5C1C19D16C00460730 /* CSCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB9AA5B1C19D16C00460730 /* CSCustomView.m */; };
 		EAB9AA601C19D1B400460730 /* CSAvatarView.m in Sources */ = {isa = PBXBuildFile; fileRef = EAB9AA5F1C19D1B400460730 /* CSAvatarView.m */; };
 		EAB9AA621C19D1FA00460730 /* CSAvatarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAB9AA611C19D1FA00460730 /* CSAvatarView.xib */; };
+		EABB0BC51CA3F26800FE7350 /* CSStickerCategoryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EABB0BC31CA3F26800FE7350 /* CSStickerCategoryCollectionViewCell.m */; };
+		EABB0BC61CA3F26800FE7350 /* CSStickerCategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EABB0BC41CA3F26800FE7350 /* CSStickerCategoryCollectionViewCell.xib */; };
+		EABB0BCF1CA3FC5300FE7350 /* CSMyStickerMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EABB0BCE1CA3FC5300FE7350 /* CSMyStickerMessageCell.m */; };
+		EABB0BD11CA3FC6700FE7350 /* CSMyStickerMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EABB0BD01CA3FC6700FE7350 /* CSMyStickerMessageCell.xib */; };
+		EABB0BD41CA3FD3100FE7350 /* CSYourStickerMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EABB0BD31CA3FD3100FE7350 /* CSYourStickerMessageCell.m */; };
+		EABB0BD61CA3FD5100FE7350 /* CSYourStickerMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EABB0BD51CA3FD5100FE7350 /* CSYourStickerMessageCell.xib */; };
 		EAC6BE4D1C1703D80038CCB6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC6BE421C1703D80038CCB6 /* AppDelegate.m */; };
 		EAC6BE4E1C1703D80038CCB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EAC6BE431C1703D80038CCB6 /* Assets.xcassets */; };
 		EAC6BE4F1C1703D80038CCB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EAC6BE451C1703D80038CCB6 /* LaunchScreen.storyboard */; };
@@ -124,6 +130,16 @@
 		EAB9AA5E1C19D1B400460730 /* CSAvatarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSAvatarView.h; sourceTree = "<group>"; };
 		EAB9AA5F1C19D1B400460730 /* CSAvatarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSAvatarView.m; sourceTree = "<group>"; };
 		EAB9AA611C19D1FA00460730 /* CSAvatarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSAvatarView.xib; sourceTree = "<group>"; };
+		EABB0BC21CA3F26800FE7350 /* CSStickerCategoryCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSStickerCategoryCollectionViewCell.h; sourceTree = "<group>"; };
+		EABB0BC31CA3F26800FE7350 /* CSStickerCategoryCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSStickerCategoryCollectionViewCell.m; sourceTree = "<group>"; };
+		EABB0BC41CA3F26800FE7350 /* CSStickerCategoryCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSStickerCategoryCollectionViewCell.xib; sourceTree = "<group>"; };
+		EABB0BCA1CA3F56000FE7350 /* CSStickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSStickerDelegate.h; sourceTree = "<group>"; };
+		EABB0BCD1CA3FC5300FE7350 /* CSMyStickerMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSMyStickerMessageCell.h; sourceTree = "<group>"; };
+		EABB0BCE1CA3FC5300FE7350 /* CSMyStickerMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSMyStickerMessageCell.m; sourceTree = "<group>"; };
+		EABB0BD01CA3FC6700FE7350 /* CSMyStickerMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSMyStickerMessageCell.xib; sourceTree = "<group>"; };
+		EABB0BD21CA3FD3100FE7350 /* CSYourStickerMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSYourStickerMessageCell.h; sourceTree = "<group>"; };
+		EABB0BD31CA3FD3100FE7350 /* CSYourStickerMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSYourStickerMessageCell.m; sourceTree = "<group>"; };
+		EABB0BD51CA3FD5100FE7350 /* CSYourStickerMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSYourStickerMessageCell.xib; sourceTree = "<group>"; };
 		EAC6BE261C16F8460038CCB6 /* Spika.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spika.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAC6BE411C1703D80038CCB6 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EAC6BE421C1703D80038CCB6 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -335,6 +351,26 @@
 				EAB9AA611C19D1FA00460730 /* CSAvatarView.xib */,
 			);
 			path = AvatarView;
+			sourceTree = "<group>";
+		};
+		EABB0BCB1CA3FBD400FE7350 /* MyStickerMessageCell */ = {
+			isa = PBXGroup;
+			children = (
+				EABB0BCD1CA3FC5300FE7350 /* CSMyStickerMessageCell.h */,
+				EABB0BCE1CA3FC5300FE7350 /* CSMyStickerMessageCell.m */,
+				EABB0BD01CA3FC6700FE7350 /* CSMyStickerMessageCell.xib */,
+			);
+			path = MyStickerMessageCell;
+			sourceTree = "<group>";
+		};
+		EABB0BCC1CA3FBD400FE7350 /* YourStickerMessageCell */ = {
+			isa = PBXGroup;
+			children = (
+				EABB0BD21CA3FD3100FE7350 /* CSYourStickerMessageCell.h */,
+				EABB0BD31CA3FD3100FE7350 /* CSYourStickerMessageCell.m */,
+				EABB0BD51CA3FD5100FE7350 /* CSYourStickerMessageCell.xib */,
+			);
+			path = YourStickerMessageCell;
 			sourceTree = "<group>";
 		};
 		EAC6BE1D1C16F8460038CCB6 = {
@@ -606,6 +642,8 @@
 		EAC6BEC81C171C240038CCB6 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				EABB0BCB1CA3FBD400FE7350 /* MyStickerMessageCell */,
+				EABB0BCC1CA3FBD400FE7350 /* YourStickerMessageCell */,
 				EAEA8AC61CA2CA5000E849E6 /* StickerCell */,
 				EAC6BEE71C171F380038CCB6 /* BaseCell */,
 				EAC6BEFD1C17216D0038CCB6 /* CSCellClickedDelegate.h */,
@@ -786,6 +824,7 @@
 				EAEA8AC01CA2B4BB00E849E6 /* CSStickerView.h */,
 				EAEA8AC11CA2B4BB00E849E6 /* CSStickerView.m */,
 				EAEA8AC31CA2B4D100E849E6 /* CSStickerView.xib */,
+				EABB0BCA1CA3F56000FE7350 /* CSStickerDelegate.h */,
 			);
 			path = StickerView;
 			sourceTree = "<group>";
@@ -799,6 +838,9 @@
 				EAEA8ACC1CA2D1BC00E849E6 /* CSStickerPageCollectionViewCell.h */,
 				EAEA8ACD1CA2D1BC00E849E6 /* CSStickerPageCollectionViewCell.m */,
 				EAEA8ACE1CA2D1BC00E849E6 /* CSStickerPageCollectionViewCell.xib */,
+				EABB0BC21CA3F26800FE7350 /* CSStickerCategoryCollectionViewCell.h */,
+				EABB0BC31CA3F26800FE7350 /* CSStickerCategoryCollectionViewCell.m */,
+				EABB0BC41CA3F26800FE7350 /* CSStickerCategoryCollectionViewCell.xib */,
 			);
 			path = StickerCell;
 			sourceTree = "<group>";
@@ -894,10 +936,12 @@
 				EAC6BEC41C171A290038CCB6 /* CSMenuView.xib in Resources */,
 				EA77FABF1C4E5E2C003005E9 /* CSNotificationOverlayView.xib in Resources */,
 				EAC6BEE61C171EF10038CCB6 /* CSMyTextMessageTableViewCell.xib in Resources */,
+				EABB0BC61CA3F26800FE7350 /* CSStickerCategoryCollectionViewCell.xib in Resources */,
 				EAEA8AC41CA2B4D100E849E6 /* CSStickerView.xib in Resources */,
 				EAC6BF221C1724A00038CCB6 /* CSProgressLoadingView.xib in Resources */,
 				EAC6BE501C1703D80038CCB6 /* Main.storyboard in Resources */,
 				EAC6BEAD1C17186F0038CCB6 /* CSMessageInfoViewController.xib in Resources */,
+				EABB0BD61CA3FD5100FE7350 /* CSYourStickerMessageCell.xib in Resources */,
 				EAC6BF331C172A330038CCB6 /* Images.xcassets in Resources */,
 				EAC6BEA81C17186F0038CCB6 /* CSChatViewController.xib in Resources */,
 				EAC6BEBD1C1719260038CCB6 /* CSChatSettingsView.xib in Resources */,
@@ -912,6 +956,7 @@
 				EAC6BECE1C171C4D0038CCB6 /* CSUsersTableViewCell.xib in Resources */,
 				EAC6BEDA1C171D770038CCB6 /* CSSeenByTableViewCell.xib in Resources */,
 				EAC6BEAB1C17186F0038CCB6 /* CSMapViewController.xib in Resources */,
+				EABB0BD11CA3FC6700FE7350 /* CSMyStickerMessageCell.xib in Resources */,
 				EAC6BEFC1C17206A0038CCB6 /* CSYourImageMessageTableViewCell.xib in Resources */,
 				EAC6BEAF1C17186F0038CCB6 /* CSRecordAudioViewController.xib in Resources */,
 				EAC6BED41C171CFF0038CCB6 /* CSProgressUploadingView.xib in Resources */,
@@ -1000,10 +1045,12 @@
 				EAEA8AC21CA2B4BB00E849E6 /* CSStickerView.m in Sources */,
 				EAC6BEB21C17186F0038CCB6 /* CSUploadVideoPreviewViewController.m in Sources */,
 				EAC6BED91C171D770038CCB6 /* CSSeenByTableViewCell.m in Sources */,
+				EABB0BC51CA3F26800FE7350 /* CSStickerCategoryCollectionViewCell.m in Sources */,
 				EAEA8ABE1CA2A69B00E849E6 /* CSApiManager.m in Sources */,
 				EAC6BF2D1C1725400038CCB6 /* CSAudioPreviewView.m in Sources */,
 				EAC6BEF51C171FE20038CCB6 /* CSYourTextMessageTableViewCell.m in Sources */,
 				EAC6BE781C170F290038CCB6 /* CSFileDetailsModel.m in Sources */,
+				EABB0BD41CA3FD3100FE7350 /* CSYourStickerMessageCell.m in Sources */,
 				EAC6BEB41C17186F0038CCB6 /* CSUsersViewController.m in Sources */,
 				EAC6BF271C1724D30038CCB6 /* CSVideoPreviewView.m in Sources */,
 				EAC6BEB01C17186F0038CCB6 /* CSUploadImagePreviewViewController.m in Sources */,
@@ -1016,6 +1063,7 @@
 				EAC6BEAC1C17186F0038CCB6 /* CSMessageInfoViewController.m in Sources */,
 				EAC6BECD1C171C4D0038CCB6 /* CSUsersTableViewCell.m in Sources */,
 				EAC6BF141C1724090038CCB6 /* CSImagePreviewView.m in Sources */,
+				EABB0BCF1CA3FC5300FE7350 /* CSMyStickerMessageCell.m in Sources */,
 				EAC6BEC71C171B4C0038CCB6 /* CSUploadManager.m in Sources */,
 				EAC6BF311C1725C00038CCB6 /* CSEmitJsonCreator.m in Sources */,
 				EAC6BEE51C171EF10038CCB6 /* CSMyTextMessageTableViewCell.m in Sources */,

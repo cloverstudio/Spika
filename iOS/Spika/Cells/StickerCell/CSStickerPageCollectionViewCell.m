@@ -15,7 +15,6 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CSStickerCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:@"cell"];
-    self.collectionView.allowsSelection = NO;
 }
 
 -(void)setModel:(CSStickerPageModel *)model {
@@ -43,7 +42,10 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%@", indexPath);
+    if (self.delegate) {
+        CSStickerModel *sticker = [_model.list objectAtIndex:indexPath.row];
+        [self.delegate onSticker:sticker.fullPic];
+    }
 }
 
 @end
