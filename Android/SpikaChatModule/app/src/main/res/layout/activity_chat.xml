@@ -119,6 +119,7 @@
             android:layout_toRightOf="@id/btnStickers"
             android:layout_toEndOf="@id/btnStickers"
             android:maxLines="5"
+            android:inputType="textCapSentences|textMultiLine"
             android:background="@drawable/edittext_background_white_border_corners"
             android:textSize="15sp"
             />
