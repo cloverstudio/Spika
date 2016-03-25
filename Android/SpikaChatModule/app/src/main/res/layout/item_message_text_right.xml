@@ -141,6 +141,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
+                android:autoLink="web"
+                android:textColorLink="@color/gray_send_message_background"
                 android:textColor="@color/my_message_text_color"
                 android:textSize="@dimen/my_text_size"/>
 

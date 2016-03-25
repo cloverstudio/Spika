@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:visibility="invisible">
+
+    <com.clover_studio.spikachatmodule.view.circularview.layout.RevealFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <RelativeLayout
+            android:id="@+id/stickersMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/stickers_background_drawable"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/stickersViewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:background="@color/trans"/>
+
+                <HorizontalScrollView
+                    android:layout_below="@id/stickersViewPager"
+                    android:layout_width="match_parent"
+                    android:background="@color/gray_light_light_color"
+                    android:id="@+id/hvStickersCategory"
+                    android:scrollbars="none"
+                    android:layout_height="60dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:id="@+id/llStickersCategory"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:id="@+id/recentStickers"
+                            android:background="@drawable/selector_stickers_category"
+                            android:scaleType="fitCenter"
+                            android:paddingRight="5dp"
+                            android:paddingEnd="5dp"
+                            android:paddingLeft="5dp"
+                            android:paddingStart="5dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:src="@drawable/ic_stickers_recent"/>
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/default_color"
+                    android:layout_below="@id/hvStickersCategory"
+                    android:id="@+id/lineAboveCancel" />
+
+                <com.clover_studio.spikachatmodule.view.CustomTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="@string/cancel"
+                    android:textColor="@color/default_color"
+                    android:layout_below="@id/lineAboveCancel"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:id="@+id/cancel_label"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </com.clover_studio.spikachatmodule.view.circularview.layout.RevealFrameLayout>
+
+</RelativeLayout>

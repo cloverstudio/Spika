@@ -56,8 +56,8 @@ and start activity with:
  - You can use Your own backend server, just create Config object
 ```
 		Config config = new Config();
-		config.apiBaseUrl = "http://45.55.81.215/spika/v1/";
-		config.socketUrl = "http://45.55.81.215/spika";
+		config.apiBaseUrl = "http://ossdemo.spika.chat/spika/v1/";
+		config.socketUrl = "http://ossdemo.spika.chat/spika";
 ```
 and start activity with:
 ```

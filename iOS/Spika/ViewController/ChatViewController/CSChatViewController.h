@@ -11,6 +11,7 @@
 #import "CSChatSettingsView.h"
 #import "CSBaseViewController.h"
 #import "CSMenuView.h"
+#import "CSStickerView.h"
 
 @interface CSChatViewController : CSBaseViewController
 
@@ -25,7 +26,7 @@
 
 - (IBAction)changedTextInTextField:(id)sender;
 - (IBAction)sendMessage:(id)sender;
-
+- (IBAction)onStickerButton:(id)sender;
 
 @property (nonatomic, strong) NSString* token;
 @property (nonatomic, strong) NSMutableArray* messages;
@@ -37,6 +38,7 @@
 - (IBAction)changeEditing:(id)sender;
 
 @property (retain)UIDocumentInteractionController *documentController;
-@property (nonatomic, strong) CSMenuView* menuView;
+@property (nonatomic, strong) CSMenuView *menuView;
+@property (nonatomic, strong) CSStickerView *stickerView;
 
 @end

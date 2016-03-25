@@ -83,12 +83,21 @@
             android:layout_centerVertical="true"
             android:background="@color/trans"
             android:src="@drawable/attach"
-            android:layout_marginRight="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:id="@+id/btnSend"
             />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:layout_centerVertical="true"
+            android:background="@color/trans"
+            android:src="@drawable/ic_stickers"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/btnStickers" />
 
         <ProgressBar
             android:layout_width="30dp"
@@ -107,7 +116,10 @@
             android:layout_margin="10dp"
             android:layout_toLeftOf="@id/btnSend"
             android:layout_toStartOf="@id/btnSend"
+            android:layout_toRightOf="@id/btnStickers"
+            android:layout_toEndOf="@id/btnStickers"
             android:maxLines="5"
+            android:inputType="textCapSentences|textMultiLine"
             android:background="@drawable/edittext_background_white_border_corners"
             android:textSize="15sp"
             />
@@ -125,6 +137,13 @@
 
     <include
         layout="@layout/layout_menu_message"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+    <include
+        layout="@layout/layout_menu_stickers"
         android:layout_width="match_parent"
         android:layout_margin="10dp"
         android:layout_height="wrap_content"

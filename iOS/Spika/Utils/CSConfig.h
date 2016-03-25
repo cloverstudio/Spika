@@ -37,6 +37,7 @@
 #define kAppGetMessages @"message/list"
 #define kAppGetLatestMessages @"message/latest"
 #define kAppGetUsersInRoom @"user/list"
+#define kAppGetStickers @"stickers"
 
 //API parameters
 #define paramUserID @"userID"
@@ -96,6 +97,8 @@
 #define kAppMyImageMessageCell @"myImageMessage"
 #define kAppYourMediaMessageCell @"yourMediaMessage"
 #define kAppMyMediaMessageCell @"myMediaMessage"
+#define kAppYourStickerMessageCell @"yourStickerMessage"
+#define kAppMyStickerMessageCell @"myStickerMessage"
 #define kAppUsersTable @"users"
 
 //message types
@@ -103,6 +106,7 @@
 #define kAppFileMessageType 2
 #define kAppLocationMessageType 3
 #define kAppContactMessageType 4
+#define kAppStickerMessageType 5
 #define kAppLeaveUserMessageType 1001
 #define kAppNewUserMessageType 1000
 #define kAppContactType 999

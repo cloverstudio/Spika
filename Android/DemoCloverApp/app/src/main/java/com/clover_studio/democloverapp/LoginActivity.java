@@ -46,7 +46,7 @@ public class LoginActivity extends BaseActivity{
         id.setText(model);
         name.setText(model);
         avatar.setText("http://45.55.81.215/spika/img/avatar.jpg");
-        roomId.setText("default");
+        roomId.setText("default2");
 
         //CONFIG
         final EditText socket = (EditText) findViewById(R.id.socketUrl);

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:id="@+id/parentView"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:layout_marginTop="5dp"
+    android:background="@color/trans"
+    android:paddingTop="0dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/rlDateSeparator">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:background="@color/gray_light_light_color"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_toLeftOf="@+id/dateSeparatorTV"
+            android:layout_toStartOf="@+id/dateSeparatorTV"/>
+
+        <com.clover_studio.spikachatmodule.view.CustomTextView
+            android:id="@+id/dateSeparatorTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/devil_gray_color"
+            android:textSize="12sp"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:background="@color/gray_light_light_color"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toRightOf="@+id/dateSeparatorTV"
+            android:layout_toEndOf="@+id/dateSeparatorTV"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rlDateSeparator">
+
+        <com.clover_studio.spikachatmodule.view.roundimage.RoundImageView
+            android:id="@+id/avatar"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignBottom="@+id/peak_off_and_below"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"/>
+
+        <com.clover_studio.spikachatmodule.view.CustomTextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_toLeftOf="@id/avatar"
+            android:layout_toStartOf="@id/avatar"
+            android:layout_marginTop="5dp"
+            android:text=""
+            android:textColor="@color/devil_gray_color"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            />
+
+        <ImageView
+            android:id="@+id/peak_off_and_align_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/myContentRL"
+            android:layout_toRightOf="@+id/myContentRL"
+            android:layout_toEndOf="@+id/myContentRL"
+            android:contentDescription="@null"
+            android:background="@drawable/bubble_peak_right_to_right_align_bottom"/>
+
+        <ImageView
+            android:id="@+id/peak_below"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/myContentRL"
+            android:layout_alignEnd="@+id/myContentRL"
+            android:layout_below="@+id/myContentRL"
+            android:contentDescription="@null"
+            android:background="@drawable/bubble_peak_right_below"/>
+
+        <ImageView
+            android:id="@+id/peak_off_and_below"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:layout_below="@+id/myContentRL"
+            android:layout_toRightOf="@+id/myContentRL"
+            android:layout_toEndOf="@+id/myContentRL"
+            android:background="@drawable/bubble_peak_right_to_right_below_bottom"/>
+
+        <View
+            android:id="@+id/peak_fill_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/myContentRL"
+            android:layout_alignLeft="@id/peak_below"
+            android:layout_alignStart="@id/peak_below"
+            android:layout_alignRight="@+id/myContentRL"
+            android:layout_alignEnd="@+id/myContentRL"
+            android:layout_alignTop="@id/peak_off_and_align_bottom"
+            android:background="@color/my_message_background_color"/>
+
+        <RelativeLayout
+            android:id="@+id/myContentRL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name"
+            android:layout_marginLeft="35dp"
+            android:layout_marginStart="35dp"
+            android:layout_toLeftOf="@id/avatar"
+            android:layout_toStartOf="@id/avatar"
+            android:background="@drawable/my_message_background_drawable"
+            >
+
+            <RelativeLayout
+                android:id="@+id/imageLayout"
+                android:padding="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.clover_studio.spikachatmodule.view.roundimage.RoundedImageView
+                    android:id="@+id/image"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:scaleType="centerCrop"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <com.clover_studio.spikachatmodule.view.CustomTextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/myContentRL"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_toLeftOf="@id/peak_below"
+            android:layout_toStartOf="@id/peak_below"
+            android:text=""
+            android:textColor="@color/devil_gray_color"
+            android:textSize="12sp"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>
