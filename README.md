@@ -66,3 +66,4 @@ https://github.com/cloverstudio/Spika/tree/master/iOS
 
 * Hold Liable
 * Sublicensing
+
