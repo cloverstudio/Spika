@@ -14,10 +14,11 @@
 @interface CSRecordAudioViewController () <AVAudioRecorderDelegate, AVAudioPlayerDelegate>
 
 @property (nonatomic, strong) AVAudioRecorder *recorder;
-@property (nonatomic, strong) AVAudioPlayer *player;
 @property (nonatomic, strong) NSTimer* updateTimer;
 @property (nonatomic, strong) NSTimer* recordTimer;
 @property (nonatomic, strong) NSData* audioData;
+@property (nonatomic, strong) NSTimer* pulseTimer;
+@property (nonatomic, strong) SE2AudioPlayerView *audioPlayer;
 
 @end
 
@@ -50,21 +51,28 @@
     _recorder.meteringEnabled = YES;
     [_recorder prepareToRecord];
     
-    self.audioView.backgroundColor = kAppDefaultColor(1);
-    self.audioView.layer.cornerRadius = 10;
+    self.audioView.backgroundColor = [UIColor whiteColor];
     self.audioView.layer.masksToBounds = YES;
     
-    self.controlBackground.backgroundColor = [UIColor whiteColor];
-    self.controlBackground.layer.cornerRadius = 10;
-    self.controlBackground.layer.masksToBounds = YES;
+    self.playButton.layer.cornerRadius = self.playButton.frame.size.height/2;
+    self.playButton.layer.borderWidth = 2.0f;
+    self.playButton.layer.borderColor = kAppDefaultColor(1).CGColor;
     
-    self.timeLabel.textColor = kAppDefaultColor(1);
-    self.timeLabel.text = @"00:00";
-    self.recordTime.text = @"00:00";
+    self.playLabel.textColor = kAppDefaultColor(1);
+    self.playLabel.alpha = 0.0f;
     
-    self.playPauseButton.enabled = NO;
-    self.slider.minimumValue = 0;
-    self.slider.value = 0;
+    self.expandingGreenBackgroundView.layer.cornerRadius = self.expandingGreenBackgroundView.frame.size.height/2;
+    self.expandingGreenBackgroundView.backgroundColor = kAppDefaultColor(1);
+    
+    self.pulastingView.layer.cornerRadius = self.pulastingView.frame.size.height/2;
+    self.pulastingView.layer.borderWidth = 1/((self.audioView.frame.size.height+50)/150);
+    self.pulastingView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.pulastingView.backgroundColor = [UIColor clearColor];
+    
+    self.audioPlayerView.layer.cornerRadius = 5.0f;
+    self.audioPlayerView.layer.borderColor = kAppDefaultColor(1).CGColor;
+    self.audioPlayerView.layer.borderWidth = 1.0f;
+    self.audioPlayerView.alpha = 0;
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
@@ -77,7 +85,9 @@
     self.updateTimer = nil;
     [self.recordTimer invalidate];
     self.recordTimer = nil;
-
+    [_pulseTimer invalidate];
+    _pulseTimer = nil;
+    
     [super viewWillDisappear:animated];
     
 }
@@ -90,72 +100,100 @@
 - (void) initAudio{
     
     _audioData = [NSData dataWithContentsOfURL:_recorder.url];
-    NSString* sizeString = [NSString stringWithFormat:@"%i", _audioData.length];
+    NSString* sizeString = [NSString stringWithFormat:@"%ld", (unsigned long)_audioData.length];
     [self.okButton setTitle:[NSString stringWithFormat:@"Ok, %@", [CSUtils readableFileSize:sizeString]] forState:UIControlStateNormal];
     self.okButton.enabled = YES;
-    
-    _player = [[AVAudioPlayer alloc] initWithContentsOfURL:_recorder.url error:nil];
-    _player.delegate = self;
-    
-    self.slider.maximumValue = self.player.duration;
-    self.playPauseButton.enabled = YES;
-    
 }
 
--(void) animateView{
-
-    self.viewForAnimate.hidden = NO;
-    self.viewForAnimate.alpha = 0.0f;
-    
-    [UIView animateWithDuration:1.0
-                          delay:0.0
-                        options:UIViewAnimationOptionRepeat  | UIViewAnimationOptionAutoreverse
+-(void) animateView
+{
+    [UIView animateWithDuration:0.7
                      animations:^{
-                         self.viewForAnimate.alpha = 1.0f;
-                     }
-                     completion:nil];
-
+                         
+                         const CGFloat scale = sqrt(pow(self.audioView.frame.size.height / 2, 2) + pow(self.audioView.frame.size.width / 2, 2)) / 25;
+                         [self.expandingGreenBackgroundView setTransform:CGAffineTransformMakeScale(scale, scale)];
+                         
+                         self.playLabel.alpha = 1.0f;
+                         [self.playImageView setTransform:CGAffineTransformMakeScale(0.8f, 0.8f)];
+                         
+                         [self.view layoutIfNeeded];
+                         
+                         
+                     } completion:^(BOOL finished) {
+                         [self pulseAnimation];
+                         [self pulseTimer];
+                         _pulseTimer = [NSTimer scheduledTimerWithTimeInterval:1
+                                                                        target:self
+                                                                      selector:@selector(pulseAnimation)
+                                                                      userInfo:nil
+                                                                       repeats:YES];
+                     }];
 }
 
-- (IBAction)onSeek:(id)sender {
-    self.player.currentTime = self.slider.value;
-    
-    int currentTime = (int) self.player.currentTime;
-    NSString *time = [NSString stringWithFormat:@"%02d:%02d", currentTime / 60, currentTime % 60];
-    self.timeLabel.text = time;
+-(void) pulseAnimation
+{
+    [UIView animateWithDuration:0.7
+                     animations:^{
+                         
+                         const CGFloat scale = sqrt(pow(self.audioView.frame.size.height / 2, 2) + pow(self.audioView.frame.size.width / 2, 2)) / 25;
+                         [self.pulastingView setTransform:CGAffineTransformMakeScale(scale, scale)];
+                         
+                     } completion:^(BOOL finished) {
+                         
+                         self.pulastingView.alpha = 0;
+                         const CGFloat scale = 1;
+                         [self.pulastingView setTransform:CGAffineTransformMakeScale(scale, scale)];
+                         self.pulastingView.alpha = 1;
+                         
+                     }];
 }
 
-- (IBAction)onPlay:(id)sender {
-    if([_player isPlaying]){
-        [self stopPlaying];
-    }else{
-        [self startPlaying];
-    }
-}
-
--(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
-    
-    [self stopPlaying];
-    
-}
-
--(void) stopPlaying{
-    
-    [_player stop];
-    [self.playPauseButton setImage:[UIImage imageNamed:@"play"] forState:UIControlStateNormal];
-    self.timeLabel.text = @"00:00";
-    self.slider.value = 0;
-    [self.updateTimer invalidate];
-    self.updateTimer = nil;
+-(void)animateReverseColor
+{
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         
+                         const CGFloat scale = 1;
+                         [self.expandingGreenBackgroundView setTransform:CGAffineTransformMakeScale(scale, scale)];
+                         
+                         self.playLabel.alpha = 0.0f;
+                         [self.playImageView setTransform:CGAffineTransformMakeScale(1.0f, 1.0f)];
+                         
+                         
+                     } completion:^(BOOL finished) {
+                         [self addAudioPlayer];
+                     }];
     
 }
 
--(void) startPlaying{
+-(void)addAudioPlayer
+{
+    _audioPlayer = [[SE2AudioPlayerView alloc] initWithFrame:CGRectMake(0,
+                                                                        0,
+                                                                        self.audioPlayerView.frame.size.width,
+                                                                        self.audioPlayerView.frame.size.height)
+                                                         url:[_recorder.url path]];
+    [self.audioPlayerView addSubview:_audioPlayer];
     
-    [_player play];
-    [self.playPauseButton setImage:[UIImage imageNamed:@"pause"] forState:UIControlStateNormal];
-    self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateSlider) userInfo:nil repeats:YES];
+    [self animateAudioPlayer:YES];
     
+    
+}
+
+-(void)animateAudioPlayer:(BOOL)boolValue
+{
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         
+                         self.audioPlayerView.alpha = boolValue ? 1 : 0;
+                         
+                     } completion:^(BOOL finished) {
+                         
+                         if (!boolValue) {
+                             _audioPlayer = nil;
+                         }
+                         
+                     }];
 }
 
 - (void) audioRecorderDidFinishRecording:(AVAudioRecorder *)avrecorder successfully:(BOOL)flag{
@@ -164,27 +202,18 @@
 }
 
 - (void)updateSlider{
-    float progress = self.player.currentTime;
-    [self.slider setValue:progress];
-    
-    int currentTime = (int) progress;
-    NSString *time = [NSString stringWithFormat:@"%02d:%02d", currentTime / 60, currentTime % 60];
-    self.timeLabel.text = time;
     
 }
 
 - (void)updateRecTime{
-    float progress = self.recorder.currentTime;
-    
-    int currentTime = (int) progress;
-    NSString *time = [NSString stringWithFormat:@"%02d:%02d", currentTime / 60, currentTime % 60];
-    self.recordTime.text = time;
     
 }
 
-- (IBAction)onRecord:(id)sender {
+- (IBAction)onRecord:(id)sender
+{
     if (!_recorder.recording) {
         [self animateView];
+        [self animateAudioPlayer:NO];
         
         AVAudioSession *session = [AVAudioSession sharedInstance];
         [session setActive:YES error:nil];
@@ -192,14 +221,7 @@
         // Start recording
         [_recorder record];
         
-        self.recordTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(updateRecTime) userInfo:nil repeats:YES];
-        self.recordTime.hidden = NO;
-        self.controlBackground.hidden = YES;
-
-        
     } else {
-        
-        self.viewForAnimate.hidden = YES;
         
         // Pause recording
         [_recorder stop];
@@ -207,12 +229,13 @@
         AVAudioSession *audioSession = [AVAudioSession sharedInstance];
         [audioSession setActive:NO error:nil];
         
-        self.recordTime.hidden = YES;
-        self.controlBackground.hidden = NO;
-        self.recordTime.text = @"00:00";
         [self.recordTimer invalidate];
         self.recordTimer = nil;
-
+        [_pulseTimer invalidate];
+        _pulseTimer = nil;
+        
+        [self animateReverseColor];
+        
     }
     
 }
@@ -229,7 +252,7 @@
     
     CSUploadManager* manager = [CSUploadManager new];
     [manager uploadFile:data fileName:fileName mimeType:mimeType viewForLoading:self.view completition:^(id responseObject){
-    
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:kAppFileUploadedNotification
                                                             object:nil
                                                           userInfo:[NSDictionary dictionaryWithObject:responseObject forKey:paramResponseObject]];
