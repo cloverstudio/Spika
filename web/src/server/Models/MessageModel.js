@@ -43,7 +43,8 @@ MessageModel.prototype.init = function(){
 	            lng: Number
         },
         deleted: Number,
-        created: Number
+        created: Number,
+        attributes: {}
     });
 
     // add instance methods
