@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SE2AudioPlayerView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZ5-46-Jw6">
+                    <rect key="frame" x="10" y="220" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="4Wn-UO-KwP"/>
+                        <constraint firstAttribute="width" constant="40" id="kcT-4g-PiG"/>
+                    </constraints>
+                    <state key="normal" image="play"/>
+                    <state key="selected" image="pause"/>
+                    <connections>
+                        <action selector="onPlay:" destination="iN0-l3-epB" eventType="touchUpInside" id="Plu-UL-oOA"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dCg-uW-kgS">
+                    <rect key="frame" x="260" y="228" width="50" height="25"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMC-q7-W1h">
+                            <rect key="frame" x="5" y="2" width="40" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="Fbj-gk-QRd"/>
+                        <constraint firstAttribute="trailing" secondItem="vMC-q7-W1h" secondAttribute="trailing" constant="5" id="S4X-BF-KBW"/>
+                        <constraint firstItem="vMC-q7-W1h" firstAttribute="centerY" secondItem="dCg-uW-kgS" secondAttribute="centerY" id="mTB-Qu-xeD"/>
+                        <constraint firstItem="vMC-q7-W1h" firstAttribute="leading" secondItem="dCg-uW-kgS" secondAttribute="leading" constant="5" id="nv2-2s-dgd"/>
+                        <constraint firstAttribute="width" constant="50" id="qjt-DI-k36"/>
+                    </constraints>
+                </view>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="oXo-v2-fl9">
+                    <rect key="frame" x="48" y="226" width="214" height="31"/>
+                    <connections>
+                        <action selector="onSlider:" destination="iN0-l3-epB" eventType="touchUpInside" id="PcB-SW-Emp"/>
+                    </connections>
+                </slider>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXm-d6-cxx">
+                    <rect key="frame" x="0.0" y="279" width="320" height="1"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="iQr-Oa-U5K"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="aXm-d6-cxx" secondAttribute="trailing" id="2jc-20-Pag"/>
+                <constraint firstAttribute="trailing" secondItem="dCg-uW-kgS" secondAttribute="trailing" constant="10" id="5Nf-g0-Vgi"/>
+                <constraint firstItem="BZ5-46-Jw6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="6gn-pI-iR2"/>
+                <constraint firstItem="aXm-d6-cxx" firstAttribute="top" secondItem="BZ5-46-Jw6" secondAttribute="bottom" constant="19" id="8gf-Hu-bd6"/>
+                <constraint firstItem="BZ5-46-Jw6" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="D3T-jr-QVz"/>
+                <constraint firstItem="oXo-v2-fl9" firstAttribute="leading" secondItem="BZ5-46-Jw6" secondAttribute="trailing" id="Ld0-Lp-qyh"/>
+                <constraint firstItem="dCg-uW-kgS" firstAttribute="centerY" secondItem="BZ5-46-Jw6" secondAttribute="centerY" id="MKJ-3H-V8G"/>
+                <constraint firstItem="aXm-d6-cxx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="OCQ-g8-fWT"/>
+                <constraint firstItem="BZ5-46-Jw6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="Qdd-ez-bgU"/>
+                <constraint firstItem="BZ5-46-Jw6" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="R6m-f5-DGM"/>
+                <constraint firstItem="oXo-v2-fl9" firstAttribute="centerY" secondItem="dCg-uW-kgS" secondAttribute="centerY" id="u13-By-GJX"/>
+                <constraint firstItem="dCg-uW-kgS" firstAttribute="leading" secondItem="oXo-v2-fl9" secondAttribute="trailing" id="vK0-qu-Laq"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Qdd-ez-bgU"/>
+                    <exclude reference="R6m-f5-DGM"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="durationHolderView" destination="dCg-uW-kgS" id="U0M-z6-FC3"/>
+                <outlet property="durationLabel" destination="vMC-q7-W1h" id="UIx-Re-TGz"/>
+                <outlet property="durationSlider" destination="oXo-v2-fl9" id="MtB-T2-odR"/>
+                <outlet property="playButton" destination="BZ5-46-Jw6" id="eiX-DD-HMt"/>
+                <outlet property="separator" destination="aXm-d6-cxx" id="qnB-I0-Lf1"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="pause" width="30" height="30"/>
+        <image name="play" width="30" height="30"/>
+    </resources>
+</document>
