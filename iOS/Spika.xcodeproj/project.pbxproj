@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		D569D6E8A953855C1A144D26 /* libPods-Spika.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C62E42FCD44B11CC55F8816 /* libPods-Spika.a */; };
 		EA4724D61C47E58300D7B8D4 /* CSTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4724D51C47E58300D7B8D4 /* CSTitleView.m */; };
+		EA4AB2701CAA8CE300A4EEDE /* CSRecordAudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AB26E1CAA8CE300A4EEDE /* CSRecordAudioViewController.m */; };
+		EA4AB2711CAA8CE300A4EEDE /* CSRecordAudioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4AB26F1CAA8CE300A4EEDE /* CSRecordAudioViewController.xib */; };
+		EA4AB2761CAA8D0600A4EEDE /* SE2AudioPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA4AB2741CAA8D0600A4EEDE /* SE2AudioPlayerView.m */; };
+		EA4AB2771CAA8D0600A4EEDE /* SE2AudioPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA4AB2751CAA8D0600A4EEDE /* SE2AudioPlayerView.xib */; };
 		EA715A9D1C1B360F00A2F497 /* CSCustomConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = EA715A9C1C1B360F00A2F497 /* CSCustomConfig.m */; };
 		EA77FABE1C4E5E2C003005E9 /* CSNotificationOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA77FABB1C4E5E2C003005E9 /* CSNotificationOverlayView.m */; };
 		EA77FABF1C4E5E2C003005E9 /* CSNotificationOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA77FABC1C4E5E2C003005E9 /* CSNotificationOverlayView.xib */; };
@@ -48,8 +52,6 @@
 		EAC6BEAB1C17186F0038CCB6 /* CSMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC6BE921C17186F0038CCB6 /* CSMapViewController.xib */; };
 		EAC6BEAC1C17186F0038CCB6 /* CSMessageInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC6BE951C17186F0038CCB6 /* CSMessageInfoViewController.m */; };
 		EAC6BEAD1C17186F0038CCB6 /* CSMessageInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC6BE961C17186F0038CCB6 /* CSMessageInfoViewController.xib */; };
-		EAC6BEAE1C17186F0038CCB6 /* CSRecordAudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC6BE991C17186F0038CCB6 /* CSRecordAudioViewController.m */; };
-		EAC6BEAF1C17186F0038CCB6 /* CSRecordAudioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC6BE9A1C17186F0038CCB6 /* CSRecordAudioViewController.xib */; };
 		EAC6BEB01C17186F0038CCB6 /* CSUploadImagePreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC6BE9D1C17186F0038CCB6 /* CSUploadImagePreviewViewController.m */; };
 		EAC6BEB11C17186F0038CCB6 /* CSUploadImagePreviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EAC6BE9E1C17186F0038CCB6 /* CSUploadImagePreviewViewController.xib */; };
 		EAC6BEB21C17186F0038CCB6 /* CSUploadVideoPreviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC6BEA11C17186F0038CCB6 /* CSUploadVideoPreviewViewController.m */; };
@@ -118,6 +120,12 @@
 		8C62E42FCD44B11CC55F8816 /* libPods-Spika.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Spika.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA4724D41C47E58300D7B8D4 /* CSTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSTitleView.h; sourceTree = "<group>"; };
 		EA4724D51C47E58300D7B8D4 /* CSTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSTitleView.m; sourceTree = "<group>"; };
+		EA4AB26D1CAA8CE300A4EEDE /* CSRecordAudioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSRecordAudioViewController.h; sourceTree = "<group>"; };
+		EA4AB26E1CAA8CE300A4EEDE /* CSRecordAudioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSRecordAudioViewController.m; sourceTree = "<group>"; };
+		EA4AB26F1CAA8CE300A4EEDE /* CSRecordAudioViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSRecordAudioViewController.xib; sourceTree = "<group>"; };
+		EA4AB2731CAA8D0600A4EEDE /* SE2AudioPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SE2AudioPlayerView.h; sourceTree = "<group>"; };
+		EA4AB2741CAA8D0600A4EEDE /* SE2AudioPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SE2AudioPlayerView.m; sourceTree = "<group>"; };
+		EA4AB2751CAA8D0600A4EEDE /* SE2AudioPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SE2AudioPlayerView.xib; sourceTree = "<group>"; };
 		EA715A9B1C1B360F00A2F497 /* CSCustomConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSCustomConfig.h; sourceTree = "<group>"; };
 		EA715A9C1C1B360F00A2F497 /* CSCustomConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSCustomConfig.m; sourceTree = "<group>"; };
 		EA77FABA1C4E5E2C003005E9 /* CSNotificationOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSNotificationOverlayView.h; sourceTree = "<group>"; };
@@ -188,9 +196,6 @@
 		EAC6BE941C17186F0038CCB6 /* CSMessageInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSMessageInfoViewController.h; sourceTree = "<group>"; };
 		EAC6BE951C17186F0038CCB6 /* CSMessageInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSMessageInfoViewController.m; sourceTree = "<group>"; };
 		EAC6BE961C17186F0038CCB6 /* CSMessageInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSMessageInfoViewController.xib; sourceTree = "<group>"; };
-		EAC6BE981C17186F0038CCB6 /* CSRecordAudioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSRecordAudioViewController.h; sourceTree = "<group>"; };
-		EAC6BE991C17186F0038CCB6 /* CSRecordAudioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSRecordAudioViewController.m; sourceTree = "<group>"; };
-		EAC6BE9A1C17186F0038CCB6 /* CSRecordAudioViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSRecordAudioViewController.xib; sourceTree = "<group>"; };
 		EAC6BE9C1C17186F0038CCB6 /* CSUploadImagePreviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSUploadImagePreviewViewController.h; sourceTree = "<group>"; };
 		EAC6BE9D1C17186F0038CCB6 /* CSUploadImagePreviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSUploadImagePreviewViewController.m; sourceTree = "<group>"; };
 		EAC6BE9E1C17186F0038CCB6 /* CSUploadImagePreviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSUploadImagePreviewViewController.xib; sourceTree = "<group>"; };
@@ -320,6 +325,16 @@
 				EA4724D51C47E58300D7B8D4 /* CSTitleView.m */,
 			);
 			path = TitleView;
+			sourceTree = "<group>";
+		};
+		EA4AB2721CAA8D0600A4EEDE /* AudioPlayerView */ = {
+			isa = PBXGroup;
+			children = (
+				EA4AB2731CAA8D0600A4EEDE /* SE2AudioPlayerView.h */,
+				EA4AB2741CAA8D0600A4EEDE /* SE2AudioPlayerView.m */,
+				EA4AB2751CAA8D0600A4EEDE /* SE2AudioPlayerView.xib */,
+			);
+			path = AudioPlayerView;
 			sourceTree = "<group>";
 		};
 		EA77FAB71C4E5E2C003005E9 /* NotificationOverlayView */ = {
@@ -560,9 +575,9 @@
 		EAC6BE971C17186F0038CCB6 /* RecordAudioViewConstroller */ = {
 			isa = PBXGroup;
 			children = (
-				EAC6BE981C17186F0038CCB6 /* CSRecordAudioViewController.h */,
-				EAC6BE991C17186F0038CCB6 /* CSRecordAudioViewController.m */,
-				EAC6BE9A1C17186F0038CCB6 /* CSRecordAudioViewController.xib */,
+				EA4AB26D1CAA8CE300A4EEDE /* CSRecordAudioViewController.h */,
+				EA4AB26E1CAA8CE300A4EEDE /* CSRecordAudioViewController.m */,
+				EA4AB26F1CAA8CE300A4EEDE /* CSRecordAudioViewController.xib */,
 			);
 			path = RecordAudioViewConstroller;
 			sourceTree = "<group>";
@@ -600,6 +615,7 @@
 		EAC6BEB61C1719010038CCB6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EA4AB2721CAA8D0600A4EEDE /* AudioPlayerView */,
 				EAEA8ABF1CA2B46D00E849E6 /* StickerView */,
 				EA77FAB71C4E5E2C003005E9 /* NotificationOverlayView */,
 				EA4724D01C47E53500D7B8D4 /* TitleView */,
@@ -929,6 +945,7 @@
 				EAEA8ACB1CA2CA7200E849E6 /* CSStickerCollectionViewCell.xib in Resources */,
 				EAC6BEF01C171F940038CCB6 /* CSUserInfoTableViewCell.xib in Resources */,
 				EAC6BF031C1722460038CCB6 /* CSMyImageMessageTableViewCell.xib in Resources */,
+				EA4AB2771CAA8D0600A4EEDE /* SE2AudioPlayerView.xib in Resources */,
 				EAC6BF151C1724090038CCB6 /* CSImagePreviewView.xib in Resources */,
 				EAC6BE4E1C1703D80038CCB6 /* Assets.xcassets in Resources */,
 				EAEA8AD01CA2D1BC00E849E6 /* CSStickerPageCollectionViewCell.xib in Resources */,
@@ -957,8 +974,8 @@
 				EAC6BEDA1C171D770038CCB6 /* CSSeenByTableViewCell.xib in Resources */,
 				EAC6BEAB1C17186F0038CCB6 /* CSMapViewController.xib in Resources */,
 				EABB0BD11CA3FC6700FE7350 /* CSMyStickerMessageCell.xib in Resources */,
+				EA4AB2711CAA8CE300A4EEDE /* CSRecordAudioViewController.xib in Resources */,
 				EAC6BEFC1C17206A0038CCB6 /* CSYourImageMessageTableViewCell.xib in Resources */,
-				EAC6BEAF1C17186F0038CCB6 /* CSRecordAudioViewController.xib in Resources */,
 				EAC6BED41C171CFF0038CCB6 /* CSProgressUploadingView.xib in Resources */,
 				EAC6BEB11C17186F0038CCB6 /* CSUploadImagePreviewViewController.xib in Resources */,
 				EAC6BF091C1722920038CCB6 /* CSYourMediaMessageTableViewCell.xib in Resources */,
@@ -1035,10 +1052,10 @@
 				EAC6BEEA1C171F380038CCB6 /* CSBaseTableViewCell.m in Sources */,
 				EAC6BEBC1C1719260038CCB6 /* CSChatSettingsView.m in Sources */,
 				EAC6BEFB1C17206A0038CCB6 /* CSYourImageMessageTableViewCell.m in Sources */,
-				EAC6BEAE1C17186F0038CCB6 /* CSRecordAudioViewController.m in Sources */,
 				EAC6BE531C1703D80038CCB6 /* ViewController.m in Sources */,
 				EAB9AA5C1C19D16C00460730 /* CSCustomView.m in Sources */,
 				EAC6BE851C1716D70038CCB6 /* CSUtils.m in Sources */,
+				EA4AB2701CAA8CE300A4EEDE /* CSRecordAudioViewController.m in Sources */,
 				EAC6BE521C1703D80038CCB6 /* main.m in Sources */,
 				EAF67D2A1C1988C50039CA0C /* CSAvatarLoader.m in Sources */,
 				EAC6BE661C170D3A0038CCB6 /* JSONValueTransformer+CustomTransformer.m in Sources */,
@@ -1066,6 +1083,7 @@
 				EABB0BCF1CA3FC5300FE7350 /* CSMyStickerMessageCell.m in Sources */,
 				EAC6BEC71C171B4C0038CCB6 /* CSUploadManager.m in Sources */,
 				EAC6BF311C1725C00038CCB6 /* CSEmitJsonCreator.m in Sources */,
+				EA4AB2761CAA8D0600A4EEDE /* SE2AudioPlayerView.m in Sources */,
 				EAC6BEE51C171EF10038CCB6 /* CSMyTextMessageTableViewCell.m in Sources */,
 				EAC6BE711C170E3D0038CCB6 /* CSLocationModel.m in Sources */,
 				EA77FABE1C4E5E2C003005E9 /* CSNotificationOverlayView.m in Sources */,

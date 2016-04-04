@@ -135,7 +135,10 @@ FileUploader.prototype.uploadFileHTML5 = function(file){
                 userID: LoginUserManager.user.get('id'),
                 file:data,
                 type:CONST.MESSAGE_TYPE_FILE,
-                localID: tempID
+                localID: tempID,
+                attributes: {
+                    client: "web"
+                }
             });
                             
         },

@@ -26,6 +26,7 @@ var SendMessage = {
                 localID: param.localID,
                 type: param.type,
                 file: null,
+                attributes: param.attributes,
                 created: Utils.now()                   
             };
             

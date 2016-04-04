@@ -29,7 +29,7 @@ StickerListHandler.prototype.attach = function(router){
     var self = this;
 
     /**
-     * @api {post} /stickers Sticker List
+     * @api {get} /stickers Sticker List
      * @apiName Sticker List
      * @apiGroup WebAPI
      * @apiDescription Return list of stickers

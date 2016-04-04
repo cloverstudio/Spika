@@ -397,7 +397,10 @@ var MessagingView = Backbone.View.extend({
             roomID: LoginUserManager.roomID,
             userID: LoginUserManager.user.get('id'),
             type:CONST.MESSAGE_TYPE_TEXT,
-            localID: tempID
+            localID: tempID,
+            attributes: {
+                client: "web"
+            }
         });
         
         this.scrollToBottom();

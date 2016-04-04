@@ -161,7 +161,10 @@ var EmoticonPanelView = Backbone.View.extend({
             message: url,
             roomID: LoginUserManager.roomID,
             userID: LoginUserManager.user.get('id'),
-            type:CONST.MESSAGE_TYPE_STICKER
+            type:CONST.MESSAGE_TYPE_STICKER,
+            attributes: {
+                client: "web"
+            }
         });
             
     }
