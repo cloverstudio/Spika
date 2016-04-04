@@ -316,7 +316,7 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
 
             if(position == 0 || !isMessageInSameDate(message, data.get(Math.max(0, position - 1)))){
                 rlDateSeparator.setVisibility(View.VISIBLE);
-                dateSeparator.setText(message.getTimeDateSeparator());
+                dateSeparator.setText(message.getTimeDateSeparator(dateSeparator.getContext()));
             }else{
                 rlDateSeparator.setVisibility(View.GONE);
             }
@@ -393,7 +393,7 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
             //date separator
             if(position == 0 || !isMessageInSameDate(message, data.get(Math.max(0, position - 1)))){
                 rlDateSeparator.setVisibility(View.VISIBLE);
-                dateSeparator.setText(message.getTimeDateSeparator());
+                dateSeparator.setText(message.getTimeDateSeparator(dateSeparator.getContext()));
             }else{
                 rlDateSeparator.setVisibility(View.GONE);
             }

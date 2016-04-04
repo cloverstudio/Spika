@@ -1,8 +1,10 @@
 package com.clover_studio.spikachatmodule.models;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.text.TextUtils;
 
+import com.clover_studio.spikachatmodule.R;
 import com.clover_studio.spikachatmodule.base.BaseModel;
 import com.clover_studio.spikachatmodule.utils.Const;
 import com.clover_studio.spikachatmodule.utils.ParseUrlLinkMetadata;
@@ -13,6 +15,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -105,11 +108,11 @@ public class Message extends BaseModel {
         }
     }
 
-    public String getTimeDateSeparator(){
+    public String getTimeDateSeparator(Context context){
         if(!TextUtils.isEmpty(timestampDateSeparatorFormatted)){
             return timestampDateSeparatorFormatted;
         }else{
-            timestampDateSeparatorFormatted = timeSeparatorStyle(created);
+            timestampDateSeparatorFormatted = timeSeparatorStyle(created, context);
             return timestampDateSeparatorFormatted;
         }
     }
@@ -156,8 +159,23 @@ public class Message extends BaseModel {
         return "";
     }
 
-    private String timeSeparatorStyle(long time){
+    private String timeSeparatorStyle(long time, Context context){
         try {
+
+            Calendar cal1 = Calendar.getInstance();
+            Calendar cal2 = Calendar.getInstance();
+            cal1.setTimeInMillis(time);
+            cal2.setTimeInMillis(System.currentTimeMillis());
+            boolean sameDay = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                    cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
+            if(sameDay){
+                return context.getString(R.string.today);
+            }
+            boolean yesterday = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                    (cal1.get(Calendar.DAY_OF_YEAR) - 1) == cal2.get(Calendar.DAY_OF_YEAR);
+            if(yesterday){
+                return context.getString(R.string.yesterday);
+            }
 
             Timestamp stamp = new Timestamp(time);
             Date date = new Date(stamp.getTime());
