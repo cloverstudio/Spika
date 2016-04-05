@@ -514,7 +514,7 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
 
     public class LinkViewHolder extends BaseViewHolder {
 
-        ImageView image;
+        RoundedImageView image;
         TextView title;
         TextView desc;
         TextView host;
@@ -523,7 +523,8 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
         public LinkViewHolder(View itemView) {
             super(itemView);
 
-            image = (ImageView) itemView.findViewById(R.id.linkImgView);
+            image = (RoundedImageView) itemView.findViewById(R.id.linkImgView);
+            image.setCornerRadius(10f);
             title = (TextView) itemView.findViewById(R.id.linkTitle);
             desc = (TextView) itemView.findViewById(R.id.linkDescription);
             host = (TextView) itemView.findViewById(R.id.linkHost);

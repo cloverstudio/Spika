@@ -140,7 +140,7 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp">
 
-                <ImageView
+                <com.clover_studio.spikachatmodule.view.roundimage.RoundedImageView
                     android:id="@+id/linkImgView"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
@@ -170,7 +170,7 @@
                     android:layout_alignLeft="@id/linkTitle"
                     android:layout_below="@id/linkTitle"
                     android:ellipsize="end"
-                    android:maxLines="2"
+                    android:maxLines="3"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:scrollHorizontally="true"
@@ -186,6 +186,8 @@
                     android:layout_below="@id/linkDescription"
                     android:gravity="bottom"
                     android:paddingBottom="5dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:textColor="@android:color/black"
