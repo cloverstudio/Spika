@@ -2,6 +2,7 @@ package com.clover_studio.spikachatmodule.adapters;
 
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -187,7 +188,7 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
         switch (message.type) {
             case Const.MessageType.TYPE_TEXT:
                 boolean isLink = false;
-                if(message.attributes != null){
+                if(message.attributes != null && message.attributes.linkData != null){
                     isLink = true;
                 }
                 if (isMessageFromUser(message, myUser)) {
@@ -534,20 +535,20 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
         public void bindItem (int position) {
             super.bindItem(position);
 
-            if(message.parsedUrlData == null){
-                message.parseUrl();
+            if(message.attributes.linkData == null){
+                return;
             }
 
-            if(message.parsedUrlData.imageUrl != null){
-                Picasso.with(image.getContext()).load(message.parsedUrlData.imageUrl).resize(256, 256).into(image);
+            if(message.attributes.linkData.imageUrl != null){
+                Picasso.with(image.getContext()).load(message.attributes.linkData.imageUrl).resize(256, 256).into(image);
                 image.setVisibility(View.VISIBLE);
             }else{
                 image.setVisibility(View.GONE);
             }
 
-            title.setText(message.parsedUrlData.title);
-            desc.setText(message.parsedUrlData.desc);
-            host.setText(message.parsedUrlData.host);
+            title.setText(message.attributes.linkData.title);
+            desc.setText(message.attributes.linkData.desc);
+            host.setText(message.attributes.linkData.host);
 
             messageTV.setText(message.message);
         }

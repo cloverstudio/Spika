@@ -6,6 +6,7 @@ import com.clover_studio.spikachatmodule.base.SingletonLikeApp;
 import com.clover_studio.spikachatmodule.models.GetMessagesModel;
 import com.clover_studio.spikachatmodule.robospice.spice.CustomSpiceRequest;
 import com.clover_studio.spikachatmodule.utils.Const;
+import com.clover_studio.spikachatmodule.utils.LogCS;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;

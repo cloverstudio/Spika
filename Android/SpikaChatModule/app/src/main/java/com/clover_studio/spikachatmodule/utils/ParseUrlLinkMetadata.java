@@ -34,9 +34,9 @@ public class ParseUrlLinkMetadata extends AsyncTask<Void, Void, Void>{
         super.onPostExecute(aVoid);
         if(listener != null){
             if(resultData == null || resultJson == null){
-                listener.onUrlParsed(null, null);
+                listener.onUrlParsed(null);
             }else{
-                listener.onUrlParsed(resultData, resultJson.toString());
+                listener.onUrlParsed(resultData);
             }
         }
     }
@@ -114,7 +114,7 @@ public class ParseUrlLinkMetadata extends AsyncTask<Void, Void, Void>{
     }
 
     public interface OnUrlParsed {
-        void onUrlParsed(ParsedUrlData data, String jsonObject);
+        void onUrlParsed(ParsedUrlData data);
     }
 
 }
