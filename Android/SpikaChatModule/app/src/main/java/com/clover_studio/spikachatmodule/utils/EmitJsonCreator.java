@@ -55,6 +55,7 @@ public class EmitJsonCreator {
             obj.put("roomID", message.roomID);
             obj.put("userID", message.userID);
             obj.put("localID", message.localID);
+            obj.put("attributes", message.attributes);
 
             if(message.file != null){
                 JSONObject fileModel = new JSONObject();

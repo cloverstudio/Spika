@@ -33,7 +33,11 @@ public class ParseUrlLinkMetadata extends AsyncTask<Void, Void, Void>{
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
         if(listener != null){
-            listener.onUrlParsed(resultData, resultJson.toString());
+            if(resultData == null || resultJson == null){
+                listener.onUrlParsed(null, null);
+            }else{
+                listener.onUrlParsed(resultData, resultJson.toString());
+            }
         }
     }
 
@@ -41,8 +45,13 @@ public class ParseUrlLinkMetadata extends AsyncTask<Void, Void, Void>{
     protected Void doInBackground(Void... params) {
 
         resultData = new ParsedUrlData();
+        LogCS.custom("LOG", "TRIM: " + url);
 
         try {
+
+            if(!url.startsWith("http")){
+                url = "http://" + url;
+            }
 
             URL inputUrl = new URL(url.trim());
             Document document = Jsoup.connect(url).maxBodySize(0).userAgent("Desktop").get();

@@ -5,46 +5,46 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
-    android:background="@color/trans"
     android:layout_marginTop="5dp"
+    android:background="@color/trans"
     android:paddingTop="0dp">
 
     <RelativeLayout
+        android:id="@+id/rlDateSeparator"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:id="@+id/rlDateSeparator">
+        android:visibility="gone">
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_centerVertical="true"
-            android:background="@color/gray_light_light_color"
-            android:layout_marginRight="10dp"
             android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/dateSeparatorTV"
-            android:layout_toStartOf="@+id/dateSeparatorTV"/>
+            android:layout_toStartOf="@+id/dateSeparatorTV"
+            android:background="@color/gray_light_light_color"/>
 
         <com.clover_studio.spikachatmodule.view.CustomTextView
             android:id="@+id/dateSeparatorTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
-            android:textStyle="bold"
             android:layout_centerHorizontal="true"
+            android:text=""
             android:textColor="@color/devil_gray_color"
             android:textSize="12sp"
+            android:textStyle="bold"
             />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_centerVertical="true"
-            android:background="@color/gray_light_light_color"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/dateSeparatorTV"
             android:layout_toRightOf="@+id/dateSeparatorTV"
-            android:layout_toEndOf="@+id/dateSeparatorTV"/>
+            android:background="@color/gray_light_light_color"/>
 
     </RelativeLayout>
 
@@ -58,10 +58,10 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_alignBottom="@+id/peak_off_and_below"
-            android:layout_marginLeft="5dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginRight="15dp"
             android:layout_marginEnd="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginStart="5dp"
             android:contentDescription="@null"
             android:scaleType="centerCrop"/>
 
@@ -72,8 +72,8 @@
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
-            android:layout_toRightOf="@id/avatar"
             android:layout_toEndOf="@id/avatar"
+            android:layout_toRightOf="@id/avatar"
             android:text=""
             android:textColor="@color/devil_gray_color"
             android:textSize="12sp"
@@ -85,40 +85,40 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/youContentRL"
-            android:contentDescription="@null"
             android:layout_toLeftOf="@+id/youContentRL"
             android:layout_toStartOf="@+id/youContentRL"
-            android:background="@drawable/bubble_peak_left_to_left_align_bottom"/>
+            android:background="@drawable/bubble_peak_left_to_left_align_bottom"
+            android:contentDescription="@null"/>
 
         <ImageView
             android:id="@+id/peak_below"
-            android:contentDescription="@null"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/youContentRL"
             android:layout_alignStart="@+id/youContentRL"
             android:layout_below="@+id/youContentRL"
-            android:background="@drawable/bubble_peak_left_below"/>
+            android:background="@drawable/bubble_peak_left_below"
+            android:contentDescription="@null"/>
 
         <ImageView
             android:id="@+id/peak_off_and_below"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@null"
             android:layout_below="@+id/youContentRL"
             android:layout_toLeftOf="@+id/youContentRL"
             android:layout_toStartOf="@+id/youContentRL"
-            android:background="@drawable/bubble_peak_left_to_left_below_bottom"/>
+            android:background="@drawable/bubble_peak_left_to_left_below_bottom"
+            android:contentDescription="@null"/>
 
         <View
             android:id="@+id/peak_fill_center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/youContentRL"
-            android:layout_alignLeft="@+id/youContentRL"
-            android:layout_alignStart="@+id/youContentRL"
-            android:layout_alignRight="@id/peak_below"
             android:layout_alignEnd="@id/peak_below"
+            android:layout_alignLeft="@+id/youContentRL"
+            android:layout_alignRight="@id/peak_below"
+            android:layout_alignStart="@+id/youContentRL"
             android:layout_alignTop="@id/peak_off_and_align_bottom"
             android:background="@color/you_message_background_color"/>
 
@@ -127,41 +127,41 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/name"
-            android:layout_marginRight="35dp"
             android:layout_marginEnd="35dp"
-            android:layout_toRightOf="@id/avatar"
+            android:layout_marginRight="35dp"
             android:layout_toEndOf="@id/avatar"
+            android:layout_toRightOf="@id/avatar"
             android:background="@drawable/you_message_background_drawable"
             >
 
             <RelativeLayout
                 android:id="@+id/youLinkInfo"
                 android:layout_width="wrap_content"
-                android:padding="10dp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="10dp">
 
                 <ImageView
                     android:id="@+id/linkImgView"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:scaleType="center"
                     android:foregroundGravity="center"
+                    android:scaleType="center"
                     android:visibility="gone"/>
 
                 <com.clover_studio.spikachatmodule.view.CustomTextView
                     android:id="@+id/linkTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/linkImgView"
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:paddingTop="5dp"
-                    android:layout_toRightOf="@+id/linkImgView"
                     android:scrollHorizontally="true"
+                    android:textColor="@android:color/black"
                     android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"/>
+                    android:textStyle="bold"/>
 
                 <com.clover_studio.spikachatmodule.view.CustomTextView
                     android:id="@+id/linkDescription"
@@ -174,7 +174,7 @@
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
                     android:scrollHorizontally="true"
-                    android:textColor="@color/gray_light_light_color"
+                    android:textColor="@color/devil_gray_color"
                     android:textSize="12sp"/>
 
                 <com.clover_studio.spikachatmodule.view.CustomTextView
@@ -188,9 +188,21 @@
                     android:paddingBottom="5dp"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
-                    android:textSize="12sp"
-                    android:textColor="@color/white"/>
+                    android:textColor="@android:color/black"
+                    android:textSize="12sp"/>
+
             </RelativeLayout>
+
+            <com.clover_studio.spikachatmodule.view.CustomTextView
+                android:id="@+id/textMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/youLinkInfo"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/you_message_text_color"
+                android:textSize="@dimen/you_text_size"/>
 
         </RelativeLayout>
 
@@ -201,8 +213,8 @@
             android:layout_below="@id/youContentRL"
             android:layout_marginLeft="5dp"
             android:layout_marginStart="5dp"
-            android:layout_toRightOf="@id/peak_below"
             android:layout_toEndOf="@id/peak_below"
+            android:layout_toRightOf="@id/peak_below"
             android:text=""
             android:textColor="@color/devil_gray_color"
             android:textSize="12sp"

@@ -16,6 +16,7 @@ import com.clover_studio.spikachatmodule.R;
 import com.clover_studio.spikachatmodule.models.Message;
 import com.clover_studio.spikachatmodule.models.User;
 import com.clover_studio.spikachatmodule.utils.Const;
+import com.clover_studio.spikachatmodule.utils.LogCS;
 import com.clover_studio.spikachatmodule.utils.MessageSortByCreated;
 import com.clover_studio.spikachatmodule.utils.ParseUrlLinkMetadata;
 import com.clover_studio.spikachatmodule.utils.Tools;
@@ -198,7 +199,7 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
                 }
                 else {
                     if(isLink){
-                        cellType = R.layout.item_message_link_right;
+                        cellType = R.layout.item_message_link_left;
                     }else{
                         cellType = R.layout.item_message_text_left;
                     }
@@ -516,6 +517,7 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
         TextView title;
         TextView desc;
         TextView host;
+        TextView messageTV;
 
         public LinkViewHolder(View itemView) {
             super(itemView);
@@ -524,6 +526,7 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
             title = (TextView) itemView.findViewById(R.id.linkTitle);
             desc = (TextView) itemView.findViewById(R.id.linkDescription);
             host = (TextView) itemView.findViewById(R.id.linkHost);
+            messageTV = (TextView) itemView.findViewById(R.id.textMessage);
 
         }
 
@@ -535,8 +538,6 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
                 message.parseUrl();
             }
 
-            Log.e("LOG", "URL MODEL: " + message.attributes);
-
             if(message.parsedUrlData.imageUrl != null){
                 Picasso.with(image.getContext()).load(message.parsedUrlData.imageUrl).resize(256, 256).into(image);
                 image.setVisibility(View.VISIBLE);
@@ -546,8 +547,9 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
 
             title.setText(message.parsedUrlData.title);
             desc.setText(message.parsedUrlData.desc);
+            host.setText(message.parsedUrlData.host);
 
-            host.setText(message.message);
+            messageTV.setText(message.message);
         }
     }
 

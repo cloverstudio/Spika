@@ -645,7 +645,12 @@ public class ChatActivity extends BaseActivity {
             } else if (item.type == Const.MessageType.TYPE_CONTACT) {
                 OpenDownloadedFile.selectedContactDialog(item.message, getActivity());
             } else {
-                // do nothing for now
+                if(item.attributes != null && item.parsedUrlData != null){
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(item.parsedUrlData.url));
+                    startActivity(browserIntent);
+                }else{
+                    // do nothing for now
+                }
             }
         }
 
@@ -858,8 +863,9 @@ public class ChatActivity extends BaseActivity {
         //***************************parse link*******************//
         boolean hasLink = false;
         String textMessage = etMessage.getText().toString();
-        if(Tools.checkForLink(textMessage) != null){
-//            hasLink = true;
+        String checkForLink = Tools.checkForLink(textMessage);
+        if(checkForLink != null){
+            hasLink = true;
             //set hasLink to true when attributes implements on api
         }
 
@@ -868,7 +874,7 @@ public class ChatActivity extends BaseActivity {
         if(hasLink){
             btnSend.setVisibility(View.INVISIBLE);
             pbAboveSend.setVisibility(View.VISIBLE);
-            new ParseUrlLinkMetadata(textMessage, new ParseUrlLinkMetadata.OnUrlParsed() {
+            new ParseUrlLinkMetadata(checkForLink, new ParseUrlLinkMetadata.OnUrlParsed() {
                 @Override
                 public void onUrlParsed(ParsedUrlData data, String json) {
 
