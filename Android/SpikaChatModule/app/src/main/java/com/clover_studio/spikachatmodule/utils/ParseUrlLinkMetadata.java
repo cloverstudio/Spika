@@ -45,7 +45,6 @@ public class ParseUrlLinkMetadata extends AsyncTask<Void, Void, Void>{
     protected Void doInBackground(Void... params) {
 
         resultData = new ParsedUrlData();
-        LogCS.custom("LOG", "TRIM: " + url);
 
         try {
 
