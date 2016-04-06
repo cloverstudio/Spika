@@ -171,7 +171,7 @@ public class Message extends BaseModel {
                 return context.getString(R.string.today);
             }
             boolean yesterday = cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
-                    (cal1.get(Calendar.DAY_OF_YEAR) - 1) == cal2.get(Calendar.DAY_OF_YEAR);
+                    (cal1.get(Calendar.DAY_OF_YEAR) + 1) == cal2.get(Calendar.DAY_OF_YEAR);
             if(yesterday){
                 return context.getString(R.string.yesterday);
             }
