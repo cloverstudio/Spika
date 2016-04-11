@@ -68,7 +68,9 @@ public class ParseUrlLinkMetadata extends AsyncTask<Void, Void, Void>{
                 resultData.desc = element.attr("content");
             }
 
-            if ((element = document.head().select("link[rel=apple-touch-icon]").first()) != null) {
+            if ((element = document.head().select("meta[property=og:image]").first()) != null) {
+                resultData.imageUrl = element.attr("content");
+            }else if ((element = document.head().select("link[rel=apple-touch-icon]").first()) != null) {
                 resultData.imageUrl = element.attr("href");
             } else if ((element = document.head().select("link[rel=apple-touch-icon-precomposed]").first()) != null) {
                 resultData.imageUrl = element.attr("href");

@@ -145,7 +145,7 @@
                     android:layout_width="90dp"
                     android:layout_height="90dp"
                     android:foregroundGravity="center"
-                    android:scaleType="center"
+                    android:scaleType="centerCrop"
                     android:visibility="gone"/>
 
                 <com.clover_studio.spikachatmodule.view.CustomTextView

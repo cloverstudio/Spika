@@ -541,7 +541,7 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
             }
 
             if(message.attributes.linkData.imageUrl != null){
-                Picasso.with(image.getContext()).load(message.attributes.linkData.imageUrl).resize(256, 256).into(image);
+                Picasso.with(image.getContext()).load(message.attributes.linkData.imageUrl).into(image);
                 image.setVisibility(View.VISIBLE);
             }else{
                 image.setVisibility(View.GONE);
