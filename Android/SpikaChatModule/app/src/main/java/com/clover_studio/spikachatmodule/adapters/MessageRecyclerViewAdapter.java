@@ -519,6 +519,7 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
         TextView desc;
         TextView host;
         TextView messageTV;
+        boolean isLongActivated;
 
         public LinkViewHolder(View itemView) {
             super(itemView);
@@ -529,6 +530,8 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
             desc = (TextView) itemView.findViewById(R.id.linkDescription);
             host = (TextView) itemView.findViewById(R.id.linkHost);
             messageTV = (TextView) itemView.findViewById(R.id.textMessage);
+
+            isLongActivated = false;
 
         }
 
@@ -555,6 +558,35 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
             host.setText(message.attributes.linkData.host);
 
             messageTV.setText(message.message);
+
+            messageTV.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    if (message.deleted > 0) {
+                        return false;
+                    }
+                    if (lastItemListener != null) {
+                        lastItemListener.onLongClick(message);
+                    }
+                    isLongActivated = true;
+                    return false;
+                }
+            });
+
+            messageTV.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if(event.getAction() == MotionEvent.ACTION_UP){
+                        if(isLongActivated){
+                            isLongActivated = false;
+                            return true;
+                        }
+                    }else if(event.getAction() == MotionEvent.ACTION_DOWN){
+                        isLongActivated = false;
+                    }
+                    return false;
+                }
+            });
         }
     }
 

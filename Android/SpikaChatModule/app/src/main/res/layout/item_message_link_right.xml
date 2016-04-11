@@ -185,9 +185,9 @@
                     android:layout_height="wrap_content"
                     android:layout_alignLeft="@id/linkTitle"
                     android:layout_below="@id/linkDescription"
+                    android:ellipsize="end"
                     android:gravity="bottom"
                     android:maxLines="1"
-                    android:ellipsize="end"
                     android:paddingBottom="5dp"
                     android:paddingLeft="5dp"
                     android:paddingRight="5dp"
@@ -201,10 +201,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/myLinkInfo"
+                android:autoLink="web"
+                android:paddingBottom="10dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:paddingBottom="10dp"
                 android:textColor="@color/my_message_text_color"
+                android:textColorLink="@color/gray_send_message_background"
                 android:textSize="@dimen/my_text_size"/>
 
         </RelativeLayout>
