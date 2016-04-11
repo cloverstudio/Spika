@@ -66,6 +66,7 @@ public class EmitJsonCreator {
                 linkData.put("host", message.attributes.linkData.host);
                 linkData.put("url", message.attributes.linkData.url);
                 linkData.put("imageUrl", message.attributes.linkData.imageUrl);
+                linkData.put("siteName", message.attributes.linkData.siteName);
                 attObject.put("linkData", linkData);
                 obj.put("attributes", attObject);
             }

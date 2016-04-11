@@ -62,6 +62,12 @@ public class ParseUrlLinkMetadata extends AsyncTask<Void, Void, Void>{
                 resultData.title = document.title();
             }
 
+            if ((element = document.head().select("meta[property=og:site_name]").first()) != null) {
+                resultData.siteName = element.attr("content");
+            } else {
+                resultData.siteName = document.title();
+            }
+
             if ((element = document.head().select("meta[property=og:description]").first()) != null) {
                 resultData.desc = element.attr("content");
             } else if ((element = document.head().select("meta[name=description]").first()) != null) {

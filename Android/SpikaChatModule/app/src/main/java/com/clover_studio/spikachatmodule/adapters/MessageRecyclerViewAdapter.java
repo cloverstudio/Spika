@@ -547,8 +547,11 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
                 image.setVisibility(View.GONE);
             }
 
-            title.setText(message.attributes.linkData.title);
-            desc.setText(message.attributes.linkData.desc);
+            if(TextUtils.isEmpty(message.attributes.linkData.title)){
+                title.setText(message.attributes.linkData.siteName);
+            }else{
+                title.setText(message.attributes.linkData.title);
+            }            desc.setText(message.attributes.linkData.desc);
             host.setText(message.attributes.linkData.host);
 
             messageTV.setText(message.message);
