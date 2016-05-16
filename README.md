@@ -29,42 +29,6 @@ https://github.com/cloverstudio/Spika/tree/master/iOS
 
 ## License
 
-**Spika is opensource, but it's not free for commercial license. Please contact info@clover-studio.com for detail. Commercial license fee is $499**
-
-### - - - - Free License - - - - 
-
-#### Required
-
-* License and copyright notice
-* Disclose Source
-
-#### Permitted
-
-* Private Use
-* Modification
-* Distribution
-
-#### Forbidden
-
-* Hold Liable
-* Sublicensing
-* Commercial Use
-
-### - - - - Commercial License - - - - 
-
-#### Required
-**Nothing**
-
-#### Permitted
-
-* Private Use
-* Modification
-* Distribution
-* Commercial Use
-
-#### Forbidden
-
-* Hold Liable
-* Sublicensing
+** MIL 
 
 
