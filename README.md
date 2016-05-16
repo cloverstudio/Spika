@@ -29,6 +29,6 @@ https://github.com/cloverstudio/Spika/tree/master/iOS
 
 ## License
 
-** MIL 
+MIT License
 
 
