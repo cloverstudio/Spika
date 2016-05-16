@@ -2,9 +2,9 @@
 
 Spika is messenger module for Web/iOS/Android with backend. 
 You can include messenger feature to your app or service with minimum code.
-As also Spika is designed to customise, so you can change logic and design very easily.
-If you need comprehensive secure business chat solution we are providing Spika for business.
-For detail please here. https://spika.business/
+
+For detail please visit our web site.
+http://spiaapp.com
 
 ![Demo](https://github.com/cloverstudio/Spika/blob/master/spika_demo_new.gif "Demo")
 
