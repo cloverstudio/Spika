@@ -33,7 +33,11 @@ public class ParseUrlLinkMetadata extends AsyncTask<Void, Void, Void>{
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
         if(listener != null){
-            listener.onUrlParsed(resultData, resultJson.toString());
+            if(resultData == null || resultJson == null){
+                listener.onUrlParsed(null);
+            }else{
+                listener.onUrlParsed(resultData);
+            }
         }
     }
 
@@ -43,6 +47,10 @@ public class ParseUrlLinkMetadata extends AsyncTask<Void, Void, Void>{
         resultData = new ParsedUrlData();
 
         try {
+
+            if(!url.startsWith("http")){
+                url = "http://" + url;
+            }
 
             URL inputUrl = new URL(url.trim());
             Document document = Jsoup.connect(url).maxBodySize(0).userAgent("Desktop").get();
@@ -54,13 +62,21 @@ public class ParseUrlLinkMetadata extends AsyncTask<Void, Void, Void>{
                 resultData.title = document.title();
             }
 
+            if ((element = document.head().select("meta[property=og:site_name]").first()) != null) {
+                resultData.siteName = element.attr("content");
+            } else {
+                resultData.siteName = document.title();
+            }
+
             if ((element = document.head().select("meta[property=og:description]").first()) != null) {
                 resultData.desc = element.attr("content");
             } else if ((element = document.head().select("meta[name=description]").first()) != null) {
                 resultData.desc = element.attr("content");
             }
 
-            if ((element = document.head().select("link[rel=apple-touch-icon]").first()) != null) {
+            if ((element = document.head().select("meta[property=og:image]").first()) != null) {
+                resultData.imageUrl = element.attr("content");
+            }else if ((element = document.head().select("link[rel=apple-touch-icon]").first()) != null) {
                 resultData.imageUrl = element.attr("href");
             } else if ((element = document.head().select("link[rel=apple-touch-icon-precomposed]").first()) != null) {
                 resultData.imageUrl = element.attr("href");
@@ -106,7 +122,7 @@ public class ParseUrlLinkMetadata extends AsyncTask<Void, Void, Void>{
     }
 
     public interface OnUrlParsed {
-        void onUrlParsed(ParsedUrlData data, String jsonObject);
+        void onUrlParsed(ParsedUrlData data);
     }
 
 }

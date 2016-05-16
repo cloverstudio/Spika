@@ -47,6 +47,7 @@ public class Const {
         public static final String TOKEN = "TOKEN";
         public static final String FILE = "file";
         public static final String ACCESS_TOKEN = "access-token";
+        public static final String LINK_DATA = "linkData";
     }
 
     public static final class AnimationDuration{

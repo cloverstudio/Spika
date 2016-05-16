@@ -27,6 +27,7 @@ public class ParsedUrlData extends BaseModel {
     public String host;
     public String url;
     public String imageUrl;
+    public String siteName;
 
     @Override
     public String toString() {
@@ -36,6 +37,7 @@ public class ParsedUrlData extends BaseModel {
                 ", host='" + host + '\'' +
                 ", url='" + url + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
+                ", siteName='" + siteName + '\'' +
                 '}';
     }
 }

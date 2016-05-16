@@ -2,6 +2,7 @@ package com.clover_studio.spikachatmodule.adapters;
 
 import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -16,6 +17,7 @@ import com.clover_studio.spikachatmodule.R;
 import com.clover_studio.spikachatmodule.models.Message;
 import com.clover_studio.spikachatmodule.models.User;
 import com.clover_studio.spikachatmodule.utils.Const;
+import com.clover_studio.spikachatmodule.utils.LogCS;
 import com.clover_studio.spikachatmodule.utils.MessageSortByCreated;
 import com.clover_studio.spikachatmodule.utils.ParseUrlLinkMetadata;
 import com.clover_studio.spikachatmodule.utils.Tools;
@@ -186,7 +188,7 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
         switch (message.type) {
             case Const.MessageType.TYPE_TEXT:
                 boolean isLink = false;
-                if(message.attributes != null){
+                if(message.attributes != null && message.attributes.linkData != null){
                     isLink = true;
                 }
                 if (isMessageFromUser(message, myUser)) {
@@ -198,7 +200,7 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
                 }
                 else {
                     if(isLink){
-                        cellType = R.layout.item_message_link_right;
+                        cellType = R.layout.item_message_link_left;
                     }else{
                         cellType = R.layout.item_message_text_left;
                     }
@@ -316,7 +318,7 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
 
             if(position == 0 || !isMessageInSameDate(message, data.get(Math.max(0, position - 1)))){
                 rlDateSeparator.setVisibility(View.VISIBLE);
-                dateSeparator.setText(message.getTimeDateSeparator());
+                dateSeparator.setText(message.getTimeDateSeparator(dateSeparator.getContext()));
             }else{
                 rlDateSeparator.setVisibility(View.GONE);
             }
@@ -393,7 +395,7 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
             //date separator
             if(position == 0 || !isMessageInSameDate(message, data.get(Math.max(0, position - 1)))){
                 rlDateSeparator.setVisibility(View.VISIBLE);
-                dateSeparator.setText(message.getTimeDateSeparator());
+                dateSeparator.setText(message.getTimeDateSeparator(dateSeparator.getContext()));
             }else{
                 rlDateSeparator.setVisibility(View.GONE);
             }
@@ -512,18 +514,24 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
 
     public class LinkViewHolder extends BaseViewHolder {
 
-        ImageView image;
+        RoundedImageView image;
         TextView title;
         TextView desc;
         TextView host;
+        TextView messageTV;
+        boolean isLongActivated;
 
         public LinkViewHolder(View itemView) {
             super(itemView);
 
-            image = (ImageView) itemView.findViewById(R.id.linkImgView);
+            image = (RoundedImageView) itemView.findViewById(R.id.linkImgView);
+            image.setCornerRadius(10f);
             title = (TextView) itemView.findViewById(R.id.linkTitle);
             desc = (TextView) itemView.findViewById(R.id.linkDescription);
             host = (TextView) itemView.findViewById(R.id.linkHost);
+            messageTV = (TextView) itemView.findViewById(R.id.textMessage);
+
+            isLongActivated = false;
 
         }
 
@@ -531,23 +539,54 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
         public void bindItem (int position) {
             super.bindItem(position);
 
-            if(message.parsedUrlData == null){
-                message.parseUrl();
+            if(message.attributes.linkData == null){
+                return;
             }
 
-            Log.e("LOG", "URL MODEL: " + message.attributes);
-
-            if(message.parsedUrlData.imageUrl != null){
-                Picasso.with(image.getContext()).load(message.parsedUrlData.imageUrl).resize(256, 256).into(image);
+            if(message.attributes.linkData.imageUrl != null){
+                Picasso.with(image.getContext()).load(message.attributes.linkData.imageUrl).into(image);
                 image.setVisibility(View.VISIBLE);
             }else{
                 image.setVisibility(View.GONE);
             }
 
-            title.setText(message.parsedUrlData.title);
-            desc.setText(message.parsedUrlData.desc);
+            if(TextUtils.isEmpty(message.attributes.linkData.title)){
+                title.setText(message.attributes.linkData.siteName);
+            }else{
+                title.setText(message.attributes.linkData.title);
+            }            desc.setText(message.attributes.linkData.desc);
+            host.setText(message.attributes.linkData.host);
 
-            host.setText(message.message);
+            messageTV.setText(message.message);
+
+            messageTV.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    if (message.deleted > 0) {
+                        return false;
+                    }
+                    if (lastItemListener != null) {
+                        lastItemListener.onLongClick(message);
+                    }
+                    isLongActivated = true;
+                    return false;
+                }
+            });
+
+            messageTV.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if(event.getAction() == MotionEvent.ACTION_UP){
+                        if(isLongActivated){
+                            isLongActivated = false;
+                            return true;
+                        }
+                    }else if(event.getAction() == MotionEvent.ACTION_DOWN){
+                        isLongActivated = false;
+                    }
+                    return false;
+                }
+            });
         }
     }
 
@@ -564,7 +603,13 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
         @Override
         public void bindItem(int position) {
             super.bindItem(position);
-            Picasso.with(imageIV.getContext()).load(Tools.getFileUrlFromId(message.file.thumb.id, imageIV.getContext())).into(imageIV);
+            if(message.file.thumb != null){
+                Picasso.with(imageIV.getContext()).load(Tools.getFileUrlFromId(message.file.thumb.id, imageIV.getContext())).into(imageIV);
+            }else if(message.file.file != null){
+                Picasso.with(imageIV.getContext()).load(Tools.getFileUrlFromId(message.file.file.id, imageIV.getContext())).into(imageIV);
+            }else{
+                imageIV.setImageDrawable(null);
+            }
         }
     }
 

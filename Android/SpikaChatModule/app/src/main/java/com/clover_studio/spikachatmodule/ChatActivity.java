@@ -56,6 +56,7 @@ import com.clover_studio.spikachatmodule.models.Message;
 import com.clover_studio.spikachatmodule.models.ParsedUrlData;
 import com.clover_studio.spikachatmodule.models.SendTyping;
 import com.clover_studio.spikachatmodule.models.Sticker;
+import com.clover_studio.spikachatmodule.models.Attributes;
 import com.clover_studio.spikachatmodule.models.UploadFileResult;
 import com.clover_studio.spikachatmodule.models.User;
 import com.clover_studio.spikachatmodule.robospice.api.DownloadFileManager;
@@ -83,6 +84,7 @@ import com.clover_studio.spikachatmodule.view.stickers.StickersManager;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.gms.maps.model.LatLng;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -645,7 +647,12 @@ public class ChatActivity extends BaseActivity {
             } else if (item.type == Const.MessageType.TYPE_CONTACT) {
                 OpenDownloadedFile.selectedContactDialog(item.message, getActivity());
             } else {
-                // do nothing for now
+                if(item.attributes != null && item.attributes.linkData != null){
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(item.attributes.linkData.url));
+                    startActivity(browserIntent);
+                }else{
+                    // do nothing for now
+                }
             }
         }
 
@@ -858,8 +865,9 @@ public class ChatActivity extends BaseActivity {
         //***************************parse link*******************//
         boolean hasLink = false;
         String textMessage = etMessage.getText().toString();
-        if(Tools.checkForLink(textMessage) != null){
-//            hasLink = true;
+        String checkForLink = Tools.checkForLink(textMessage);
+        if(checkForLink != null){
+            hasLink = true;
             //set hasLink to true when attributes implements on api
         }
 
@@ -868,16 +876,18 @@ public class ChatActivity extends BaseActivity {
         if(hasLink){
             btnSend.setVisibility(View.INVISIBLE);
             pbAboveSend.setVisibility(View.VISIBLE);
-            new ParseUrlLinkMetadata(textMessage, new ParseUrlLinkMetadata.OnUrlParsed() {
+            new ParseUrlLinkMetadata(checkForLink, new ParseUrlLinkMetadata.OnUrlParsed() {
                 @Override
-                public void onUrlParsed(ParsedUrlData data, String json) {
+                public void onUrlParsed(ParsedUrlData data) {
 
                     btnSend.setVisibility(View.VISIBLE);
                     pbAboveSend.setVisibility(View.GONE);
 
                     etMessage.setText("");
 
-                    message.attributes = json;
+                    Attributes att = new Attributes();
+                    att.linkData = data;
+                    message.attributes = att;
 
                     if(SocketManager.getInstance().isSocketConnect()){
                         JSONObject emitMessage = EmitJsonCreator.createEmitSendMessage(message);

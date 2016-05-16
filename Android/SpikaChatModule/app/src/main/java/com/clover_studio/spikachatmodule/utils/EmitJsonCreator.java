@@ -1,5 +1,7 @@
 package com.clover_studio.spikachatmodule.utils;
 
+import android.text.TextUtils;
+
 import com.clover_studio.spikachatmodule.models.Message;
 import com.clover_studio.spikachatmodule.models.User;
 
@@ -56,6 +58,18 @@ public class EmitJsonCreator {
             obj.put("userID", message.userID);
             obj.put("localID", message.localID);
 
+            if(message.attributes != null && message.attributes.linkData != null){
+                JSONObject attObject = new JSONObject();
+                JSONObject linkData = new JSONObject();
+                linkData.put("title", message.attributes.linkData.title);
+                linkData.put("desc", message.attributes.linkData.desc);
+                linkData.put("host", message.attributes.linkData.host);
+                linkData.put("url", message.attributes.linkData.url);
+                linkData.put("imageUrl", message.attributes.linkData.imageUrl);
+                linkData.put("siteName", message.attributes.linkData.siteName);
+                attObject.put("linkData", linkData);
+                obj.put("attributes", attObject);
+            }
             if(message.file != null){
                 JSONObject fileModel = new JSONObject();
 

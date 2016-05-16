@@ -96,5 +96,7 @@
     <string name="no_name">No name</string>
     <string name="save">Save</string>
     <string name="recording_">Recording&#8230;</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
 
 </resources>

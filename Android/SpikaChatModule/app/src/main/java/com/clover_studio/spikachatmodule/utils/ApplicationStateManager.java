@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
+import com.clover_studio.spikachatmodule.base.SingletonLikeApp;
+
 /**
  * Created by mislav on 22/04/15.
  *
@@ -80,8 +82,11 @@ public class ApplicationStateManager  {
                 isApplicationActive = false;
                 applicationStateChange();
             } else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON) && !isApplicationActive) {
-                isApplicationActive = true;
-                applicationStateChange();
+                boolean isAppInBackground = !SingletonLikeApp.getInstance().isAppInForeground(context);
+                if(!isAppInBackground){
+                    isApplicationActive = true;
+                    applicationStateChange();
+                }
             }
         }
     }
