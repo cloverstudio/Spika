@@ -11,9 +11,8 @@ import android.widget.TextView;
 
 import com.clover_studio.spikachatmodule.R;
 import com.clover_studio.spikachatmodule.models.User;
+import com.clover_studio.spikachatmodule.utils.UtilsImage;
 import com.clover_studio.spikachatmodule.view.roundimage.RoundImageView;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,17 +65,9 @@ public class UsersInChatRecyclerViewAdapter extends RecyclerView.Adapter<UsersIn
         holder.progressForAvatar.setVisibility(View.VISIBLE);
         ((RoundImageView)holder.avatar).setBorderColor(ContextCompat.getColor(holder.avatar.getContext(), R.color.default_color));
 
-        Picasso.with(holder.avatar.getContext()).load(user.avatarURL).into(holder.avatar, new Callback() {
-            @Override
-            public void onSuccess() {
-                holder.progressForAvatar.setVisibility(View.GONE);
-            }
+        holder.avatar.setImageDrawable(null);
 
-            @Override
-            public void onError() {
-                holder.progressForAvatar.setVisibility(View.GONE);
-            }
-        });
+        UtilsImage.setImageWithLoader(holder.avatar, -1, holder.progressForAvatar, user.avatarURL);
     }
 
     @Override

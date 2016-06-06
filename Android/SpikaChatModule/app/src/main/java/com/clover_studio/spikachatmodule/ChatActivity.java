@@ -67,6 +67,7 @@ import com.clover_studio.spikachatmodule.utils.AnimUtils;
 import com.clover_studio.spikachatmodule.utils.ApplicationStateManager;
 import com.clover_studio.spikachatmodule.utils.BuildTempFileAsync;
 import com.clover_studio.spikachatmodule.utils.Const;
+import com.clover_studio.spikachatmodule.utils.CustomImageDownloader;
 import com.clover_studio.spikachatmodule.utils.EmitJsonCreator;
 import com.clover_studio.spikachatmodule.utils.ErrorHandle;
 import com.clover_studio.spikachatmodule.utils.LogCS;
@@ -81,6 +82,9 @@ import com.clover_studio.spikachatmodule.view.stickers.OnStickersManageListener;
 import com.clover_studio.spikachatmodule.view.stickers.StickersManager;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.Gson;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import org.json.JSONObject;
 
@@ -90,7 +94,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -174,6 +180,23 @@ public class ChatActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
+        //move this to application class of application
+        Map<String, String> headers = new HashMap<>();
+        headers.put("Referer", SingletonLikeApp.getInstance().getConfig(getActivity()).apiBaseUrl);
+        DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .extraForDownloader(headers)
+                .build();
+
+        ImageLoaderConfiguration configImageLoader = new ImageLoaderConfiguration.Builder(getApplicationContext())
+                .threadPoolSize(3)
+                .defaultDisplayImageOptions(defaultOptions)
+                .imageDownloader(new CustomImageDownloader(getActivity()))
+                .build();
+        ImageLoader.getInstance().init(configImageLoader);
+        //***************************************************
 
         SingletonLikeApp.getInstance().setApplicationState(getActivity());
 

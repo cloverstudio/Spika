@@ -29,7 +29,6 @@ import com.clover_studio.spikachatmodule.utils.AnimUtils;
 import com.clover_studio.spikachatmodule.utils.Const;
 import com.clover_studio.spikachatmodule.utils.Tools;
 import com.clover_studio.spikachatmodule.view.CustomTextView;
-import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 

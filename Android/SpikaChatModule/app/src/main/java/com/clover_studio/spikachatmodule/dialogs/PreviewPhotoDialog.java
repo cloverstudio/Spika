@@ -13,8 +13,7 @@ import com.clover_studio.spikachatmodule.R;
 import com.clover_studio.spikachatmodule.api.DownloadFileManager;
 import com.clover_studio.spikachatmodule.models.Message;
 import com.clover_studio.spikachatmodule.utils.Tools;
-import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
+import com.clover_studio.spikachatmodule.utils.UtilsImage;
 
 import java.io.File;
 
@@ -146,7 +145,7 @@ public class PreviewPhotoDialog extends Dialog {
             int width = maxWidth;
             int height = (int) ((double)width / ((double)bitmap.getWidth() / (double)bitmap.getHeight()));
 
-            Picasso.with(photo.getContext()).load(file).resize(width, height).into(photo, new Callback() {
+            UtilsImage.setImageWithFileLoaderAndCallback(photo, -1, null, file, new UtilsImage.ImageCallback() {
                 @Override
                 public void onSuccess() {
                     findViewById(R.id.progressBarLoading).setVisibility(View.GONE);
@@ -164,7 +163,7 @@ public class PreviewPhotoDialog extends Dialog {
             int height = maxHeight;
             int width = (int) ((double)height / ((double)bitmap.getHeight() / (double)bitmap.getWidth()));
 
-            Picasso.with(photo.getContext()).load(file).resize(width, height).into(photo, new Callback() {
+            UtilsImage.setImageWithFileLoaderAndCallback(photo, -1, null, file, new UtilsImage.ImageCallback() {
                 @Override
                 public void onSuccess() {
                     findViewById(R.id.progressBarLoading).setVisibility(View.GONE);
@@ -179,7 +178,7 @@ public class PreviewPhotoDialog extends Dialog {
             });
 
         }else{
-            Picasso.with(photo.getContext()).load(file).into(photo, new Callback() {
+            UtilsImage.setImageWithFileLoaderAndCallback(photo, -1, null, file, new UtilsImage.ImageCallback() {
                 @Override
                 public void onSuccess() {
                     findViewById(R.id.progressBarLoading).setVisibility(View.GONE);

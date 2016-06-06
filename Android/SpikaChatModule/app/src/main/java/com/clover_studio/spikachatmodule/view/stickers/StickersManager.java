@@ -22,9 +22,9 @@ import com.clover_studio.spikachatmodule.models.GetStickersData;
 import com.clover_studio.spikachatmodule.models.StickerCategory;
 import com.clover_studio.spikachatmodule.utils.AnimUtils;
 import com.clover_studio.spikachatmodule.utils.Const;
+import com.clover_studio.spikachatmodule.utils.UtilsImage;
 import com.clover_studio.spikachatmodule.view.circularview.animation.SupportAnimator;
 import com.clover_studio.spikachatmodule.view.circularview.animation.ViewAnimationUtils;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -192,7 +192,7 @@ public class StickersManager {
             ivStickerCategory.setPadding((int) padding, (int) padding, (int) padding, (int) padding);
             ivStickerCategory.setScaleType(ImageView.ScaleType.FIT_CENTER);
             ivStickerCategory.setBackgroundResource(R.drawable.selector_stickers_category);
-            Picasso.with(ivStickerCategory.getContext()).load(category.mainPic).into(ivStickerCategory);
+            UtilsImage.setImageWithLoader(ivStickerCategory, -1, null, category.mainPic);
             ivStickerCategory.setTag(position);
             position++;
             ivStickerCategory.setOnClickListener(new View.OnClickListener() {

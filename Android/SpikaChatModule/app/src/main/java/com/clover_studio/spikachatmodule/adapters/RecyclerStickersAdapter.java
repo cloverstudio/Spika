@@ -5,13 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.clover_studio.spikachatmodule.R;
 import com.clover_studio.spikachatmodule.models.Sticker;
-import com.squareup.picasso.Picasso;
+import com.clover_studio.spikachatmodule.utils.UtilsImage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,8 +73,10 @@ public class RecyclerStickersAdapter extends RecyclerView.Adapter<RecyclerSticke
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
 
+        holder.stickerIv.setImageDrawable(null);
+
         final Sticker sticker = data.get(position);
-        Picasso.with(holder.stickerIv.getContext()).load(sticker.smallPic).into(holder.stickerIv);
+        UtilsImage.setImageWithLoader(holder.stickerIv, -1, null, sticker.smallPic);
         holder.stickerIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

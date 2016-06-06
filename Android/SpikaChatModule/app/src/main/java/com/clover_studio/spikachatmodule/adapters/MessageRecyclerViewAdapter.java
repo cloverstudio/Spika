@@ -1,14 +1,11 @@
 package com.clover_studio.spikachatmodule.adapters;
 
-import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.URLUtil;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -17,19 +14,12 @@ import com.clover_studio.spikachatmodule.R;
 import com.clover_studio.spikachatmodule.models.Message;
 import com.clover_studio.spikachatmodule.models.User;
 import com.clover_studio.spikachatmodule.utils.Const;
-import com.clover_studio.spikachatmodule.utils.LogCS;
 import com.clover_studio.spikachatmodule.utils.MessageSortByCreated;
-import com.clover_studio.spikachatmodule.utils.ParseUrlLinkMetadata;
 import com.clover_studio.spikachatmodule.utils.Tools;
+import com.clover_studio.spikachatmodule.utils.UtilsImage;
 import com.clover_studio.spikachatmodule.utils.VCardParser;
 import com.clover_studio.spikachatmodule.view.roundimage.RoundedImageView;
-import com.squareup.picasso.Picasso;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -367,6 +357,8 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
         @Override
         public void bindItem(int position) {
 
+            avatar.setImageDrawable(null);
+
             message = data.get(position);
 
             if (!isMessageFromUser(data.get(Math.max(0, position - 1)), message.user) || position == 0) {
@@ -379,7 +371,7 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
 
             if(!isMessageFromUser(data.get(Math.min(data.size() - 1, position + 1)), message.user) || position == data.size() - 1){
                 avatar.setVisibility(View.VISIBLE);
-                Picasso.with(avatar.getContext()).load(message.user.avatarURL).resize(256, 256).into(avatar);
+                UtilsImage.setImageWithLoader(avatar, -1, null, message.user.avatarURL);
 
                 for(View item : peakViews){
                     item.setVisibility(View.VISIBLE);
@@ -539,12 +531,14 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
         public void bindItem (int position) {
             super.bindItem(position);
 
+            image.setImageDrawable(null);
+
             if(message.attributes.linkData == null){
                 return;
             }
 
             if(message.attributes.linkData.imageUrl != null){
-                Picasso.with(image.getContext()).load(message.attributes.linkData.imageUrl).into(image);
+                UtilsImage.setImageWithLoader(image, -1, null, message.attributes.linkData.imageUrl);
                 image.setVisibility(View.VISIBLE);
             }else{
                 image.setVisibility(View.GONE);
@@ -603,10 +597,11 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
         @Override
         public void bindItem(int position) {
             super.bindItem(position);
+            imageIV.setImageDrawable(null);
             if(message.file.thumb != null){
-                Picasso.with(imageIV.getContext()).load(Tools.getFileUrlFromId(message.file.thumb.id, imageIV.getContext())).into(imageIV);
+                UtilsImage.setImageWithLoader(imageIV, -1, null, Tools.getFileUrlFromId(message.file.thumb.id, imageIV.getContext()));
             }else if(message.file.file != null){
-                Picasso.with(imageIV.getContext()).load(Tools.getFileUrlFromId(message.file.file.id, imageIV.getContext())).into(imageIV);
+                UtilsImage.setImageWithLoader(imageIV, -1, null, Tools.getFileUrlFromId(message.file.file.id, imageIV.getContext()));
             }else{
                 imageIV.setImageDrawable(null);
             }
@@ -626,7 +621,8 @@ public class MessageRecyclerViewAdapter extends RecyclerView.Adapter<MessageRecy
         @Override
         public void bindItem(int position) {
             super.bindItem(position);
-            Picasso.with(imageIV.getContext()).load(message.message).into(imageIV);
+            imageIV.setImageDrawable(null);
+            UtilsImage.setImageWithLoader(imageIV, -1, null, message.message);
         }
     }
 

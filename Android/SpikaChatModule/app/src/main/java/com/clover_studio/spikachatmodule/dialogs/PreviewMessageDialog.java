@@ -22,7 +22,7 @@ import com.clover_studio.spikachatmodule.models.User;
 import com.clover_studio.spikachatmodule.utils.AnimUtils;
 import com.clover_studio.spikachatmodule.utils.Const;
 import com.clover_studio.spikachatmodule.utils.Tools;
-import com.squareup.picasso.Picasso;
+import com.clover_studio.spikachatmodule.utils.UtilsImage;
 
 public class PreviewMessageDialog extends Dialog {
 
@@ -116,7 +116,8 @@ public class PreviewMessageDialog extends Dialog {
             holder.name.setText(model.user.name);
             holder.timestamp.setText(Tools.generateDate(Const.DateFormats.USER_JOINED_DATE_FORMAT, model.at));
 
-            Picasso.with(holder.avatar.getContext()).load(model.user.avatarURL).into(holder.avatar);
+            holder.avatar.setImageDrawable(null);
+            UtilsImage.setImageWithLoader(holder.avatar, -1, null, model.user.avatarURL);
         }
 
         @Override

@@ -41,7 +41,6 @@ dependencies {
     compile 'com.android.support:cardview-v7:23.1.1'
     compile 'com.google.android.gms:play-services-maps:8.3.0'
     compile 'com.googlecode.ez-vcard:ez-vcard:0.9.6'
-    compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.google.android.gms:play-services-appindexing:8.3.0'
     compile 'com.commit451:PhotoView:1.2.4'
 
@@ -49,4 +48,8 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
     compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
     compile 'com.squareup.retrofit2:converter-scalars:2.0.0-beta4'
+
+    //UNIVERSAL IMAGE LOADER
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
+
 }
