@@ -8,12 +8,8 @@ import com.clover_studio.spikachatmodule.R;
 import com.clover_studio.spikachatmodule.base.BaseModel;
 import com.clover_studio.spikachatmodule.utils.Const;
 import com.clover_studio.spikachatmodule.utils.Tools;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.gms.maps.model.LatLng;
 
-import org.json.JSONException;
-
-import java.io.IOException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

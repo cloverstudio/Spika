@@ -10,8 +10,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.clover_studio.spikachatmodule.R;
+import com.clover_studio.spikachatmodule.api.DownloadFileManager;
 import com.clover_studio.spikachatmodule.models.Message;
-import com.clover_studio.spikachatmodule.robospice.api.DownloadFileManager;
 import com.clover_studio.spikachatmodule.utils.Tools;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;

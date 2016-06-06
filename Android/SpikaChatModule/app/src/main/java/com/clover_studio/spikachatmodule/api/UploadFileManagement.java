@@ -1,4 +1,4 @@
-package com.clover_studio.spikachatmodule.robospice.api;
+package com.clover_studio.spikachatmodule.api;
 
 import android.os.AsyncTask;
 

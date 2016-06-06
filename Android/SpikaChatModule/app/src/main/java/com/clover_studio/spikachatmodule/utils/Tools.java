@@ -25,9 +25,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.clover_studio.spikachatmodule.R;
+import com.clover_studio.spikachatmodule.api.DownloadFileManager;
 import com.clover_studio.spikachatmodule.base.BaseActivity;
 import com.clover_studio.spikachatmodule.base.SingletonLikeApp;
-import com.clover_studio.spikachatmodule.robospice.api.DownloadFileManager;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

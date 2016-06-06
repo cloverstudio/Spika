@@ -3,13 +3,10 @@ package com.clover_studio.spikachatmodule.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 /**
  * Created by ubuntu_ivo on 22.07.15..
  */
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class FileModel implements Parcelable{
 
     public FileModelDetails file;

@@ -9,10 +9,11 @@ import com.clover_studio.spikachatmodule.models.SendTyping;
 import com.clover_studio.spikachatmodule.models.User;
 import com.clover_studio.spikachatmodule.utils.Const;
 import com.clover_studio.spikachatmodule.utils.LogCS;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
 
@@ -106,11 +107,11 @@ public class SocketManager {
             @Override
             public void call(Object... args) {
                 String userLeft = args[0].toString();
-                ObjectMapper mapper = new ObjectMapper();
+                Gson gson = new Gson();
                 try {
-                    User user = mapper.readValue(userLeft, User.class);
+                    User user = gson.fromJson(userLeft, User.class);
                     if(mListener != null) mListener.onUserLeft(user);
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -120,11 +121,11 @@ public class SocketManager {
             @Override
             public void call(Object... args) {
                 String sendTyping = args[0].toString();
-                ObjectMapper mapper = new ObjectMapper();
+                Gson gson = new Gson();
                 try {
-                    SendTyping typing = mapper.readValue(sendTyping, SendTyping.class);
+                    SendTyping typing = gson.fromJson(sendTyping, SendTyping.class);
                     if(mListener != null) mListener.onTyping(typing);
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -135,11 +136,11 @@ public class SocketManager {
             public void call(Object... args) {
                 LogCS.w("LOG", "MESSAGE RECEIVED");
                 String newMessage = args[0].toString();
-                ObjectMapper mapper = new ObjectMapper();
+                Gson gson = new Gson();
                 try {
-                    Message message = mapper.readValue(newMessage, Message.class);
+                    Message message = gson.fromJson(newMessage, Message.class);
                     if(mListener != null) mListener.onMessageReceived(message);
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -149,11 +150,11 @@ public class SocketManager {
             @Override
             public void call(Object... args) {
                 String newMessage = args[0].toString();
-                ObjectMapper mapper = new ObjectMapper();
+                Gson gson = new Gson();
                 try {
-                    List<Message> messages = mapper.readValue(newMessage, mapper.getTypeFactory().constructCollectionType(List.class, Message.class));
+                    List<Message> messages = gson.fromJson(newMessage, new TypeToken<List<Message>>() {}.getType());
                     if(mListener != null) mListener.onMessagesUpdated(messages);
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -163,11 +164,11 @@ public class SocketManager {
             @Override
             public void call(Object... args) {
                 String response = args[0].toString();
-                ObjectMapper mapper = new ObjectMapper();
+                Gson gson = new Gson();
                 try {
-                    BaseModel responseModel = mapper.readValue(response, BaseModel.class);
+                    BaseModel responseModel = gson.fromJson(response, BaseModel.class);
                     if(mListener != null) mListener.onSocketError(responseModel.code);
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

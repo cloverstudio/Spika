@@ -13,16 +13,19 @@ import com.balysv.materialmenu.MaterialMenuDrawable;
 import com.balysv.materialmenu.MaterialMenuView;
 import com.clover_studio.spikachatmodule.R;
 import com.clover_studio.spikachatmodule.dialogs.SimpleProgressDialog;
-import com.clover_studio.spikachatmodule.robospice.spice.CustomSpiceManager;
-import com.clover_studio.spikachatmodule.robospice.spice.SpringService;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Created by ubuntu_ivo on 17.07.15..
  */
 public class BaseActivity extends AppCompatActivity {
 
-    private CustomSpiceManager spiceManager = new CustomSpiceManager(SpringService.class);
     SimpleProgressDialog dialog;
+    protected Retrofit client;
+
 
     Toolbar toolbar;
 
@@ -30,17 +33,11 @@ public class BaseActivity extends AppCompatActivity {
     protected boolean doNotShowProgressNow = false;
 
     /**
-     * get spice manager
-     * @return spice manager
+     * get retrofit client
+     * @return retrofit client
      */
-    public CustomSpiceManager getSpiceManager() {
-        return spiceManager;
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        spiceManager.start(this);
+    public Retrofit getRetrofit(){
+        return client;
     }
 
     /**
@@ -87,15 +84,16 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
-        spiceManager.shouldStop();
-        super.onStop();
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dialog = new SimpleProgressDialog(this);
+
+        client = new Retrofit.Builder()
+                .baseUrl(SingletonLikeApp.getInstance().getConfig(getActivity()).apiBaseUrl)
+//                .client(CustomOkHttpsClient.getUnsafeOkHttpClient())
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
     }
 
     /**

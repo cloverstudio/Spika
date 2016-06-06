@@ -9,14 +9,18 @@ import android.text.TextUtils;
 
 import com.clover_studio.spikachatmodule.adapters.UsersInChatRecyclerViewAdapter;
 import com.clover_studio.spikachatmodule.base.BaseActivity;
+import com.clover_studio.spikachatmodule.base.SingletonLikeApp;
 import com.clover_studio.spikachatmodule.dialogs.NotifyDialog;
 import com.clover_studio.spikachatmodule.models.GetUserModel;
 import com.clover_studio.spikachatmodule.models.User;
-import com.clover_studio.spikachatmodule.robospice.api.UsersApi;
-import com.clover_studio.spikachatmodule.robospice.spice.CustomSpiceListener;
+import com.clover_studio.spikachatmodule.api.retrofit.CustomResponse;
+import com.clover_studio.spikachatmodule.api.retrofit.SpikaOSRetroApiInterface;
 import com.clover_studio.spikachatmodule.utils.Const;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Response;
 
 
 public class UsersInChatActivity extends BaseActivity {
@@ -64,16 +68,16 @@ public class UsersInChatActivity extends BaseActivity {
      */
     private void getUsers(String roomId) {
         handleProgress(true);
-        UsersApi.GetUsersInRoom spice = new UsersApi.GetUsersInRoom(roomId, getActivity());
-        getSpiceManager().execute(spice, new CustomSpiceListener<GetUserModel>(this){
+        SpikaOSRetroApiInterface retroApiInterface = getRetrofit().create(SpikaOSRetroApiInterface.class);
+        Call<GetUserModel> call = retroApiInterface.getUsersInRoom(roomId, SingletonLikeApp.getInstance().getSharedPreferences(getActivity()).getToken());
+        call.enqueue(new CustomResponse<GetUserModel>(getActivity(), true, true) {
 
             @Override
-            public void onRequestSuccess(GetUserModel result) {
-                super.onRequestSuccess(result);
-                if (result.code == 1) {
-                    ((UsersInChatRecyclerViewAdapter)rvMain.getAdapter()).setData(result.data);
-                }
+            public void onCustomSuccess(Call<GetUserModel> call, Response<GetUserModel> response) {
+                super.onCustomSuccess(call, response);
+                ((UsersInChatRecyclerViewAdapter) rvMain.getAdapter()).setData(response.body().data);
             }
+
         });
 
     }

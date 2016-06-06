@@ -10,9 +10,9 @@ public class Const {
 //        public static final String BASE_URL = "http://52.91.91.133/spika/v1/"; //production url
         public static final String BASE_URL = "http://ossdemo.spika.chat/spika/v1/"; //new server url
         public static final String USER_LOGIN = "user/login";
-        public static final String USER_LIST = "user/list";
-        public static final String MESSAGES = "message/list";
-        public static final String LATEST = "message/latest";
+        public static final String USER_LIST = "user/list/{roomId}";
+        public static final String MESSAGES = "message/list/{roomId}/{lastMessageId}";
+        public static final String LATEST = "message/latest/{roomId}/{lastMessageId}";
         public static final String UPLOAD_FILE = "file/upload";
         public static final String DOWNLOAD_FILE = "file/download";
         public static final String STICKERS = "stickers";
@@ -48,6 +48,8 @@ public class Const {
         public static final String FILE = "file";
         public static final String ACCESS_TOKEN = "access-token";
         public static final String LINK_DATA = "linkData";
+        public static final String ROOM_ID = "roomId";
+        public static final String LAST_MESSAGE_ID = "lastMessageId";
     }
 
     public static final class AnimationDuration{

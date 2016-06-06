@@ -21,16 +21,16 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import com.clover_studio.spikachatmodule.api.UploadFileManagement;
 import com.clover_studio.spikachatmodule.base.BaseActivity;
 import com.clover_studio.spikachatmodule.base.SingletonLikeApp;
 import com.clover_studio.spikachatmodule.dialogs.NotifyDialog;
 import com.clover_studio.spikachatmodule.dialogs.UploadFileDialog;
 import com.clover_studio.spikachatmodule.models.UploadFileResult;
-import com.clover_studio.spikachatmodule.robospice.api.UploadFileManagement;
 import com.clover_studio.spikachatmodule.utils.Const;
 import com.clover_studio.spikachatmodule.utils.LogCS;
 import com.clover_studio.spikachatmodule.utils.Tools;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -220,14 +220,14 @@ public class CameraPhotoPreviewActivity extends BaseActivity {
     }
 
     protected void onResponseFinish(String result){
-        ObjectMapper mapper = new ObjectMapper();
+        Gson gson = new Gson();
         UploadFileResult data = null;
         try {
-            data = mapper.readValue(result, UploadFileResult.class);
+            data = gson.fromJson(result, UploadFileResult.class);
 
             new File(mScaledPath).delete();
             new File(mOriginalPath).delete();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         

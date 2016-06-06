@@ -35,6 +35,10 @@ import android.widget.TextView;
 
 import com.clover_studio.spikachatmodule.adapters.MessageRecyclerViewAdapter;
 import com.clover_studio.spikachatmodule.adapters.SettingsAdapter;
+import com.clover_studio.spikachatmodule.api.DownloadFileManager;
+import com.clover_studio.spikachatmodule.api.UploadFileManagement;
+import com.clover_studio.spikachatmodule.api.retrofit.CustomResponse;
+import com.clover_studio.spikachatmodule.api.retrofit.SpikaOSRetroApiInterface;
 import com.clover_studio.spikachatmodule.base.BaseActivity;
 import com.clover_studio.spikachatmodule.base.SingletonLikeApp;
 import com.clover_studio.spikachatmodule.dialogs.DownloadFileDialog;
@@ -47,6 +51,7 @@ import com.clover_studio.spikachatmodule.dialogs.PreviewVideoDialog;
 import com.clover_studio.spikachatmodule.dialogs.UploadFileDialog;
 import com.clover_studio.spikachatmodule.managers.socket.SocketManager;
 import com.clover_studio.spikachatmodule.managers.socket.SocketManagerListener;
+import com.clover_studio.spikachatmodule.models.Attributes;
 import com.clover_studio.spikachatmodule.models.Config;
 import com.clover_studio.spikachatmodule.models.GetMessagesModel;
 import com.clover_studio.spikachatmodule.models.GetStickersData;
@@ -56,15 +61,8 @@ import com.clover_studio.spikachatmodule.models.Message;
 import com.clover_studio.spikachatmodule.models.ParsedUrlData;
 import com.clover_studio.spikachatmodule.models.SendTyping;
 import com.clover_studio.spikachatmodule.models.Sticker;
-import com.clover_studio.spikachatmodule.models.Attributes;
 import com.clover_studio.spikachatmodule.models.UploadFileResult;
 import com.clover_studio.spikachatmodule.models.User;
-import com.clover_studio.spikachatmodule.robospice.api.DownloadFileManager;
-import com.clover_studio.spikachatmodule.robospice.api.LoginApi;
-import com.clover_studio.spikachatmodule.robospice.api.MessagesApi;
-import com.clover_studio.spikachatmodule.robospice.api.StickersApi;
-import com.clover_studio.spikachatmodule.robospice.api.UploadFileManagement;
-import com.clover_studio.spikachatmodule.robospice.spice.CustomSpiceListener;
 import com.clover_studio.spikachatmodule.utils.AnimUtils;
 import com.clover_studio.spikachatmodule.utils.ApplicationStateManager;
 import com.clover_studio.spikachatmodule.utils.BuildTempFileAsync;
@@ -81,10 +79,9 @@ import com.clover_studio.spikachatmodule.view.menu.OnMenuButtonsListener;
 import com.clover_studio.spikachatmodule.view.menu.OnMenuManageListener;
 import com.clover_studio.spikachatmodule.view.stickers.OnStickersManageListener;
 import com.clover_studio.spikachatmodule.view.stickers.StickersManager;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.gson.Gson;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -94,6 +91,9 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Response;
 
 
 public class ChatActivity extends BaseActivity {
@@ -486,37 +486,38 @@ public class ChatActivity extends BaseActivity {
      * @param user user to login
      */
     private void login(User user) {
-        handleProgress(true);
-        LoginApi.Login spice = new LoginApi.Login(user, getActivity());
 
-        getSpiceManager().execute(spice, new CustomSpiceListener<Login>(this) {
+        handleProgress(true);
+        SpikaOSRetroApiInterface retroApiInterface = getRetrofit().create(SpikaOSRetroApiInterface.class);
+        Call<Login> call = retroApiInterface.login(user);
+        call.enqueue(new CustomResponse<Login>(getActivity(), true, true) {
 
             @Override
-            public void onRequestSuccess(Login result) {
+            public void onCustomSuccess(Call<Login> call, Response<Login> response) {
                 doNotHideProgressNow = true;
-                super.onRequestSuccess(result);
-                if (result.code == 1) {
-                    SingletonLikeApp.getInstance().getSharedPreferences(getActivity()).setToken(result.data.token);
-                    SingletonLikeApp.getInstance().getSharedPreferences(getActivity()).setUserId(result.data.token);
+                super.onCustomSuccess(call, response);
+                SingletonLikeApp.getInstance().getSharedPreferences(getActivity()).setToken(response.body().data.token);
+                SingletonLikeApp.getInstance().getSharedPreferences(getActivity()).setUserId(response.body().data.token);
 
-                    if (TextUtils.isEmpty(activeUser.avatarURL)) {
-                        activeUser.avatarURL = result.data.user.avatarURL;
-                    }
-                    connectToSocket();
-
-                    //progress is visible, and it is showed in login method
-                    if (firstTime) {
-                        doNotShowProgressNow = true;
-                        boolean isInit = true;
-                        String lastMessageId = null;
-                        getMessages(isInit, lastMessageId);
-
-                        firstTime = false;
-                    }
-                    loadStickers();
+                if (TextUtils.isEmpty(activeUser.avatarURL)) {
+                    activeUser.avatarURL = response.body().data.user.avatarURL;
                 }
+                connectToSocket();
+
+                //progress is visible, and it is showed in login method
+                if (firstTime) {
+                    doNotShowProgressNow = true;
+                    boolean isInit = true;
+                    String lastMessageId = null;
+                    getMessages(isInit, lastMessageId);
+
+                    firstTime = false;
+                }
+                loadStickers();
             }
+
         });
+
     }
 
     /**
@@ -525,25 +526,28 @@ public class ChatActivity extends BaseActivity {
      * @param isInit        true - initial call, false call on paging or on resume
      * @param lastMessageId id of last message (for paging can be null)
      */
-    private void getMessages(final boolean isInit, final String lastMessageId) {
+    private void getMessages(final boolean isInit, String lastMessageId) {
         handleProgress(true);
-        MessagesApi.GetMessages spice = new MessagesApi.GetMessages(activeUser.roomID, lastMessageId, getActivity());
 
-        getSpiceManager().execute(spice, new CustomSpiceListener<GetMessagesModel>(this) {
+        if (TextUtils.isEmpty(lastMessageId)) {
+            lastMessageId = "0";
+        }
+        SpikaOSRetroApiInterface retroApiInterface = getRetrofit().create(SpikaOSRetroApiInterface.class);
+        Call<GetMessagesModel> call = retroApiInterface.getMessages(activeUser.roomID, lastMessageId, SingletonLikeApp.getInstance().getSharedPreferences(getActivity()).getToken());
+        call.enqueue(new CustomResponse<GetMessagesModel>(getActivity(), true, true) {
 
             @Override
-            public void onRequestSuccess(GetMessagesModel result) {
-                super.onRequestSuccess(result);
-                if (result.code == 1) {
-                    lastDataFromServer.clear();
-                    lastDataFromServer.addAll(result.data.messages);
-                    MessageRecyclerViewAdapter adapter = (MessageRecyclerViewAdapter) rvMessages.getAdapter();
-                    if (isInit) {
-                        adapter.clearMessages();
-                        lastVisibleItem = result.data.messages.size();
-                    }
-                    boolean isPaging = !isInit;
-                    adapter.addMessages(result.data.messages, isPaging);
+            public void onCustomSuccess(Call<GetMessagesModel> call, Response<GetMessagesModel> response) {
+                super.onCustomSuccess(call, response);
+                lastDataFromServer.clear();
+                lastDataFromServer.addAll(response.body().data.messages);
+                MessageRecyclerViewAdapter adapter = (MessageRecyclerViewAdapter) rvMessages.getAdapter();
+                if (isInit) {
+                    adapter.clearMessages();
+                    lastVisibleItem = response.body().data.messages.size();
+                }
+                boolean isPaging = !isInit;
+                adapter.addMessages(response.body().data.messages, isPaging);
 //                    if (isInit) {
 //                        scrollRecyclerToBottom();
 //                    } else {
@@ -551,12 +555,12 @@ public class ChatActivity extends BaseActivity {
 //                        scrollRecyclerToPosition(scrollToPosition);
 //                    }
 
-                    List<String> unReadMessages = SeenByUtils.getUnSeenMessages(result.data.messages, activeUser);
-                    sendOpenMessage(unReadMessages);
-
-                }
+                List<String> unReadMessages = SeenByUtils.getUnSeenMessages(response.body().data.messages, activeUser);
+                sendOpenMessage(unReadMessages);
             }
+
         });
+
     }
 
     /**
@@ -564,45 +568,45 @@ public class ChatActivity extends BaseActivity {
      *
      * @param lastMessageId id of newest message
      */
-    private void getLatestMessages(final String lastMessageId) {
-        MessagesApi.GetLatestMessages spice = new MessagesApi.GetLatestMessages(activeUser.roomID, lastMessageId, getActivity());
+    private void getLatestMessages(String lastMessageId) {
 
-        boolean showErrorDialog = false;
-        getSpiceManager().execute(spice, new CustomSpiceListener<GetMessagesModel>(this, showErrorDialog) {
+        if (TextUtils.isEmpty(lastMessageId)) {
+            lastMessageId = "0";
+        }
+        SpikaOSRetroApiInterface retroApiInterface = getRetrofit().create(SpikaOSRetroApiInterface.class);
+        Call<GetMessagesModel> call = retroApiInterface.getLatestMessages(activeUser.roomID, lastMessageId, SingletonLikeApp.getInstance().getSharedPreferences(getActivity()).getToken());
+        call.enqueue(new CustomResponse<GetMessagesModel>(getActivity(), false, false) {
 
             @Override
-            public void onRequestSuccess(GetMessagesModel result) {
-                super.onRequestSuccess(result);
-                if (result.code == 1) {
+            public void onCustomSuccess(Call<GetMessagesModel> call, Response<GetMessagesModel> response) {
+                super.onCustomSuccess(call, response);
+                if (response.body().data.messages.size() == 0) {
+                    return;
+                }
 
-                    if (result.data.messages.size() == 0) {
-                        return;
+                boolean toScrollBottom = false;
+                LinearLayoutManager llManager = (LinearLayoutManager) rvMessages.getLayoutManager();
+                if (llManager.findLastVisibleItemPosition() == rvMessages.getAdapter().getItemCount() - 1) {
+                    toScrollBottom = true;
+                }
+
+                MessageRecyclerViewAdapter adapter = (MessageRecyclerViewAdapter) rvMessages.getAdapter();
+                adapter.addLatestMessages(response.body().data.messages);
+                lastVisibleItem = adapter.getItemCount();
+
+                List<String> unReadMessages = SeenByUtils.getUnSeenMessages(response.body().data.messages, activeUser);
+                sendOpenMessage(unReadMessages);
+
+                if (toScrollBottom) {
+                    scrollRecyclerToBottom();
+                } else {
+                    if (newMessagesButton.getVisibility() == View.GONE) {
+                        AnimUtils.fadeThenGoneOrVisible(newMessagesButton, 0, 1, 250);
                     }
-
-                    boolean toScrollBottom = false;
-                    LinearLayoutManager llManager = (LinearLayoutManager) rvMessages.getLayoutManager();
-                    if (llManager.findLastVisibleItemPosition() == rvMessages.getAdapter().getItemCount() - 1) {
-                        toScrollBottom = true;
-                    }
-
-                    MessageRecyclerViewAdapter adapter = (MessageRecyclerViewAdapter) rvMessages.getAdapter();
-                    adapter.addLatestMessages(result.data.messages);
-                    lastVisibleItem = adapter.getItemCount();
-
-                    List<String> unReadMessages = SeenByUtils.getUnSeenMessages(result.data.messages, activeUser);
-                    sendOpenMessage(unReadMessages);
-
-                    if (toScrollBottom) {
-                        scrollRecyclerToBottom();
-                    } else {
-                        if (newMessagesButton.getVisibility() == View.GONE) {
-                            AnimUtils.fadeThenGoneOrVisible(newMessagesButton, 0, 1, 250);
-                        }
-                    }
-
                 }
             }
         });
+
     }
 
     protected MessageRecyclerViewAdapter.OnLastItemAndOnClickListener onLastItemAndClickItemListener = new MessageRecyclerViewAdapter.OnLastItemAndOnClickListener() {
@@ -1519,11 +1523,12 @@ public class ChatActivity extends BaseActivity {
     }
 
     private void onResponseFinish(String result) {
-        ObjectMapper mapper = new ObjectMapper();
+        Gson gson = new Gson();
+
         UploadFileResult data = null;
         try {
-            data = mapper.readValue(result, UploadFileResult.class);
-        } catch (IOException e) {
+            data = gson.fromJson(result, UploadFileResult.class);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -1667,18 +1672,19 @@ public class ChatActivity extends BaseActivity {
 
     //STICKERS
     private void loadStickers() {
-        StickersApi.GetStickers spice = new StickersApi.GetStickers(getActivity());
 
-        getSpiceManager().execute(spice, new CustomSpiceListener<GetStickersData>(this) {
+        SpikaOSRetroApiInterface retroApiInterface = getRetrofit().create(SpikaOSRetroApiInterface.class);
+        Call<GetStickersData> call = retroApiInterface.getStickers(SingletonLikeApp.getInstance().getSharedPreferences(getActivity()).getToken());
+        call.enqueue(new CustomResponse<GetStickersData>(getActivity(), false, false) {
 
             @Override
-            public void onRequestSuccess(GetStickersData result) {
-                super.onRequestSuccess(result);
-                if (result.code == 1) {
-                    stickersManager.setStickers(result, getSupportFragmentManager());
-                }
+            public void onCustomSuccess(Call<GetStickersData> call, Response<GetStickersData> response) {
+                super.onCustomSuccess(call, response);
+                stickersManager.setStickers(response.body(), getSupportFragmentManager());
             }
+
         });
+
     }
 
     public void selectStickers(Sticker sticker){

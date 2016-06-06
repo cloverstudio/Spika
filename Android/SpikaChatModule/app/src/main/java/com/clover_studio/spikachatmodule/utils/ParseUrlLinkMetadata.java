@@ -3,9 +3,7 @@ package com.clover_studio.spikachatmodule.utils;
 import android.os.AsyncTask;
 import android.webkit.URLUtil;
 
-import com.clover_studio.spikachatmodule.base.BaseModel;
 import com.clover_studio.spikachatmodule.models.ParsedUrlData;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.json.JSONObject;
 import org.jsoup.Jsoup;

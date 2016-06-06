@@ -2,12 +2,6 @@ package com.clover_studio.spikachatmodule.utils;
 
 import android.util.Log;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
-
 import java.net.URI;
 
 /**
@@ -55,18 +49,6 @@ public class LogCS {
 
     public static void i(String message){
         Log.i(defaultLog, message);
-    }
-
-    public static void response(URI uri, RestTemplate restTemplate, HttpMethod method, HttpEntity<MultiValueMap<String, String>> entity){
-        ResponseEntity responseEntity = restTemplate.exchange(uri, method, entity, String.class);
-        String response = (String) responseEntity.getBody();
-        LogCS.custom(defaultLog, response);
-    }
-
-    public static void responseE(URI uri, RestTemplate restTemplate, HttpMethod method, HttpEntity<?> entity){
-        ResponseEntity responseEntity = restTemplate.exchange(uri, method, entity, String.class);
-        String response = (String) responseEntity.getBody();
-        LogCS.custom(defaultLog, response);
     }
 
     public static void custom(String tag, String message) {

@@ -45,7 +45,7 @@ public class LoginActivity extends BaseActivity{
 
         id.setText(model);
         name.setText(model);
-        avatar.setText("http://45.55.81.215/spika/img/avatar.jpg");
+        avatar.setText(Const.Socket.SOCKET_URL + "/img/avatar.jpg");
         roomId.setText("default2");
 
         //CONFIG

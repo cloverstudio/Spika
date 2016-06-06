@@ -1,7 +1,6 @@
 package com.clover_studio.spikachatmodule.models;
 
 import com.clover_studio.spikachatmodule.base.BaseModel;
-import com.fasterxml.jackson.databind.ser.std.TimeZoneSerializer;
 
 import java.io.Serializable;
 import java.util.List;

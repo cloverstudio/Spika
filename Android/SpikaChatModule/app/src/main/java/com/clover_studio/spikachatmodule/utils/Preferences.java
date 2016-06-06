@@ -14,7 +14,7 @@ import com.clover_studio.spikachatmodule.models.Message;
 import com.clover_studio.spikachatmodule.models.Sticker;
 import com.clover_studio.spikachatmodule.models.StickerCategory;
 import com.clover_studio.spikachatmodule.models.User;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
 import org.w3c.dom.Text;
 
@@ -74,9 +74,9 @@ public class Preferences {
     public void increaseClickSticker(Sticker sticker){
         String json = getStickersString();
         if(!TextUtils.isEmpty(json)){
-            ObjectMapper mapper = new ObjectMapper();
+            Gson gson = new Gson();
             try {
-                StickerCategory responseModel = mapper.readValue(json, StickerCategory.class);
+                StickerCategory responseModel = gson.fromJson(json, StickerCategory.class);
                 if(responseModel.list.contains(sticker)){
                     int position = responseModel.list.indexOf(sticker);
                     responseModel.list.get(position).timesClicked ++;
@@ -85,9 +85,9 @@ public class Preferences {
                     responseModel.list.add(sticker);
                 }
 
-                String jsonNew = mapper.writeValueAsString(responseModel);
+                String jsonNew = gson.toJson(responseModel);
                 setRecentStickers(jsonNew);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }else{
@@ -95,11 +95,11 @@ public class Preferences {
             category.list = new ArrayList<>();
             sticker.timesClicked = 1;
             category.list.add(sticker);
-            ObjectMapper mapper = new ObjectMapper();
+            Gson gson = new Gson();
             try {
-                String jsonNew = mapper.writeValueAsString(category);
+                String jsonNew = gson.toJson(category);
                 setRecentStickers(jsonNew);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -114,9 +114,9 @@ public class Preferences {
         if(TextUtils.isEmpty(json)){
             return null;
         }
-        ObjectMapper mapper = new ObjectMapper();
+        Gson gson = new Gson();
         try {
-            StickerCategory responseModel = mapper.readValue(json, StickerCategory.class);
+            StickerCategory responseModel = gson.fromJson(json, StickerCategory.class);
 
             Collections.sort(responseModel.list, new Comparator<Sticker>() {
                 @Override
@@ -126,7 +126,7 @@ public class Preferences {
             });
 
             return responseModel;
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

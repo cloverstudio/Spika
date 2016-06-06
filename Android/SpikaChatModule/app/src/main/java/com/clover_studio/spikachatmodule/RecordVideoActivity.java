@@ -19,16 +19,16 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.VideoView;
 
+import com.clover_studio.spikachatmodule.api.UploadFileManagement;
 import com.clover_studio.spikachatmodule.base.BaseActivity;
 import com.clover_studio.spikachatmodule.base.SingletonLikeApp;
 import com.clover_studio.spikachatmodule.dialogs.NotifyDialog;
 import com.clover_studio.spikachatmodule.dialogs.UploadFileDialog;
 import com.clover_studio.spikachatmodule.models.UploadFileResult;
-import com.clover_studio.spikachatmodule.robospice.api.UploadFileManagement;
 import com.clover_studio.spikachatmodule.utils.Const;
 import com.clover_studio.spikachatmodule.utils.LogCS;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.clover_studio.spikachatmodule.utils.Tools;
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
@@ -224,11 +224,11 @@ public class RecordVideoActivity extends BaseActivity {
     }
 
     protected void onResponseFinish(String result){
-        ObjectMapper mapper = new ObjectMapper();
+        Gson gson = new Gson();
         UploadFileResult data = null;
         try {
-            data = mapper.readValue(result, UploadFileResult.class);
-        } catch (IOException e) {
+            data = gson.fromJson(result, UploadFileResult.class);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

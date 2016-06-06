@@ -4,7 +4,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.clover_studio.spikachatmodule.base.BaseModel;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.json.JSONObject;
 
