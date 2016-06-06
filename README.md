@@ -2,9 +2,9 @@
 
 Spika is messenger module for Web/iOS/Android with backend. 
 You can include messenger feature to your app or service with minimum code.
-As also Spika is designed to customise, so you can change logic and design very easily.
-If you need comprehensive secure business chat solution we are providing Spika for business.
-For detail please here. https://spika.business/
+
+For detail please visit our web site.
+http://spiaapp.com
 
 ![Demo](https://github.com/cloverstudio/Spika/blob/master/spika_demo_new.gif "Demo")
 
@@ -29,42 +29,6 @@ https://github.com/cloverstudio/Spika/tree/master/iOS
 
 ## License
 
-**Spika is opensource, but it's not free for commercial license. Please contact info@clover-studio.com for detail. Commercial license fee is $499**
-
-### - - - - Free License - - - - 
-
-#### Required
-
-* License and copyright notice
-* Disclose Source
-
-#### Permitted
-
-* Private Use
-* Modification
-* Distribution
-
-#### Forbidden
-
-* Hold Liable
-* Sublicensing
-* Commercial Use
-
-### - - - - Commercial License - - - - 
-
-#### Required
-**Nothing**
-
-#### Permitted
-
-* Private Use
-* Modification
-* Distribution
-* Commercial Use
-
-#### Forbidden
-
-* Hold Liable
-* Sublicensing
+MIT License
 
 
