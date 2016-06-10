@@ -58,14 +58,6 @@
             android:label="@string/app_name" >
         </activity>
 
-        <service
-            android:name="com.clover_studio.spikachatmodule.robospice.spice.SpringService"
-            android:exported="false" />
-
-        <service
-            android:name="com.clover_studio.spikachatmodule.robospice.spice.OfflineService"
-            android:exported="false" />
-
     </application>
 
 </manifest>
