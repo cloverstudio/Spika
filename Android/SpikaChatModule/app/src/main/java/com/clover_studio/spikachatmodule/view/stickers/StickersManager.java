@@ -39,6 +39,7 @@ public class StickersManager {
     private ViewPager vpStickers;
     private HorizontalScrollView hsvStickers;
     private SupportAnimator stickersAnimator;
+    private boolean firstShowRecent = false;
 
     private OnStickersManageListener listener;
 
@@ -178,11 +179,13 @@ public class StickersManager {
         });
         int position = 0;
 
+        firstShowRecent = true;
         List<Fragment> stickersFragmentList = new ArrayList<>();
         StickerCategory recentCategory = SingletonLikeApp.getInstance().getSharedPreferences(llForStickersCategory.getContext()).getStickersLikeObject();
         if(recentCategory == null){
             recentCategory = new StickerCategory();
             recentCategory.list = new ArrayList<>();
+            firstShowRecent = false;
         }
         stickersFragmentList.add(CategoryStickersFragment.newInstance(recentCategory));
 
@@ -213,7 +216,7 @@ public class StickersManager {
         vpStickers.setAdapter(pagerAdapter);
         vpStickers.addOnPageChangeListener(onPageChanged);
 
-        if(recentCategory == null && vpStickers.getChildCount() > 0){
+        if(!firstShowRecent && vpStickers.getChildCount() > 0){
             vpStickers.setCurrentItem(1);
         }
     }
