@@ -180,6 +180,10 @@ public class StickersManager {
 
         List<Fragment> stickersFragmentList = new ArrayList<>();
         StickerCategory recentCategory = SingletonLikeApp.getInstance().getSharedPreferences(llForStickersCategory.getContext()).getStickersLikeObject();
+        if(recentCategory == null){
+            recentCategory = new StickerCategory();
+            recentCategory.list = new ArrayList<>();
+        }
         stickersFragmentList.add(CategoryStickersFragment.newInstance(recentCategory));
 
         for(final StickerCategory category : data.data.stickers){

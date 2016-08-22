@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ public class CategoryStickersFragment extends Fragment{
 
     private StickerCategory category;
     private RecyclerView rvStickers;
+    private RecyclerStickersAdapter adapter;
 
     public static CategoryStickersFragment newInstance(StickerCategory category) {
         CategoryStickersFragment fragment = new CategoryStickersFragment();
@@ -62,30 +64,27 @@ public class CategoryStickersFragment extends Fragment{
 
         rvStickers = (RecyclerView) rootView.findViewById(R.id.rvStickers);
         rvStickers.setLayoutManager(new GridLayoutManager(getActivity(), numColumns));
+        adapter = new RecyclerStickersAdapter(category.list);
+        rvStickers.setAdapter(adapter);
 
-        if(category != null){
-            rvStickers.setAdapter(new RecyclerStickersAdapter(category.list));
-            ((RecyclerStickersAdapter)rvStickers.getAdapter()).setListener(new RecyclerStickersAdapter.OnItemClickedListener() {
-                @Override
-                public void onItemClicked(Sticker sticker) {
-                    if(getActivity() instanceof ChatActivity){
-                        ((ChatActivity)getActivity()).selectStickers(sticker);
-                    }
+        ((RecyclerStickersAdapter)rvStickers.getAdapter()).setListener(new RecyclerStickersAdapter.OnItemClickedListener() {
+            @Override
+            public void onItemClicked(Sticker sticker) {
+                if(getActivity() instanceof ChatActivity){
+                    ((ChatActivity)getActivity()).selectStickers(sticker);
                 }
-            });
-        }else{
-            rvStickers.setAdapter(new RecyclerStickersAdapter(new ArrayList<Sticker>()));
-        }
+            }
+        });
 
         return rootView;
 
     }
 
     public void refreshData(StickerCategory category){
-        this.category = category;
-        if(rvStickers != null && rvStickers.getAdapter() != null){
-            ((RecyclerStickersAdapter)rvStickers.getAdapter()).removeData();
-            ((RecyclerStickersAdapter)rvStickers.getAdapter()).addData(category.list);
+        this.category.list.clear();
+        this.category.list.addAll(category.list);
+        if(rvStickers != null && adapter != null){
+            adapter.notifyDataSetChanged();
         }
     }
 

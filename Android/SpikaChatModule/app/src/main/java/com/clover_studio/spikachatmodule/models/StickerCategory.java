@@ -13,4 +13,11 @@ public class StickerCategory extends BaseModel implements Serializable{
     public String mainPic;
     public List<Sticker> list;
 
+    @Override
+    public String toString() {
+        return "StickerCategory{" +
+                "mainPic='" + mainPic + '\'' +
+                ", list=" + list +
+                '}';
+    }
 }
