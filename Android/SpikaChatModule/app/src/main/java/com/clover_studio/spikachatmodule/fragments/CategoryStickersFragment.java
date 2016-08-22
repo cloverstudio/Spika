@@ -67,7 +67,7 @@ public class CategoryStickersFragment extends Fragment{
         adapter = new RecyclerStickersAdapter(category.list);
         rvStickers.setAdapter(adapter);
 
-        ((RecyclerStickersAdapter)rvStickers.getAdapter()).setListener(new RecyclerStickersAdapter.OnItemClickedListener() {
+        adapter.setListener(new RecyclerStickersAdapter.OnItemClickedListener() {
             @Override
             public void onItemClicked(Sticker sticker) {
                 if(getActivity() instanceof ChatActivity){
