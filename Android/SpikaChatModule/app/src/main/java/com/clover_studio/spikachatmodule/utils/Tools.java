@@ -643,6 +643,8 @@ public class Tools {
 
         if (msg == null) {
             return null;
+        } else if(msg.contains("@")){
+            return null;
         } else {
 
             String result = null;
