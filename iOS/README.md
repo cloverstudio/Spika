@@ -17,7 +17,7 @@
 
 ### Continued for exististing projects:
 - Open Podfile in Spika/iOS folder & copy/paste pod dependancies to your Podfile in root of project
-- Run pod instal
+- Run pod install
 - Open YourProjectName.xcworkspace with Xcode
 - Drag and drop Spika/iOS/Spika folder to your project in Xcode & check Copy items if needed option
 - Open Info.plist file in your project and add new key NSAppTransportSecurity/NSAllowsArbitraryLoads = YES (temporarily to allow read from non https urls)
