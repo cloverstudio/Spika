@@ -33,8 +33,8 @@
     self.serverTextField.text = [CSCustomConfig sharedInstance].server_url;
     self.socketTextField.text = [CSCustomConfig sharedInstance].socket_url;
     
-    self.userIdTextField.text = [[UIDevice currentDevice] name];
-    self.usernameTextField.text = [[UIDevice currentDevice] name];
+    self.userIdTextField.text = [[[UIDevice currentDevice] name] stringByReplacingOccurrencesOfString:@"’" withString:@""];
+    self.usernameTextField.text = [[[UIDevice currentDevice] name] stringByReplacingOccurrencesOfString:@"’" withString:@""];
     self.avatarUrlTextField.text = @"http://ossdemo.spika.chat/spika/img/avatar.jpg";
     self.roomTextField.text = @"default";
     
