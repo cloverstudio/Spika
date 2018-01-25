@@ -91,7 +91,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -539,6 +538,15 @@ public class ChatActivity extends BaseActivity {
                 loadStickers();
             }
 
+            @Override
+            public void onCustomFailed(Call<Login> call, Response<Login> response) {
+                super.onCustomFailed(call, response);
+            }
+
+            @Override
+            public void onFailure(Call<Login> call, Throwable t) {
+                super.onFailure(call, t);
+            }
         });
 
     }

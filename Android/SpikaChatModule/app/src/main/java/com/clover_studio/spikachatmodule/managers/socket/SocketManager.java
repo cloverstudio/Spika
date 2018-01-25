@@ -57,6 +57,7 @@ public class SocketManager {
 
             IO.Options opts = new IO.Options();
             opts.forceNew = true;
+            opts.transports = new String[]{"websocket"};
             mSocket = IO.socket(SingletonLikeApp.getInstance().getConfig(context).socketUrl, opts);
             mSocket.connect();
 

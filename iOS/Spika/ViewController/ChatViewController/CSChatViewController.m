@@ -499,7 +499,7 @@
         
                                             [self connectToSocket];
                                             [self getMessages];
-                                            [self getStickers];
+                                            //[self getStickers];
                                         }];
 }
 

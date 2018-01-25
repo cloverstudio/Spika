@@ -6,9 +6,9 @@ package com.clover_studio.spikachatmodule.utils;
 public class Const {
 
     public static final class Api{
-//        public static final String BASE_URL = "http://192.168.1.126:8080/v1/"; //test url
+        public static final String BASE_URL = "http://192.168.1.226:8080/spika/v1/"; //test url
 //        public static final String BASE_URL = "http://52.91.91.133/spika/v1/"; //production url
-        public static final String BASE_URL = "http://ossdemo.spika.chat/spika/v1/"; //new server url
+//        public static final String BASE_URL = "http://m.wapodo.net/spika/v1/"; //new server url
         public static final String USER_LOGIN = "user/login";
         public static final String USER_LIST = "user/list/{roomId}";
         public static final String MESSAGES = "message/list/{roomId}/{lastMessageId}";
@@ -19,9 +19,9 @@ public class Const {
     }
 
     public static final class Socket{
-//        public static final String SOCKET_URL = "http://192.168.1.126:8080"; //production url
+        public static final String SOCKET_URL = "http://192.168.1.226:8080/spika"; //production url
 //        public static final String SOCKET_URL = "http://52.91.91.133/spika"; //test url
-    public static final String SOCKET_URL = "http://ossdemo.spika.chat/spika"; //new server url
+//        public static final String SOCKET_URL = "http://m.wapodo.net/spika"; //new server url
     }
 
     public static final class Extras{
