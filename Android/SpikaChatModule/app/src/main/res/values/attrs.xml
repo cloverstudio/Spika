@@ -2,11 +2,11 @@
 <resources>
 
     <declare-styleable name="RoundedImageView">
-        <attr name="corner_radius" format="dimension" />
-        <attr name="border_width" format="dimension" />
-        <attr name="border_color" format="color" />
-        <attr name="mutate_background" format="boolean" />
-        <attr name="oval" format="boolean" />
+        <attr name="spika_corner_radius" format="dimension" />
+        <attr name="spika_border_width" format="dimension" />
+        <attr name="spika_border_color" format="color" />
+        <attr name="spika_mutate_background" format="boolean" />
+        <attr name="spika_oval" format="boolean" />
         <attr name="android:scaleType" />
     </declare-styleable>
 
