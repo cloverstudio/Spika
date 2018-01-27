@@ -21,6 +21,7 @@ public class NotifyDialog extends Dialog {
     public enum Type{
         INFO, CONFIRM
     }
+    private static boolean showing = false;
 
     /**
      * start info dialog with one button
@@ -49,15 +50,17 @@ public class NotifyDialog extends Dialog {
     public NotifyDialog(Context context, String title, String text, Type type) {
         super(context, R.style.Theme_Dialog);
 
-        setCancelable(false);
-        setCanceledOnTouchOutside(false);
+        if (!showing) {
+            setCancelable(false);
+            setCanceledOnTouchOutside(false);
 
-        titleStr = title;
-        textStr = text;
-        this.type = type;
+            titleStr = title;
+            textStr = text;
+            this.type = type;
 
-        show();
-
+            showing = true;
+            show();
+        }
     }
 
     /**
@@ -103,6 +106,7 @@ public class NotifyDialog extends Dialog {
         buttonOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                showing = false;
                 if(oneButtonListener != null){
                     oneButtonListener.onOkClicked(NotifyDialog.this);
                 }else{
@@ -124,6 +128,7 @@ public class NotifyDialog extends Dialog {
         buttonOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                showing = false;
                 if (twoButtonListener != null) {
                     twoButtonListener.onOkClicked(NotifyDialog.this);
                 } else {
@@ -136,6 +141,7 @@ public class NotifyDialog extends Dialog {
         buttonCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                showing = false;
                 if(twoButtonListener != null){
                     twoButtonListener.onCancelClicked(NotifyDialog.this);
                 }else{
